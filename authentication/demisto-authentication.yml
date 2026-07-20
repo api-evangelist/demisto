@@ -1,0 +1,37 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/demisto-openapi-original.json
+docs: https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/8/Cortex-XSOAR-Administrator-Guide/Get-Started-with-APIs
+note: >-
+  The Demisto REST API (now Cortex XSOAR, Palo Alto Networks) authenticates with an API key.
+  Legacy Demisto / XSOAR 6.x sends the key in the `Authorization` header. XSOAR 8+ / XSIAM
+  add an advanced-key model that pairs an `API-Key` with an `API-Key-ID` (sent as `x-xdr-auth-id`)
+  and a `csrf_token` (`X-XSRF-TOKEN`). Keys are generated in the web UI under
+  Settings > Integrations > API Keys. The API is instance-scoped (self-hosted server or SaaS tenant),
+  so there is no OAuth flow and no scope surface.
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: api_key
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Primary API key (legacy Demisto / XSOAR 6.x). XSOAR 8+ uses the API-Key / API-Key-ID pair.
+  sources:
+  - openapi/demisto-openapi-original.json
+- name: csrf_token
+  type: apiKey
+  in: header
+  parameter: X-XSRF-TOKEN
+  sources:
+  - openapi/demisto-openapi-original.json
+- name: x-xdr-auth-id
+  type: apiKey
+  in: header
+  parameter: x-xdr-auth-id
+  description: Advanced API-Key-ID for XSOAR 8+ / XSIAM tenants.
+  sources:
+  - openapi/demisto-openapi-original.json
