@@ -1,0 +1,197 @@
+swagger: '2.0'
+info:
+  description: 'This is the public REST API to integrate with the demisto server.
+
+    HTTP request can be sent using any HTTP-client.
+
+
+    For an example dedicated client take a look at: https://github.com/demisto/demisto-py.
+
+
+    Requests must include API-key that can be generated in the Demisto web client under ''Settings'' -> ''Integrations'' -> ''API keys''
+
+
+
+    Optimistic Locking and Versioning\:
+
+
+    When using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).
+
+    In addition, you can pass ''version\: -1'' to force data override (make sure that other users data might be lost).
+
+
+    Assume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?
+
+    To solve this, each data item in Demisto has a numeric incremental version.
+
+    If Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.
+
+    Bob will need to get the latest item and work on it so Alice work will not get lost.
+
+
+    Example request using ''curl''\:
+
+
+    ```
+
+    curl ''https://hostname:443/incidents/search'' -H ''content-type: application/json'' -H ''accept: application/json'' -H ''Authorization: <API Key goes here>'' --data-binary ''{"filter":{"query":"-status:closed -category:job","period":{"by":"day","fromValue":7}}}'' --compressed
+
+    ```'
+  title: Demisto Apikeys Incidenttypes API
+  version: 2.0.0
+host: hostname:443
+schemes:
+- https
+consumes:
+- application/json
+- application/xml
+produces:
+- application/json
+security:
+- api_key: []
+- csrf_token: []
+- x-xdr-auth-id: []
+tags:
+- name: Incidenttypes
+paths:
+  /incidenttypes/import:
+    post:
+      description: Import an incident type to Cortex XSOAR
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      summary: Import an incident type
+      operationId: importIncidentTypesHandler
+      parameters:
+      - type: file
+        description: file
+        name: file
+        in: formData
+        required: true
+      responses:
+        '200':
+          description: The saved incident type
+          schema:
+            $ref: '#/definitions/IncidentType'
+      tags:
+      - Incidenttypes
+definitions:
+  ReputationCalcAlg:
+    type: number
+    format: double
+    title: ReputationCalcAlg ...
+    x-go-package: github.com/demisto/server/domain
+  IncidentType:
+    type: object
+    title: IncidentType ...
+    properties:
+      autorun:
+        type: boolean
+        x-go-name: IsAutoRun
+      closureScript:
+        type: string
+        x-go-name: ClosureScript
+      color:
+        type: string
+        x-go-name: Color
+      commitMessage:
+        type: string
+        x-go-name: CommitMessage
+      days:
+        type: integer
+        format: int64
+        x-go-name: Days
+      daysR:
+        type: integer
+        format: int64
+        x-go-name: DaysReminder
+      default:
+        type: boolean
+        x-go-name: IsDefaultType
+      disabled:
+        type: boolean
+        x-go-name: Disabled
+      hours:
+        type: integer
+        format: int64
+        x-go-name: Hours
+      hoursR:
+        type: integer
+        format: int64
+        x-go-name: HoursReminder
+      id:
+        type: string
+        x-go-name: ID
+      locked:
+        type: boolean
+        x-go-name: Locked
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      name:
+        type: string
+        x-go-name: Name
+      playbookId:
+        type: string
+        x-go-name: PlaybookID
+      preProcessingScript:
+        type: string
+        x-go-name: PreProcessingScript
+      prevName:
+        type: string
+        x-go-name: PrevName
+      readonly:
+        type: boolean
+        x-go-name: ReadOnly
+      reputationCalc:
+        $ref: '#/definitions/ReputationCalcAlg'
+      shouldCommit:
+        type: boolean
+        x-go-name: ShouldCommit
+      sla:
+        type: integer
+        format: int64
+        x-go-name: SLA
+      slaReminder:
+        type: integer
+        format: int64
+        x-go-name: SLAReminder
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      system:
+        type: boolean
+        x-go-name: System
+      vcShouldIgnore:
+        type: boolean
+        x-go-name: VCShouldIgnore
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+      weeks:
+        type: integer
+        format: int64
+        x-go-name: Weeks
+      weeksR:
+        type: integer
+        format: int64
+        x-go-name: WeeksReminder
+    x-go-package: github.com/demisto/server/domain
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
+  csrf_token:
+    type: apiKey
+    name: X-XSRF-TOKEN
+    in: header
+  x-xdr-auth-id:
+    type: apiKey
+    name: x-xdr-auth-id
+    in: header

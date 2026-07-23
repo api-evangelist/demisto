@@ -1,0 +1,671 @@
+swagger: '2.0'
+info:
+  description: 'This is the public REST API to integrate with the demisto server.
+
+    HTTP request can be sent using any HTTP-client.
+
+
+    For an example dedicated client take a look at: https://github.com/demisto/demisto-py.
+
+
+    Requests must include API-key that can be generated in the Demisto web client under ''Settings'' -> ''Integrations'' -> ''API keys''
+
+
+
+    Optimistic Locking and Versioning\:
+
+
+    When using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).
+
+    In addition, you can pass ''version\: -1'' to force data override (make sure that other users data might be lost).
+
+
+    Assume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?
+
+    To solve this, each data item in Demisto has a numeric incremental version.
+
+    If Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.
+
+    Bob will need to get the latest item and work on it so Alice work will not get lost.
+
+
+    Example request using ''curl''\:
+
+
+    ```
+
+    curl ''https://hostname:443/incidents/search'' -H ''content-type: application/json'' -H ''accept: application/json'' -H ''Authorization: <API Key goes here>'' --data-binary ''{"filter":{"query":"-status:closed -category:job","period":{"by":"day","fromValue":7}}}'' --compressed
+
+    ```'
+  title: Demisto Apikeys Settings API
+  version: 2.0.0
+host: hostname:443
+schemes:
+- https
+consumes:
+- application/json
+- application/xml
+produces:
+- application/json
+security:
+- api_key: []
+- csrf_token: []
+- x-xdr-auth-id: []
+tags:
+- name: Settings
+paths:
+  /settings/audits:
+    post:
+      description: Get audits by filter
+      summary: Get Audits
+      operationId: getAudits
+      parameters:
+      - name: filter
+        in: body
+        schema:
+          $ref: '#/definitions/GenericStringDateFilter'
+      responses:
+        '200':
+          description: auditResult
+          schema:
+            $ref: '#/definitions/auditResult'
+      tags:
+      - Settings
+  /settings/docker-images:
+    get:
+      description: Get list of all available docker image names
+      summary: Get Docker Images
+      operationId: getDockerImages
+      responses:
+        '200':
+          description: dockerImagesResult
+          schema:
+            $ref: '#/definitions/dockerImagesResult'
+      tags:
+      - Settings
+    post:
+      description: Create an image with a given list of dependencies
+      summary: Create Image
+      operationId: createDockerImage
+      parameters:
+      - name: newDockerImage
+        in: body
+        schema:
+          $ref: '#/definitions/newDockerImage'
+      responses:
+        '200':
+          description: newDockerImageResult
+          schema:
+            $ref: '#/definitions/newDockerImageResult'
+      tags:
+      - Settings
+  /settings/integration-conf/upload:
+    post:
+      description: Upload an integration to Demisto
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      summary: Upload an integration
+      operationId: integrationUpload
+      parameters:
+      - type: file
+        description: file
+        name: file
+        in: formData
+        required: true
+      responses:
+        '200':
+          description: The saved configuration
+          schema:
+            $ref: '#/definitions/ModuleConfiguration'
+      tags:
+      - Settings
+definitions:
+  newDockerImageResult:
+    type: object
+    properties:
+      output:
+        type: string
+        x-go-name: Output
+    x-go-package: github.com/demisto/server/web
+  GenericStringDateFilter:
+    description: GenericStringDateFilter is a general filter that will fetch entities using the Query value and a date filter
+    type: object
+    properties:
+      Cache:
+        description: Cache of join functions
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+      fromDate:
+        type: string
+        format: date-time
+        x-go-name: FromDate
+      fromDateLicense:
+        type: string
+        format: date-time
+        x-go-name: FromDateLicenseVal
+      page:
+        description: 0-based page
+        type: integer
+        format: int64
+        x-go-name: Page
+      period:
+        $ref: '#/definitions/Period'
+      query:
+        type: string
+        x-go-name: Query
+      searchAfter:
+        description: Efficient next page, pass max sort value from previous page
+        type: array
+        items:
+          type: string
+        x-go-name: SearchAfter
+      searchBefore:
+        description: Efficient prev page, pass min sort value from next page
+        type: array
+        items:
+          type: string
+        x-go-name: SearchBefore
+      size:
+        description: Size is limited to 1000, if not passed it defaults to 0, and no results will return
+        type: integer
+        format: int64
+        x-go-name: Size
+      sort:
+        description: The sort order
+        type: array
+        items:
+          $ref: '#/definitions/Order'
+        x-go-name: Sort
+      timeFrame:
+        $ref: '#/definitions/Duration'
+      toDate:
+        type: string
+        format: date-time
+        x-go-name: ToDate
+    x-go-package: github.com/demisto/server/repo/entities
+  Audit:
+    description: 'Audit holds the auditing details. This includes all common fields, the action in a string blob and the user who
+
+      performed the action in a user struct.'
+    type: object
+    properties:
+      action:
+        type: object
+        additionalProperties:
+          type: object
+        x-go-name: Action
+      id:
+        type: string
+        x-go-name: ID
+      identifier:
+        type: string
+        x-go-name: Identifier
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      object:
+        type: string
+        x-go-name: Object
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      type:
+        type: string
+        x-go-name: Type
+      user:
+        type: string
+        x-go-name: User
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+    x-go-package: github.com/demisto/server/domain
+  ScriptType:
+    description: ScriptType holds the type of a script
+    type: string
+    x-go-package: github.com/demisto/server/domain
+  OutputType:
+    type: string
+    title: OutputType ...
+    x-go-package: github.com/demisto/server/domain
+  Output:
+    description: Output of a module command
+    type: object
+    properties:
+      contentPath:
+        type: string
+        x-go-name: ContentPath
+      contextPath:
+        type: string
+        x-go-name: ContextPath
+      description:
+        description: Description is either a string or a map from string to interface
+        type: object
+        x-go-name: Description
+      type:
+        $ref: '#/definitions/OutputType'
+    x-go-package: github.com/demisto/server/domain
+  Order:
+    description: Order struct holds a sort field and the direction of sorting
+    type: object
+    properties:
+      asc:
+        type: boolean
+        x-go-name: Asc
+      field:
+        type: string
+        x-go-name: Field
+      fieldType:
+        type: string
+        x-go-name: FieldType
+    x-go-package: github.com/demisto/server/domain
+  auditResult:
+    type: object
+    properties:
+      audits:
+        type: array
+        items:
+          $ref: '#/definitions/Audit'
+        x-go-name: Audits
+      total:
+        type: integer
+        format: int64
+        x-go-name: Total
+    x-go-package: github.com/demisto/server/web
+  Period:
+    type: object
+    title: Period holds the 'Period' query, such as last 3 days, last 6 hours, between 6 days from now until 3 days from now.
+    properties:
+      by:
+        description: By is used for legacty, and if exists it will override ByTo and ByFrom
+        type: string
+        x-go-name: By
+      byFrom:
+        type: string
+        x-go-name: ByFrom
+      byTo:
+        type: string
+        x-go-name: ByTo
+      field:
+        type: string
+        x-go-name: Field
+      fromValue:
+        type: string
+        format: duration
+        x-go-name: FromValue
+      toValue:
+        type: string
+        format: duration
+        x-go-name: ToValue
+    x-go-package: github.com/demisto/server/domain
+  newDockerImage:
+    type: object
+    properties:
+      base:
+        type: string
+        x-go-name: BaseImage
+      dependencies:
+        type: array
+        items:
+          type: string
+        x-go-name: Dependencies
+      name:
+        type: string
+        x-go-name: Name
+      packages:
+        type: array
+        items:
+          type: string
+        x-go-name: Packages
+    x-go-package: github.com/demisto/server/web
+  ModuleConfiguration:
+    description: ModuleConfiguration is the configuration parameters for a module
+    type: object
+    properties:
+      beta:
+        type: boolean
+        x-go-name: Beta
+      brand:
+        type: string
+        x-go-name: Brand
+      canGetSamples:
+        type: boolean
+        x-go-name: CanGetSamples
+      category:
+        type: string
+        x-go-name: Category
+      cmdline:
+        type: string
+        x-go-name: Cmdline
+      commitMessage:
+        type: string
+        x-go-name: CommitMessage
+      configuration:
+        type: array
+        items:
+          $ref: '#/definitions/ConfigField'
+        x-go-name: Configuration
+      deprecated:
+        type: boolean
+        x-go-name: Deprecated
+      description:
+        type: string
+        x-go-name: Description
+      detailedDescription:
+        type: string
+        x-go-name: DetailedDescription
+      display:
+        type: string
+        x-go-name: Display
+      executable:
+        type: string
+        x-go-name: Executable
+      hidden:
+        type: boolean
+        x-go-name: Hidden
+      hideEngines:
+        type: boolean
+        x-go-name: HideEngines
+      icon:
+        type: string
+        x-go-name: Icon
+      id:
+        type: string
+        x-go-name: ID
+      image:
+        type: string
+        x-go-name: Image
+      integrationScript:
+        $ref: '#/definitions/IntegrationScript'
+      isPasswordProtected:
+        type: boolean
+        x-go-name: IsPasswordProtected
+      locked:
+        type: boolean
+        x-go-name: Locked
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      name:
+        type: string
+        x-go-name: Name
+      path:
+        type: string
+        x-go-name: Path
+      prevName:
+        type: string
+        x-go-name: PrevName
+      propagationLabels:
+        type: array
+        items:
+          type: string
+        x-go-name: PropagationLabels
+      readonly:
+        type: boolean
+        x-go-name: ReadOnly
+      scriptNotVisible:
+        type: boolean
+        x-go-name: ScriptNotVisible
+      shouldCommit:
+        type: boolean
+        x-go-name: ShouldCommit
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      sourceModuleID:
+        type: string
+        x-go-name: SourceModuleID
+      system:
+        type: boolean
+        x-go-name: System
+      vcShouldIgnore:
+        type: boolean
+        x-go-name: VCShouldIgnore
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+    x-go-package: github.com/demisto/server/domain
+  Command:
+    description: Command supported by a module
+    type: object
+    properties:
+      arguments:
+        type: array
+        items:
+          $ref: '#/definitions/Argument'
+        x-go-name: Arguments
+      cartesian:
+        type: boolean
+        x-go-name: Cartesian
+      deprecated:
+        type: boolean
+        x-go-name: Deprecated
+      description:
+        type: string
+        x-go-name: Description
+      execution:
+        type: boolean
+        x-go-name: Execution
+      hidden:
+        type: boolean
+        x-go-name: Hidden
+      important:
+        type: array
+        items:
+          $ref: '#/definitions/Important'
+        x-go-name: Important
+      name:
+        type: string
+        x-go-name: Name
+      outputs:
+        type: array
+        items:
+          $ref: '#/definitions/Output'
+        x-go-name: Outputs
+      permitted:
+        type: boolean
+        x-go-name: Permitted
+      sensitive:
+        type: boolean
+        x-go-name: Sensitive
+      timeout:
+        type: integer
+        format: int64
+        x-go-name: Timeout
+    x-go-package: github.com/demisto/server/domain
+  dockerImagesResult:
+    type: object
+    properties:
+      images:
+        type: array
+        items:
+          $ref: '#/definitions/dockerImage'
+        x-go-name: Images
+    x-go-package: github.com/demisto/server/web
+  Argument:
+    description: Argument to a module command
+    type: object
+    properties:
+      auto:
+        type: string
+        x-go-name: Auto
+      default:
+        type: boolean
+        x-go-name: Default
+      defaultValue:
+        type: string
+        x-go-name: DefaultValue
+      deprecated:
+        type: boolean
+        x-go-name: Deprecated
+      description:
+        type: string
+        x-go-name: Description
+      isArray:
+        type: boolean
+        x-go-name: IsArray
+      name:
+        type: string
+        x-go-name: Name
+      predefined:
+        type: array
+        items:
+          type: string
+        x-go-name: Predefined
+      required:
+        type: boolean
+        x-go-name: Required
+      secret:
+        type: boolean
+        x-go-name: Secret
+    x-go-package: github.com/demisto/server/domain
+  ConfigField:
+    description: ConfigField holds a configuration field
+    type: object
+    properties:
+      defaultValue:
+        type: string
+        x-go-name: DefaultValue
+      display:
+        type: string
+        x-go-name: Display
+      hidden:
+        type: boolean
+        x-go-name: Hidden
+      info:
+        type: string
+        x-go-name: AdditionalInfo
+      name:
+        type: string
+        x-go-name: Name
+      options:
+        type: array
+        items:
+          type: string
+        x-go-name: Options
+      required:
+        type: boolean
+        x-go-name: Required
+      type:
+        $ref: '#/definitions/ConfigDataType'
+    x-go-package: github.com/demisto/server/domain
+  IntegrationScript:
+    type: object
+    title: IntegrationScript ...
+    properties:
+      commands:
+        type: array
+        items:
+          $ref: '#/definitions/Command'
+        x-go-name: Commands
+      dockerImage:
+        type: string
+        x-go-name: DockerImage
+      feed:
+        type: boolean
+        x-go-name: Feed
+      isFetch:
+        type: boolean
+        x-go-name: IsFetch
+      isFetchCredentials:
+        type: boolean
+        x-go-name: IsFetchCredentials
+      longRunning:
+        type: boolean
+        x-go-name: LongRunning
+      longRunningPortMapping:
+        type: boolean
+        x-go-name: LongRunningPort
+      runOnce:
+        type: boolean
+        x-go-name: RunOnce
+      script:
+        type: string
+        x-go-name: Script
+      subtype:
+        $ref: '#/definitions/ScriptSubType'
+      type:
+        $ref: '#/definitions/ScriptType'
+    x-go-package: github.com/demisto/server/domain
+  dockerImage:
+    description: dockerImage details
+    type: object
+    properties:
+      createdAt:
+        type: string
+        x-go-name: CreatedAt
+      createdSince:
+        type: string
+        x-go-name: CreatedSince
+      id:
+        type: string
+        x-go-name: ID
+      repository:
+        type: string
+        x-go-name: Repository
+      size:
+        type: string
+        x-go-name: Size
+      tag:
+        type: string
+        x-go-name: Tag
+    x-go-package: github.com/demisto/server/web
+  ConfigDataType:
+    description: ConfigDataType holds the type of a configuration field or command argument
+    type: number
+    format: double
+    x-go-package: github.com/demisto/server/domain
+  Duration:
+    description: 'A Duration represents the elapsed time between two instants
+
+      as an int64 nanosecond count. The representation limits the
+
+      largest representable duration to approximately 290 years.'
+    type: integer
+    format: int64
+    x-go-package: time
+  ScriptSubType:
+    description: ScriptSubType holds the script type version
+    type: string
+    x-go-package: github.com/demisto/server/domain
+  Important:
+    description: Important The important outputs of a given command
+    type: object
+    properties:
+      contextPath:
+        type: string
+        x-go-name: ContextPath
+      description:
+        description: Description is either a string or a map from string to interface
+        type: string
+        x-go-name: Description
+      related:
+        description: To what other context path this output is related
+        type: string
+        x-go-name: Related
+    x-go-package: github.com/demisto/server/domain
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
+  csrf_token:
+    type: apiKey
+    name: X-XSRF-TOKEN
+    in: header
+  x-xdr-auth-id:
+    type: apiKey
+    name: x-xdr-auth-id
+    in: header

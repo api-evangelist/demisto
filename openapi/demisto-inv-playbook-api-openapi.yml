@@ -1,0 +1,1394 @@
+swagger: '2.0'
+info:
+  description: 'This is the public REST API to integrate with the demisto server.
+
+    HTTP request can be sent using any HTTP-client.
+
+
+    For an example dedicated client take a look at: https://github.com/demisto/demisto-py.
+
+
+    Requests must include API-key that can be generated in the Demisto web client under ''Settings'' -> ''Integrations'' -> ''API keys''
+
+
+
+    Optimistic Locking and Versioning\:
+
+
+    When using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).
+
+    In addition, you can pass ''version\: -1'' to force data override (make sure that other users data might be lost).
+
+
+    Assume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?
+
+    To solve this, each data item in Demisto has a numeric incremental version.
+
+    If Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.
+
+    Bob will need to get the latest item and work on it so Alice work will not get lost.
+
+
+    Example request using ''curl''\:
+
+
+    ```
+
+    curl ''https://hostname:443/incidents/search'' -H ''content-type: application/json'' -H ''accept: application/json'' -H ''Authorization: <API Key goes here>'' --data-binary ''{"filter":{"query":"-status:closed -category:job","period":{"by":"day","fromValue":7}}}'' --compressed
+
+    ```'
+  title: Demisto Apikeys Inv Playbook API
+  version: 2.0.0
+host: hostname:443
+schemes:
+- https
+consumes:
+- application/json
+- application/xml
+produces:
+- application/json
+security:
+- api_key: []
+- csrf_token: []
+- x-xdr-auth-id: []
+tags:
+- name: Inv Playbook
+paths:
+  /inv-playbook/task/add/{investigationId}:
+    post:
+      description: Add an ad-hoc task to a running playbook
+      summary: Add ad-hoc task
+      operationId: addAdHocTask
+      parameters:
+      - name: InvPlaybookTaskData
+        in: body
+        schema:
+          $ref: '#/definitions/InvPlaybookTaskData'
+      - type: string
+        description: investigation ID
+        name: investigationId
+        in: path
+        required: true
+      responses:
+        '200':
+          description: InvestigationPlaybook
+          schema:
+            $ref: '#/definitions/InvestigationPlaybook'
+      tags:
+      - Inv Playbook
+  /inv-playbook/task/assign:
+    post:
+      description: Assign a task to an owner
+      summary: Assign task
+      operationId: taskAssign
+      parameters:
+      - name: invPlaybookAssignee
+        in: body
+        schema:
+          $ref: '#/definitions/invPlaybookAssignee'
+      responses:
+        '200':
+          description: InvestigationPlaybook
+          schema:
+            $ref: '#/definitions/InvestigationPlaybook'
+      tags:
+      - Inv Playbook
+  /inv-playbook/task/complete:
+    post:
+      description: 'Complete a task with a file attachment
+
+        Deprecated - use "/v2/inv-playbook/task/complete"'
+      consumes:
+      - multipart/form-data
+      summary: '[Deprecated] Complete a task'
+      operationId: completeTask
+      parameters:
+      - type: string
+        description: investigation ID
+        name: investigationId
+        in: formData
+        required: true
+      - type: string
+        description: file name
+        name: fileName
+        in: formData
+      - type: string
+        description: file comment
+        name: fileComment
+        in: formData
+        required: true
+      - type: string
+        description: Task Id
+        name: taskId
+        in: formData
+        required: true
+      - type: string
+        description: task input
+        name: taskInput
+        in: formData
+        required: true
+      - type: string
+        description: Version
+        name: version
+        in: formData
+        required: true
+      - type: file
+        description: file
+        name: file
+        in: formData
+        required: true
+      responses:
+        '200':
+          description: InvestigationPlaybook
+          schema:
+            $ref: '#/definitions/InvestigationPlaybook'
+      tags:
+      - Inv Playbook
+  /inv-playbook/task/complete/simple:
+    post:
+      description: Complete a task without a file attachment
+      summary: Complete task simple (no file)
+      operationId: simpleCompleteTask
+      parameters:
+      - name: invTaskInfo
+        in: body
+        schema:
+          $ref: '#/definitions/invTaskInfo'
+      responses:
+        '200':
+          description: InvestigationPlaybook
+          schema:
+            $ref: '#/definitions/InvestigationPlaybook'
+      tags:
+      - Inv Playbook
+  /inv-playbook/task/delete/{investigationId}/{invPBTaskId}:
+    post:
+      description: Delete an ad-hoc task from a running playbook
+      summary: Delete ad-hoc task
+      operationId: deleteAdHocTask
+      parameters:
+      - type: string
+        description: investigation ID
+        name: investigationId
+        in: path
+        required: true
+      - type: string
+        description: ad-hoc task ID
+        name: invPBTaskId
+        in: path
+        required: true
+      responses:
+        '200':
+          description: InvestigationPlaybook
+          schema:
+            $ref: '#/definitions/InvestigationPlaybook'
+      tags:
+      - Inv Playbook
+  /inv-playbook/task/due:
+    post:
+      description: Set the task due date
+      summary: Set task due date
+      operationId: taskSetDue
+      parameters:
+      - name: invPlaybookDue
+        in: body
+        schema:
+          $ref: '#/definitions/invPlaybookDue'
+      responses:
+        '200':
+          description: InvestigationPlaybook
+          schema:
+            $ref: '#/definitions/InvestigationPlaybook'
+      tags:
+      - Inv Playbook
+  /inv-playbook/task/edit/{investigationId}:
+    post:
+      description: Edit an ad-hoc task in a running playbook
+      summary: Edit ad-hoc task
+      operationId: editAdHocTask
+      parameters:
+      - name: InvPlaybookTaskData
+        in: body
+        schema:
+          $ref: '#/definitions/InvPlaybookTaskData'
+      - type: string
+        description: investigation ID
+        name: investigationId
+        in: path
+        required: true
+      responses:
+        '200':
+          description: InvestigationPlaybook
+          schema:
+            $ref: '#/definitions/InvestigationPlaybook'
+      tags:
+      - Inv Playbook
+  /inv-playbook/task/note/add:
+    post:
+      description: Add comment to a task
+      summary: Task add comment
+      operationId: taskAddComment
+      parameters:
+      - name: invTaskInfo
+        in: body
+        schema:
+          $ref: '#/definitions/invTaskInfo'
+      responses:
+        '200':
+          description: InvestigationPlaybook
+          schema:
+            $ref: '#/definitions/InvestigationPlaybook'
+      tags:
+      - Inv Playbook
+  /inv-playbook/task/uncomplete:
+    post:
+      description: Reopen a closed task and change the status to uncomplete
+      summary: Un complete a task
+      operationId: taskUnComplete
+      parameters:
+      - name: invTaskInfo
+        in: body
+        schema:
+          $ref: '#/definitions/invTaskInfo'
+      responses:
+        '200':
+          description: InvestigationPlaybook
+          schema:
+            $ref: '#/definitions/InvestigationPlaybook'
+      tags:
+      - Inv Playbook
+  /v2/inv-playbook/task/complete:
+    post:
+      description: Complete a task with command and multiple file attachments
+      consumes:
+      - multipart/form-data
+      summary: Complete a task
+      operationId: completeTaskV2
+      parameters:
+      - type: string
+        description: investigation ID
+        name: investigationId
+        in: formData
+        required: true
+      - type: string
+        description: Task Id
+        name: taskId
+        in: formData
+        required: true
+      - type: string
+        description: Task comment or command to run
+        name: taskComment
+        in: formData
+      - type: string
+        description: Task input
+        name: taskInput
+        in: formData
+        required: true
+      - type: string
+        description: Version
+        name: version
+        in: formData
+        required: true
+      - type: file
+        description: Files to attach to the task
+        name: file
+        in: formData
+        required: true
+      - type: string
+        description: file names separated by %###% (only if files provided)
+        name: fileNames
+        in: formData
+      - type: string
+        description: file comment separated by %###% (only if files provided)
+        name: fileComments
+        in: formData
+      responses:
+        '200':
+          description: InvestigationPlaybook
+          schema:
+            $ref: '#/definitions/InvestigationPlaybook'
+      tags:
+      - Inv Playbook
+  /v2/inv-playbook/task/form/submit:
+    post:
+      description: Submit a data collection task with given answers and multiple file attachments
+      consumes:
+      - multipart/form-data
+      summary: Complete a task
+      operationId: submitTaskForm
+      parameters:
+      - type: string
+        description: investigation ID
+        name: investigationId
+        in: formData
+        required: true
+      - type: string
+        description: Task Id
+        name: taskId
+        in: formData
+        required: true
+      - type: string
+        description: the answers to the task form. Answers are keyed by numerical question id
+        name: answers
+        in: formData
+        required: true
+      - type: file
+        description: Files to attach to the task
+        name: file
+        in: formData
+      responses:
+        '200':
+          description: InvestigationPlaybook
+          schema:
+            $ref: '#/definitions/InvestigationPlaybook'
+      tags:
+      - Inv Playbook
+definitions:
+  TimerAction:
+    type: string
+    title: TimerAction ...
+    x-go-package: github.com/demisto/server/domain
+  invPlaybookDue:
+    type: object
+    properties:
+      date:
+        type: string
+        format: date-time
+        x-go-name: Date
+      inTaskID:
+        type: string
+        x-go-name: TaskID
+      invId:
+        type: string
+        x-go-name: ID
+      version:
+        type: integer
+        format: int64
+        x-go-name: Version
+    x-go-package: github.com/demisto/server/web
+  PlaybookOutput:
+    description: PlaybookOutput represents the playbook output
+    type: object
+    properties:
+      contextPath:
+        type: string
+        x-go-name: ContextPath
+      description:
+        type: string
+        x-go-name: Description
+      type:
+        $ref: '#/definitions/OutputType'
+    x-go-package: github.com/demisto/server/domain
+  InvPlaybookTaskCompleteData:
+    type: object
+    title: InvPlaybookTaskCompleteData ...
+    properties:
+      arguments:
+        type: object
+        additionalProperties:
+          type: object
+        x-go-name: Arguments
+      completedBy:
+        type: string
+        x-go-name: CompletedBy
+      completedCount:
+        type: integer
+        format: int64
+        x-go-name: CompletedCount
+      completedDate:
+        type: string
+        format: date-time
+        x-go-name: CompletedDate
+      entries:
+        type: array
+        items:
+          type: string
+        x-go-name: Entries
+      input:
+        type: string
+        x-go-name: Input
+      outputs:
+        type: object
+        additionalProperties:
+          type: object
+        x-go-name: Outputs
+      playbookInputs:
+        type: object
+        additionalProperties:
+          type: object
+        x-go-name: PlaybookInputs
+      startDate:
+        type: string
+        format: date-time
+        x-go-name: StartDate
+      state:
+        $ref: '#/definitions/TaskState'
+      willNotExecuteCount:
+        type: integer
+        format: int64
+        x-go-name: WillNotExecuteCount
+    x-go-package: github.com/demisto/server/domain
+  FilterOperatorID:
+    type: string
+    title: FilterOperatorID ...
+    x-go-package: github.com/demisto/server/domain
+  TaskView:
+    description: TaskView represents the view in client of the tasks graph
+    type: object
+    x-go-package: github.com/demisto/server/domain
+  GridColumn:
+    type: object
+    title: GridColumn ...
+    properties:
+      displayName:
+        type: string
+        x-go-name: DisplayName
+      fieldCalcScript:
+        type: string
+        x-go-name: FieldCalcScript
+      isDefault:
+        type: boolean
+        x-go-name: IsDefault
+      isReadOnly:
+        type: boolean
+        x-go-name: IsReadOnly
+      key:
+        type: string
+        x-go-name: Key
+      required:
+        type: boolean
+        x-go-name: Required
+      script:
+        type: string
+        x-go-name: Script
+      selectValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SelectValues
+      type:
+        type: string
+        x-go-name: Type
+      width:
+        type: integer
+        format: int64
+        x-go-name: Width
+    x-go-package: github.com/demisto/server/domain
+  invPlaybookAssignee:
+    type: object
+    properties:
+      assignee:
+        type: string
+        x-go-name: Assignee
+      inTaskID:
+        type: string
+        x-go-name: TaskID
+      invId:
+        type: string
+        x-go-name: ID
+      version:
+        type: integer
+        format: int64
+        x-go-name: Version
+    x-go-package: github.com/demisto/server/web
+  ArgTransformer:
+    type: object
+    title: ArgTransformer ...
+    properties:
+      args:
+        x-go-name: Args
+      operator:
+        $ref: '#/definitions/TransformerOperatorID'
+    x-go-package: github.com/demisto/server/domain
+  NotifiableItem:
+    type: object
+    title: NotifiableItem ...
+    properties:
+      bcc:
+        $ref: '#/definitions/AdvanceArg'
+      body:
+        $ref: '#/definitions/AdvanceArg'
+      cc:
+        $ref: '#/definitions/AdvanceArg'
+      defaultOption:
+        type: string
+        x-go-name: DefaultOption
+      format:
+        type: string
+        x-go-name: Format
+      methods:
+        type: array
+        items:
+          type: string
+        x-go-name: Methods
+      replyOptions:
+        type: array
+        items:
+          type: string
+        x-go-name: ReplyOptions
+      subject:
+        $ref: '#/definitions/AdvanceArg'
+      timings:
+        $ref: '#/definitions/NotifyTimings'
+      to:
+        $ref: '#/definitions/AdvanceArg'
+    x-go-package: github.com/demisto/server/domain
+  InvPlaybookTaskData:
+    type: object
+    title: InvPlaybookTaskData ...
+    properties:
+      addAfter:
+        type: boolean
+        x-go-name: AddAfter
+      automationScript:
+        type: string
+        x-go-name: AutomationScript
+      description:
+        type: string
+        x-go-name: Description
+      name:
+        type: string
+        x-go-name: Name
+      neighborInvPBTaskId:
+        type: string
+        x-go-name: NeighborInvPBTaskID
+      scriptArguments:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/AdvanceArg'
+        x-go-name: ScriptArguments
+      tags:
+        type: array
+        items:
+          type: string
+        x-go-name: Tags
+    x-go-package: github.com/demisto/server/services
+  TaskCondition:
+    description: 'TaskCondition - contains a condition and a corresponding label
+
+      if the condition satisfied - its label is taken as the next task(s) input (e.i. the label on the edge)'
+    type: object
+    properties:
+      condition:
+        type: array
+        items:
+          $ref: '#/definitions/ArgFilter'
+        x-go-name: Condition
+      label:
+        type: string
+        x-go-name: Label
+    x-go-package: github.com/demisto/server/domain
+  OutputType:
+    type: string
+    title: OutputType ...
+    x-go-package: github.com/demisto/server/domain
+  InvestigationPlaybookData:
+    description: InvestigationPlaybookData returns all data of an investigation playbook, not including history
+    type: object
+    properties:
+      ReadyPlaybookInputs:
+        type: object
+        additionalProperties:
+          type: object
+          additionalProperties:
+            type: object
+      autoExtracting:
+        type: boolean
+        x-go-name: AutoExtracting
+      comment:
+        type: string
+        x-go-name: Description
+      inputs:
+        $ref: '#/definitions/PlaybookInputs'
+      investigationId:
+        type: string
+        x-go-name: InvestigationID
+      name:
+        type: string
+        x-go-name: Name
+      outputs:
+        $ref: '#/definitions/PlaybookOutputs'
+      playbookId:
+        type: string
+        x-go-name: PlaybookID
+      startDate:
+        type: string
+        format: date-time
+        x-go-name: StartDate
+      startTaskId:
+        description: FirstTask is the root task of the playbook
+        type: string
+        x-go-name: StartTaskID
+      state:
+        $ref: '#/definitions/InvestigationPlaybookState'
+      subPlaybookInputs:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/PlaybookInputs'
+        x-go-name: SubPlaybookInputs
+      subPlaybookOutputs:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/PlaybookOutputs'
+        x-go-name: SubPlaybookOutputs
+      tasks:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/InvestigationPlaybookTask'
+        x-go-name: Tasks
+      view:
+        $ref: '#/definitions/PlaybookView'
+    x-go-package: github.com/demisto/server/domain
+  PlaybookOutputs:
+    description: PlaybookOutputs - array of PlaybookOutput
+    type: array
+    items:
+      $ref: '#/definitions/PlaybookOutput'
+    x-go-package: github.com/demisto/server/domain
+  ArgFilter:
+    description: ArgFilter - represent a slice of atomic filters with OR condition between them (e.i. - atomic1 OR atomic2 OR ...)
+    type: array
+    items:
+      $ref: '#/definitions/ArgAtomicFilter'
+    x-go-package: github.com/demisto/server/domain
+  PlaybookView:
+    description: PlaybookView represents the view in client of playbook graph
+    type: object
+    x-go-package: github.com/demisto/server/domain
+  OperatorArgument:
+    type: object
+    title: OperatorArgument ...
+    properties:
+      isContext:
+        type: boolean
+        x-go-name: IsContext
+      value:
+        $ref: '#/definitions/AdvanceArg'
+    x-go-package: github.com/demisto/server/domain
+  Question:
+    type: object
+    title: Question - question for a form with a given type.
+    properties:
+      columns:
+        type: array
+        items:
+          $ref: '#/definitions/GridColumn'
+        x-go-name: GridColumns
+      defaultRows:
+        type: array
+        items:
+          type: object
+          additionalProperties:
+            type: object
+        x-go-name: DefaultRows
+      fieldAssociated:
+        type: string
+        x-go-name: FieldAssociated
+      id:
+        type: string
+        x-go-name: ID
+      label:
+        type: string
+        x-go-name: Label
+      labelArg:
+        $ref: '#/definitions/AdvanceArg'
+      options:
+        type: array
+        items:
+          type: string
+        x-go-name: Options
+      placeholder:
+        type: string
+        x-go-name: Placeholder
+      required:
+        type: boolean
+        x-go-name: Required
+      tooltip:
+        type: string
+        x-go-name: Tooltip
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/demisto/server/domain
+  NotifyTimings:
+    type: object
+    title: NotifyTimings - time control on notify items - retries max count and intervals.
+    properties:
+      completeAfterReplies:
+        type: integer
+        format: uint64
+        x-go-name: CompleteAfterReplies
+      retriesCount:
+        type: integer
+        format: uint64
+        x-go-name: RetriesCount
+      retriesInterval:
+        type: integer
+        format: uint64
+        x-go-name: RetriesInterval
+    x-go-package: github.com/demisto/server/domain
+  Task:
+    description: Task is the basic task in the task repository that can be associated to an incident via playbook
+    type: object
+    properties:
+      brand:
+        type: string
+        x-go-name: Brand
+      clonedFrom:
+        type: string
+        x-go-name: ClonedFrom
+      comment:
+        type: string
+        x-go-name: Comment
+      conditions:
+        type: array
+        items:
+          type: string
+        x-go-name: ConditionnKeys
+      description:
+        type: string
+        x-go-name: Description
+      id:
+        type: string
+        x-go-name: ID
+      isCommand:
+        type: boolean
+        x-go-name: IsCommand
+      isLocked:
+        type: boolean
+        x-go-name: IsLocked
+      isSystemTask:
+        type: boolean
+        x-go-name: IsSystemTask
+      isTitleTask:
+        type: boolean
+        x-go-name: IsTitleTask
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      name:
+        type: string
+        x-go-name: Name
+      playbookId:
+        type: string
+        x-go-name: PlaybookID
+      scriptId:
+        type: string
+        x-go-name: AutomationScriptID
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      tags:
+        type: array
+        items:
+          type: string
+        x-go-name: Tags
+      type:
+        $ref: '#/definitions/TaskType'
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+    x-go-package: github.com/demisto/server/domain
+  PlaybookInputs:
+    description: PlaybookInputs - array of PlaybookInput
+    type: array
+    items:
+      $ref: '#/definitions/PlaybookInput'
+    x-go-package: github.com/demisto/server/domain
+  AdvanceArg:
+    description: 'Simple: plain text such as "hello" (constant) or ${File.ID} (DT expression)
+
+      Complex: struct with all info that is necessary to compute argument value from context (Root, Filters, Accessor & Transformers)'
+    type: object
+    title: 'AdvanceArg - advance argument can be one of the following:'
+    properties:
+      complex:
+        $ref: '#/definitions/ComplexArg'
+      simple:
+        type: string
+        x-go-name: Simple
+    x-go-package: github.com/demisto/server/domain
+  ReputationCalcAlg:
+    type: number
+    format: double
+    title: ReputationCalcAlg ...
+    x-go-package: github.com/demisto/server/domain
+  DataCollectionForm:
+    type: object
+    title: DataCollectionForm - a data collection form with questions.
+    properties:
+      description:
+        type: string
+        x-go-name: Description
+      expired:
+        type: boolean
+        x-go-name: Expired
+      questions:
+        type: array
+        items:
+          $ref: '#/definitions/Question'
+        x-go-name: Questions
+      sender:
+        type: string
+        x-go-name: Sender
+      title:
+        type: string
+        x-go-name: Title
+      totalAnswers:
+        type: integer
+        format: uint64
+        x-go-name: TotalAnswers
+    x-go-package: github.com/demisto/server/domain
+  ComplexArg:
+    description: 'ComplexArg - all info that is necessary to compute argument value from context
+
+      Root - the root slice (or object) from to work against
+
+      Filters - a slice of filters to apply to the root object, one after another (e.i. with AND condition between each one)
+
+      Accessor - the key to access to each result after filter
+
+      Transformers - a slice to transformers to apply on the result of the accessed key from each result
+
+      e.g. if user want to take from context all File.DisplayName where File.Extension is ''EXE'', and the result in uppercase than:
+
+      Root: is "File"
+
+      Filters: will hold the "File.DisplayName where File.Extension is ''EXE''" query
+
+      Accessor: is "DisplayName"
+
+      Transformers: will hold the uppercase transformation'
+    type: object
+    properties:
+      accessor:
+        type: string
+        x-go-name: Accessor
+      filters:
+        type: array
+        items:
+          $ref: '#/definitions/ArgFilter'
+        x-go-name: Filters
+      root:
+        type: string
+        x-go-name: Root
+      transformers:
+        type: array
+        items:
+          $ref: '#/definitions/ArgTransformer'
+        x-go-name: Transformers
+    x-go-package: github.com/demisto/server/domain
+  SLA:
+    type: object
+    title: SLA ...
+    properties:
+      days:
+        type: integer
+        format: int64
+        x-go-name: Days
+      hours:
+        type: integer
+        format: int64
+        x-go-name: Hours
+      weeks:
+        type: integer
+        format: int64
+        x-go-name: Weeks
+    x-go-package: github.com/demisto/server/domain
+  InvestigationPlaybookTask:
+    description: InvestigationPlaybookTask is the Task in the playbook context as a node
+    type: object
+    properties:
+      arguments:
+        type: object
+        additionalProperties:
+          type: object
+        x-go-name: Arguments
+      assignee:
+        type: string
+        x-go-name: Assignee
+      assigneeSet:
+        type: boolean
+        x-go-name: AssigneeSet
+      blockingTasks:
+        type: array
+        items:
+          type: string
+        x-go-name: BlockingTasks
+      comments:
+        description: Whether this task had any comments or not
+        type: boolean
+        x-go-name: Comments
+      completedBy:
+        type: string
+        x-go-name: CompletedBy
+      completedCount:
+        type: integer
+        format: int64
+        x-go-name: CompletedCount
+      completedDate:
+        type: string
+        format: date-time
+        x-go-name: CompletedDate
+      conditions:
+        description: Conditions - optional list of conditions to run when task is conditional. we check conditions by their order (e.i. - considering the first one that satisfied)
+        type: array
+        items:
+          $ref: '#/definitions/TaskCondition'
+        x-go-name: Conditions
+      continueOnError:
+        type: boolean
+        x-go-name: ContinueOnError
+      defaultAssignee:
+        type: string
+        x-go-name: DefaultAssignee
+      defaultAssigneeComplex:
+        $ref: '#/definitions/AdvanceArg'
+      defaultReminder:
+        type: integer
+        format: int64
+        x-go-name: DefaultReminder
+      dueDate:
+        type: string
+        format: date-time
+        x-go-name: DueDate
+      dueDateSet:
+        type: boolean
+        x-go-name: DueDateSet
+      entries:
+        type: array
+        items:
+          type: string
+        x-go-name: Entries
+      evidenceData:
+        $ref: '#/definitions/EvidenceData'
+      executionCount:
+        type: integer
+        format: int64
+        x-go-name: ExecutionCount
+      fieldMapping:
+        type: array
+        items:
+          $ref: '#/definitions/FieldMapping'
+        x-go-name: FieldMappingArray
+      forEachIndex:
+        description: Parameters needed for loops
+        type: integer
+        format: int64
+        x-go-name: ForEachIndex
+      forEachInputs:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: object
+        x-go-name: ForEachInputs
+      form:
+        $ref: '#/definitions/DataCollectionForm'
+      id:
+        type: string
+        x-go-name: ID
+      ignoreWorker:
+        description: Do not run this task in a worker
+        type: boolean
+        x-go-name: IgnoreWorker
+      indent:
+        type: integer
+        format: int64
+        x-go-name: Indent
+      input:
+        type: string
+        x-go-name: Input
+      loop:
+        $ref: '#/definitions/TaskLoop'
+      message:
+        $ref: '#/definitions/NotifiableItem'
+      nextTasks:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+        x-go-name: NextTasks
+      note:
+        type: boolean
+        x-go-name: Note
+      outputs:
+        type: object
+        additionalProperties:
+          type: object
+        x-go-name: Outputs
+      parentBlockCount:
+        description: the number of tasks that are waiting on blocked in subplaybooks of this task
+        type: integer
+        format: int64
+        x-go-name: ParentBlockCount
+      parentPlaybookID:
+        type: string
+        x-go-name: ParentPlaybookTaskID
+      patched:
+        description: Indicates whether this task was patched to InvPB and did not originally belong to the playbook
+        type: boolean
+        x-go-name: Patched
+      playbookInputs:
+        type: object
+        additionalProperties:
+          type: object
+        x-go-name: PlaybookInputs
+      previousTasks:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+        x-go-name: PreviousTasks
+      quietMode:
+        $ref: '#/definitions/QuietMode'
+      reminder:
+        description: Duration in minutes, this field is not persisted here
+        type: integer
+        format: int64
+        x-go-name: Reminder
+      reputationCalc:
+        $ref: '#/definitions/ReputationCalcAlg'
+      restrictedCompletion:
+        type: boolean
+        x-go-name: RestrictedCompletion
+      scriptArguments:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/AdvanceArg'
+        x-go-name: ScriptArguments
+      separateContext:
+        type: boolean
+        x-go-name: SeparateContext
+      sla:
+        $ref: '#/definitions/SLA'
+      slaReminder:
+        $ref: '#/definitions/SLA'
+      startDate:
+        type: string
+        format: date-time
+        x-go-name: StartDate
+      state:
+        $ref: '#/definitions/TaskState'
+      subPlaybook:
+        $ref: '#/definitions/InvestigationPlaybook'
+      task:
+        $ref: '#/definitions/Task'
+      taskCompleteData:
+        description: History complete data
+        type: array
+        items:
+          $ref: '#/definitions/InvPlaybookTaskCompleteData'
+        x-go-name: TaskCompleteData
+      taskId:
+        type: string
+        x-go-name: TaskID
+      timerTriggers:
+        description: SLA fields
+        type: array
+        items:
+          $ref: '#/definitions/TimerTrigger'
+        x-go-name: TimerTriggers
+      type:
+        $ref: '#/definitions/TaskType'
+      view:
+        $ref: '#/definitions/TaskView'
+      willNotExecuteCount:
+        type: integer
+        format: int64
+        x-go-name: WillNotExecuteCount
+    x-go-package: github.com/demisto/server/domain
+  ArgAtomicFilter:
+    description: ArgAtomicFilter - operator with two sides that return true/false
+    type: object
+    properties:
+      ignoreCase:
+        type: boolean
+        x-go-name: IgnoreCase
+      left:
+        $ref: '#/definitions/OperatorArgument'
+      operator:
+        $ref: '#/definitions/FilterOperatorID'
+      right:
+        $ref: '#/definitions/OperatorArgument'
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/demisto/server/domain
+  TaskType:
+    description: TaskType is the Task in the playbook context as a node
+    type: string
+    x-go-package: github.com/demisto/server/domain
+  TaskState:
+    description: TaskState indicates the state of the task during the incident/investigation execution
+    type: string
+    x-go-package: github.com/demisto/server/domain
+  FieldMapping:
+    description: FieldMapping - Map a task output (complex or simple value) to an incident field
+    type: object
+    properties:
+      fieldId:
+        type: string
+        x-go-name: IncidentField
+      output:
+        $ref: '#/definitions/AdvanceArg'
+    x-go-package: github.com/demisto/server/domain
+  TransformerOperatorID:
+    type: string
+    title: TransformerOperatorID ...
+    x-go-package: github.com/demisto/server/domain
+  EvidenceData:
+    description: EvidenceData - all evidence properties to evaluate in task process
+    type: object
+    properties:
+      customFields:
+        description: This field must have empty json key
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/AdvanceArg'
+        x-go-name: CustomFields
+      description:
+        $ref: '#/definitions/AdvanceArg'
+      occurred:
+        $ref: '#/definitions/AdvanceArg'
+      tags:
+        $ref: '#/definitions/AdvanceArg'
+    x-go-package: github.com/demisto/server/domain
+  PlaybookInput:
+    description: PlaybookInput represents the playbook input
+    type: object
+    properties:
+      description:
+        type: string
+        x-go-name: Description
+      key:
+        type: string
+        x-go-name: Key
+      required:
+        type: boolean
+        x-go-name: Required
+      value:
+        $ref: '#/definitions/AdvanceArg'
+    x-go-package: github.com/demisto/server/domain
+  TaskLoop:
+    description: TaskLoop contains loop details
+    type: object
+    properties:
+      brand:
+        type: string
+        x-go-name: Brand
+      builtinCondition:
+        type: array
+        items:
+          $ref: '#/definitions/ArgFilter'
+        x-go-name: BuiltInCondition
+      exitCondition:
+        type: string
+        x-go-name: ExitCondition
+      forEach:
+        type: boolean
+        x-go-name: ForEach
+      isCommand:
+        type: boolean
+        x-go-name: IsCommand
+      scriptArguments:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/AdvanceArg'
+        x-go-name: ScriptArguments
+      scriptId:
+        type: string
+        x-go-name: AutomationScriptID
+      wait:
+        type: integer
+        format: int64
+        x-go-name: WaitBetweenIterations
+    x-go-package: github.com/demisto/server/domain
+  InvestigationPlaybook:
+    description: InvestigationPlaybook is a wrapper for a linked list of Playbook tasks
+    type: object
+    properties:
+      Dirty:
+        type: boolean
+      ReadyPlaybookInputs:
+        type: object
+        additionalProperties:
+          type: object
+          additionalProperties:
+            type: object
+      ReplacedPlaybook:
+        description: Indicate whether this playbook has new history during this session
+        type: boolean
+      ShardID:
+        type: integer
+        format: int64
+      UpdatedOperatorIDs:
+        type: boolean
+      autoExtracting:
+        type: boolean
+        x-go-name: AutoExtracting
+      comment:
+        type: string
+        x-go-name: Description
+      hasRole:
+        description: Internal field to make queries on role faster
+        type: boolean
+        x-go-name: HasRole
+      id:
+        type: string
+        x-go-name: ID
+      incidentCreateDate:
+        description: Incident create date
+        type: string
+        format: date-time
+        x-go-name: IncidentCreateDate
+      inputs:
+        $ref: '#/definitions/PlaybookInputs'
+      investigationId:
+        type: string
+        x-go-name: InvestigationID
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      name:
+        type: string
+        x-go-name: Name
+      outputs:
+        $ref: '#/definitions/PlaybookOutputs'
+      pbHistory:
+        description: 'in: body'
+        type: array
+        items:
+          $ref: '#/definitions/InvestigationPlaybookData'
+        x-go-name: PbHistory
+      playbookId:
+        type: string
+        x-go-name: PlaybookID
+      previousRoles:
+        description: PreviousRoleName - do not change this field manually
+        type: array
+        items:
+          type: string
+        x-go-name: PreviousRoleName
+      roles:
+        description: The role assigned to this investigation
+        type: array
+        items:
+          type: string
+        x-go-name: RoleName
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      startDate:
+        type: string
+        format: date-time
+        x-go-name: StartDate
+      startTaskId:
+        description: FirstTask is the root task of the playbook
+        type: string
+        x-go-name: StartTaskID
+      state:
+        $ref: '#/definitions/InvestigationPlaybookState'
+      subPlaybookInputs:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/PlaybookInputs'
+        x-go-name: SubPlaybookInputs
+      subPlaybookOutputs:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/PlaybookOutputs'
+        x-go-name: SubPlaybookOutputs
+      tasks:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/InvestigationPlaybookTask'
+        x-go-name: Tasks
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+      view:
+        $ref: '#/definitions/PlaybookView'
+    x-go-package: github.com/demisto/server/domain
+  TimerTrigger:
+    type: object
+    title: TimerTrigger ...
+    properties:
+      action:
+        $ref: '#/definitions/TimerAction'
+      fieldName:
+        type: string
+        x-go-name: FieldName
+    x-go-package: github.com/demisto/server/domain
+  invTaskInfo:
+    type: object
+    properties:
+      args:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/AdvanceArg'
+        x-go-name: Args
+      comment:
+        type: string
+        x-go-name: Comment
+      conditions:
+        type: array
+        items:
+          $ref: '#/definitions/TaskCondition'
+        x-go-name: Conditions
+      inTaskID:
+        type: string
+        x-go-name: TaskID
+      input:
+        type: string
+        x-go-name: Input
+      invId:
+        type: string
+        x-go-name: ID
+      loopArgs:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/AdvanceArg'
+        x-go-name: LoopArgs
+      loopCondition:
+        type: array
+        items:
+          $ref: '#/definitions/ArgFilter'
+        x-go-name: LoopCondition
+      version:
+        type: integer
+        format: int64
+        x-go-name: Version
+    x-go-package: github.com/demisto/server/web
+  QuietMode:
+    description: QuietMode quiet mode for playbook task
+    type: integer
+    format: int64
+    x-go-package: github.com/demisto/server/domain
+  InvestigationPlaybookState:
+    description: InvestigationPlaybookState indicates the state of the running playbook
+    type: string
+    x-go-package: github.com/demisto/server/domain
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
+  csrf_token:
+    type: apiKey
+    name: X-XSRF-TOKEN
+    in: header
+  x-xdr-auth-id:
+    type: apiKey
+    name: x-xdr-auth-id
+    in: header

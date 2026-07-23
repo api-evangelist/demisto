@@ -1,0 +1,620 @@
+swagger: '2.0'
+info:
+  description: 'This is the public REST API to integrate with the demisto server.
+
+    HTTP request can be sent using any HTTP-client.
+
+
+    For an example dedicated client take a look at: https://github.com/demisto/demisto-py.
+
+
+    Requests must include API-key that can be generated in the Demisto web client under ''Settings'' -> ''Integrations'' -> ''API keys''
+
+
+
+    Optimistic Locking and Versioning\:
+
+
+    When using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).
+
+    In addition, you can pass ''version\: -1'' to force data override (make sure that other users data might be lost).
+
+
+    Assume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?
+
+    To solve this, each data item in Demisto has a numeric incremental version.
+
+    If Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.
+
+    Bob will need to get the latest item and work on it so Alice work will not get lost.
+
+
+    Example request using ''curl''\:
+
+
+    ```
+
+    curl ''https://hostname:443/incidents/search'' -H ''content-type: application/json'' -H ''accept: application/json'' -H ''Authorization: <API Key goes here>'' --data-binary ''{"filter":{"query":"-status:closed -category:job","period":{"by":"day","fromValue":7}}}'' --compressed
+
+    ```'
+  title: Demisto Apikeys Automation API
+  version: 2.0.0
+host: hostname:443
+schemes:
+- https
+consumes:
+- application/json
+- application/xml
+produces:
+- application/json
+security:
+- api_key: []
+- csrf_token: []
+- x-xdr-auth-id: []
+tags:
+- name: Automation
+paths:
+  /automation:
+    post:
+      description: Create or update a given automation.
+      summary: Create or update automation
+      operationId: saveOrUpdateScript
+      parameters:
+      - name: automationScriptFilterWrapper
+        in: body
+        schema:
+          $ref: '#/definitions/automationScriptFilterWrapper'
+      responses:
+        '200':
+          description: The saved automation.
+          schema:
+            $ref: '#/definitions/automationScriptResult'
+      tags:
+      - Automation
+  /automation/copy:
+    post:
+      description: Copy given automation
+      summary: Copy automation
+      operationId: copyScript
+      parameters:
+      - name: automationScriptFilterWrapper
+        in: body
+        schema:
+          $ref: '#/definitions/automationScriptFilterWrapper'
+      responses:
+        '200':
+          description: The saved automation.
+          schema:
+            $ref: '#/definitions/automationScriptResult'
+      tags:
+      - Automation
+  /automation/delete:
+    post:
+      description: Delete a given automation from the system.
+      summary: Delete existing automation
+      operationId: deleteAutomationScript
+      parameters:
+      - name: automationScriptFilterWrapper
+        in: body
+        schema:
+          $ref: '#/definitions/automationScriptFilterWrapper'
+      responses:
+        '200':
+          description: automation deleted
+      tags:
+      - Automation
+  /automation/import:
+    post:
+      description: Upload an automation to Cortex XSOAR
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      summary: Upload an automation
+      operationId: importScript
+      parameters:
+      - type: file
+        description: file
+        name: file
+        in: formData
+        required: true
+      responses:
+        '200':
+          description: The saved automation
+          schema:
+            $ref: '#/definitions/AutomationScript'
+      tags:
+      - Automation
+  /automation/search:
+    post:
+      description: Search Automation by filter
+      summary: Search Automation (aka scripts)
+      operationId: getAutomationScripts
+      parameters:
+      - name: automationScriptFilter
+        in: body
+        schema:
+          $ref: '#/definitions/automationScriptFilter'
+      responses:
+        '200':
+          description: automationScriptResult
+          schema:
+            $ref: '#/definitions/automationScriptResult'
+      tags:
+      - Automation
+definitions:
+  automationScriptResult:
+    type: object
+    title: automationScriptResult ...
+    properties:
+      pythonEnabled:
+        type: boolean
+        x-go-name: PythonEnabled
+      scripts:
+        type: array
+        items:
+          $ref: '#/definitions/AutomationScriptAPI'
+        x-go-name: Scripts
+      selectedScript:
+        type: object
+        additionalProperties:
+          type: object
+        x-go-name: SelectedScript
+      suggestions:
+        type: array
+        items:
+          type: string
+        x-go-name: Tags
+    x-go-package: github.com/demisto/server/web
+  GenericStringFilter:
+    description: GenericStringFilter is a general filter that will fetch entities using the Query value
+    type: object
+    properties:
+      Cache:
+        description: Cache of join functions
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+      page:
+        description: 0-based page
+        type: integer
+        format: int64
+        x-go-name: Page
+      query:
+        type: string
+        x-go-name: Query
+      searchAfter:
+        description: Efficient next page, pass max sort value from previous page
+        type: array
+        items:
+          type: string
+        x-go-name: SearchAfter
+      searchBefore:
+        description: Efficient prev page, pass min sort value from next page
+        type: array
+        items:
+          type: string
+        x-go-name: SearchBefore
+      size:
+        description: Size is limited to 1000, if not passed it defaults to 0, and no results will return
+        type: integer
+        format: int64
+        x-go-name: Size
+      sort:
+        description: The sort order
+        type: array
+        items:
+          $ref: '#/definitions/Order'
+        x-go-name: Sort
+    x-go-package: github.com/demisto/server/repo/entities
+  Argument:
+    description: Argument to a module command
+    type: object
+    properties:
+      auto:
+        type: string
+        x-go-name: Auto
+      default:
+        type: boolean
+        x-go-name: Default
+      defaultValue:
+        type: string
+        x-go-name: DefaultValue
+      deprecated:
+        type: boolean
+        x-go-name: Deprecated
+      description:
+        type: string
+        x-go-name: Description
+      isArray:
+        type: boolean
+        x-go-name: IsArray
+      name:
+        type: string
+        x-go-name: Name
+      predefined:
+        type: array
+        items:
+          type: string
+        x-go-name: Predefined
+      required:
+        type: boolean
+        x-go-name: Required
+      secret:
+        type: boolean
+        x-go-name: Secret
+    x-go-package: github.com/demisto/server/domain
+  AutomationScript:
+    description: AutomationScript represents a script that will run on  the system
+    type: object
+    properties:
+      arguments:
+        type: array
+        items:
+          $ref: '#/definitions/Argument'
+        x-go-name: Args
+      comment:
+        type: string
+        x-go-name: Comment
+      commitMessage:
+        type: string
+        x-go-name: CommitMessage
+      contextKeys:
+        type: array
+        items:
+          type: string
+        x-go-name: ContextKeys
+      dependsOn:
+        description: This fields indicates which commands this script depends on
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+        x-go-name: DependsOn
+      deprecated:
+        type: boolean
+        x-go-name: Deprecated
+      dockerImage:
+        type: string
+        x-go-name: DockerImage
+      enabled:
+        type: boolean
+        x-go-name: Enabled
+      hasRole:
+        description: Internal field to make queries on role faster
+        type: boolean
+        x-go-name: HasRole
+      hidden:
+        type: boolean
+        x-go-name: Hidden
+      id:
+        type: string
+        x-go-name: ID
+      important:
+        type: array
+        items:
+          $ref: '#/definitions/Important'
+        x-go-name: Important
+      locked:
+        type: boolean
+        x-go-name: Locked
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      name:
+        type: string
+        x-go-name: Name
+      outputs:
+        type: array
+        items:
+          $ref: '#/definitions/Output'
+        x-go-name: Outputs
+      prevName:
+        type: string
+        x-go-name: PrevName
+      previousRoles:
+        description: PreviousRoleName - do not change this field manually
+        type: array
+        items:
+          type: string
+        x-go-name: PreviousRoleName
+      pswd:
+        type: string
+        x-go-name: Password
+      rawTags:
+        type: array
+        items:
+          type: string
+        x-go-name: RawTags
+      roles:
+        description: The role assigned to this investigation
+        type: array
+        items:
+          type: string
+        x-go-name: RoleName
+      runAs:
+        type: string
+        x-go-name: RunAs
+      runOnce:
+        type: boolean
+        x-go-name: RunOnce
+      script:
+        type: string
+        x-go-name: Script
+      scriptTarget:
+        $ref: '#/definitions/ScriptTarget'
+      searchableName:
+        type: string
+        x-go-name: DoNotUseName
+      sensitive:
+        type: boolean
+        x-go-name: Sensitive
+      shouldCommit:
+        type: boolean
+        x-go-name: ShouldCommit
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      subtype:
+        $ref: '#/definitions/ScriptSubType'
+      system:
+        type: boolean
+        x-go-name: System
+      tags:
+        type: array
+        items:
+          type: string
+        x-go-name: Tags
+      timeout:
+        $ref: '#/definitions/Duration'
+      type:
+        $ref: '#/definitions/ScriptType'
+      user:
+        type: string
+        x-go-name: User
+      vcShouldIgnore:
+        type: boolean
+        x-go-name: VCShouldIgnore
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+      visualScript:
+        type: string
+        x-go-name: VisualScript
+    x-go-package: github.com/demisto/server/domain
+  Duration:
+    description: 'A Duration represents the elapsed time between two instants
+
+      as an int64 nanosecond count. The representation limits the
+
+      largest representable duration to approximately 290 years.'
+    type: integer
+    format: int64
+    x-go-package: time
+  Order:
+    description: Order struct holds a sort field and the direction of sorting
+    type: object
+    properties:
+      asc:
+        type: boolean
+        x-go-name: Asc
+      field:
+        type: string
+        x-go-name: Field
+      fieldType:
+        type: string
+        x-go-name: FieldType
+    x-go-package: github.com/demisto/server/domain
+  automationScriptFilter:
+    description: automationScriptFilter is a general filter that fetches entities using a query string query using the Query value
+    type: object
+    properties:
+      Cache:
+        description: Cache of join functions
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+      page:
+        description: 0-based page
+        type: integer
+        format: int64
+        x-go-name: Page
+      query:
+        type: string
+        x-go-name: Query
+      searchAfter:
+        description: Efficient next page, pass max sort value from previous page
+        type: array
+        items:
+          type: string
+        x-go-name: SearchAfter
+      searchBefore:
+        description: Efficient prev page, pass min sort value from next page
+        type: array
+        items:
+          type: string
+        x-go-name: SearchBefore
+      size:
+        description: Size is limited to 1000, if not passed it defaults to 0, and no results will return
+        type: integer
+        format: int64
+        x-go-name: Size
+      sort:
+        description: The sort order
+        type: array
+        items:
+          $ref: '#/definitions/Order'
+        x-go-name: Sort
+      stripContext:
+        type: boolean
+        x-go-name: StripContext
+    x-go-package: github.com/demisto/server/web
+  OutputType:
+    type: string
+    title: OutputType ...
+    x-go-package: github.com/demisto/server/domain
+  ScriptSubType:
+    description: ScriptSubType holds the script type version
+    type: string
+    x-go-package: github.com/demisto/server/domain
+  ScriptTarget:
+    description: ScriptTarget represents the module where this script should run
+    type: integer
+    format: int64
+    x-go-package: github.com/demisto/server/domain
+  Important:
+    description: Important The important outputs of a given command
+    type: object
+    properties:
+      contextPath:
+        type: string
+        x-go-name: ContextPath
+      description:
+        description: Description is either a string or a map from string to interface
+        type: string
+        x-go-name: Description
+      related:
+        description: To what other context path this output is related
+        type: string
+        x-go-name: Related
+    x-go-package: github.com/demisto/server/domain
+  ScriptType:
+    description: ScriptType holds the type of a script
+    type: string
+    x-go-package: github.com/demisto/server/domain
+  Output:
+    description: Output of a module command
+    type: object
+    properties:
+      contentPath:
+        type: string
+        x-go-name: ContentPath
+      contextPath:
+        type: string
+        x-go-name: ContextPath
+      description:
+        description: Description is either a string or a map from string to interface
+        type: object
+        x-go-name: Description
+      type:
+        $ref: '#/definitions/OutputType'
+    x-go-package: github.com/demisto/server/domain
+  AutomationScriptAPI:
+    type: object
+    title: AutomationScriptAPI ...
+    properties:
+      arguments:
+        type: array
+        items:
+          $ref: '#/definitions/Argument'
+        x-go-name: Args
+      comment:
+        type: string
+        x-go-name: Comment
+      contextKeys:
+        type: array
+        items:
+          type: string
+        x-go-name: ContextKeys
+      dependsOn:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+        x-go-name: DependsOn
+      deprecated:
+        type: boolean
+        x-go-name: Deprecated
+      dockerImage:
+        type: string
+        x-go-name: DockerImage
+      enabled:
+        type: boolean
+        x-go-name: Enabled
+      hidden:
+        type: boolean
+        x-go-name: Hidden
+      id:
+        type: string
+        x-go-name: ID
+      locked:
+        type: boolean
+        x-go-name: Locked
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      name:
+        type: string
+        x-go-name: Name
+      outputs:
+        type: array
+        items:
+          $ref: '#/definitions/Output'
+        x-go-name: Outputs
+      permitted:
+        type: boolean
+        x-go-name: Permitted
+      roles:
+        type: array
+        items:
+          type: string
+        x-go-name: Roles
+      runAs:
+        type: string
+        x-go-name: RunAs
+      scriptTarget:
+        $ref: '#/definitions/ScriptTarget'
+      system:
+        type: boolean
+        x-go-name: System
+      tags:
+        type: array
+        items:
+          type: string
+        x-go-name: Tags
+      type:
+        $ref: '#/definitions/ScriptType'
+      user:
+        type: string
+        x-go-name: User
+      version:
+        type: integer
+        format: int64
+        x-go-name: Version
+    x-go-package: github.com/demisto/server/services
+  automationScriptFilterWrapper:
+    type: object
+    title: automationScriptFilterWrapper ...
+    properties:
+      filter:
+        $ref: '#/definitions/GenericStringFilter'
+      savePassword:
+        type: boolean
+        x-go-name: StorePassword
+      script:
+        $ref: '#/definitions/AutomationScript'
+    x-go-package: github.com/demisto/server/web
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
+  csrf_token:
+    type: apiKey
+    name: X-XSRF-TOKEN
+    in: header
+  x-xdr-auth-id:
+    type: apiKey
+    name: x-xdr-auth-id
+    in: header

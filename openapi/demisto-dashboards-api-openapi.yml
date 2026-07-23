@@ -1,0 +1,343 @@
+swagger: '2.0'
+info:
+  description: 'This is the public REST API to integrate with the demisto server.
+
+    HTTP request can be sent using any HTTP-client.
+
+
+    For an example dedicated client take a look at: https://github.com/demisto/demisto-py.
+
+
+    Requests must include API-key that can be generated in the Demisto web client under ''Settings'' -> ''Integrations'' -> ''API keys''
+
+
+
+    Optimistic Locking and Versioning\:
+
+
+    When using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).
+
+    In addition, you can pass ''version\: -1'' to force data override (make sure that other users data might be lost).
+
+
+    Assume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?
+
+    To solve this, each data item in Demisto has a numeric incremental version.
+
+    If Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.
+
+    Bob will need to get the latest item and work on it so Alice work will not get lost.
+
+
+    Example request using ''curl''\:
+
+
+    ```
+
+    curl ''https://hostname:443/incidents/search'' -H ''content-type: application/json'' -H ''accept: application/json'' -H ''Authorization: <API Key goes here>'' --data-binary ''{"filter":{"query":"-status:closed -category:job","period":{"by":"day","fromValue":7}}}'' --compressed
+
+    ```'
+  title: Demisto Apikeys Dashboards API
+  version: 2.0.0
+host: hostname:443
+schemes:
+- https
+consumes:
+- application/json
+- application/xml
+produces:
+- application/json
+security:
+- api_key: []
+- csrf_token: []
+- x-xdr-auth-id: []
+tags:
+- name: Dashboards
+paths:
+  /dashboards/import:
+    post:
+      description: Import a dashboard to Cortex XSOAR
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      summary: Import a dashboard
+      operationId: importDashboard
+      parameters:
+      - type: file
+        description: file
+        name: file
+        in: formData
+        required: true
+      responses:
+        '200':
+          description: The saved dashboard
+          schema:
+            $ref: '#/definitions/Dashboard'
+      tags:
+      - Dashboards
+definitions:
+  Dashboard:
+    type: object
+    title: Dashboard ...
+    properties:
+      commitMessage:
+        type: string
+        x-go-name: CommitMessage
+      fromDate:
+        type: string
+        format: date-time
+        x-go-name: FromDate
+      fromDateLicense:
+        type: string
+        format: date-time
+        x-go-name: FromDateLicenseVal
+      id:
+        type: string
+        x-go-name: ID
+      isCommon:
+        type: boolean
+        x-go-name: IsCommon
+      layout:
+        $ref: '#/definitions/WidgetCells'
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      name:
+        type: string
+        x-go-name: Name
+      owner:
+        type: string
+        x-go-name: Owner
+      period:
+        $ref: '#/definitions/Period'
+      prevName:
+        type: string
+        x-go-name: PrevName
+      shared:
+        type: boolean
+        x-go-name: Shared
+      shouldCommit:
+        type: boolean
+        x-go-name: ShouldCommit
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      system:
+        type: boolean
+        x-go-name: System
+      toDate:
+        type: string
+        format: date-time
+        x-go-name: ToDate
+      vcShouldIgnore:
+        type: boolean
+        x-go-name: VCShouldIgnore
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+    x-go-package: github.com/demisto/server/domain
+  Order:
+    description: Order struct holds a sort field and the direction of sorting
+    type: object
+    properties:
+      asc:
+        type: boolean
+        x-go-name: Asc
+      field:
+        type: string
+        x-go-name: Field
+      fieldType:
+        type: string
+        x-go-name: FieldType
+    x-go-package: github.com/demisto/server/domain
+  WidgetCells:
+    type: array
+    title: WidgetCells ...
+    items:
+      $ref: '#/definitions/WidgetCell'
+    x-go-package: github.com/demisto/server/domain
+  WidgetCell:
+    type: object
+    title: WidgetCell ...
+    properties:
+      forceRange:
+        type: boolean
+        x-go-name: ForceRange
+      h:
+        type: integer
+        format: int64
+        x-go-name: Height
+      i:
+        type: string
+        x-go-name: Key
+      id:
+        type: string
+        x-go-name: ID
+      w:
+        type: integer
+        format: int64
+        x-go-name: Width
+      widget:
+        $ref: '#/definitions/Widget'
+      x:
+        type: integer
+        format: int64
+        x-go-name: Xs
+      y:
+        type: integer
+        format: int64
+        x-go-name: Ys
+    x-go-package: github.com/demisto/server/domain
+  Widget:
+    description: 'Widget describe a widget component used to get statistics requests, based on parameters such as
+
+      dataType and widgetType. A widget can be a part of widgets collection inside a dashboard.'
+    type: object
+    required:
+    - name
+    - widgetType
+    properties:
+      category:
+        description: Category the widget is related to. Used to display in widget library under category or dataType if empty.
+        type: string
+        x-go-name: Category
+      commitMessage:
+        type: string
+        x-go-name: CommitMessage
+      dataType:
+        description: Data type of the widget. Describes what data does the widget query. supporting data types "incidents","messages","system","entries","tasks", "audit".
+        type: string
+        x-go-name: DataType
+      dateRange:
+        $ref: '#/definitions/DateRange'
+      description:
+        description: The description of the widget's usage and data representation.
+        type: string
+        x-go-name: Description
+      id:
+        type: string
+        x-go-name: ID
+      isPredefined:
+        description: Is the widget a system widget.
+        type: boolean
+        x-go-name: IsPredefined
+      locked:
+        description: Is the widget locked for editing.
+        type: boolean
+        x-go-name: Locked
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      name:
+        description: Default name of the widget.
+        type: string
+        x-go-name: Name
+      params:
+        description: Additional parameters for this widget, depends on widget type and data.
+        type: object
+        additionalProperties:
+          type: object
+        x-go-name: AdditionalParams
+      prevName:
+        description: The previous name of the widget.
+        type: string
+        x-go-name: PrevName
+      query:
+        description: Query to search on the dataType.
+        type: string
+        x-go-name: Query
+      shouldCommit:
+        type: boolean
+        x-go-name: ShouldCommit
+      size:
+        description: Maximum size for this widget data returned.
+        type: integer
+        format: int64
+        x-go-name: Size
+      sort:
+        description: Sorting array to sort the data received by the given Order parameters.
+        type: array
+        items:
+          $ref: '#/definitions/Order'
+        x-go-name: Sort
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      vcShouldIgnore:
+        type: boolean
+        x-go-name: VCShouldIgnore
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+      widgetType:
+        description: 'Widget type describes how does the widget should recieve the data, and display it. Supporting types: "bar", "column", "pie", "list", "number", "trend", "text", "duration", "image", "line", and "table".'
+        type: string
+        x-go-name: WidgetType
+    x-go-package: github.com/demisto/server/domain
+  DateRange:
+    description: DateRange provides common fields for date filtering
+    type: object
+    properties:
+      fromDate:
+        type: string
+        format: date-time
+        x-go-name: FromDate
+      fromDateLicense:
+        type: string
+        format: date-time
+        x-go-name: FromDateLicenseVal
+      period:
+        $ref: '#/definitions/Period'
+      toDate:
+        type: string
+        format: date-time
+        x-go-name: ToDate
+    x-go-package: github.com/demisto/server/domain
+  Period:
+    type: object
+    title: Period holds the 'Period' query, such as last 3 days, last 6 hours, between 6 days from now until 3 days from now.
+    properties:
+      by:
+        description: By is used for legacty, and if exists it will override ByTo and ByFrom
+        type: string
+        x-go-name: By
+      byFrom:
+        type: string
+        x-go-name: ByFrom
+      byTo:
+        type: string
+        x-go-name: ByTo
+      field:
+        type: string
+        x-go-name: Field
+      fromValue:
+        type: string
+        format: duration
+        x-go-name: FromValue
+      toValue:
+        type: string
+        format: duration
+        x-go-name: ToValue
+    x-go-package: github.com/demisto/server/domain
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
+  csrf_token:
+    type: apiKey
+    name: X-XSRF-TOKEN
+    in: header
+  x-xdr-auth-id:
+    type: apiKey
+    name: x-xdr-auth-id
+    in: header

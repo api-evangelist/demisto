@@ -1,0 +1,389 @@
+swagger: '2.0'
+info:
+  description: 'This is the public REST API to integrate with the demisto server.
+
+    HTTP request can be sent using any HTTP-client.
+
+
+    For an example dedicated client take a look at: https://github.com/demisto/demisto-py.
+
+
+    Requests must include API-key that can be generated in the Demisto web client under ''Settings'' -> ''Integrations'' -> ''API keys''
+
+
+
+    Optimistic Locking and Versioning\:
+
+
+    When using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).
+
+    In addition, you can pass ''version\: -1'' to force data override (make sure that other users data might be lost).
+
+
+    Assume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?
+
+    To solve this, each data item in Demisto has a numeric incremental version.
+
+    If Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.
+
+    Bob will need to get the latest item and work on it so Alice work will not get lost.
+
+
+    Example request using ''curl''\:
+
+
+    ```
+
+    curl ''https://hostname:443/incidents/search'' -H ''content-type: application/json'' -H ''accept: application/json'' -H ''Authorization: <API Key goes here>'' --data-binary ''{"filter":{"query":"-status:closed -category:job","period":{"by":"day","fromValue":7}}}'' --compressed
+
+    ```'
+  title: Demisto Apikeys Reputation API
+  version: 2.0.0
+host: hostname:443
+schemes:
+- https
+consumes:
+- application/json
+- application/xml
+produces:
+- application/json
+security:
+- api_key: []
+- csrf_token: []
+- x-xdr-auth-id: []
+tags:
+- name: Reputation
+paths:
+  /reputation/import:
+    post:
+      description: Import a reputation type to XSOAR
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      summary: Import a reputation type
+      operationId: importReputationHandler
+      parameters:
+      - type: file
+        description: file
+        name: file
+        in: formData
+        required: true
+      responses:
+        '200':
+          description: The saved reputation type
+          schema:
+            $ref: '#/definitions/reputationsWithErrors'
+      tags:
+      - Reputation
+definitions:
+  ArgFilter:
+    description: ArgFilter - represent a slice of atomic filters with OR condition between them (e.i. - atomic1 OR atomic2 OR ...)
+    type: array
+    items:
+      $ref: '#/definitions/ArgAtomicFilter'
+    x-go-package: github.com/demisto/server/domain
+  ComplexArg:
+    description: 'ComplexArg - all info that is necessary to compute argument value from context
+
+      Root - the root slice (or object) from to work against
+
+      Filters - a slice of filters to apply to the root object, one after another (e.i. with AND condition between each one)
+
+      Accessor - the key to access to each result after filter
+
+      Transformers - a slice to transformers to apply on the result of the accessed key from each result
+
+      e.g. if user want to take from context all File.DisplayName where File.Extension is ''EXE'', and the result in uppercase than:
+
+      Root: is "File"
+
+      Filters: will hold the "File.DisplayName where File.Extension is ''EXE''" query
+
+      Accessor: is "DisplayName"
+
+      Transformers: will hold the uppercase transformation'
+    type: object
+    properties:
+      accessor:
+        type: string
+        x-go-name: Accessor
+      filters:
+        type: array
+        items:
+          $ref: '#/definitions/ArgFilter'
+        x-go-name: Filters
+      root:
+        type: string
+        x-go-name: Root
+      transformers:
+        type: array
+        items:
+          $ref: '#/definitions/ArgTransformer'
+        x-go-name: Transformers
+    x-go-package: github.com/demisto/server/domain
+  OperatorArgument:
+    type: object
+    title: OperatorArgument ...
+    properties:
+      isContext:
+        type: boolean
+        x-go-name: IsContext
+      value:
+        $ref: '#/definitions/AdvanceArg'
+    x-go-package: github.com/demisto/server/domain
+  FilterOperatorID:
+    type: string
+    title: FilterOperatorID ...
+    x-go-package: github.com/demisto/server/domain
+  ArgAtomicFilter:
+    description: ArgAtomicFilter - operator with two sides that return true/false
+    type: object
+    properties:
+      ignoreCase:
+        type: boolean
+        x-go-name: IgnoreCase
+      left:
+        $ref: '#/definitions/OperatorArgument'
+      operator:
+        $ref: '#/definitions/FilterOperatorID'
+      right:
+        $ref: '#/definitions/OperatorArgument'
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/demisto/server/domain
+  ArgTransformer:
+    type: object
+    title: ArgTransformer ...
+    properties:
+      args:
+        x-go-name: Args
+      operator:
+        $ref: '#/definitions/TransformerOperatorID'
+    x-go-package: github.com/demisto/server/domain
+  AdvanceArg:
+    description: 'Simple: plain text such as "hello" (constant) or ${File.ID} (DT expression)
+
+      Complex: struct with all info that is necessary to compute argument value from context (Root, Filters, Accessor & Transformers)'
+    type: object
+    title: 'AdvanceArg - advance argument can be one of the following:'
+    properties:
+      complex:
+        $ref: '#/definitions/ComplexArg'
+      simple:
+        type: string
+        x-go-name: Simple
+    x-go-package: github.com/demisto/server/domain
+  Reputation:
+    description: This struct is store in the BOLT data store and not indexed into bleve
+    type: object
+    title: Reputation holds information about the reputation of the entry contents.
+    properties:
+      cacheVersn:
+        type: integer
+        format: int64
+        x-go-name: CacheVersn
+      commitMessage:
+        type: string
+        x-go-name: CommitMessage
+      contextPath:
+        type: string
+        x-go-name: ContextPath
+      contextValue:
+        type: string
+        x-go-name: ContextValue
+      defaultMapping:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/AdvanceArg'
+        x-go-name: DefaultMapping
+      definitionId:
+        type: string
+        x-go-name: DefinitionID
+      details:
+        type: string
+        x-go-name: Details
+      disabled:
+        type: boolean
+        x-go-name: Disabled
+      enhancementScriptNames:
+        type: array
+        items:
+          type: string
+        x-go-name: EnhancementScriptNames
+      excludedBrands:
+        type: array
+        items:
+          type: string
+        x-go-name: ExcludedBrands
+      expiration:
+        type: integer
+        format: int64
+        x-go-name: ExpirationInMinutes
+      file:
+        type: boolean
+        x-go-name: FileReputation
+      fileHashesPriority:
+        type: array
+        items:
+          type: string
+        x-go-name: FileHashesPriority
+      formatScript:
+        type: string
+        x-go-name: FormatScript
+      fromServerVersion:
+        $ref: '#/definitions/Version'
+      highlight:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+        x-go-name: Highlight
+      id:
+        type: string
+        x-go-name: ID
+      itemVersion:
+        $ref: '#/definitions/Version'
+      layout:
+        type: string
+        x-go-name: Layout
+      legacyNames:
+        type: array
+        items:
+          type: string
+        x-go-name: LegacyNames
+      locked:
+        type: boolean
+        x-go-name: Locked
+      manualMapping:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/AdvanceArg'
+        x-go-name: ManualMapping
+      mergeContext:
+        type: boolean
+        x-go-name: MergeContext
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      numericId:
+        type: integer
+        format: int64
+        x-go-name: NumericID
+      packID:
+        type: string
+        x-go-name: PackID
+      packName:
+        type: string
+        x-go-name: PackName
+      packPropagationLabels:
+        type: array
+        items:
+          type: string
+        x-go-name: PackPropagationLabels
+      prevDetails:
+        type: string
+        x-go-name: PrevDetails
+      primaryTerm:
+        type: integer
+        format: int64
+        x-go-name: PrimaryTerm
+      propagationLabels:
+        type: array
+        items:
+          type: string
+        x-go-name: PropagationLabels
+      regex:
+        type: string
+        x-go-name: Regex
+      remote:
+        type: boolean
+        x-go-name: Remote
+      reputationCommand:
+        type: string
+        x-go-name: ReputationCommand
+      reputationScriptName:
+        type: string
+        x-go-name: ReputationScriptName
+      sequenceNumber:
+        type: integer
+        format: int64
+        x-go-name: SeqNum
+      shouldCommit:
+        type: boolean
+        x-go-name: ShouldCommit
+      shouldShareComments:
+        type: boolean
+        x-go-name: ShouldShareComments
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      syncHash:
+        type: string
+        x-go-name: SyncHash
+      system:
+        type: boolean
+        x-go-name: System
+      toServerVersion:
+        $ref: '#/definitions/Version'
+      updateAfter:
+        type: integer
+        format: int64
+        x-go-name: UpdateAfter
+      vcShouldIgnore:
+        type: boolean
+        x-go-name: VCShouldIgnore
+      vcShouldKeepItemLegacyProdMachine:
+        type: boolean
+        x-go-name: VCShouldKeepItemLegacyProdMachine
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+    x-go-package: github.com/demisto/server/domain
+  reputationsWithErrors:
+    type: object
+    properties:
+      error:
+        type: string
+        x-go-name: Error
+      reputations:
+        type: array
+        items:
+          $ref: '#/definitions/Reputation'
+        x-go-name: Reputations
+    x-go-package: github.com/demisto/server/web
+  Version:
+    type: object
+    title: Version represents a version.
+    properties:
+      Digits:
+        type: array
+        items:
+          type: integer
+          format: int64
+      Label:
+        type: string
+    x-go-package: github.com/demisto/server/domain
+  TransformerOperatorID:
+    type: string
+    title: TransformerOperatorID ...
+    x-go-package: github.com/demisto/server/domain
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
+  csrf_token:
+    type: apiKey
+    name: X-XSRF-TOKEN
+    in: header
+  x-xdr-auth-id:
+    type: apiKey
+    name: x-xdr-auth-id
+    in: header

@@ -1,0 +1,434 @@
+swagger: '2.0'
+info:
+  description: 'This is the public REST API to integrate with the demisto server.
+
+    HTTP request can be sent using any HTTP-client.
+
+
+    For an example dedicated client take a look at: https://github.com/demisto/demisto-py.
+
+
+    Requests must include API-key that can be generated in the Demisto web client under ''Settings'' -> ''Integrations'' -> ''API keys''
+
+
+
+    Optimistic Locking and Versioning\:
+
+
+    When using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).
+
+    In addition, you can pass ''version\: -1'' to force data override (make sure that other users data might be lost).
+
+
+    Assume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?
+
+    To solve this, each data item in Demisto has a numeric incremental version.
+
+    If Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.
+
+    Bob will need to get the latest item and work on it so Alice work will not get lost.
+
+
+    Example request using ''curl''\:
+
+
+    ```
+
+    curl ''https://hostname:443/incidents/search'' -H ''content-type: application/json'' -H ''accept: application/json'' -H ''Authorization: <API Key goes here>'' --data-binary ''{"filter":{"query":"-status:closed -category:job","period":{"by":"day","fromValue":7}}}'' --compressed
+
+    ```'
+  title: Demisto Apikeys Classifier API
+  version: 2.0.0
+host: hostname:443
+schemes:
+- https
+consumes:
+- application/json
+- application/xml
+produces:
+- application/json
+security:
+- api_key: []
+- csrf_token: []
+- x-xdr-auth-id: []
+tags:
+- name: Classifier
+paths:
+  /classifier/import:
+    post:
+      description: Import a classifier to Cortex XSOAR
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      summary: Import a classifier
+      operationId: importClassifier
+      parameters:
+      - type: file
+        description: file
+        name: file
+        in: formData
+        required: true
+      - type: string
+        description: associated typeID for the layout
+        name: classifierId
+        in: formData
+        required: true
+      responses:
+        '200':
+          description: The saved classifier
+          schema:
+            $ref: '#/definitions/InstanceClassifier'
+      tags:
+      - Classifier
+definitions:
+  FilterOperatorID:
+    type: string
+    title: FilterOperatorID ...
+    x-go-package: github.com/demisto/server/domain
+  InstanceClassifier:
+    description: InstanceClassifier - classifies an incident from a specific brand
+    type: object
+    properties:
+      brandName:
+        type: string
+        x-go-name: Brand
+      commitMessage:
+        type: string
+        x-go-name: CommitMessage
+      custom:
+        type: boolean
+        x-go-name: Custom
+      defaultIncidentType:
+        type: string
+        x-go-name: DefaultIncidentType
+      feed:
+        type: boolean
+        x-go-name: Feed
+      fromServerVersion:
+        $ref: '#/definitions/Version'
+      id:
+        type: string
+        x-go-name: ID
+      incidentSamples:
+        $ref: '#/definitions/Incidents'
+      indicatorSamples:
+        $ref: '#/definitions/FeedIndicators'
+      instanceId:
+        type: string
+        x-go-name: InstanceID
+      instanceName:
+        type: string
+        x-go-name: InstanceName
+      isDefault:
+        type: boolean
+        x-go-name: IsDefault
+      itemVersion:
+        $ref: '#/definitions/Version'
+      keyTypeMap:
+        type: object
+        additionalProperties:
+          type: string
+        x-go-name: KeyTypeMap
+      mapping:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/Mapper'
+        x-go-name: Mapping
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      packID:
+        type: string
+        x-go-name: PackID
+      primaryTerm:
+        type: integer
+        format: int64
+        x-go-name: PrimaryTerm
+      propagationLabels:
+        type: array
+        items:
+          type: string
+        x-go-name: PropagationLabels
+      sequenceNumber:
+        type: integer
+        format: int64
+        x-go-name: SeqNum
+      shouldCommit:
+        type: boolean
+        x-go-name: ShouldCommit
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+    x-go-package: github.com/demisto/server/domain
+  CustomFields:
+    description: 'The keys should be the field''s display name all lower and without spaces. For example: Scan IP -> scanip
+
+      To get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update'
+    type: object
+    title: CustomFields ...
+    additionalProperties:
+      type: object
+    x-go-package: github.com/demisto/server/domain
+  ArgTransformer:
+    type: object
+    title: ArgTransformer ...
+    properties:
+      args:
+        x-go-name: Args
+      operator:
+        $ref: '#/definitions/TransformerOperatorID'
+    x-go-package: github.com/demisto/server/domain
+  Version:
+    type: object
+    title: Version represents a version.
+    properties:
+      Digits:
+        type: array
+        items:
+          type: integer
+          format: int64
+      Label:
+        type: string
+    x-go-package: github.com/demisto/server/domain
+  ArgFilter:
+    description: ArgFilter - represent a slice of atomic filters with OR condition between them (e.i. - atomic1 OR atomic2 OR ...)
+    type: array
+    items:
+      $ref: '#/definitions/ArgAtomicFilter'
+    x-go-package: github.com/demisto/server/domain
+  OperatorArgument:
+    type: object
+    title: OperatorArgument ...
+    properties:
+      isContext:
+        type: boolean
+        x-go-name: IsContext
+      value:
+        $ref: '#/definitions/AdvanceArg'
+    x-go-package: github.com/demisto/server/domain
+  ExpirationSource:
+    type: object
+    title: "ExpirationSource ..\t."
+    properties:
+      brand:
+        type: string
+        x-go-name: Brand
+      expirationInterval:
+        type: integer
+        format: int64
+        x-go-name: ExpirationInterval
+      expirationPolicy:
+        $ref: '#/definitions/ExpirationPolicy'
+      instance:
+        type: string
+        x-go-name: Instance
+      moduleId:
+        type: string
+        x-go-name: ModuleID
+      setTime:
+        type: string
+        format: date-time
+        x-go-name: SetTime
+      source:
+        $ref: '#/definitions/ExpirationSettingsSource'
+      user:
+        type: string
+        x-go-name: User
+    x-go-package: github.com/demisto/server/domain
+  ExpirationPolicy:
+    type: string
+    title: ExpirationPolicy ...
+    x-go-package: github.com/demisto/server/domain
+  Reliability:
+    type: string
+    title: Reliability ...
+    x-go-package: github.com/demisto/server/domain
+  AdvanceArg:
+    description: 'Simple: plain text such as "hello" (constant) or ${File.ID} (DT expression)
+
+      Complex: struct with all info that is necessary to compute argument value from context (Root, Filters, Accessor & Transformers)'
+    type: object
+    title: 'AdvanceArg - advance argument can be one of the following:'
+    properties:
+      complex:
+        $ref: '#/definitions/ComplexArg'
+      simple:
+        type: string
+        x-go-name: Simple
+    x-go-package: github.com/demisto/server/domain
+  FeedIndicators:
+    type: array
+    title: FeedIndicators ...
+    items:
+      $ref: '#/definitions/FeedIndicator'
+    x-go-package: github.com/demisto/server/domain
+  ComplexArg:
+    description: 'ComplexArg - all info that is necessary to compute argument value from context
+
+      Root - the root slice (or object) from to work against
+
+      Filters - a slice of filters to apply to the root object, one after another (e.i. with AND condition between each one)
+
+      Accessor - the key to access to each result after filter
+
+      Transformers - a slice to transformers to apply on the result of the accessed key from each result
+
+      e.g. if user want to take from context all File.DisplayName where File.Extension is ''EXE'', and the result in uppercase than:
+
+      Root: is "File"
+
+      Filters: will hold the "File.DisplayName where File.Extension is ''EXE''" query
+
+      Accessor: is "DisplayName"
+
+      Transformers: will hold the uppercase transformation'
+    type: object
+    properties:
+      accessor:
+        type: string
+        x-go-name: Accessor
+      filters:
+        type: array
+        items:
+          $ref: '#/definitions/ArgFilter'
+        x-go-name: Filters
+      root:
+        type: string
+        x-go-name: Root
+      transformers:
+        type: array
+        items:
+          $ref: '#/definitions/ArgTransformer'
+        x-go-name: Transformers
+    x-go-package: github.com/demisto/server/domain
+  FeedIndicator:
+    type: object
+    title: FeedIndicator ...
+    properties:
+      ExpirationSource:
+        $ref: '#/definitions/ExpirationSource'
+      bypassExclusionList:
+        type: boolean
+        x-go-name: ShouldBypassExclusionList
+      classifierVersion:
+        type: integer
+        format: int64
+        x-go-name: ClassifierVersion
+      expirationInterval:
+        type: integer
+        format: int64
+        x-go-name: ExpirationInterval
+      expirationPolicy:
+        $ref: '#/definitions/ExpirationPolicy'
+      feedConfig:
+        type: object
+        additionalProperties:
+          type: object
+        x-go-name: FeedConfig
+      fetchTime:
+        type: string
+        format: date-time
+        x-go-name: FetchTime
+      fields:
+        $ref: '#/definitions/CustomFields'
+      isEnrichment:
+        type: boolean
+        x-go-name: IsEnrichment
+      modifiedTime:
+        type: string
+        format: date-time
+        x-go-name: ModifiedTime
+      moduleId:
+        type: string
+        x-go-name: ModuleID
+      rawJSON:
+        type: object
+        additionalProperties:
+          type: object
+        x-go-name: RawJSON
+      reliability:
+        $ref: '#/definitions/Reliability'
+      score:
+        type: integer
+        format: int64
+        x-go-name: Score
+      sourceBrand:
+        type: string
+        x-go-name: Brand
+      sourceInstance:
+        type: string
+        x-go-name: Instance
+      timestamp:
+        type: string
+        format: date-time
+        x-go-name: TimeStamp
+      type:
+        description: indicator fields
+        type: string
+        x-go-name: Type
+      value:
+        type: string
+        x-go-name: Value
+    x-go-package: github.com/demisto/server/domain
+  ArgAtomicFilter:
+    description: ArgAtomicFilter - operator with two sides that return true/false
+    type: object
+    properties:
+      ignoreCase:
+        type: boolean
+        x-go-name: IgnoreCase
+      left:
+        $ref: '#/definitions/OperatorArgument'
+      operator:
+        $ref: '#/definitions/FilterOperatorID'
+      right:
+        $ref: '#/definitions/OperatorArgument'
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/demisto/server/domain
+  Incidents:
+    description: Incidents is a list of incident entities
+  ExpirationSettingsSource:
+    type: string
+    title: ExpirationSettingsSource ...
+    x-go-package: github.com/demisto/server/domain
+  TransformerOperatorID:
+    type: string
+    title: TransformerOperatorID ...
+    x-go-package: github.com/demisto/server/domain
+  Mapper:
+    description: Mapper - mapper for new incidents
+    type: object
+    properties:
+      dontMapEventToLabels:
+        description: DontMapEventToLabels by default we will map all the fields of the event to incident labels
+        type: boolean
+        x-go-name: DontMapEventToLabels
+      internalMapping:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/AdvanceArg'
+        x-go-name: InternalMapping
+    x-go-package: github.com/demisto/server/domain
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
+  csrf_token:
+    type: apiKey
+    name: X-XSRF-TOKEN
+    in: header
+  x-xdr-auth-id:
+    type: apiKey
+    name: x-xdr-auth-id
+    in: header

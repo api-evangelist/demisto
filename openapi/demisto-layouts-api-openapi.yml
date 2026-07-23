@@ -1,0 +1,294 @@
+swagger: '2.0'
+info:
+  description: 'This is the public REST API to integrate with the demisto server.
+
+    HTTP request can be sent using any HTTP-client.
+
+
+    For an example dedicated client take a look at: https://github.com/demisto/demisto-py.
+
+
+    Requests must include API-key that can be generated in the Demisto web client under ''Settings'' -> ''Integrations'' -> ''API keys''
+
+
+
+    Optimistic Locking and Versioning\:
+
+
+    When using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).
+
+    In addition, you can pass ''version\: -1'' to force data override (make sure that other users data might be lost).
+
+
+    Assume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?
+
+    To solve this, each data item in Demisto has a numeric incremental version.
+
+    If Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.
+
+    Bob will need to get the latest item and work on it so Alice work will not get lost.
+
+
+    Example request using ''curl''\:
+
+
+    ```
+
+    curl ''https://hostname:443/incidents/search'' -H ''content-type: application/json'' -H ''accept: application/json'' -H ''Authorization: <API Key goes here>'' --data-binary ''{"filter":{"query":"-status:closed -category:job","period":{"by":"day","fromValue":7}}}'' --compressed
+
+    ```'
+  title: Demisto Apikeys Layouts API
+  version: 2.0.0
+host: hostname:443
+schemes:
+- https
+consumes:
+- application/json
+- application/xml
+produces:
+- application/json
+security:
+- api_key: []
+- csrf_token: []
+- x-xdr-auth-id: []
+tags:
+- name: Layouts
+paths:
+  /v2/layouts/import:
+    post:
+      description: Import a layout to Cortex XSOAR
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      summary: Import a layout
+      operationId: importLayout
+      parameters:
+      - type: file
+        description: file
+        name: file
+        in: formData
+        required: true
+      - type: string
+        description: associated typeID for the layout
+        name: type
+        in: formData
+        required: true
+      - type: string
+        description: layout kind details
+        name: kind
+        in: formData
+        required: true
+      responses:
+        '200':
+          description: The saved layout
+          schema:
+            $ref: '#/definitions/LayoutAPI'
+      tags:
+      - Layouts
+definitions:
+  Layout:
+    type: object
+    title: Layout ...
+    properties:
+      commitMessage:
+        type: string
+        x-go-name: CommitMessage
+      fromServerVersion:
+        $ref: '#/definitions/Version'
+      id:
+        type: string
+        x-go-name: ID
+      itemVersion:
+        $ref: '#/definitions/Version'
+      kind:
+        type: string
+        x-go-name: Kind
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      name:
+        type: string
+        x-go-name: Name
+      packID:
+        type: string
+        x-go-name: PackID
+      prevKind:
+        type: string
+        x-go-name: PrevKind
+      prevTypeId:
+        type: string
+        x-go-name: PrevTypeID
+      primaryTerm:
+        type: integer
+        format: int64
+        x-go-name: PrimaryTerm
+      propagationLabels:
+        type: array
+        items:
+          type: string
+        x-go-name: PropagationLabels
+      sections:
+        type: array
+        items:
+          $ref: '#/definitions/LayoutSection'
+        x-go-name: Sections
+      sequenceNumber:
+        type: integer
+        format: int64
+        x-go-name: SeqNum
+      shouldCommit:
+        type: boolean
+        x-go-name: ShouldCommit
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      system:
+        type: boolean
+        x-go-name: System
+      toServerVersion:
+        $ref: '#/definitions/Version'
+      typeId:
+        type: string
+        x-go-name: TypeID
+      vcShouldIgnore:
+        type: boolean
+        x-go-name: VCShouldIgnore
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+    x-go-package: github.com/demisto/server/domain
+  LayoutField:
+    type: object
+    title: LayoutField ...
+    properties:
+      fieldId:
+        type: string
+        x-go-name: FieldID
+      id:
+        type: string
+        x-go-name: ID
+      isVisible:
+        type: boolean
+        x-go-name: IsVisible
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      primaryTerm:
+        type: integer
+        format: int64
+        x-go-name: PrimaryTerm
+      sequenceNumber:
+        type: integer
+        format: int64
+        x-go-name: SeqNum
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+    x-go-package: github.com/demisto/server/domain
+  LayoutAPI:
+    description: 'LayoutAPI - request sent from the client contains some or all
+
+      of the fields.'
+    type: object
+    properties:
+      kind:
+        type: string
+        x-go-name: Kind
+      layout:
+        $ref: '#/definitions/Layout'
+      typeId:
+        type: string
+        x-go-name: TypeID
+    x-go-package: github.com/demisto/server/domain
+  LayoutSection:
+    type: object
+    title: LayoutSection ...
+    properties:
+      description:
+        type: string
+        x-go-name: Description
+      fields:
+        type: array
+        items:
+          $ref: '#/definitions/LayoutField'
+        x-go-name: Fields
+      id:
+        type: string
+        x-go-name: ID
+      isVisible:
+        type: boolean
+        x-go-name: IsVisible
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      name:
+        type: string
+        x-go-name: Name
+      primaryTerm:
+        type: integer
+        format: int64
+        x-go-name: PrimaryTerm
+      query:
+        type: object
+        x-go-name: Query
+      queryType:
+        type: string
+        x-go-name: QueryType
+      readOnly:
+        type: boolean
+        x-go-name: IsReadOnly
+      sequenceNumber:
+        type: integer
+        format: int64
+        x-go-name: SeqNum
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      type:
+        type: string
+        x-go-name: Type
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+    x-go-package: github.com/demisto/server/domain
+  Version:
+    type: object
+    title: Version represents a version.
+    properties:
+      Digits:
+        type: array
+        items:
+          type: integer
+          format: int64
+      Label:
+        type: string
+    x-go-package: github.com/demisto/server/domain
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
+  csrf_token:
+    type: apiKey
+    name: X-XSRF-TOKEN
+    in: header
+  x-xdr-auth-id:
+    type: apiKey
+    name: x-xdr-auth-id
+    in: header

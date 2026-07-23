@@ -1,0 +1,352 @@
+swagger: '2.0'
+info:
+  description: 'This is the public REST API to integrate with the demisto server.
+
+    HTTP request can be sent using any HTTP-client.
+
+
+    For an example dedicated client take a look at: https://github.com/demisto/demisto-py.
+
+
+    Requests must include API-key that can be generated in the Demisto web client under ''Settings'' -> ''Integrations'' -> ''API keys''
+
+
+
+    Optimistic Locking and Versioning\:
+
+
+    When using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).
+
+    In addition, you can pass ''version\: -1'' to force data override (make sure that other users data might be lost).
+
+
+    Assume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?
+
+    To solve this, each data item in Demisto has a numeric incremental version.
+
+    If Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.
+
+    Bob will need to get the latest item and work on it so Alice work will not get lost.
+
+
+    Example request using ''curl''\:
+
+
+    ```
+
+    curl ''https://hostname:443/incidents/search'' -H ''content-type: application/json'' -H ''accept: application/json'' -H ''Authorization: <API Key goes here>'' --data-binary ''{"filter":{"query":"-status:closed -category:job","period":{"by":"day","fromValue":7}}}'' --compressed
+
+    ```'
+  title: Demisto Apikeys Indicator API
+  version: 2.0.0
+host: hostname:443
+schemes:
+- https
+consumes:
+- application/json
+- application/xml
+produces:
+- application/json
+security:
+- api_key: []
+- csrf_token: []
+- x-xdr-auth-id: []
+tags:
+- name: Indicator
+paths:
+  /indicator/create:
+    post:
+      description: 'Create an indicator entity
+
+        To update indicator custom fields you should lowercase them and remove all spaces. For example: Scan IP -> scanip'
+      summary: Create Indicator
+      operationId: indicatorsCreate
+      parameters:
+      - name: IocObject
+        in: body
+        schema:
+          $ref: '#/definitions/indicatorContext'
+      responses:
+        '200':
+          description: IocObject
+          schema:
+            $ref: '#/definitions/IocObject'
+      tags:
+      - Indicator
+  /indicator/edit:
+    post:
+      description: 'Edit an indicator entity
+
+        To update indicator custom fields you should lowercase them and remove all spaces. For example: Scan IP -> scanip'
+      summary: Edit Indicator
+      operationId: indicatorsEdit
+      parameters:
+      - name: IocObject
+        in: body
+        schema:
+          $ref: '#/definitions/IocObject'
+      responses:
+        '200':
+          description: IocObject
+          schema:
+            $ref: '#/definitions/IocObject'
+      tags:
+      - Indicator
+  /indicator/whitelist:
+    post:
+      description: 'Whitelists or deletes an indicator entity
+
+        In order to delete an indicator and not whitelist, set doNotWhitelist boolean field to true'
+      summary: Whitelists or deletes Indicator
+      operationId: indicatorWhitelist
+      parameters:
+      - name: updateIndicatorReputationData
+        in: body
+        schema:
+          $ref: '#/definitions/updateIndicatorReputationData'
+      responses:
+        '200':
+          description: UpdateResponse
+          schema:
+            $ref: '#/definitions/UpdateResponse'
+      tags:
+      - Indicator
+definitions:
+  DBotScore:
+    description: DBotScore - Contain the score of a specific brand for a specific insight
+    type: object
+    properties:
+      content:
+        type: string
+        x-go-name: Content
+      contentFormat:
+        type: string
+        x-go-name: ContentFormat
+      context:
+        type: object
+        additionalProperties:
+          type: object
+        x-go-name: Context
+      isTypedIndicator:
+        type: boolean
+        x-go-name: IsTypedIndicator
+      score:
+        type: integer
+        format: int64
+        x-go-name: Score
+      scoreChangeTimestamp:
+        description: We need to track when the score changes to know if we need to re-calculate the overall score
+        type: string
+        format: date-time
+        x-go-name: ScoreChangeTimeStamp
+      timestamp:
+        type: string
+        format: date-time
+        x-go-name: TimeStamp
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/demisto/server/domain
+  updateIndicatorReputationData:
+    type: object
+    properties:
+      InvestigationId:
+        type: string
+        x-go-name: InvID
+      doNotWhitelist:
+        type: boolean
+        x-go-name: DoNotWhitelist
+      entryId:
+        type: string
+        x-go-name: EntryID
+      manualScore:
+        type: boolean
+        x-go-name: ManualScore
+      reason:
+        type: string
+        x-go-name: Reason
+      reputation:
+        type: integer
+        format: int64
+        x-go-name: Reputation
+      reputations:
+        type: array
+        items:
+          type: string
+        x-go-name: Reputations
+      value:
+        type: string
+        x-go-name: Value
+    x-go-package: github.com/demisto/server/web
+  InsightCache:
+    description: InsightCache - map insight name to all its metadata, name will be case insensitive
+    type: object
+    properties:
+      id:
+        type: string
+        x-go-name: ID
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      scores:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/DBotScore'
+        x-go-name: Scores
+      sequenceNumber:
+        type: integer
+        format: int64
+        x-go-name: SeqNum
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+    x-go-package: github.com/demisto/server/domain
+  CustomFields:
+    description: 'The keys should be the field''s display name all lower and without spaces. For example: Scan IP -> scanip
+
+      To get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update'
+    type: object
+    title: CustomFields ...
+    additionalProperties:
+      type: object
+    x-go-package: github.com/demisto/server/domain
+  UpdateResponse:
+    type: object
+    title: UpdateResponse ...
+    properties:
+      notUpdated:
+        type: integer
+        format: int64
+        x-go-name: NotUpdated
+      updatedIds:
+        type: array
+        items:
+          type: string
+        x-go-name: UpdatedIds
+    x-go-package: github.com/demisto/server/repo/entities
+  indicatorContext:
+    type: object
+    properties:
+      entryId:
+        type: string
+        x-go-name: EntryID
+      indicator:
+        $ref: '#/definitions/IocObject'
+      investigationId:
+        type: string
+        x-go-name: InvestigationID
+      seenNow:
+        type: boolean
+        x-go-name: SeenNow
+    x-go-package: github.com/demisto/server/web
+  IocObject:
+    description: IocObject - represents an Ioc (or simply an indicator) object
+    type: object
+    properties:
+      CustomFields:
+        $ref: '#/definitions/CustomFields'
+      account:
+        type: string
+        x-go-name: Account
+      calculatedTime:
+        description: Do not set the fields bellow this line
+        type: string
+        format: date-time
+        x-go-name: CalculatedTime
+      comment:
+        type: string
+        x-go-name: Comment
+      firstSeen:
+        type: string
+        format: date-time
+        x-go-name: FirstSeen
+      firstSeenEntryID:
+        type: string
+        x-go-name: FirstSeenEntryID
+      id:
+        type: string
+        x-go-name: ID
+      indicator_type:
+        type: string
+        x-go-name: IndicatorType
+      insightCache:
+        $ref: '#/definitions/InsightCache'
+      investigationIDs:
+        type: array
+        items:
+          type: string
+        x-go-name: InvestigationIDs
+      lastReputationRun:
+        type: string
+        format: date-time
+        x-go-name: LastReputationRun
+      lastSeen:
+        type: string
+        format: date-time
+        x-go-name: LastSeen
+      lastSeenEntryID:
+        type: string
+        x-go-name: LastSeenEntryID
+      manualScore:
+        type: boolean
+        x-go-name: ManualScore
+      manualSetTime:
+        type: string
+        format: date-time
+        x-go-name: ManualSetTime
+      manuallyEditedFields:
+        type: array
+        items:
+          type: string
+        x-go-name: ManuallyEditedFields
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      score:
+        type: integer
+        format: int64
+        x-go-name: Score
+      setBy:
+        type: string
+        x-go-name: SetBy
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      source:
+        type: string
+        x-go-name: Source
+      timestamp:
+        type: string
+        format: date-time
+        x-go-name: TimeStamp
+      value:
+        type: string
+        x-go-name: Value
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+    x-go-package: github.com/demisto/server/domain
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
+  csrf_token:
+    type: apiKey
+    name: X-XSRF-TOKEN
+    in: header
+  x-xdr-auth-id:
+    type: apiKey
+    name: x-xdr-auth-id
+    in: header

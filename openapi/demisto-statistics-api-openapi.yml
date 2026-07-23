@@ -1,0 +1,114 @@
+swagger: '2.0'
+info:
+  description: 'This is the public REST API to integrate with the demisto server.
+
+    HTTP request can be sent using any HTTP-client.
+
+
+    For an example dedicated client take a look at: https://github.com/demisto/demisto-py.
+
+
+    Requests must include API-key that can be generated in the Demisto web client under ''Settings'' -> ''Integrations'' -> ''API keys''
+
+
+
+    Optimistic Locking and Versioning\:
+
+
+    When using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).
+
+    In addition, you can pass ''version\: -1'' to force data override (make sure that other users data might be lost).
+
+
+    Assume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?
+
+    To solve this, each data item in Demisto has a numeric incremental version.
+
+    If Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.
+
+    Bob will need to get the latest item and work on it so Alice work will not get lost.
+
+
+    Example request using ''curl''\:
+
+
+    ```
+
+    curl ''https://hostname:443/incidents/search'' -H ''content-type: application/json'' -H ''accept: application/json'' -H ''Authorization: <API Key goes here>'' --data-binary ''{"filter":{"query":"-status:closed -category:job","period":{"by":"day","fromValue":7}}}'' --compressed
+
+    ```'
+  title: Demisto Apikeys Statistics API
+  version: 2.0.0
+host: hostname:443
+schemes:
+- https
+consumes:
+- application/json
+- application/xml
+produces:
+- application/json
+security:
+- api_key: []
+- csrf_token: []
+- x-xdr-auth-id: []
+tags:
+- name: Statistics
+paths:
+  /statistics/dashboards/query:
+    post:
+      description: Get a given dashboard statistics result.
+      produces:
+      - application/json
+      summary: Get Dashboard Statistics
+      operationId: GetStatsForDashboard
+      responses:
+        '200':
+          description: Return an array of stats results for each widget cell in dashboard.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/StatsQueryResponse'
+      tags:
+      - Statistics
+  /statistics/widgets/query:
+    post:
+      description: 'Get a given widget object statistics result.
+
+        Note: This route has many return types based on the widget type and data. Each 200X represent a 200 OK request of specific widget type and data'
+      produces:
+      - application/json
+      summary: Get Widget Statistics
+      operationId: getStatsForWidget
+      responses:
+        '200':
+          description: "Response differ according to the widget type\n  -  Incident data type of a \"table\" or \"list\" widget returns incidentSearchResponse\n     total:\n       type: integer\n       data:\n         type: array\n      items:\n        \"$ref\": \"#/definitions/Incident\"\n    - Indicators data type of a \"table\" or \"list\" widget returns IoCsResponse\n      total:\n        type: integer\n      data:\n        type: array\n        items:\n          \"$ref\": \"#/definitions/IocObject\"\n    - Number widget returns a simple number\n      type: integer\n    - Trend widget returns a trend object\n      \"$ref\": \"#/definitions/StatsTrendsResponse\"\n    - Text widget returns a text object, describing the final text and the placeholders values.\n      \"$ref\": \"#/definitions/StatsTextResponse\"\n    - A chart data array by groups. When requesting a date, the key is the date string, according to the specified time frame. Empty groups (dates) are also returned.\n      type: array\n      items:\n        \"$ref\": \"#/definitions/Group\""
+          schema:
+            type: object
+      tags:
+      - Statistics
+definitions:
+  StatsQueryResponse:
+    type: object
+    title: StatsQueryResponse - Describe the data returned related to a specific widget cell in a dashboard.
+    properties:
+      data:
+        description: data array or object describing the statistics data based on type.
+        type: object
+        x-go-name: Data
+      widgetCellId:
+        type: string
+        x-go-name: WidgetCellID
+    x-go-package: github.com/demisto/server/repo/entities
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
+  csrf_token:
+    type: apiKey
+    name: X-XSRF-TOKEN
+    in: header
+  x-xdr-auth-id:
+    type: apiKey
+    name: x-xdr-auth-id
+    in: header

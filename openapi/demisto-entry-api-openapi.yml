@@ -1,0 +1,773 @@
+swagger: '2.0'
+info:
+  description: 'This is the public REST API to integrate with the demisto server.
+
+    HTTP request can be sent using any HTTP-client.
+
+
+    For an example dedicated client take a look at: https://github.com/demisto/demisto-py.
+
+
+    Requests must include API-key that can be generated in the Demisto web client under ''Settings'' -> ''Integrations'' -> ''API keys''
+
+
+
+    Optimistic Locking and Versioning\:
+
+
+    When using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).
+
+    In addition, you can pass ''version\: -1'' to force data override (make sure that other users data might be lost).
+
+
+    Assume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?
+
+    To solve this, each data item in Demisto has a numeric incremental version.
+
+    If Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.
+
+    Bob will need to get the latest item and work on it so Alice work will not get lost.
+
+
+    Example request using ''curl''\:
+
+
+    ```
+
+    curl ''https://hostname:443/incidents/search'' -H ''content-type: application/json'' -H ''accept: application/json'' -H ''Authorization: <API Key goes here>'' --data-binary ''{"filter":{"query":"-status:closed -category:job","period":{"by":"day","fromValue":7}}}'' --compressed
+
+    ```'
+  title: Demisto Apikeys Entry API
+  version: 2.0.0
+host: hostname:443
+schemes:
+- https
+consumes:
+- application/json
+- application/xml
+produces:
+- application/json
+security:
+- api_key: []
+- csrf_token: []
+- x-xdr-auth-id: []
+tags:
+- name: Entry
+paths:
+  /entry:
+    post:
+      description: 'API to create an entry (markdown format) in existing investigation
+
+        Body example: {"investigationId":"1234","data":"entry content…"}'
+      summary: Create new entry in existing investigation
+      operationId: investigationAddEntryHandler
+      parameters:
+      - name: updateEntry
+        in: body
+        schema:
+          $ref: '#/definitions/updateEntry'
+      responses:
+        '200':
+          description: Entry
+          schema:
+            $ref: '#/definitions/Entry'
+        '412':
+          description: In case of closed investigation
+      tags:
+      - Entry
+  /entry/artifact/{id}:
+    get:
+      description: Get the entry artifact file
+      produces:
+      - application/octet-stream
+      summary: Get entry artifact
+      operationId: getEntryArtifact
+      parameters:
+      - type: string
+        description: file to fetch (returned from entry export artifact call)
+        name: id
+        in: path
+        required: true
+      responses:
+        '200':
+          description: Return the file
+          schema:
+            type: file
+      tags:
+      - Entry
+  /entry/download/{entryid}:
+    get:
+      description: Download file from Demisto by entry ID
+      produces:
+      - application/octet-stream
+      summary: Download file
+      operationId: downloadFile
+      parameters:
+      - type: string
+        description: Entry ID
+        name: entryid
+        in: path
+        required: true
+      responses:
+        '200':
+          description: Return the entry
+          schema:
+            type: file
+      tags:
+      - Entry
+  /entry/execute/sync:
+    post:
+      description: 'API to create an entry (markdown format) in existing investigation
+
+        Body example: {"investigationId":"1234","data":"entry content…"}'
+      summary: Create new entry in existing investigation
+      operationId: investigationAddEntriesSync
+      parameters:
+      - name: updateEntry
+        in: body
+        schema:
+          $ref: '#/definitions/updateEntry'
+      responses:
+        '200':
+          description: An array of the children entries of the executed entry.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Entry'
+        '412':
+          description: In case of closed investigation
+      tags:
+      - Entry
+  /entry/exportArtifact:
+    post:
+      description: Export an entry artifact
+      summary: Export Artifact
+      operationId: entryExportArtifact
+      parameters:
+      - name: DownloadEntry
+        in: body
+        schema:
+          $ref: '#/definitions/DownloadEntry'
+      responses:
+        '200':
+          description: created file name
+          schema:
+            type: string
+      tags:
+      - Entry
+  /entry/formatted:
+    post:
+      description: 'API to create a formatted entry (table/json/text/markdown/html) in existing investigation
+
+        Body example: {"investigationId":"1234","format":"table/json/text/markdown/html","contents":"entry content…"}'
+      summary: Create new formatted entry in existing investigation
+      operationId: investigationAddFormattedEntryHandler
+      parameters:
+      - name: uploadedEntry
+        in: body
+        schema:
+          $ref: '#/definitions/uploadedEntry'
+      responses:
+        '200':
+          description: Entry
+          schema:
+            $ref: '#/definitions/Entry'
+      tags:
+      - Entry
+  /entry/note:
+    post:
+      description: 'API to mark entry as note, can be used also to remove the note
+
+        Body example: {"id":1\@1234","version":"-1","investigationId":"1234","data":"true/false"}'
+      summary: Mark entry as note
+      operationId: updateEntryNote
+      parameters:
+      - name: updateEntry
+        in: body
+        schema:
+          $ref: '#/definitions/updateEntry'
+      responses:
+        '200':
+          description: Entry
+          schema:
+            $ref: '#/definitions/Entry'
+      tags:
+      - Entry
+  /entry/tags:
+    post:
+      description: 'API to set entry tags
+
+        Body example: {"id":"1\@1234","version":"-1","investigationId":"1234","tags":["tag1","tag2"]"}'
+      summary: Set entry tags
+      operationId: updateEntryTagsOp
+      parameters:
+      - name: updateEntryTags
+        in: body
+        schema:
+          $ref: '#/definitions/updateEntryTags'
+      responses:
+        '200':
+          description: Entry
+          schema:
+            $ref: '#/definitions/Entry'
+      tags:
+      - Entry
+definitions:
+  TermLocationMap:
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/Locations'
+    x-go-package: github.com/demisto/server/vendor/github.com/blevesearch/bleve/search
+  EntryHistory:
+    type: object
+    title: EntryHistory ...
+    properties:
+      contentDate:
+        type: string
+        format: date-time
+        x-go-name: ContentDate
+      contents:
+        type: string
+        x-go-name: Contents
+      contentsFormat:
+        type: string
+        x-go-name: ContentsFormat
+      user:
+        type: string
+        x-go-name: User
+    x-go-package: github.com/demisto/server/domain
+  Entry:
+    description: Entry holds a single entry in an investigation. Entries entered within a short amount of time by the same user are combined
+    type: object
+    properties:
+      ShardID:
+        type: integer
+        format: int64
+      brand:
+        type: string
+        x-go-name: Brand
+      category:
+        $ref: '#/definitions/EntryCategory'
+      contents:
+        description: The contents of the entry that is actually indexed - should not be used
+        type: object
+        x-go-name: DoNotUseContents
+      contentsSize:
+        description: ContentsSize the total size of the contents
+        type: integer
+        format: int64
+        x-go-name: ContentsSize
+      created:
+        description: When it was taken
+        type: string
+        format: date-time
+        x-go-name: Created
+      cron:
+        type: string
+        x-go-name: Cron
+      cronView:
+        type: boolean
+        x-go-name: CronView
+      deleted:
+        type: boolean
+        x-go-name: Deleted
+      endingDate:
+        type: string
+        format: date-time
+        x-go-name: EndingDate
+      endingType:
+        $ref: '#/definitions/EndingType'
+      entryTask:
+        $ref: '#/definitions/EntryTask'
+      errorSource:
+        description: Source of the error
+        type: string
+        x-go-name: ErrorSource
+      file:
+        description: Filename of associated content
+        type: string
+        x-go-name: File
+      fileID:
+        description: FileID is the file name when saved in the server
+        type: string
+        x-go-name: FileID
+      fileMetadata:
+        $ref: '#/definitions/FileMetadata'
+      format:
+        description: Holds information on how content is formatted
+        type: string
+        x-go-name: ContentsFormat
+      hasRole:
+        description: Internal field to make queries on role faster
+        type: boolean
+        x-go-name: HasRole
+      history:
+        description: Edit history
+        type: array
+        items:
+          $ref: '#/definitions/EntryHistory'
+        x-go-name: History
+      humanCron:
+        $ref: '#/definitions/HumanCron'
+      id:
+        type: string
+        x-go-name: ID
+      instance:
+        type: string
+        x-go-name: Instance
+      investigationId:
+        description: The id of the investigation it belongs to
+        type: string
+        x-go-name: InvestigationID
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      note:
+        description: Note
+        type: boolean
+        x-go-name: Note
+      parentContent:
+        description: ParentEntry content - for reference
+        type: object
+        x-go-name: ParentEntryContent
+      parentEntryTruncated:
+        description: ParentEntryTruncated - indicates weather entry content was truncated
+        type: boolean
+        x-go-name: ParentEntryTruncated
+      parentId:
+        description: ParentId is the ID of the parent entry
+        type: string
+        x-go-name: ParentID
+      pinned:
+        description: Mark entry as pinned = evidence
+        type: boolean
+        x-go-name: Pinned
+      playbookId:
+        description: PlaybookID - if the entry is assigned as note to a playbook task, it will hold the playbook
+        type: string
+        x-go-name: PlaybookID
+      previousRoles:
+        description: PreviousRoleName - do not change this field manually
+        type: array
+        items:
+          type: string
+        x-go-name: PreviousRoleName
+      readOnly:
+        description: ReadOnly
+        type: boolean
+        x-go-name: ReadOnly
+      recurrent:
+        type: boolean
+        x-go-name: Recurrent
+      reputationSize:
+        description: ReputationSize the total size of the reputation
+        type: integer
+        format: int64
+        x-go-name: ReputationSize
+      reputations:
+        description: EntryReputations the reputations calculated by regex match
+        type: array
+        items:
+          $ref: '#/definitions/EntryReputation'
+        x-go-name: EntryReputations
+      roles:
+        description: The role assigned to this investigation
+        type: array
+        items:
+          type: string
+        x-go-name: RoleName
+      scheduled:
+        description: is it scheduled
+        type: boolean
+        x-go-name: Scheduled
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      startDate:
+        type: string
+        format: date-time
+        x-go-name: StartDate
+      system:
+        description: The name of the system associated with this entry
+        type: string
+        x-go-name: SystemName
+      tags:
+        description: Tags
+        type: array
+        items:
+          type: string
+        x-go-name: Tags
+      tagsRaw:
+        description: TagsRaw
+        type: array
+        items:
+          type: string
+        x-go-name: TagsRaw
+      taskId:
+        description: TaskID - used if the entry is assigned as note to a playbook task
+        type: string
+        x-go-name: TaskID
+      times:
+        type: integer
+        format: int64
+        x-go-name: Times
+      timezoneOffset:
+        type: integer
+        format: int64
+        x-go-name: TimezoneOffset
+      type:
+        $ref: '#/definitions/EntryType'
+      user:
+        description: The user who created  the entry
+        type: string
+        x-go-name: User
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+    x-go-package: github.com/demisto/server/domain
+  FilterOperatorID:
+    type: string
+    title: FilterOperatorID ...
+    x-go-package: github.com/demisto/server/domain
+  Locations:
+    type: array
+    items:
+      $ref: '#/definitions/Location'
+    x-go-package: github.com/demisto/server/vendor/github.com/blevesearch/bleve/search
+  Location:
+    type: object
+    properties:
+      array_positions:
+        $ref: '#/definitions/ArrayPositions'
+      end:
+        type: integer
+        format: uint64
+        x-go-name: End
+      pos:
+        description: Pos is the position of the term within the field, starting at 1
+        type: integer
+        format: uint64
+        x-go-name: Pos
+      start:
+        description: Start and End are the byte offsets of the term in the field
+        type: integer
+        format: uint64
+        x-go-name: Start
+    x-go-package: github.com/demisto/server/vendor/github.com/blevesearch/bleve/search
+  ArgTransformer:
+    type: object
+    title: ArgTransformer ...
+    properties:
+      args:
+        x-go-name: Args
+      operator:
+        $ref: '#/definitions/TransformerOperatorID'
+    x-go-package: github.com/demisto/server/domain
+  uploadedEntry:
+    type: object
+    properties:
+      contents:
+        type: string
+        x-go-name: Contents
+      format:
+        type: string
+        x-go-name: ContentsFormat
+      investigationId:
+        type: string
+        x-go-name: InvestigationID
+    x-go-package: github.com/demisto/server/web
+  updateEntryTags:
+    type: object
+    properties:
+      id:
+        type: string
+        x-go-name: ID
+      investigationId:
+        type: string
+        x-go-name: InvestigationID
+      tags:
+        type: array
+        items:
+          type: string
+        x-go-name: Tags
+      version:
+        type: integer
+        format: int64
+        x-go-name: Version
+    x-go-package: github.com/demisto/server/web
+  ReputationData:
+    description: ReputationData holds the reputation data (reputation, regex, highlights result)
+    type: object
+    properties:
+      rawTerm:
+        type: string
+        x-go-name: RawTerm
+      reputation:
+        type: integer
+        format: int64
+        x-go-name: Reputation
+      reputationId:
+        type: string
+        x-go-name: ReputationID
+      term:
+        type: string
+        x-go-name: Term
+    x-go-package: github.com/demisto/server/domain
+  ArgFilter:
+    description: ArgFilter - represent a slice of atomic filters with OR condition between them (e.i. - atomic1 OR atomic2 OR ...)
+    type: array
+    items:
+      $ref: '#/definitions/ArgAtomicFilter'
+    x-go-package: github.com/demisto/server/domain
+  OperatorArgument:
+    type: object
+    title: OperatorArgument ...
+    properties:
+      isContext:
+        type: boolean
+        x-go-name: IsContext
+      value:
+        $ref: '#/definitions/AdvanceArg'
+    x-go-package: github.com/demisto/server/domain
+  AdvanceArg:
+    description: 'Simple: plain text such as "hello" (constant) or ${File.ID} (DT expression)
+
+      Complex: struct with all info that is necessary to compute argument value from context (Root, Filters, Accessor & Transformers)'
+    type: object
+    title: 'AdvanceArg - advance argument can be one of the following:'
+    properties:
+      complex:
+        $ref: '#/definitions/ComplexArg'
+      simple:
+        type: string
+        x-go-name: Simple
+    x-go-package: github.com/demisto/server/domain
+  ArrayPositions:
+    type: array
+    items:
+      type: integer
+      format: uint64
+    x-go-package: github.com/demisto/server/vendor/github.com/blevesearch/bleve/search
+  FieldTermLocationMap:
+    type: object
+    additionalProperties:
+      $ref: '#/definitions/TermLocationMap'
+    x-go-package: github.com/demisto/server/vendor/github.com/blevesearch/bleve/search
+  EndingType:
+    description: EndingType holds the type of schedule Ending
+    type: string
+    x-go-package: github.com/demisto/server/domain
+  ComplexArg:
+    description: 'ComplexArg - all info that is necessary to compute argument value from context
+
+      Root - the root slice (or object) from to work against
+
+      Filters - a slice of filters to apply to the root object, one after another (e.i. with AND condition between each one)
+
+      Accessor - the key to access to each result after filter
+
+      Transformers - a slice to transformers to apply on the result of the accessed key from each result
+
+      e.g. if user want to take from context all File.DisplayName where File.Extension is ''EXE'', and the result in uppercase than:
+
+      Root: is "File"
+
+      Filters: will hold the "File.DisplayName where File.Extension is ''EXE''" query
+
+      Accessor: is "DisplayName"
+
+      Transformers: will hold the uppercase transformation'
+    type: object
+    properties:
+      accessor:
+        type: string
+        x-go-name: Accessor
+      filters:
+        type: array
+        items:
+          $ref: '#/definitions/ArgFilter'
+        x-go-name: Filters
+      root:
+        type: string
+        x-go-name: Root
+      transformers:
+        type: array
+        items:
+          $ref: '#/definitions/ArgTransformer'
+        x-go-name: Transformers
+    x-go-package: github.com/demisto/server/domain
+  EntryTask:
+    description: EntryTask holds information regarding the related task
+    type: object
+    properties:
+      playbookName:
+        type: string
+        x-go-name: PlaybookName
+      taskId:
+        type: string
+        x-go-name: TaskID
+      taskName:
+        type: string
+        x-go-name: TaskName
+      taskStatus:
+        type: string
+        x-go-name: TaskStatus
+    x-go-package: github.com/demisto/server/domain
+  ArgAtomicFilter:
+    description: ArgAtomicFilter - operator with two sides that return true/false
+    type: object
+    properties:
+      ignoreCase:
+        type: boolean
+        x-go-name: IgnoreCase
+      left:
+        $ref: '#/definitions/OperatorArgument'
+      operator:
+        $ref: '#/definitions/FilterOperatorID'
+      right:
+        $ref: '#/definitions/OperatorArgument'
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/demisto/server/domain
+  updateEntry:
+    type: object
+    properties:
+      args:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/AdvanceArg'
+        x-go-name: Args
+      data:
+        type: string
+        x-go-name: Data
+      id:
+        type: string
+        x-go-name: ID
+      investigationId:
+        type: string
+        x-go-name: InvestigationID
+      markdown:
+        type: boolean
+        x-go-name: Markdown
+      version:
+        type: integer
+        format: int64
+        x-go-name: Version
+    x-go-package: github.com/demisto/server/web
+  EntryType:
+    description: EntryType specifies the type of the entry
+    type: number
+    format: double
+    x-go-package: github.com/demisto/server/domain
+  FileMetadata:
+    type: object
+    title: FileMetadata ...
+    properties:
+      info:
+        type: string
+        x-go-name: Info
+      isMediaFile:
+        type: boolean
+        x-go-name: IsMediaFile
+      md5:
+        type: string
+        x-go-name: MD5
+      sha1:
+        type: string
+        x-go-name: SHA1
+      sha256:
+        type: string
+        x-go-name: SHA256
+      sha512:
+        type: string
+        x-go-name: SHA512
+      size:
+        type: integer
+        format: int64
+        x-go-name: Size
+      ssdeep:
+        type: string
+        x-go-name: SSDeep
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/demisto/server/domain
+  TransformerOperatorID:
+    type: string
+    title: TransformerOperatorID ...
+    x-go-package: github.com/demisto/server/domain
+  DownloadEntry:
+    type: object
+    title: DownloadEntry ...
+    properties:
+      id:
+        type: string
+        x-go-name: ID
+      investigationId:
+        type: string
+        x-go-name: InvestigationID
+    x-go-package: github.com/demisto/server/web
+  EntryCategory:
+    type: string
+    title: EntryCategory ...
+    x-go-package: github.com/demisto/server/domain
+  HumanCron:
+    type: object
+    title: HumanCron ...
+    properties:
+      atTimeHour:
+        type: string
+        x-go-name: AtTimeHour
+      atTimeMinute:
+        type: string
+        x-go-name: AtTimeMinute
+      days:
+        type: array
+        items:
+          type: string
+        x-go-name: Days
+      hoursPeriod:
+        type: string
+        x-go-name: HoursPeriod
+      schedulingType:
+        description: the following fields are deprecated. do not use them.
+        type: string
+        x-go-name: SchedulingType
+      timePeriod:
+        type: integer
+        format: int64
+        x-go-name: TimePeriod
+      timePeriodType:
+        type: string
+        x-go-name: TimePeriodType
+    x-go-package: github.com/demisto/server/domain
+  EntryReputation:
+    description: EntryReputation holds the entry reputations and the highlights
+    type: object
+    properties:
+      highlights:
+        $ref: '#/definitions/FieldTermLocationMap'
+      reputationsData:
+        type: array
+        items:
+          $ref: '#/definitions/ReputationData'
+        x-go-name: ReputationsData
+    x-go-package: github.com/demisto/server/domain
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
+  csrf_token:
+    type: apiKey
+    name: X-XSRF-TOKEN
+    in: header
+  x-xdr-auth-id:
+    type: apiKey
+    name: x-xdr-auth-id
+    in: header

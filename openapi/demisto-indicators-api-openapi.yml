@@ -1,0 +1,633 @@
+swagger: '2.0'
+info:
+  description: 'This is the public REST API to integrate with the demisto server.
+
+    HTTP request can be sent using any HTTP-client.
+
+
+    For an example dedicated client take a look at: https://github.com/demisto/demisto-py.
+
+
+    Requests must include API-key that can be generated in the Demisto web client under ''Settings'' -> ''Integrations'' -> ''API keys''
+
+
+
+    Optimistic Locking and Versioning\:
+
+
+    When using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).
+
+    In addition, you can pass ''version\: -1'' to force data override (make sure that other users data might be lost).
+
+
+    Assume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?
+
+    To solve this, each data item in Demisto has a numeric incremental version.
+
+    If Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.
+
+    Bob will need to get the latest item and work on it so Alice work will not get lost.
+
+
+    Example request using ''curl''\:
+
+
+    ```
+
+    curl ''https://hostname:443/incidents/search'' -H ''content-type: application/json'' -H ''accept: application/json'' -H ''Authorization: <API Key goes here>'' --data-binary ''{"filter":{"query":"-status:closed -category:job","period":{"by":"day","fromValue":7}}}'' --compressed
+
+    ```'
+  title: Demisto Apikeys Indicators API
+  version: 2.0.0
+host: hostname:443
+schemes:
+- https
+consumes:
+- application/json
+- application/xml
+produces:
+- application/json
+security:
+- api_key: []
+- csrf_token: []
+- x-xdr-auth-id: []
+tags:
+- name: Indicators
+paths:
+  /indicators/batch/export/stix:
+    post:
+      description: Exports an indicators batch to STIX file (returns file ID)
+      summary: Batch export indicators to STIX
+      operationId: exportIndicatorsToStixBatch
+      parameters:
+      - name: genericIndicatorUpdateBatch
+        in: body
+        schema:
+          $ref: '#/definitions/genericIndicatorUpdateBatch'
+      responses:
+        '200':
+          description: STIX file name
+          schema:
+            type: string
+      tags:
+      - Indicators
+  /indicators/batch/exportToCsv:
+    post:
+      description: Exports an indicators batch to CSV file (returns file ID)
+      summary: Batch export indicators to csv
+      operationId: exportIndicatorsToCsvBatch
+      parameters:
+      - description: 'Required parameters from `genericIndicatorUpdateBatch`: `columns`,
+
+          `filter`. You should also include either `all` or `ids`
+
+          '
+        name: genericIndicatorUpdateBatch
+        in: body
+        schema:
+          $ref: '#/definitions/genericIndicatorUpdateBatch'
+      responses:
+        '200':
+          description: csv file name
+          schema:
+            type: string
+      tags:
+      - Indicators
+  /indicators/batchDelete:
+    post:
+      description: 'Batch whitelist or delete indicators entities
+
+        In order to delete indicators and not whitelist, set doNotWhitelist boolean field to true'
+      summary: Batch whitelist or delete indicators
+      operationId: deleteIndicatorsBatch
+      parameters:
+      - name: genericIndicatorUpdateBatch
+        in: body
+        schema:
+          $ref: '#/definitions/genericIndicatorUpdateBatch'
+      responses:
+        '200':
+          description: UpdateResponse
+          schema:
+            $ref: '#/definitions/UpdateResponse'
+      tags:
+      - Indicators
+  /indicators/csv/{id}:
+    get:
+      description: Get an indicators CSV file that was exported, by ID
+      produces:
+      - application/octet-stream
+      summary: Get indicators as CSV
+      operationId: getIndicatorsAsCsv
+      parameters:
+      - type: string
+        description: CSV file to fetch (returned from batch export to csv call)
+        name: id
+        in: path
+        required: true
+      responses:
+        '200':
+          description: Return Csv file
+          schema:
+            type: file
+      tags:
+      - Indicators
+  /indicators/feed/json:
+    post:
+      description: 'Create indicators from raw JSON (similar to ingesting from a feed). Builds indicators according to the specified feed classifier,
+
+        or uses the default one if not specified.
+
+        Indicator properties (all optional except for value): **value** (string, required) | **type** (string) | **score** (number, 0-3,
+
+        default `0`, where `0` means None, `1` Good, `2` Suspicious, and `3` Bad) | **sourceBrand** (string, default `"External"`) | **sourceInstance**
+
+        (string, default `"External"`) | **reliability** (string, one of `"A - Completely reliable"`, `"B - Usually reliable"`, `"C - Fairly
+
+        reliable"`, `"D - Not usually reliable"`, `"E - Unreliable"`, `"F - Reliability cannot be judged"`) | **expirationPolicy** (string,
+
+        one of `"never"`, `"interval"`, `"indicatorType"`) | **expirationInterval** (number, in minutes)'
+      summary: Create feed indicators from JSON
+      operationId: createFeedIndicatorsJson
+      parameters:
+      - name: FeedIndicatorsRequest
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/FeedIndicatorsRequest'
+      responses:
+        '201':
+          description: Indicators created
+      tags:
+      - Indicators
+  /indicators/search:
+    post:
+      description: Search indicators by filter
+      summary: Search indicators
+      operationId: indicatorsSearch
+      parameters:
+      - name: IndicatorFilter
+        in: body
+        schema:
+          $ref: '#/definitions/IndicatorFilter'
+      responses:
+        '200':
+          description: indicatorResult
+          schema:
+            $ref: '#/definitions/IndicatorResult'
+      tags:
+      - Indicators
+  /indicators/stix/v2/{id}:
+    get:
+      description: Get an indicators STIX V2 file that was exported, by ID
+      produces:
+      - application/octet-stream
+      summary: Get indicators as STIX V2
+      operationId: getIndicatorsAsSTIX
+      parameters:
+      - type: string
+        description: STIX V2 file to fetch (returned from batch export to STIX call)
+        name: id
+        in: path
+        required: true
+      responses:
+        '200':
+          description: Return STIX V2 file
+          schema:
+            type: file
+      tags:
+      - Indicators
+  /indicators/upload:
+    post:
+      description: Create indicators from a file
+      consumes:
+      - multipart/form-data
+      summary: Create indicators
+      operationId: indicatorsCreateBatch
+      parameters:
+      - type: string
+        description: file name
+        name: fileName
+        in: formData
+      - type: file
+        description: file
+        name: file
+        in: formData
+        required: true
+      responses:
+        '200':
+          description: IocObjects
+          schema:
+            $ref: '#/definitions/IocObjects'
+      tags:
+      - Indicators
+definitions:
+  DBotScore:
+    description: DBotScore - Contain the score of a specific brand for a specific insight
+    type: object
+    properties:
+      content:
+        type: string
+        x-go-name: Content
+      contentFormat:
+        type: string
+        x-go-name: ContentFormat
+      context:
+        type: object
+        additionalProperties:
+          type: object
+        x-go-name: Context
+      isTypedIndicator:
+        type: boolean
+        x-go-name: IsTypedIndicator
+      score:
+        type: integer
+        format: int64
+        x-go-name: Score
+      scoreChangeTimestamp:
+        description: We need to track when the score changes to know if we need to re-calculate the overall score
+        type: string
+        format: date-time
+        x-go-name: ScoreChangeTimeStamp
+      timestamp:
+        type: string
+        format: date-time
+        x-go-name: TimeStamp
+      type:
+        type: string
+        x-go-name: Type
+    x-go-package: github.com/demisto/server/domain
+  InsightCache:
+    description: InsightCache - map insight name to all its metadata, name will be case insensitive
+    type: object
+    properties:
+      id:
+        type: string
+        x-go-name: ID
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      scores:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/DBotScore'
+        x-go-name: Scores
+      sequenceNumber:
+        type: integer
+        format: int64
+        x-go-name: SeqNum
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+    x-go-package: github.com/demisto/server/domain
+  RawFeedIndicator:
+    description: RawFeedIndicator is an unparsed feed indicator from JSON ingestion
+    type: object
+    additionalProperties:
+      type: object
+    x-go-package: github.com/demisto/server/web
+  genericIndicatorUpdateBatch:
+    type: object
+    properties:
+      all:
+        type: boolean
+        x-go-name: All
+      columns:
+        type: array
+        items:
+          type: string
+        x-go-name: Columns
+      doNotWhitelist:
+        type: boolean
+        x-go-name: DoNotWhitelist
+      filter:
+        $ref: '#/definitions/IndicatorFilter'
+      ids:
+        type: array
+        items:
+          type: string
+        x-go-name: IDs
+      reason:
+        type: string
+        x-go-name: Reason
+      reputations:
+        type: array
+        items:
+          type: string
+        x-go-name: Reputations
+    x-go-package: github.com/demisto/server/web
+  Duration:
+    description: 'A Duration represents the elapsed time between two instants
+
+      as an int64 nanosecond count. The representation limits the
+
+      largest representable duration to approximately 290 years.'
+    type: integer
+    format: int64
+    x-go-package: time
+  DateRangeFilter:
+    description: DateRangeFilter provides common fields for date filtering
+    type: object
+    properties:
+      fromDate:
+        type: string
+        format: date-time
+        x-go-name: FromDate
+      fromDateLicense:
+        type: string
+        format: date-time
+        x-go-name: FromDateLicenseVal
+      period:
+        $ref: '#/definitions/Period'
+      timeFrame:
+        $ref: '#/definitions/Duration'
+      toDate:
+        type: string
+        format: date-time
+        x-go-name: ToDate
+    x-go-package: github.com/demisto/server/repo/entities
+  Order:
+    description: Order struct holds a sort field and the direction of sorting
+    type: object
+    properties:
+      asc:
+        type: boolean
+        x-go-name: Asc
+      field:
+        type: string
+        x-go-name: Field
+      fieldType:
+        type: string
+        x-go-name: FieldType
+    x-go-package: github.com/demisto/server/domain
+  CustomFields:
+    description: 'The keys should be the field''s display name all lower and without spaces. For example: Scan IP -> scanip
+
+      To get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update'
+    type: object
+    title: CustomFields ...
+    additionalProperties:
+      type: object
+    x-go-package: github.com/demisto/server/domain
+  UpdateResponse:
+    type: object
+    title: UpdateResponse ...
+    properties:
+      notUpdated:
+        type: integer
+        format: int64
+        x-go-name: NotUpdated
+      updatedIds:
+        type: array
+        items:
+          type: string
+        x-go-name: UpdatedIds
+    x-go-package: github.com/demisto/server/repo/entities
+  IocObjects:
+    type: array
+    title: IocObjects ...
+    items:
+      $ref: '#/definitions/IocObject'
+    x-go-package: github.com/demisto/server/domain
+  IocObject:
+    description: IocObject - represents an Ioc (or simply an indicator) object
+    type: object
+    properties:
+      CustomFields:
+        $ref: '#/definitions/CustomFields'
+      account:
+        type: string
+        x-go-name: Account
+      calculatedTime:
+        description: Do not set the fields bellow this line
+        type: string
+        format: date-time
+        x-go-name: CalculatedTime
+      comment:
+        type: string
+        x-go-name: Comment
+      firstSeen:
+        type: string
+        format: date-time
+        x-go-name: FirstSeen
+      firstSeenEntryID:
+        type: string
+        x-go-name: FirstSeenEntryID
+      id:
+        type: string
+        x-go-name: ID
+      indicator_type:
+        type: string
+        x-go-name: IndicatorType
+      insightCache:
+        $ref: '#/definitions/InsightCache'
+      investigationIDs:
+        type: array
+        items:
+          type: string
+        x-go-name: InvestigationIDs
+      lastReputationRun:
+        type: string
+        format: date-time
+        x-go-name: LastReputationRun
+      lastSeen:
+        type: string
+        format: date-time
+        x-go-name: LastSeen
+      lastSeenEntryID:
+        type: string
+        x-go-name: LastSeenEntryID
+      manualScore:
+        type: boolean
+        x-go-name: ManualScore
+      manualSetTime:
+        type: string
+        format: date-time
+        x-go-name: ManualSetTime
+      manuallyEditedFields:
+        type: array
+        items:
+          type: string
+        x-go-name: ManuallyEditedFields
+      modified:
+        type: string
+        format: date-time
+        x-go-name: Modified
+      score:
+        type: integer
+        format: int64
+        x-go-name: Score
+      setBy:
+        type: string
+        x-go-name: SetBy
+      sortValues:
+        type: array
+        items:
+          type: string
+        x-go-name: SortValues
+      source:
+        type: string
+        x-go-name: Source
+      timestamp:
+        type: string
+        format: date-time
+        x-go-name: TimeStamp
+      value:
+        type: string
+        x-go-name: Value
+      version:
+        type: integer
+        format: int64
+        x-go-name: Versn
+    x-go-package: github.com/demisto/server/domain
+  FeedIndicatorsRequest:
+    description: FeedIndicatorsRequest is the input for JSON feed indicator ingestion
+    type: object
+    properties:
+      bypassExclusionList:
+        type: boolean
+        x-go-name: ShouldBypassExclusionList
+      classifierId:
+        type: string
+        x-go-name: ClassifierID
+      indicators:
+        type: array
+        items:
+          $ref: '#/definitions/RawFeedIndicator'
+        x-go-name: Indicators
+      mapperId:
+        type: string
+        x-go-name: MapperID
+    x-go-package: github.com/demisto/server/web
+  IndicatorResult:
+    type: object
+    title: IndicatorResult ...
+    properties:
+      iocObjects:
+        $ref: '#/definitions/IocObjects'
+      total:
+        type: integer
+        format: int64
+        x-go-name: Total
+    x-go-package: github.com/demisto/server/web
+  Period:
+    type: object
+    title: Period holds the 'Period' query, such as last 3 days, last 6 hours, between 6 days from now until 3 days from now.
+    properties:
+      by:
+        description: By is used for legacty, and if exists it will override ByTo and ByFrom
+        type: string
+        x-go-name: By
+      byFrom:
+        type: string
+        x-go-name: ByFrom
+      byTo:
+        type: string
+        x-go-name: ByTo
+      field:
+        type: string
+        x-go-name: Field
+      fromValue:
+        type: string
+        format: duration
+        x-go-name: FromValue
+      toValue:
+        type: string
+        format: duration
+        x-go-name: ToValue
+    x-go-package: github.com/demisto/server/domain
+  IndicatorFilter:
+    description: IndicatorFilter is a general filter that fetches entities using a query string query using the Query value
+    type: object
+    properties:
+      Cache:
+        description: Cache of join functions
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+      earlyTimeInPage:
+        type: string
+        format: date-time
+        x-go-name: EarlyTimeInPage
+      firstSeen:
+        $ref: '#/definitions/DateRangeFilter'
+      fromDate:
+        type: string
+        format: date-time
+        x-go-name: FromDate
+      fromDateLicense:
+        type: string
+        format: date-time
+        x-go-name: FromDateLicenseVal
+      lastSeen:
+        $ref: '#/definitions/DateRangeFilter'
+      laterTimeInPage:
+        type: string
+        format: date-time
+        x-go-name: LaterTimeInPage
+      page:
+        description: 0-based page
+        type: integer
+        format: int64
+        x-go-name: Page
+      period:
+        $ref: '#/definitions/Period'
+      prevPage:
+        description: MT support - these fields are for indicator search according to calculatedTime
+        type: boolean
+        x-go-name: PrevPage
+      query:
+        type: string
+        x-go-name: Query
+      searchAfter:
+        description: Efficient next page, pass max sort value from previous page
+        type: array
+        items:
+          type: string
+        x-go-name: SearchAfter
+      searchBefore:
+        description: Efficient prev page, pass min sort value from next page
+        type: array
+        items:
+          type: string
+        x-go-name: SearchBefore
+      size:
+        description: Size is limited to 1000, if not passed it defaults to 0, and no results will return
+        type: integer
+        format: int64
+        x-go-name: Size
+      sort:
+        description: The sort order
+        type: array
+        items:
+          $ref: '#/definitions/Order'
+        x-go-name: Sort
+      timeFrame:
+        $ref: '#/definitions/Duration'
+      toDate:
+        type: string
+        format: date-time
+        x-go-name: ToDate
+    x-go-package: github.com/demisto/server/repo/entities
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: Authorization
+    in: header
+  csrf_token:
+    type: apiKey
+    name: X-XSRF-TOKEN
+    in: header
+  x-xdr-auth-id:
+    type: apiKey
+    name: x-xdr-auth-id
+    in: header
