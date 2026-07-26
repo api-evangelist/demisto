@@ -1,0 +1,34 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/demisto/demisto-py/blob/master/CHANGELOG.md
+note: >-
+  Changelog for demisto-py, the maintained first-party Python client for the Demisto / Cortex XSOAR
+  REST API. Recent window only; the repository CHANGELOG is the source of truth.
+scheme: semver
+current_version: 3.3.1
+entries:
+- version: 3.3.1
+  breaking: false
+  highlights:
+  - Deprecated Python 3.9 support; added support for Python 3.13 and 3.14.
+- version: 3.2.22
+  breaking: false
+  highlights:
+  - Updated dependencies.
+- version: 3.2.14
+  breaking: false
+  highlights:
+  - Added compatibility for Python 3.11 and 3.12.
+- version: 3.2.13
+  breaking: false
+  highlights:
+  - Switched package management from pip to Poetry.
+- version: 3.2.12
+  breaking: false
+  highlights:
+  - Fixed download command failure when converting bytes to string types.
+- version: 3.2.11
+  breaking: false
+  highlights:
+  - Introduced advanced key authentication for XSIAM and XSOAR 8+.
+  - Added DEMISTO_API_KEY_ID env var, deprecating XSIAM_AUTH_ID.

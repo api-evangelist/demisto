@@ -1,0 +1,235 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+note: No official Demisto/Cortex XSOAR MCP server was found. Candidate tool list derived one-per-operation
+  from the Demisto REST API swagger, for exposing this API to agents via MCP.
+server:
+  name: demisto
+  transport: http
+tools:
+- name: revokeUserAPIKey
+  description: Revoke API Key for user
+  source_operation: openapi/demisto-openapi-original.json#revokeUserAPIKey
+- name: saveOrUpdateScript
+  description: Create or update automation
+  source_operation: openapi/demisto-openapi-original.json#saveOrUpdateScript
+- name: copyScript
+  description: Copy automation
+  source_operation: openapi/demisto-openapi-original.json#copyScript
+- name: deleteAutomationScript
+  description: Delete existing automation
+  source_operation: openapi/demisto-openapi-original.json#deleteAutomationScript
+- name: importScript
+  description: Upload an automation
+  source_operation: openapi/demisto-openapi-original.json#importScript
+- name: getAutomationScripts
+  description: Search Automation (aka scripts)
+  source_operation: openapi/demisto-openapi-original.json#getAutomationScripts
+- name: importClassifier
+  description: Import a classifier
+  source_operation: openapi/demisto-openapi-original.json#importClassifier
+- name: importDashboard
+  description: Import a dashboard
+  source_operation: openapi/demisto-openapi-original.json#importDashboard
+- name: investigationAddEntryHandler
+  description: Create new entry in existing investigation
+  source_operation: openapi/demisto-openapi-original.json#investigationAddEntryHandler
+- name: getEntryArtifact
+  description: Get entry artifact
+  source_operation: openapi/demisto-openapi-original.json#getEntryArtifact
+- name: downloadFile
+  description: Download file
+  source_operation: openapi/demisto-openapi-original.json#downloadFile
+- name: investigationAddEntriesSync
+  description: Create new entry in existing investigation
+  source_operation: openapi/demisto-openapi-original.json#investigationAddEntriesSync
+- name: entryExportArtifact
+  description: Export Artifact
+  source_operation: openapi/demisto-openapi-original.json#entryExportArtifact
+- name: investigationAddFormattedEntryHandler
+  description: Create new formatted entry in existing investigation
+  source_operation: openapi/demisto-openapi-original.json#investigationAddFormattedEntryHandler
+- name: updateEntryNote
+  description: Mark entry as note
+  source_operation: openapi/demisto-openapi-original.json#updateEntryNote
+- name: updateEntryTagsOp
+  description: Set entry tags
+  source_operation: openapi/demisto-openapi-original.json#updateEntryTagsOp
+- name: saveEvidence
+  description: Save evidence
+  source_operation: openapi/demisto-openapi-original.json#saveEvidence
+- name: deleteEvidenceOp
+  description: delete evidence
+  source_operation: openapi/demisto-openapi-original.json#deleteEvidenceOp
+- name: searchEvidence
+  description: Search evidence
+  source_operation: openapi/demisto-openapi-original.json#searchEvidence
+- name: createIncident
+  description: Create single incident
+  source_operation: openapi/demisto-openapi-original.json#createIncident
+- name: createIncidentsBatch
+  description: Batch create incidents
+  source_operation: openapi/demisto-openapi-original.json#createIncidentsBatch
+- name: exportIncidentsToCsvBatch
+  description: Batch export incidents to csv
+  source_operation: openapi/demisto-openapi-original.json#exportIncidentsToCsvBatch
+- name: closeIncidentsBatch
+  description: Batch close incidents
+  source_operation: openapi/demisto-openapi-original.json#closeIncidentsBatch
+- name: deleteIncidentsBatch
+  description: Batch delete incidents
+  source_operation: openapi/demisto-openapi-original.json#deleteIncidentsBatch
+- name: getIncidentAsCsv
+  description: Get incident as CSV
+  source_operation: openapi/demisto-openapi-original.json#getIncidentAsCsv
+- name: createIncidentJson
+  description: Create incident from JSON
+  source_operation: openapi/demisto-openapi-original.json#createIncidentJson
+- name: incidentFileUpload
+  description: Add file attachement to an incidents
+  source_operation: openapi/demisto-openapi-original.json#incidentFileUpload
+- name: getIncidentsFieldsByIncidentType
+  description: Get all incident fields associated with incident type
+  source_operation: openapi/demisto-openapi-original.json#getIncidentsFieldsByIncidentType
+- name: importIncidentFields
+  description: Import an incidents field
+  source_operation: openapi/demisto-openapi-original.json#importIncidentFields
+- name: searchIncidents
+  description: Search incidents by filter
+  source_operation: openapi/demisto-openapi-original.json#searchIncidents
+- name: createOrUpdateIncidentType
+  description: Create new Incident Type
+  source_operation: openapi/demisto-openapi-original.json#createOrUpdateIncidentType
+- name: importIncidentTypesHandler
+  description: Import an incident type
+  source_operation: openapi/demisto-openapi-original.json#importIncidentTypesHandler
+- name: indicatorsCreate
+  description: Create Indicator
+  source_operation: openapi/demisto-openapi-original.json#indicatorsCreate
+- name: indicatorsEdit
+  description: Edit Indicator
+  source_operation: openapi/demisto-openapi-original.json#indicatorsEdit
+- name: indicatorWhitelist
+  description: Whitelists or deletes Indicator
+  source_operation: openapi/demisto-openapi-original.json#indicatorWhitelist
+- name: exportIndicatorsToStixBatch
+  description: Batch export indicators to STIX
+  source_operation: openapi/demisto-openapi-original.json#exportIndicatorsToStixBatch
+- name: exportIndicatorsToCsvBatch
+  description: Batch export indicators to csv
+  source_operation: openapi/demisto-openapi-original.json#exportIndicatorsToCsvBatch
+- name: deleteIndicatorsBatch
+  description: Batch whitelist or delete indicators
+  source_operation: openapi/demisto-openapi-original.json#deleteIndicatorsBatch
+- name: getIndicatorsAsCsv
+  description: Get indicators as CSV
+  source_operation: openapi/demisto-openapi-original.json#getIndicatorsAsCsv
+- name: createFeedIndicatorsJson
+  description: Create feed indicators from JSON
+  source_operation: openapi/demisto-openapi-original.json#createFeedIndicatorsJson
+- name: indicatorsSearch
+  description: Search indicators
+  source_operation: openapi/demisto-openapi-original.json#indicatorsSearch
+- name: getIndicatorsAsSTIX
+  description: Get indicators as STIX V2
+  source_operation: openapi/demisto-openapi-original.json#getIndicatorsAsSTIX
+- name: indicatorsCreateBatch
+  description: Create indicators
+  source_operation: openapi/demisto-openapi-original.json#indicatorsCreateBatch
+- name: addAdHocTask
+  description: Add ad-hoc task
+  source_operation: openapi/demisto-openapi-original.json#addAdHocTask
+- name: taskAssign
+  description: Assign task
+  source_operation: openapi/demisto-openapi-original.json#taskAssign
+- name: completeTask
+  description: '[Deprecated] Complete a task'
+  source_operation: openapi/demisto-openapi-original.json#completeTask
+- name: simpleCompleteTask
+  description: Complete task simple (no file)
+  source_operation: openapi/demisto-openapi-original.json#simpleCompleteTask
+- name: deleteAdHocTask
+  description: Delete ad-hoc task
+  source_operation: openapi/demisto-openapi-original.json#deleteAdHocTask
+- name: taskSetDue
+  description: Set task due date
+  source_operation: openapi/demisto-openapi-original.json#taskSetDue
+- name: editAdHocTask
+  description: Edit ad-hoc task
+  source_operation: openapi/demisto-openapi-original.json#editAdHocTask
+- name: taskAddComment
+  description: Task add comment
+  source_operation: openapi/demisto-openapi-original.json#taskAddComment
+- name: taskUnComplete
+  description: Un complete a task
+  source_operation: openapi/demisto-openapi-original.json#taskUnComplete
+- name: searchInvestigations
+  description: Search investigations by filter
+  source_operation: openapi/demisto-openapi-original.json#searchInvestigations
+- name: importLayout
+  description: Import a layout
+  source_operation: openapi/demisto-openapi-original.json#importLayout
+- name: importPlaybook
+  description: Import and override playbook
+  source_operation: openapi/demisto-openapi-original.json#importPlaybook
+- name: executeReport
+  description: Execute report
+  source_operation: openapi/demisto-openapi-original.json#executeReport
+- name: getAllReports
+  description: Get all reports
+  source_operation: openapi/demisto-openapi-original.json#getAllReports
+- name: getReportByID
+  description: Get report by ID
+  source_operation: openapi/demisto-openapi-original.json#getReportByID
+- name: downloadLatestReport
+  description: Get latest report by ID
+  source_operation: openapi/demisto-openapi-original.json#downloadLatestReport
+- name: uploadReport
+  description: Upload report file to Demisto
+  source_operation: openapi/demisto-openapi-original.json#uploadReport
+- name: importReputationHandler
+  description: Import a reputation type
+  source_operation: openapi/demisto-openapi-original.json#importReputationHandler
+- name: getAudits
+  description: Get Audits
+  source_operation: openapi/demisto-openapi-original.json#getAudits
+- name: getDockerImages
+  description: Get Docker Images
+  source_operation: openapi/demisto-openapi-original.json#getDockerImages
+- name: createDockerImage
+  description: Create Image
+  source_operation: openapi/demisto-openapi-original.json#createDockerImage
+- name: integrationUpload
+  description: Upload an integration
+  source_operation: openapi/demisto-openapi-original.json#integrationUpload
+- name: uploadContentPacks
+  description: Upload a Pack as zip file. The zip file maybe a single Pack or a zip containing multiple
+    zipped Packs (a zip of zips)
+  source_operation: openapi/demisto-openapi-original.json#uploadContentPacks
+- name: GetStatsForDashboard
+  description: Get Dashboard Statistics
+  source_operation: openapi/demisto-openapi-original.json#GetStatsForDashboard
+- name: getStatsForWidget
+  description: Get Widget Statistics
+  source_operation: openapi/demisto-openapi-original.json#getStatsForWidget
+- name: completeTaskV2
+  description: Complete a task
+  source_operation: openapi/demisto-openapi-original.json#completeTaskV2
+- name: submitTaskForm
+  description: Complete a task
+  source_operation: openapi/demisto-openapi-original.json#submitTaskForm
+- name: getAllWidgets
+  description: Get all widgets
+  source_operation: openapi/demisto-openapi-original.json#getAllWidgets
+- name: saveWidget
+  description: Add or update a widget
+  source_operation: openapi/demisto-openapi-original.json#saveWidget
+- name: importWidget
+  description: Import a widget
+  source_operation: openapi/demisto-openapi-original.json#importWidget
+- name: getWidget
+  description: Get widget by ID
+  source_operation: openapi/demisto-openapi-original.json#getWidget
+- name: deleteWidget
+  description: Remove existing widget
+  source_operation: openapi/demisto-openapi-original.json#deleteWidget

@@ -1,0 +1,25 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Demisto (Cortex XSOAR) API
+  version: 1.0.0
+extends: openapi/demisto-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: demisto
+    x-apievangelist-successor: Cortex XSOAR (Palo Alto Networks)
+    x-apievangelist-auth: api-key (Authorization header; XSOAR 8+ API-Key-ID + X-XSRF-TOKEN)
+    x-apievangelist-artifacts:
+      authentication: authentication/demisto-authentication.yml
+      conventions: conventions/demisto-conventions.yml
+      errors: errors/demisto-problem-types.yml
+      data_model: data-model/demisto-data-model.yml
+      lifecycle: lifecycle/demisto-lifecycle.yml
+- target: $.info
+  update:
+    x-apievangelist-tags:
+    - security
+    - soar
+    - incident-response
+    - threat-intelligence
+    - automation

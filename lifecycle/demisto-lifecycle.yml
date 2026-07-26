@@ -1,0 +1,20 @@
+generated: '2026-07-18'
+method: searched
+source: https://xsoar.pan.dev/docs/reference/integrations/demisto-rest-api
+note: >-
+  Demisto was acquired by Palo Alto Networks in 2019 and rebranded as Cortex XSOAR. The standalone
+  "Demisto REST API" integration is deprecated in favor of the built-in "Core REST API"; the demisto-py
+  client remains the maintained programmatic surface.
+versioning:
+  scheme: uri-path
+  current: v2.0.0
+  docs: https://xsoar.pan.dev/docs/reference/api/demisto-class
+deprecation:
+  policy_url: https://xsoar.pan.dev/docs/reference/integrations/demisto-rest-api
+  detail: >-
+    The "Demisto REST API" content-pack integration is marked Deprecated; Palo Alto Networks
+    directs new work to the Core REST API integration. The company brand "Demisto" is itself retired
+    in favor of Cortex XSOAR.
+  sunset_header: false
+status_page: https://status.paloaltonetworks.com/
+changelog: changelog/demisto-changelog.yml

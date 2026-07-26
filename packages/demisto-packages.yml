@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/demisto
+note: >-
+  First-party client libraries and developer tooling published by the Demisto / Cortex XSOAR
+  (Palo Alto Networks) GitHub organization. demisto-py is the Python REST API client; demisto-sdk
+  is the content-development toolkit and CLI.
+packages:
+- language: python
+  registry: pypi
+  name: demisto-py
+  version: 3.3.1
+  url: https://pypi.org/project/demisto-py/
+  repo: https://github.com/demisto/demisto-py
+  install: pip install demisto-py
+  license: Apache-2.0
+  description: Python library / REST API client for the Demisto (Cortex XSOAR) API.
+  official: true
+- language: python
+  registry: pypi
+  name: demisto-sdk
+  version: 1.39.4
+  url: https://pypi.org/project/demisto-sdk/
+  repo: https://github.com/demisto/demisto-sdk
+  install: pip install demisto-sdk
+  license: MIT
+  description: Toolkit and CLI for creating, validating, and uploading Cortex XSOAR content.
+  official: true

@@ -1,0 +1,12 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/demisto-openapi-original.json
+skills:
+- file: demisto-create-incident-and-investigate.md
+  name: Create an incident and add investigation entries
+  api: openapi/demisto-openapi-original.json
+  operations: [createIncident, searchIncidents, investigationAddEntryHandler, saveEvidence]
+- file: demisto-manage-threat-indicators.md
+  name: Manage threat indicators
+  api: openapi/demisto-openapi-original.json
+  operations: [indicatorsCreate, indicatorsSearch, indicatorsEdit]

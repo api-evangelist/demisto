@@ -1,0 +1,40 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/demisto-openapi-original.json
+docs: https://xsoar.pan.dev/docs/reference/api/demisto-class
+note: >-
+  Cross-cutting request/response semantics for the Demisto / Cortex XSOAR REST API, derived from
+  the swagger and the Palo Alto Networks developer documentation.
+authentication:
+  style: api-key-header
+  header: Authorization
+  detail: See authentication/demisto-authentication.yml. XSOAR 8+ adds API-Key-ID (x-xdr-auth-id) + X-XSRF-TOKEN.
+idempotency:
+  supported: false
+  detail: >-
+    The Demisto REST API documents no idempotency-key header or retry-safe write contract; most
+    mutating operations (createIncident, saveEvidence, indicatorsCreate) are POST and are not idempotent.
+pagination:
+  style: body-parameters
+  detail: >-
+    Search endpoints (POST /incidents/search, /indicators/search, /evidence/search, /automation/search)
+    accept a filter object in the request body carrying `page` and `size` fields; responses return a
+    `total` count alongside the result array.
+  request_fields: [page, size]
+  response_fields: [total]
+content_type:
+  request: application/json
+  response: application/json
+error_envelope:
+  detail: JSON body with status/detail fields; not RFC 9457. See errors/demisto-problem-types.yml.
+versioning:
+  scheme: uri-path
+  current: v2.0.0
+  detail: The swagger declares info.version 2.0.0; the API surface is instance-scoped.
+rate_limiting:
+  detail: No documented rate-limit headers; the API is self-hosted / single-tenant so limits are instance-bound.
+cross_references:
+  errors: errors/demisto-problem-types.yml
+  authentication: authentication/demisto-authentication.yml
+  lifecycle: lifecycle/demisto-lifecycle.yml
+  data_model: data-model/demisto-data-model.yml

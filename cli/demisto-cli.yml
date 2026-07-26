@@ -1,0 +1,29 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/demisto/demisto-sdk
+note: >-
+  demisto-sdk ships a first-party `demisto-sdk` CLI for developing, validating, and shipping
+  Cortex XSOAR (Demisto) content. The binary itself is catalogued in packages/demisto-packages.yml.
+name: demisto-sdk
+install:
+- pip install demisto-sdk
+docs: https://xsoar.pan.dev/docs/concepts/demisto-sdk
+commands:
+- name: init
+  description: Scaffold a new integration, script, or content pack.
+- name: validate
+  description: Validate content items against Cortex XSOAR content conventions.
+- name: lint
+  description: Run linters and unit tests against integration/script code.
+- name: upload
+  description: Upload content packs to a Cortex XSOAR / XSIAM instance.
+- name: download
+  description: Download content items from an instance into a local pack.
+- name: run
+  description: Run a command on a configured Cortex XSOAR instance.
+- name: run-playbook
+  description: Trigger a playbook on an instance and stream results.
+- name: generate-docs
+  description: Generate README documentation for integrations, scripts, and playbooks.
+- name: format
+  description: Auto-format content files to conform to schema.

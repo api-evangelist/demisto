@@ -1,9 +1,29 @@
 aid: demisto
 name: Demisto
-description: 'Demisto is a company surfaced as a portfolio company of accel, greylock and added to the
-  API Evangelist network as a stub for enrichment. Sector: security. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  Demisto is a Security Orchestration, Automation, and Response (SOAR) platform that unifies incident
+  case management, playbook-driven automation, real-time analyst collaboration (the "War Room"), and
+  threat-intelligence management. Founded as an independent security startup backed by Accel and Greylock,
+  Demisto was acquired by Palo Alto Networks in 2019 for roughly $560M and rebranded as Cortex XSOAR;
+  the demisto.com domain now redirects to the Cortex XSOAR product. The Demisto REST API exposes
+  incidents, war-room entries, evidence, threat indicators, and automation scripts programmatically,
+  with a Swagger 2.0 specification, an official Python client (demisto-py), and a content-development
+  SDK/CLI (demisto-sdk). This API Evangelist profile was enriched from the provider's public developer
+  surface (xsoar.pan.dev, docs-cortex.paloaltonetworks.com, and the github.com/demisto organization).
 url: https://raw.githubusercontent.com/api-evangelist/demisto/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://avatars.githubusercontent.com/u/11011767?v=4
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,13 +31,258 @@ x-backed-by:
 - greylock
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-successor: Cortex XSOAR (Palo Alto Networks)
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
 - Security
-apis: []
+- SOAR
+- Incident Response
+- Threat Intelligence
+- Security Automation
+apis:
+- aid: demisto:demisto-apikeys-api
+  name: Demisto Apikeys API
+  description: The Apikeys API from Demisto — 1 operation(s) for apikeys.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Apikeys
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-apikeys-api-openapi.yml
+- aid: demisto:demisto-automation-api
+  name: Demisto Automation API
+  description: The Automation API from Demisto — 5 operation(s) for automation.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Automation
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-automation-api-openapi.yml
+- aid: demisto:demisto-classifier-api
+  name: Demisto Classifier API
+  description: The Classifier API from Demisto — 1 operation(s) for classifier.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Classifier
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-classifier-api-openapi.yml
+- aid: demisto:demisto-contentpacks-api
+  name: Demisto Contentpacks API
+  description: The Contentpacks API from Demisto — 1 operation(s) for contentpacks.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Contentpacks
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-contentpacks-api-openapi.yml
+- aid: demisto:demisto-dashboards-api
+  name: Demisto Dashboards API
+  description: The Dashboards API from Demisto — 1 operation(s) for dashboards.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Dashboards
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-dashboards-api-openapi.yml
+- aid: demisto:demisto-entry-api
+  name: Demisto Entry API
+  description: The Entry API from Demisto — 8 operation(s) for entry.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Entry
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-entry-api-openapi.yml
+- aid: demisto:demisto-evidence-api
+  name: Demisto Evidence API
+  description: The Evidence API from Demisto — 3 operation(s) for evidence.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Evidence
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-evidence-api-openapi.yml
+- aid: demisto:demisto-incident-api
+  name: Demisto Incident API
+  description: The Incident API from Demisto — 8 operation(s) for incident.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Incident
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-incident-api-openapi.yml
+- aid: demisto:demisto-incidentfields-api
+  name: Demisto Incidentfields API
+  description: The Incidentfields API from Demisto — 2 operation(s) for incidentfields.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Incidentfields
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-incidentfields-api-openapi.yml
+- aid: demisto:demisto-incidents-api
+  name: Demisto Incidents API
+  description: The Incidents API from Demisto — 1 operation(s) for incidents.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Incidents
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-incidents-api-openapi.yml
+- aid: demisto:demisto-incidenttype-api
+  name: Demisto Incidenttype API
+  description: The Incidenttype API from Demisto — 1 operation(s) for incidenttype.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Incidenttype
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-incidenttype-api-openapi.yml
+- aid: demisto:demisto-incidenttypes-api
+  name: Demisto Incidenttypes API
+  description: The Incidenttypes API from Demisto — 1 operation(s) for incidenttypes.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Incidenttypes
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-incidenttypes-api-openapi.yml
+- aid: demisto:demisto-indicator-api
+  name: Demisto Indicator API
+  description: The Indicator API from Demisto — 3 operation(s) for indicator.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Indicator
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-indicator-api-openapi.yml
+- aid: demisto:demisto-indicators-api
+  name: Demisto Indicators API
+  description: The Indicators API from Demisto — 8 operation(s) for indicators.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Indicators
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-indicators-api-openapi.yml
+- aid: demisto:demisto-inv-playbook-api
+  name: Demisto Inv Playbook API
+  description: The Inv Playbook API from Demisto — 11 operation(s) for inv playbook.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Inv Playbook
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-inv-playbook-api-openapi.yml
+- aid: demisto:demisto-investigations-api
+  name: Demisto Investigations API
+  description: The Investigations API from Demisto — 1 operation(s) for investigations.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Investigations
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-investigations-api-openapi.yml
+- aid: demisto:demisto-layouts-api
+  name: Demisto Layouts API
+  description: The Layouts API from Demisto — 1 operation(s) for layouts.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Layouts
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-layouts-api-openapi.yml
+- aid: demisto:demisto-playbook-api
+  name: Demisto Playbook API
+  description: The Playbook API from Demisto — 1 operation(s) for playbook.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Playbook
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-playbook-api-openapi.yml
+- aid: demisto:demisto-report-api
+  name: Demisto Report API
+  description: The Report API from Demisto — 1 operation(s) for report.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Report
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-report-api-openapi.yml
+- aid: demisto:demisto-reports-api
+  name: Demisto Reports API
+  description: The Reports API from Demisto — 4 operation(s) for reports.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-reports-api-openapi.yml
+- aid: demisto:demisto-reputation-api
+  name: Demisto Reputation API
+  description: The Reputation API from Demisto — 1 operation(s) for reputation.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Reputation
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-reputation-api-openapi.yml
+- aid: demisto:demisto-settings-api
+  name: Demisto Settings API
+  description: The Settings API from Demisto — 3 operation(s) for settings.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-settings-api-openapi.yml
+- aid: demisto:demisto-statistics-api
+  name: Demisto Statistics API
+  description: The Statistics API from Demisto — 2 operation(s) for statistics.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Statistics
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-statistics-api-openapi.yml
+- aid: demisto:demisto-widgets-api
+  name: Demisto Widgets API
+  description: The Widgets API from Demisto — 3 operation(s) for widgets.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Widgets
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-widgets-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,4 +290,53 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: http://www.demisto.com
+  url: https://www.demisto.com
+- type: DeveloperPortal
+  url: https://xsoar.pan.dev
+- type: Documentation
+  url: https://xsoar.pan.dev/docs/welcome
+- type: APIReference
+  url: https://xsoar.pan.dev/docs/reference/api/demisto-class
+- type: GettingStarted
+  url: https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/8/Cortex-XSOAR-Administrator-Guide/Get-Started-with-APIs
+- type: GitHubOrganization
+  url: https://github.com/demisto
+- type: Authentication
+  url: authentication/demisto-authentication.yml
+- type: AgenticAccess
+  url: agentic-access/demisto-agentic-access.yml
+- type: DomainSecurity
+  url: security/demisto-domain-security.yml
+- type: Packages
+  url: packages/demisto-packages.yml
+- type: SDKs
+  url: packages/demisto-packages.yml
+- type: CLI
+  url: cli/demisto-cli.yml
+- type: MCPServer
+  url: mcp/demisto-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Conventions
+  url: conventions/demisto-conventions.yml
+- type: ErrorCatalog
+  url: errors/demisto-problem-types.yml
+- type: DataModel
+  url: data-model/demisto-data-model.yml
+- type: Conformance
+  url: conformance/demisto-conformance.yml
+- type: Lifecycle
+  url: lifecycle/demisto-lifecycle.yml
+- type: StatusPage
+  url: https://status.paloaltonetworks.com/
+- type: Deprecation
+  url: https://xsoar.pan.dev/docs/reference/integrations/demisto-rest-api
+- type: ChangeLog
+  url: changelog/demisto-changelog.yml
+- type: LLMsTxt
+  url: llms/demisto-llms.txt
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

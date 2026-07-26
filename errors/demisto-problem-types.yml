@@ -1,0 +1,20 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/demisto-openapi-original.json
+format: non-standard
+note: The Demisto/Cortex XSOAR REST API returns HTTP status codes with a JSON error body; the swagger
+  enumerates 412 (Precondition Failed) as the generic client-error response. Errors are not RFC 9457 problem+json.
+envelope:
+  fields:
+  - id
+  - status
+  - title
+  - detail
+  - error
+  content_type: application/json
+problems:
+- status: 412
+  title: Precondition Failed
+  description: In case of closed investigation
+  occurrences: 2
+  source_operation: openapi/demisto-openapi-original.json#investigationAddEntryHandler
