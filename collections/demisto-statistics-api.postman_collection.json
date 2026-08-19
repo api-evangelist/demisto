@@ -1,0 +1,213 @@
+{
+  "item": [
+    {
+      "id": "04053dcd-9034-4fb9-90be-1a48264f9834",
+      "name": "Statistics",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9dbc9391-04f3-4c7b-83ec-3e36e9b9040d",
+          "name": "Get Dashboard Statistics",
+          "request": {
+            "name": "Get Dashboard Statistics",
+            "description": {
+              "content": "Get a given dashboard statistics result.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "statistics",
+                "dashboards",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3fbe01b-15be-4eeb-9798-822c471df952",
+              "name": "Return an array of stats results for each widget cell in dashboard.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "dashboards",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"data\": {},\n    \"widgetCellId\": \"string\"\n  },\n  {\n    \"data\": {},\n    \"widgetCellId\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6adcdb2f-979e-47ae-9ddb-54165400003f",
+          "name": "Get Widget Statistics",
+          "request": {
+            "name": "Get Widget Statistics",
+            "description": {
+              "content": "Get a given widget object statistics result.\nNote: This route has many return types based on the widget type and data. Each 200X represent a 200 OK request of specific widget type and data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "statistics",
+                "widgets",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d653ee8e-f8b2-4f5d-9d16-7c24ad590b28",
+              "name": "Response differ according to the widget type\n  -  Incident data type of a \"table\" or \"list\" widget returns incidentSearchResponse\n     total:\n       type: integer\n       data:\n         type: array\n      items:\n        \"$ref\": \"#/definitions/Incident\"\n    - Indicators data type of a \"table\" or \"list\" widget returns IoCsResponse\n      total:\n        type: integer\n      data:\n        type: array\n        items:\n          \"$ref\": \"#/definitions/IocObject\"\n    - Number widget returns a simple number\n      type: integer\n    - Trend widget returns a trend object\n      \"$ref\": \"#/definitions/StatsTrendsResponse\"\n    - Text widget returns a text object, describing the final text and the placeholders values.\n      \"$ref\": \"#/definitions/StatsTextResponse\"\n    - A chart data array by groups. When requesting a date, the key is the date string, according to the specified time frame. Empty groups (dates) are also returned.\n      type: array\n      items:\n        \"$ref\": \"#/definitions/Group\"",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statistics",
+                    "widgets",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hostname:443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2507e658-a1c4-441d-87d5-f0365bae1e0a",
+    "name": "Demisto Apikeys Statistics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the public REST API to integrate with the demisto server.\nHTTP request can be sent using any HTTP-client.\n\nFor an example dedicated client take a look at: https://github.com/demisto/demisto-py.\n\nRequests must include API-key that can be generated in the Demisto web client under 'Settings' -> 'Integrations' -> 'API keys'\n\n\nOptimistic Locking and Versioning\\:\n\nWhen using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).\nIn addition, you can pass 'version\\: -1' to force data override (make sure that other users data might be lost).\n\nAssume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?\nTo solve this, each data item in Demisto has a numeric incremental version.\nIf Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.\nBob will need to get the latest item and work on it so Alice work will not get lost.\n\nExample request using 'curl'\\:\n\n```\ncurl 'https://hostname:443/incidents/search' -H 'content-type: application/json' -H 'accept: application/json' -H 'Authorization: <API Key goes here>' --data-binary '{\"filter\":{\"query\":\"-status:closed -category:job\",\"period\":{\"by\":\"day\",\"fromValue\":7}}}' --compressed\n```",
+      "type": "text/plain"
+    }
+  }
+}

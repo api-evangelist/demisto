@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Settings API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Audits",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/settings/audits"
+          },
+          "docs": "Get audits by filter"
+        },
+        {
+          "info": {
+            "name": "Get Docker Images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/settings/docker-images"
+          },
+          "docs": "Get list of all available docker image names"
+        },
+        {
+          "info": {
+            "name": "Create Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/settings/docker-images"
+          },
+          "docs": "Create an image with a given list of dependencies"
+        },
+        {
+          "info": {
+            "name": "Upload an integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/settings/integration-conf/upload"
+          },
+          "docs": "Upload an integration to Demisto"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

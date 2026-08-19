@@ -1,0 +1,858 @@
+{
+  "item": [
+    {
+      "id": "afbd862c-220d-48e3-9db2-db8daa1ddb41",
+      "name": "Indicators",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f24357ff-5091-40f2-88d8-f95bcc0d36bb",
+          "name": "Batch export indicators to STIX",
+          "request": {
+            "name": "Batch export indicators to STIX",
+            "description": {
+              "content": "Exports an indicators batch to STIX file (returns file ID)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicators",
+                "batch",
+                "export",
+                "stix"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"all\": \"<boolean>\",\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"doNotWhitelist\": \"<boolean>\",\n  \"filter\": {\n    \"Cache\": {\n      \"key_0\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"earlyTimeInPage\": \"<dateTime>\",\n    \"firstSeen\": {\n      \"fromDate\": \"<dateTime>\",\n      \"fromDateLicense\": \"<dateTime>\",\n      \"period\": {\n        \"by\": \"<string>\",\n        \"byFrom\": \"<string>\",\n        \"byTo\": \"<string>\",\n        \"field\": \"<string>\",\n        \"fromValue\": \"<duration>\",\n        \"toValue\": \"<duration>\"\n      },\n      \"timeFrame\": \"<long>\",\n      \"toDate\": \"<dateTime>\"\n    },\n    \"fromDate\": \"<dateTime>\",\n    \"fromDateLicense\": \"<dateTime>\",\n    \"lastSeen\": {\n      \"fromDate\": \"<dateTime>\",\n      \"fromDateLicense\": \"<dateTime>\",\n      \"period\": {\n        \"by\": \"<string>\",\n        \"byFrom\": \"<string>\",\n        \"byTo\": \"<string>\",\n        \"field\": \"<string>\",\n        \"fromValue\": \"<duration>\",\n        \"toValue\": \"<duration>\"\n      },\n      \"timeFrame\": \"<long>\",\n      \"toDate\": \"<dateTime>\"\n    },\n    \"laterTimeInPage\": \"<dateTime>\",\n    \"page\": \"<long>\",\n    \"period\": {\n      \"by\": \"<string>\",\n      \"byFrom\": \"<string>\",\n      \"byTo\": \"<string>\",\n      \"field\": \"<string>\",\n      \"fromValue\": \"<duration>\",\n      \"toValue\": \"<duration>\"\n    },\n    \"prevPage\": \"<boolean>\",\n    \"query\": \"<string>\",\n    \"searchAfter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"searchBefore\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"size\": \"<long>\",\n    \"sort\": [\n      {\n        \"asc\": \"<boolean>\",\n        \"field\": \"<string>\",\n        \"fieldType\": \"<string>\"\n      },\n      {\n        \"asc\": \"<boolean>\",\n        \"field\": \"<string>\",\n        \"fieldType\": \"<string>\"\n      }\n    ],\n    \"timeFrame\": \"<long>\",\n    \"toDate\": \"<dateTime>\"\n  },\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"reason\": \"<string>\",\n  \"reputations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6181dab5-15e6-4f09-aa51-8a0610192116",
+              "name": "STIX file name",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicators",
+                    "batch",
+                    "export",
+                    "stix"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7142a911-aa55-4a38-b782-87d386c810b0",
+          "name": "Batch export indicators to csv",
+          "request": {
+            "name": "Batch export indicators to csv",
+            "description": {
+              "content": "Exports an indicators batch to CSV file (returns file ID)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicators",
+                "batch",
+                "exportToCsv"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"all\": \"<boolean>\",\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"doNotWhitelist\": \"<boolean>\",\n  \"filter\": {\n    \"Cache\": {\n      \"key_0\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"earlyTimeInPage\": \"<dateTime>\",\n    \"firstSeen\": {\n      \"fromDate\": \"<dateTime>\",\n      \"fromDateLicense\": \"<dateTime>\",\n      \"period\": {\n        \"by\": \"<string>\",\n        \"byFrom\": \"<string>\",\n        \"byTo\": \"<string>\",\n        \"field\": \"<string>\",\n        \"fromValue\": \"<duration>\",\n        \"toValue\": \"<duration>\"\n      },\n      \"timeFrame\": \"<long>\",\n      \"toDate\": \"<dateTime>\"\n    },\n    \"fromDate\": \"<dateTime>\",\n    \"fromDateLicense\": \"<dateTime>\",\n    \"lastSeen\": {\n      \"fromDate\": \"<dateTime>\",\n      \"fromDateLicense\": \"<dateTime>\",\n      \"period\": {\n        \"by\": \"<string>\",\n        \"byFrom\": \"<string>\",\n        \"byTo\": \"<string>\",\n        \"field\": \"<string>\",\n        \"fromValue\": \"<duration>\",\n        \"toValue\": \"<duration>\"\n      },\n      \"timeFrame\": \"<long>\",\n      \"toDate\": \"<dateTime>\"\n    },\n    \"laterTimeInPage\": \"<dateTime>\",\n    \"page\": \"<long>\",\n    \"period\": {\n      \"by\": \"<string>\",\n      \"byFrom\": \"<string>\",\n      \"byTo\": \"<string>\",\n      \"field\": \"<string>\",\n      \"fromValue\": \"<duration>\",\n      \"toValue\": \"<duration>\"\n    },\n    \"prevPage\": \"<boolean>\",\n    \"query\": \"<string>\",\n    \"searchAfter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"searchBefore\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"size\": \"<long>\",\n    \"sort\": [\n      {\n        \"asc\": \"<boolean>\",\n        \"field\": \"<string>\",\n        \"fieldType\": \"<string>\"\n      },\n      {\n        \"asc\": \"<boolean>\",\n        \"field\": \"<string>\",\n        \"fieldType\": \"<string>\"\n      }\n    ],\n    \"timeFrame\": \"<long>\",\n    \"toDate\": \"<dateTime>\"\n  },\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"reason\": \"<string>\",\n  \"reputations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0b66ca41-78b0-4401-96be-b2cf7c140e3c",
+              "name": "csv file name",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicators",
+                    "batch",
+                    "exportToCsv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"all\": \"<boolean>\",\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"doNotWhitelist\": \"<boolean>\",\n  \"filter\": {\n    \"Cache\": {\n      \"key_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"key_1\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"key_2\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"key_3\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"earlyTimeInPage\": \"<dateTime>\",\n    \"firstSeen\": {\n      \"fromDate\": \"<dateTime>\",\n      \"fromDateLicense\": \"<dateTime>\",\n      \"period\": {\n        \"by\": \"<string>\",\n        \"byFrom\": \"<string>\",\n        \"byTo\": \"<string>\",\n        \"field\": \"<string>\",\n        \"fromValue\": \"<duration>\",\n        \"toValue\": \"<duration>\"\n      },\n      \"timeFrame\": \"<long>\",\n      \"toDate\": \"<dateTime>\"\n    },\n    \"fromDate\": \"<dateTime>\",\n    \"fromDateLicense\": \"<dateTime>\",\n    \"lastSeen\": {\n      \"fromDate\": \"<dateTime>\",\n      \"fromDateLicense\": \"<dateTime>\",\n      \"period\": {\n        \"by\": \"<string>\",\n        \"byFrom\": \"<string>\",\n        \"byTo\": \"<string>\",\n        \"field\": \"<string>\",\n        \"fromValue\": \"<duration>\",\n        \"toValue\": \"<duration>\"\n      },\n      \"timeFrame\": \"<long>\",\n      \"toDate\": \"<dateTime>\"\n    },\n    \"laterTimeInPage\": \"<dateTime>\",\n    \"page\": \"<long>\",\n    \"period\": {\n      \"by\": \"<string>\",\n      \"byFrom\": \"<string>\",\n      \"byTo\": \"<string>\",\n      \"field\": \"<string>\",\n      \"fromValue\": \"<duration>\",\n      \"toValue\": \"<duration>\"\n    },\n    \"prevPage\": \"<boolean>\",\n    \"query\": \"<string>\",\n    \"searchAfter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"searchBefore\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"size\": \"<long>\",\n    \"sort\": [\n      {\n        \"asc\": \"<boolean>\",\n        \"field\": \"<string>\",\n        \"fieldType\": \"<string>\"\n      },\n      {\n        \"asc\": \"<boolean>\",\n        \"field\": \"<string>\",\n        \"fieldType\": \"<string>\"\n      }\n    ],\n    \"timeFrame\": \"<long>\",\n    \"toDate\": \"<dateTime>\"\n  },\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"reason\": \"<string>\",\n  \"reputations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f2b2391-4aeb-4c7a-9b7f-dece92d74a7a",
+          "name": "Batch whitelist or delete indicators",
+          "request": {
+            "name": "Batch whitelist or delete indicators",
+            "description": {
+              "content": "Batch whitelist or delete indicators entities\nIn order to delete indicators and not whitelist, set doNotWhitelist boolean field to true",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicators",
+                "batchDelete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"all\": \"<boolean>\",\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"doNotWhitelist\": \"<boolean>\",\n  \"filter\": {\n    \"Cache\": {\n      \"key_0\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"earlyTimeInPage\": \"<dateTime>\",\n    \"firstSeen\": {\n      \"fromDate\": \"<dateTime>\",\n      \"fromDateLicense\": \"<dateTime>\",\n      \"period\": {\n        \"by\": \"<string>\",\n        \"byFrom\": \"<string>\",\n        \"byTo\": \"<string>\",\n        \"field\": \"<string>\",\n        \"fromValue\": \"<duration>\",\n        \"toValue\": \"<duration>\"\n      },\n      \"timeFrame\": \"<long>\",\n      \"toDate\": \"<dateTime>\"\n    },\n    \"fromDate\": \"<dateTime>\",\n    \"fromDateLicense\": \"<dateTime>\",\n    \"lastSeen\": {\n      \"fromDate\": \"<dateTime>\",\n      \"fromDateLicense\": \"<dateTime>\",\n      \"period\": {\n        \"by\": \"<string>\",\n        \"byFrom\": \"<string>\",\n        \"byTo\": \"<string>\",\n        \"field\": \"<string>\",\n        \"fromValue\": \"<duration>\",\n        \"toValue\": \"<duration>\"\n      },\n      \"timeFrame\": \"<long>\",\n      \"toDate\": \"<dateTime>\"\n    },\n    \"laterTimeInPage\": \"<dateTime>\",\n    \"page\": \"<long>\",\n    \"period\": {\n      \"by\": \"<string>\",\n      \"byFrom\": \"<string>\",\n      \"byTo\": \"<string>\",\n      \"field\": \"<string>\",\n      \"fromValue\": \"<duration>\",\n      \"toValue\": \"<duration>\"\n    },\n    \"prevPage\": \"<boolean>\",\n    \"query\": \"<string>\",\n    \"searchAfter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"searchBefore\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"size\": \"<long>\",\n    \"sort\": [\n      {\n        \"asc\": \"<boolean>\",\n        \"field\": \"<string>\",\n        \"fieldType\": \"<string>\"\n      },\n      {\n        \"asc\": \"<boolean>\",\n        \"field\": \"<string>\",\n        \"fieldType\": \"<string>\"\n      }\n    ],\n    \"timeFrame\": \"<long>\",\n    \"toDate\": \"<dateTime>\"\n  },\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"reason\": \"<string>\",\n  \"reputations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "743fb4d7-ba07-488b-9dcb-f9f415027e02",
+              "name": "UpdateResponse",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicators",
+                    "batchDelete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"notUpdated\": 8886,\n  \"updatedIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42609126-eb54-4c87-bb0f-9778e5d5a7f9",
+          "name": "Get indicators as CSV",
+          "request": {
+            "name": "Get indicators as CSV",
+            "description": {
+              "content": "Get an indicators CSV file that was exported, by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicators",
+                "csv",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) CSV file to fetch (returned from batch export to csv call)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c81a0bf-ec45-4ad0-95ea-df6ca2a0e619",
+              "name": "Return Csv file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicators",
+                    "csv",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) CSV file to fetch (returned from batch export to csv call)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e9955de-af72-4a08-a5df-6f19176cd4b0",
+          "name": "Create feed indicators from JSON",
+          "request": {
+            "name": "Create feed indicators from JSON",
+            "description": {
+              "content": "Create indicators from raw JSON (similar to ingesting from a feed). Builds indicators according to the specified feed classifier,\nor uses the default one if not specified.\nIndicator properties (all optional except for value): **value** (string, required) | **type** (string) | **score** (number, 0-3,\ndefault `0`, where `0` means None, `1` Good, `2` Suspicious, and `3` Bad) | **sourceBrand** (string, default `\"External\"`) | **sourceInstance**\n(string, default `\"External\"`) | **reliability** (string, one of `\"A - Completely reliable\"`, `\"B - Usually reliable\"`, `\"C - Fairly\nreliable\"`, `\"D - Not usually reliable\"`, `\"E - Unreliable\"`, `\"F - Reliability cannot be judged\"`) | **expirationPolicy** (string,\none of `\"never\"`, `\"interval\"`, `\"indicatorType\"`) | **expirationInterval** (number, in minutes)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicators",
+                "feed",
+                "json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bypassExclusionList\": \"<boolean>\",\n  \"classifierId\": \"<string>\",\n  \"indicators\": [\n    {\n      \"key_0\": \"<object>\"\n    },\n    {\n      \"key_0\": \"<object>\"\n    }\n  ],\n  \"mapperId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e6b08dc5-c1f1-4e8b-bf59-4090f28ea314",
+              "name": "Indicators created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicators",
+                    "feed",
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bypassExclusionList\": \"<boolean>\",\n  \"classifierId\": \"<string>\",\n  \"indicators\": [\n    {\n      \"key_0\": \"<object>\"\n    },\n    {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\",\n      \"key_2\": \"<object>\"\n    }\n  ],\n  \"mapperId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78b58a8b-8a18-4518-b437-4109f11c90c7",
+          "name": "Search indicators",
+          "request": {
+            "name": "Search indicators",
+            "description": {
+              "content": "Search indicators by filter",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicators",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Cache\": {\n    \"key_0\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_1\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"earlyTimeInPage\": \"<dateTime>\",\n  \"firstSeen\": {\n    \"fromDate\": \"<dateTime>\",\n    \"fromDateLicense\": \"<dateTime>\",\n    \"period\": {\n      \"by\": \"<string>\",\n      \"byFrom\": \"<string>\",\n      \"byTo\": \"<string>\",\n      \"field\": \"<string>\",\n      \"fromValue\": \"<duration>\",\n      \"toValue\": \"<duration>\"\n    },\n    \"timeFrame\": \"<long>\",\n    \"toDate\": \"<dateTime>\"\n  },\n  \"fromDate\": \"<dateTime>\",\n  \"fromDateLicense\": \"<dateTime>\",\n  \"lastSeen\": {\n    \"fromDate\": \"<dateTime>\",\n    \"fromDateLicense\": \"<dateTime>\",\n    \"period\": {\n      \"by\": \"<string>\",\n      \"byFrom\": \"<string>\",\n      \"byTo\": \"<string>\",\n      \"field\": \"<string>\",\n      \"fromValue\": \"<duration>\",\n      \"toValue\": \"<duration>\"\n    },\n    \"timeFrame\": \"<long>\",\n    \"toDate\": \"<dateTime>\"\n  },\n  \"laterTimeInPage\": \"<dateTime>\",\n  \"page\": \"<long>\",\n  \"period\": {\n    \"by\": \"<string>\",\n    \"byFrom\": \"<string>\",\n    \"byTo\": \"<string>\",\n    \"field\": \"<string>\",\n    \"fromValue\": \"<duration>\",\n    \"toValue\": \"<duration>\"\n  },\n  \"prevPage\": \"<boolean>\",\n  \"query\": \"<string>\",\n  \"searchAfter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"searchBefore\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"size\": \"<long>\",\n  \"sort\": [\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    },\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    }\n  ],\n  \"timeFrame\": \"<long>\",\n  \"toDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e88a8fa3-d967-4f7e-9077-75f33799fcbe",
+              "name": "indicatorResult",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicators",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Cache\": {\n    \"key_0\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_1\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_2\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_3\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"earlyTimeInPage\": \"<dateTime>\",\n  \"firstSeen\": {\n    \"fromDate\": \"<dateTime>\",\n    \"fromDateLicense\": \"<dateTime>\",\n    \"period\": {\n      \"by\": \"<string>\",\n      \"byFrom\": \"<string>\",\n      \"byTo\": \"<string>\",\n      \"field\": \"<string>\",\n      \"fromValue\": \"<duration>\",\n      \"toValue\": \"<duration>\"\n    },\n    \"timeFrame\": \"<long>\",\n    \"toDate\": \"<dateTime>\"\n  },\n  \"fromDate\": \"<dateTime>\",\n  \"fromDateLicense\": \"<dateTime>\",\n  \"lastSeen\": {\n    \"fromDate\": \"<dateTime>\",\n    \"fromDateLicense\": \"<dateTime>\",\n    \"period\": {\n      \"by\": \"<string>\",\n      \"byFrom\": \"<string>\",\n      \"byTo\": \"<string>\",\n      \"field\": \"<string>\",\n      \"fromValue\": \"<duration>\",\n      \"toValue\": \"<duration>\"\n    },\n    \"timeFrame\": \"<long>\",\n    \"toDate\": \"<dateTime>\"\n  },\n  \"laterTimeInPage\": \"<dateTime>\",\n  \"page\": \"<long>\",\n  \"period\": {\n    \"by\": \"<string>\",\n    \"byFrom\": \"<string>\",\n    \"byTo\": \"<string>\",\n    \"field\": \"<string>\",\n    \"fromValue\": \"<duration>\",\n    \"toValue\": \"<duration>\"\n  },\n  \"prevPage\": \"<boolean>\",\n  \"query\": \"<string>\",\n  \"searchAfter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"searchBefore\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"size\": \"<long>\",\n  \"sort\": [\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    },\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    }\n  ],\n  \"timeFrame\": \"<long>\",\n  \"toDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"iocObjects\": [\n    {\n      \"CustomFields\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      },\n      \"account\": \"string\",\n      \"calculatedTime\": \"2001-03-27T09:33:52.797Z\",\n      \"comment\": \"string\",\n      \"firstSeen\": \"2026-02-20T01:17:42.953Z\",\n      \"firstSeenEntryID\": \"string\",\n      \"id\": \"string\",\n      \"indicator_type\": \"string\",\n      \"insightCache\": {\n        \"id\": \"string\",\n        \"modified\": \"2013-03-15T04:08:00.376Z\",\n        \"scores\": {\n          \"key_0\": {\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"contentFormat\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isTypedIndicator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"scoreChangeTimestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"contentFormat\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isTypedIndicator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"scoreChangeTimestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"sequenceNumber\": 9588,\n        \"sortValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"version\": 5426\n      },\n      \"investigationIDs\": [\n        \"string\",\n        \"string\"\n      ],\n      \"lastReputationRun\": \"1984-11-12T00:04:49.064Z\",\n      \"lastSeen\": \"1979-06-10T01:16:35.131Z\",\n      \"lastSeenEntryID\": \"string\",\n      \"manualScore\": false,\n      \"manualSetTime\": \"1966-10-12T12:08:45.308Z\",\n      \"manuallyEditedFields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"modified\": \"1952-12-14T21:22:05.023Z\",\n      \"score\": 8924,\n      \"setBy\": \"string\",\n      \"sortValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"source\": \"string\",\n      \"timestamp\": \"1985-01-20T15:54:37.515Z\",\n      \"value\": \"string\",\n      \"version\": 7295\n    },\n    {\n      \"CustomFields\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"account\": \"string\",\n      \"calculatedTime\": \"1990-01-26T00:23:18.868Z\",\n      \"comment\": \"string\",\n      \"firstSeen\": \"1954-03-29T03:56:01.383Z\",\n      \"firstSeenEntryID\": \"string\",\n      \"id\": \"string\",\n      \"indicator_type\": \"string\",\n      \"insightCache\": {\n        \"id\": \"string\",\n        \"modified\": \"2002-06-14T09:31:46.197Z\",\n        \"scores\": {\n          \"key_0\": {\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"contentFormat\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isTypedIndicator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"scoreChangeTimestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"contentFormat\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isTypedIndicator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"scoreChangeTimestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"sequenceNumber\": 6085,\n        \"sortValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"version\": 7038\n      },\n      \"investigationIDs\": [\n        \"string\",\n        \"string\"\n      ],\n      \"lastReputationRun\": \"1981-11-15T17:30:21.479Z\",\n      \"lastSeen\": \"1979-07-17T02:01:14.371Z\",\n      \"lastSeenEntryID\": \"string\",\n      \"manualScore\": false,\n      \"manualSetTime\": \"2001-09-13T21:31:23.757Z\",\n      \"manuallyEditedFields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"modified\": \"2002-03-18T08:47:21.277Z\",\n      \"score\": 5970,\n      \"setBy\": \"string\",\n      \"sortValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"source\": \"string\",\n      \"timestamp\": \"1960-06-18T10:58:38.500Z\",\n      \"value\": \"string\",\n      \"version\": 6117\n    }\n  ],\n  \"total\": 5238\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "943b924b-6437-466f-8316-dd8b17ed918b",
+          "name": "Get indicators as STIX V2",
+          "request": {
+            "name": "Get indicators as STIX V2",
+            "description": {
+              "content": "Get an indicators STIX V2 file that was exported, by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicators",
+                "stix",
+                "v2",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) STIX V2 file to fetch (returned from batch export to STIX call)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37695728-01b5-4ff3-a927-c7589694a126",
+              "name": "Return STIX V2 file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicators",
+                    "stix",
+                    "v2",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) STIX V2 file to fetch (returned from batch export to STIX call)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1bb17e8e-5633-4438-a5e7-435e3d0e863e",
+          "name": "Create indicators",
+          "request": {
+            "name": "Create indicators",
+            "description": {
+              "content": "Create indicators from a file",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicators",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) file"
+                },
+                {
+                  "key": "fileName",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "file name"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "12596ce6-8412-4a8f-8b7b-fa0250f25bbd",
+              "name": "IocObjects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicators",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) file",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "file name",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"CustomFields\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    },\n    \"account\": \"string\",\n    \"calculatedTime\": \"2019-11-04T06:46:24.457Z\",\n    \"comment\": \"string\",\n    \"firstSeen\": \"1996-07-22T04:06:39.582Z\",\n    \"firstSeenEntryID\": \"string\",\n    \"id\": \"string\",\n    \"indicator_type\": \"string\",\n    \"insightCache\": {\n      \"id\": \"string\",\n      \"modified\": \"1953-04-26T09:11:12.956Z\",\n      \"scores\": {\n        \"key_0\": {\n          \"content\": \"string\",\n          \"contentFormat\": \"string\",\n          \"context\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"isTypedIndicator\": false,\n          \"score\": 5181,\n          \"scoreChangeTimestamp\": \"1983-08-17T02:21:45.798Z\",\n          \"timestamp\": \"1995-01-09T09:59:55.490Z\",\n          \"type\": \"string\"\n        },\n        \"key_1\": {\n          \"content\": \"string\",\n          \"contentFormat\": \"string\",\n          \"context\": {\n            \"key_0\": {}\n          },\n          \"isTypedIndicator\": true,\n          \"score\": 8661,\n          \"scoreChangeTimestamp\": \"1956-09-16T23:37:24.487Z\",\n          \"timestamp\": \"1999-02-01T20:07:59.993Z\",\n          \"type\": \"string\"\n        }\n      },\n      \"sequenceNumber\": 5362,\n      \"sortValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"version\": 3071\n    },\n    \"investigationIDs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"lastReputationRun\": \"2006-10-09T22:33:27.283Z\",\n    \"lastSeen\": \"2016-07-08T22:44:22.172Z\",\n    \"lastSeenEntryID\": \"string\",\n    \"manualScore\": true,\n    \"manualSetTime\": \"1984-05-23T19:44:49.650Z\",\n    \"manuallyEditedFields\": [\n      \"string\",\n      \"string\"\n    ],\n    \"modified\": \"1965-07-11T17:32:04.481Z\",\n    \"score\": 6551,\n    \"setBy\": \"string\",\n    \"sortValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"source\": \"string\",\n    \"timestamp\": \"1987-05-23T08:29:28.127Z\",\n    \"value\": \"string\",\n    \"version\": 9038\n  },\n  {\n    \"CustomFields\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"account\": \"string\",\n    \"calculatedTime\": \"1954-06-29T06:44:13.037Z\",\n    \"comment\": \"string\",\n    \"firstSeen\": \"1948-02-23T00:44:13.770Z\",\n    \"firstSeenEntryID\": \"string\",\n    \"id\": \"string\",\n    \"indicator_type\": \"string\",\n    \"insightCache\": {\n      \"id\": \"string\",\n      \"modified\": \"1954-06-15T18:13:18.835Z\",\n      \"scores\": {\n        \"key_0\": {\n          \"content\": \"string\",\n          \"contentFormat\": \"string\",\n          \"context\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"isTypedIndicator\": false,\n          \"score\": 2195,\n          \"scoreChangeTimestamp\": \"1954-10-09T05:39:00.952Z\",\n          \"timestamp\": \"1947-11-21T15:54:03.178Z\",\n          \"type\": \"string\"\n        }\n      },\n      \"sequenceNumber\": 8581,\n      \"sortValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"version\": 2134\n    },\n    \"investigationIDs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"lastReputationRun\": \"1956-03-25T21:01:24.492Z\",\n    \"lastSeen\": \"1978-05-31T03:37:39.335Z\",\n    \"lastSeenEntryID\": \"string\",\n    \"manualScore\": false,\n    \"manualSetTime\": \"2017-02-07T08:05:17.859Z\",\n    \"manuallyEditedFields\": [\n      \"string\",\n      \"string\"\n    ],\n    \"modified\": \"1947-07-04T11:49:17.938Z\",\n    \"score\": 847,\n    \"setBy\": \"string\",\n    \"sortValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"source\": \"string\",\n    \"timestamp\": \"2002-09-24T18:53:54.762Z\",\n    \"value\": \"string\",\n    \"version\": 891\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hostname:443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a638dda3-e2bb-4ea7-856e-20d5fae00096",
+    "name": "Demisto Apikeys Indicators API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the public REST API to integrate with the demisto server.\nHTTP request can be sent using any HTTP-client.\n\nFor an example dedicated client take a look at: https://github.com/demisto/demisto-py.\n\nRequests must include API-key that can be generated in the Demisto web client under 'Settings' -> 'Integrations' -> 'API keys'\n\n\nOptimistic Locking and Versioning\\:\n\nWhen using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).\nIn addition, you can pass 'version\\: -1' to force data override (make sure that other users data might be lost).\n\nAssume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?\nTo solve this, each data item in Demisto has a numeric incremental version.\nIf Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.\nBob will need to get the latest item and work on it so Alice work will not get lost.\n\nExample request using 'curl'\\:\n\n```\ncurl 'https://hostname:443/incidents/search' -H 'content-type: application/json' -H 'accept: application/json' -H 'Authorization: <API Key goes here>' --data-binary '{\"filter\":{\"query\":\"-status:closed -category:job\",\"period\":{\"by\":\"day\",\"fromValue\":7}}}' --compressed\n```",
+      "type": "text/plain"
+    }
+  }
+}

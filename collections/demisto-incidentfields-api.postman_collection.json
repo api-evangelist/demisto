@@ -1,0 +1,254 @@
+{
+  "item": [
+    {
+      "id": "79029b39-50e2-4c7e-8f38-0770dc8ce33c",
+      "name": "Incidentfields",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f5dfa13-c2a2-49b4-9bed-69ec5bebd483",
+          "name": "Get all incident fields associated with incident type",
+          "request": {
+            "name": "Get all incident fields associated with incident type",
+            "description": {
+              "content": "Get all incident fields associated with incident type",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "incidentfields",
+                "associatedTypes",
+                ":type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) the name (case sensitive) of the incident type"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5962a867-a6b1-4119-9aa6-5bed8f496d67",
+              "name": "Returns a list of incident fields associated with the incident type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidentfields",
+                    "associatedTypes",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) the name (case sensitive) of the incident type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"associatedToAll\": true,\n    \"associatedTypes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"breachScript\": \"string\",\n    \"caseInsensitive\": true,\n    \"cliName\": \"string\",\n    \"closeForm\": true,\n    \"columns\": [\n      {\n        \"displayName\": \"string\",\n        \"fieldCalcScript\": \"string\",\n        \"isDefault\": false,\n        \"isReadOnly\": false,\n        \"key\": \"string\",\n        \"required\": false,\n        \"script\": \"string\",\n        \"selectValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"type\": \"string\",\n        \"width\": 9791\n      },\n      {\n        \"displayName\": \"string\",\n        \"fieldCalcScript\": \"string\",\n        \"isDefault\": false,\n        \"isReadOnly\": true,\n        \"key\": \"string\",\n        \"required\": false,\n        \"script\": \"string\",\n        \"selectValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"type\": \"string\",\n        \"width\": 7430\n      }\n    ],\n    \"commitMessage\": \"string\",\n    \"content\": false,\n    \"defaultRows\": [\n      {\n        \"key_0\": {}\n      },\n      {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      }\n    ],\n    \"description\": \"string\",\n    \"editForm\": false,\n    \"fieldCalcScript\": \"string\",\n    \"group\": 4774.579645531165,\n    \"hidden\": false,\n    \"id\": \"string\",\n    \"isReadOnly\": true,\n    \"locked\": false,\n    \"modified\": \"1968-07-14T23:21:36.673Z\",\n    \"name\": \"string\",\n    \"neverSetAsRequired\": false,\n    \"ownerOnly\": true,\n    \"placeholder\": \"string\",\n    \"prevName\": \"string\",\n    \"required\": true,\n    \"script\": \"string\",\n    \"selectValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"shouldCommit\": false,\n    \"sla\": 5558,\n    \"sortValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"system\": true,\n    \"systemAssociatedTypes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"threshold\": 6893.089174147762,\n    \"type\": \"string\",\n    \"unmapped\": false,\n    \"unsearchable\": true,\n    \"useAsKpi\": false,\n    \"validatedError\": \"string\",\n    \"validationRegex\": \"string\",\n    \"vcShouldIgnore\": false,\n    \"version\": 574\n  },\n  {\n    \"associatedToAll\": true,\n    \"associatedTypes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"breachScript\": \"string\",\n    \"caseInsensitive\": false,\n    \"cliName\": \"string\",\n    \"closeForm\": false,\n    \"columns\": [\n      {\n        \"displayName\": \"string\",\n        \"fieldCalcScript\": \"string\",\n        \"isDefault\": true,\n        \"isReadOnly\": true,\n        \"key\": \"string\",\n        \"required\": false,\n        \"script\": \"string\",\n        \"selectValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"type\": \"string\",\n        \"width\": 9570\n      },\n      {\n        \"displayName\": \"string\",\n        \"fieldCalcScript\": \"string\",\n        \"isDefault\": true,\n        \"isReadOnly\": true,\n        \"key\": \"string\",\n        \"required\": false,\n        \"script\": \"string\",\n        \"selectValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"type\": \"string\",\n        \"width\": 5139\n      }\n    ],\n    \"commitMessage\": \"string\",\n    \"content\": false,\n    \"defaultRows\": [\n      {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      {\n        \"key_0\": {}\n      }\n    ],\n    \"description\": \"string\",\n    \"editForm\": false,\n    \"fieldCalcScript\": \"string\",\n    \"group\": 1899.4011917296427,\n    \"hidden\": true,\n    \"id\": \"string\",\n    \"isReadOnly\": false,\n    \"locked\": true,\n    \"modified\": \"2025-01-03T11:24:25.267Z\",\n    \"name\": \"string\",\n    \"neverSetAsRequired\": true,\n    \"ownerOnly\": false,\n    \"placeholder\": \"string\",\n    \"prevName\": \"string\",\n    \"required\": true,\n    \"script\": \"string\",\n    \"selectValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"shouldCommit\": true,\n    \"sla\": 6078,\n    \"sortValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"system\": false,\n    \"systemAssociatedTypes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"threshold\": 6464.08428329278,\n    \"type\": \"string\",\n    \"unmapped\": true,\n    \"unsearchable\": true,\n    \"useAsKpi\": false,\n    \"validatedError\": \"string\",\n    \"validationRegex\": \"string\",\n    \"vcShouldIgnore\": true,\n    \"version\": 7162\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0556a306-7dcb-4d20-bf9c-0580d6cf517b",
+          "name": "Import an incidents field",
+          "request": {
+            "name": "Import an incidents field",
+            "description": {
+              "content": "Import an incidents field to Cortex XSOAR",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "incidentfields",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) file"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "96a23824-2a0d-4034-a8f3-c2fe5d946673",
+              "name": "The saved incident field",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidentfields",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) file",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"associatedToAll\": false,\n  \"associatedTypes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"breachScript\": \"string\",\n  \"caseInsensitive\": false,\n  \"cliName\": \"string\",\n  \"closeForm\": true,\n  \"columns\": [\n    {\n      \"displayName\": \"string\",\n      \"fieldCalcScript\": \"string\",\n      \"isDefault\": false,\n      \"isReadOnly\": false,\n      \"key\": \"string\",\n      \"required\": true,\n      \"script\": \"string\",\n      \"selectValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"type\": \"string\",\n      \"width\": 4937\n    },\n    {\n      \"displayName\": \"string\",\n      \"fieldCalcScript\": \"string\",\n      \"isDefault\": true,\n      \"isReadOnly\": true,\n      \"key\": \"string\",\n      \"required\": true,\n      \"script\": \"string\",\n      \"selectValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"type\": \"string\",\n      \"width\": 3634\n    }\n  ],\n  \"commitMessage\": \"string\",\n  \"content\": true,\n  \"defaultRows\": [\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    }\n  ],\n  \"description\": \"string\",\n  \"editForm\": false,\n  \"fieldCalcScript\": \"string\",\n  \"group\": 9260.88677419782,\n  \"hidden\": true,\n  \"id\": \"string\",\n  \"isReadOnly\": true,\n  \"locked\": false,\n  \"modified\": \"1983-01-19T20:40:38.076Z\",\n  \"name\": \"string\",\n  \"neverSetAsRequired\": true,\n  \"ownerOnly\": false,\n  \"placeholder\": \"string\",\n  \"prevName\": \"string\",\n  \"required\": false,\n  \"script\": \"string\",\n  \"selectValues\": [\n    \"string\",\n    \"string\"\n  ],\n  \"shouldCommit\": false,\n  \"sla\": 7957,\n  \"sortValues\": [\n    \"string\",\n    \"string\"\n  ],\n  \"system\": true,\n  \"systemAssociatedTypes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"threshold\": 5204.720862994369,\n  \"type\": \"string\",\n  \"unmapped\": true,\n  \"unsearchable\": true,\n  \"useAsKpi\": false,\n  \"validatedError\": \"string\",\n  \"validationRegex\": \"string\",\n  \"vcShouldIgnore\": false,\n  \"version\": 2016\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hostname:443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "62a9f1a6-0975-4c90-9018-87e389cbd3bc",
+    "name": "Demisto Apikeys Incidentfields API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the public REST API to integrate with the demisto server.\nHTTP request can be sent using any HTTP-client.\n\nFor an example dedicated client take a look at: https://github.com/demisto/demisto-py.\n\nRequests must include API-key that can be generated in the Demisto web client under 'Settings' -> 'Integrations' -> 'API keys'\n\n\nOptimistic Locking and Versioning\\:\n\nWhen using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).\nIn addition, you can pass 'version\\: -1' to force data override (make sure that other users data might be lost).\n\nAssume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?\nTo solve this, each data item in Demisto has a numeric incremental version.\nIf Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.\nBob will need to get the latest item and work on it so Alice work will not get lost.\n\nExample request using 'curl'\\:\n\n```\ncurl 'https://hostname:443/incidents/search' -H 'content-type: application/json' -H 'accept: application/json' -H 'Authorization: <API Key goes here>' --data-binary '{\"filter\":{\"query\":\"-status:closed -category:job\",\"period\":{\"by\":\"day\",\"fromValue\":7}}}' --compressed\n```",
+      "type": "text/plain"
+    }
+  }
+}

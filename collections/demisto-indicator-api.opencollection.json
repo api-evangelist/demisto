@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Indicator API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Indicator",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Indicator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/indicator/create"
+          },
+          "docs": "Create an indicator entity\nTo update indicator custom fields you should lowercase them and remove all spaces. For example: Scan IP -> scanip"
+        },
+        {
+          "info": {
+            "name": "Edit Indicator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/indicator/edit"
+          },
+          "docs": "Edit an indicator entity\nTo update indicator custom fields you should lowercase them and remove all spaces. For example: Scan IP -> scanip"
+        },
+        {
+          "info": {
+            "name": "Whitelists or deletes Indicator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/indicator/whitelist"
+          },
+          "docs": "Whitelists or deletes an indicator entity\nIn order to delete an indicator and not whitelist, set doNotWhitelist boolean field to true"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

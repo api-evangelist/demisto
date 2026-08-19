@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Automation API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Automation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create or update automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automation"
+          },
+          "docs": "Create or update a given automation."
+        },
+        {
+          "info": {
+            "name": "Copy automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automation/copy"
+          },
+          "docs": "Copy given automation"
+        },
+        {
+          "info": {
+            "name": "Delete existing automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automation/delete"
+          },
+          "docs": "Delete a given automation from the system."
+        },
+        {
+          "info": {
+            "name": "Upload an automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automation/import"
+          },
+          "docs": "Upload an automation to Cortex XSOAR"
+        },
+        {
+          "info": {
+            "name": "Search Automation (aka scripts)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automation/search"
+          },
+          "docs": "Search Automation by filter"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Statistics API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Statistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Dashboard Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/statistics/dashboards/query"
+          },
+          "docs": "Get a given dashboard statistics result."
+        },
+        {
+          "info": {
+            "name": "Get Widget Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/statistics/widgets/query"
+          },
+          "docs": "Get a given widget object statistics result.\nNote: This route has many return types based on the widget type and data. Each 200X represent a 200 OK request of specific widget type and data"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

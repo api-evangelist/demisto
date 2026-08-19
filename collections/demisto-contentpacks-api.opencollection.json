@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Contentpacks API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contentpacks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a Pack as zip file. The zip file maybe a single Pack or a zip containing multiple zipped Packs (a zip of zips)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/contentpacks/installed/upload"
+          },
+          "docs": "Upload a Pack to the marketplace in the Server. Can be used to upload a Pack for an offline scenario or a Pack that hasn't been released."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

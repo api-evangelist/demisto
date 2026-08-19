@@ -1,0 +1,188 @@
+{
+  "item": [
+    {
+      "id": "7e56f950-290f-4bc4-adf8-ab30b0e0473d",
+      "name": "Layouts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "52d2587c-7699-4158-9c3a-3948754f0506",
+          "name": "Import a layout",
+          "request": {
+            "name": "Import a layout",
+            "description": {
+              "content": "Import a layout to Cortex XSOAR",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "layouts",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) file"
+                },
+                {
+                  "key": "type",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) associated typeID for the layout"
+                },
+                {
+                  "key": "kind",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) layout kind details"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cc521781-eaf1-4b88-95a1-45f5fed5383b",
+              "name": "The saved layout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "layouts",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) file",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) associated typeID for the layout",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) layout kind details",
+                        "type": "text/plain"
+                      },
+                      "key": "kind",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"string\",\n  \"layout\": {\n    \"commitMessage\": \"string\",\n    \"fromServerVersion\": {\n      \"Digits\": [\n        6998,\n        7042\n      ],\n      \"Label\": \"string\"\n    },\n    \"id\": \"string\",\n    \"itemVersion\": {\n      \"Digits\": [\n        2242,\n        5440\n      ],\n      \"Label\": \"string\"\n    },\n    \"kind\": \"string\",\n    \"modified\": \"2018-03-21T16:23:03.405Z\",\n    \"name\": \"string\",\n    \"packID\": \"string\",\n    \"prevKind\": \"string\",\n    \"prevTypeId\": \"string\",\n    \"primaryTerm\": 3552,\n    \"propagationLabels\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sections\": [\n      {\n        \"description\": \"string\",\n        \"fields\": [\n          {\n            \"fieldId\": \"string\",\n            \"id\": \"string\",\n            \"isVisible\": true,\n            \"modified\": \"2002-11-12T03:08:58.205Z\",\n            \"primaryTerm\": 1995,\n            \"sequenceNumber\": 5507,\n            \"sortValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"version\": 6843\n          },\n          {\n            \"fieldId\": \"string\",\n            \"id\": \"string\",\n            \"isVisible\": false,\n            \"modified\": \"2022-07-30T02:50:17.543Z\",\n            \"primaryTerm\": 9780,\n            \"sequenceNumber\": 898,\n            \"sortValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"version\": 62\n          }\n        ],\n        \"id\": \"string\",\n        \"isVisible\": false,\n        \"modified\": \"1970-05-15T05:19:03.924Z\",\n        \"name\": \"string\",\n        \"primaryTerm\": 6150,\n        \"query\": {},\n        \"queryType\": \"string\",\n        \"readOnly\": true,\n        \"sequenceNumber\": 3997,\n        \"sortValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"type\": \"string\",\n        \"version\": 921\n      },\n      {\n        \"description\": \"string\",\n        \"fields\": [\n          {\n            \"fieldId\": \"string\",\n            \"id\": \"string\",\n            \"isVisible\": false,\n            \"modified\": \"2023-06-26T22:33:49.300Z\",\n            \"primaryTerm\": 6827,\n            \"sequenceNumber\": 5085,\n            \"sortValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"version\": 5282\n          },\n          {\n            \"fieldId\": \"string\",\n            \"id\": \"string\",\n            \"isVisible\": false,\n            \"modified\": \"2025-10-13T00:50:21.778Z\",\n            \"primaryTerm\": 121,\n            \"sequenceNumber\": 6440,\n            \"sortValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"version\": 1606\n          }\n        ],\n        \"id\": \"string\",\n        \"isVisible\": false,\n        \"modified\": \"2019-01-12T21:55:09.356Z\",\n        \"name\": \"string\",\n        \"primaryTerm\": 8154,\n        \"query\": {},\n        \"queryType\": \"string\",\n        \"readOnly\": true,\n        \"sequenceNumber\": 7808,\n        \"sortValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"type\": \"string\",\n        \"version\": 466\n      }\n    ],\n    \"sequenceNumber\": 9233,\n    \"shouldCommit\": true,\n    \"sortValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"system\": false,\n    \"toServerVersion\": {\n      \"Digits\": [\n        8619,\n        9268\n      ],\n      \"Label\": \"string\"\n    },\n    \"typeId\": \"string\",\n    \"vcShouldIgnore\": true,\n    \"version\": 8776\n  },\n  \"typeId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hostname:443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "952980e4-a326-4735-9225-b3ae4c9d3d62",
+    "name": "Demisto Apikeys Layouts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the public REST API to integrate with the demisto server.\nHTTP request can be sent using any HTTP-client.\n\nFor an example dedicated client take a look at: https://github.com/demisto/demisto-py.\n\nRequests must include API-key that can be generated in the Demisto web client under 'Settings' -> 'Integrations' -> 'API keys'\n\n\nOptimistic Locking and Versioning\\:\n\nWhen using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).\nIn addition, you can pass 'version\\: -1' to force data override (make sure that other users data might be lost).\n\nAssume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?\nTo solve this, each data item in Demisto has a numeric incremental version.\nIf Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.\nBob will need to get the latest item and work on it so Alice work will not get lost.\n\nExample request using 'curl'\\:\n\n```\ncurl 'https://hostname:443/incidents/search' -H 'content-type: application/json' -H 'accept: application/json' -H 'Authorization: <API Key goes here>' --data-binary '{\"filter\":{\"query\":\"-status:closed -category:job\",\"period\":{\"by\":\"day\",\"fromValue\":7}}}' --compressed\n```",
+      "type": "text/plain"
+    }
+  }
+}

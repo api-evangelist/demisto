@@ -1,0 +1,907 @@
+{
+  "item": [
+    {
+      "id": "a62f82d0-7e04-4be8-b8eb-63478c9d1da8",
+      "name": "Entry",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "06355d02-237a-487b-980b-d7f485c74cc0",
+          "name": "Create new entry in existing investigation",
+          "request": {
+            "name": "Create new entry in existing investigation",
+            "description": {
+              "content": "API to create an entry (markdown format) in existing investigation\nBody example: {\"investigationId\":\"1234\",\"data\":\"entry content…\"}",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entry"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"args\": {\n    \"key_0\": {\n      \"complex\": {\n        \"accessor\": \"<string>\",\n        \"filters\": [\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        ],\n        \"root\": \"<string>\",\n        \"transformers\": [\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"simple\": \"<string>\"\n    },\n    \"key_1\": {\n      \"complex\": {\n        \"accessor\": \"<string>\",\n        \"filters\": [\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        ],\n        \"root\": \"<string>\",\n        \"transformers\": [\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"simple\": \"<string>\"\n    },\n    \"key_2\": {\n      \"complex\": {\n        \"accessor\": \"<string>\",\n        \"filters\": [\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        ],\n        \"root\": \"<string>\",\n        \"transformers\": [\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"simple\": \"<string>\"\n    },\n    \"key_3\": {\n      \"complex\": {\n        \"accessor\": \"<string>\",\n        \"filters\": [\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        ],\n        \"root\": \"<string>\",\n        \"transformers\": [\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"simple\": \"<string>\"\n    }\n  },\n  \"data\": \"<string>\",\n  \"id\": \"<string>\",\n  \"investigationId\": \"<string>\",\n  \"markdown\": \"<boolean>\",\n  \"version\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c9aa1b30-dde0-4ae9-bb34-bc86b19e2319",
+              "name": "Entry",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ShardID\": 2732,\n  \"brand\": \"string\",\n  \"category\": \"string\",\n  \"contents\": {},\n  \"contentsSize\": 9460,\n  \"created\": \"1999-12-11T08:14:10.484Z\",\n  \"cron\": \"string\",\n  \"cronView\": true,\n  \"deleted\": true,\n  \"endingDate\": \"1997-07-29T20:23:15.507Z\",\n  \"endingType\": \"string\",\n  \"entryTask\": {\n    \"playbookName\": \"string\",\n    \"taskId\": \"string\",\n    \"taskName\": \"string\",\n    \"taskStatus\": \"string\"\n  },\n  \"errorSource\": \"string\",\n  \"file\": \"string\",\n  \"fileID\": \"string\",\n  \"fileMetadata\": {\n    \"info\": \"string\",\n    \"isMediaFile\": false,\n    \"md5\": \"string\",\n    \"sha1\": \"string\",\n    \"sha256\": \"string\",\n    \"sha512\": \"string\",\n    \"size\": 2753,\n    \"ssdeep\": \"string\",\n    \"type\": \"string\"\n  },\n  \"format\": \"string\",\n  \"hasRole\": false,\n  \"history\": [\n    {\n      \"contentDate\": \"1964-12-18T15:26:32.561Z\",\n      \"contents\": \"string\",\n      \"contentsFormat\": \"string\",\n      \"user\": \"string\"\n    },\n    {\n      \"contentDate\": \"2000-01-10T00:15:17.256Z\",\n      \"contents\": \"string\",\n      \"contentsFormat\": \"string\",\n      \"user\": \"string\"\n    }\n  ],\n  \"humanCron\": {\n    \"atTimeHour\": \"string\",\n    \"atTimeMinute\": \"string\",\n    \"days\": [\n      \"string\",\n      \"string\"\n    ],\n    \"hoursPeriod\": \"string\",\n    \"schedulingType\": \"string\",\n    \"timePeriod\": 6201,\n    \"timePeriodType\": \"string\"\n  },\n  \"id\": \"string\",\n  \"instance\": \"string\",\n  \"investigationId\": \"string\",\n  \"modified\": \"2026-08-04T06:15:46.166Z\",\n  \"note\": false,\n  \"parentContent\": {},\n  \"parentEntryTruncated\": false,\n  \"parentId\": \"string\",\n  \"pinned\": true,\n  \"playbookId\": \"string\",\n  \"previousRoles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"readOnly\": true,\n  \"recurrent\": true,\n  \"reputationSize\": 9701,\n  \"reputations\": [\n    {\n      \"highlights\": {\n        \"key_0\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_2\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_3\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"reputationsData\": [\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 1214,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        },\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 6907,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        }\n      ]\n    },\n    {\n      \"highlights\": {\n        \"key_0\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"reputationsData\": [\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 9045,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        },\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 231,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"roles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"scheduled\": false,\n  \"sortValues\": [\n    \"string\",\n    \"string\"\n  ],\n  \"startDate\": \"1955-01-01T08:09:08.997Z\",\n  \"system\": \"string\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tagsRaw\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskId\": \"string\",\n  \"times\": 7884,\n  \"timezoneOffset\": 3027,\n  \"type\": 1103.1857771153807,\n  \"user\": \"string\",\n  \"version\": 3715\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecac36a1-e3ae-4dfe-903f-18fb3c811645",
+              "name": "In case of closed investigation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4734593f-30a3-4834-b9ea-f4795ded2e31",
+          "name": "Get entry artifact",
+          "request": {
+            "name": "Get entry artifact",
+            "description": {
+              "content": "Get the entry artifact file",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entry",
+                "artifact",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) file to fetch (returned from entry export artifact call)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b671155-4df9-4919-aff0-9fe948ae4517",
+              "name": "Return the file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entry",
+                    "artifact",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) file to fetch (returned from entry export artifact call)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "032dbbed-fe7b-4377-b5bb-566fe4c7e4f0",
+          "name": "Download file",
+          "request": {
+            "name": "Download file",
+            "description": {
+              "content": "Download file from Demisto by entry ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entry",
+                "download",
+                ":entryid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entryid",
+                  "description": "(Required) Entry ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a8bdf05-160c-47cc-bee0-5052db034398",
+              "name": "Return the entry",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entry",
+                    "download",
+                    ":entryid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entryid",
+                      "description": "(Required) Entry ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df91c606-a2ba-467d-8e6f-6b6acd035126",
+          "name": "Create new entry in existing investigation",
+          "request": {
+            "name": "Create new entry in existing investigation",
+            "description": {
+              "content": "API to create an entry (markdown format) in existing investigation\nBody example: {\"investigationId\":\"1234\",\"data\":\"entry content…\"}",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entry",
+                "execute",
+                "sync"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"args\": {\n    \"key_0\": {\n      \"complex\": {\n        \"accessor\": \"<string>\",\n        \"filters\": [\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        ],\n        \"root\": \"<string>\",\n        \"transformers\": [\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"simple\": \"<string>\"\n    },\n    \"key_1\": {\n      \"complex\": {\n        \"accessor\": \"<string>\",\n        \"filters\": [\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        ],\n        \"root\": \"<string>\",\n        \"transformers\": [\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"simple\": \"<string>\"\n    }\n  },\n  \"data\": \"<string>\",\n  \"id\": \"<string>\",\n  \"investigationId\": \"<string>\",\n  \"markdown\": \"<boolean>\",\n  \"version\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "84f37a51-10bc-490d-9330-8d191c1b56b5",
+              "name": "An array of the children entries of the executed entry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entry",
+                    "execute",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"ShardID\": 7214,\n    \"brand\": \"string\",\n    \"category\": \"string\",\n    \"contents\": {},\n    \"contentsSize\": 2065,\n    \"created\": \"2015-12-18T00:26:14.810Z\",\n    \"cron\": \"string\",\n    \"cronView\": true,\n    \"deleted\": true,\n    \"endingDate\": \"1949-02-07T06:09:54.955Z\",\n    \"endingType\": \"string\",\n    \"entryTask\": {\n      \"playbookName\": \"string\",\n      \"taskId\": \"string\",\n      \"taskName\": \"string\",\n      \"taskStatus\": \"string\"\n    },\n    \"errorSource\": \"string\",\n    \"file\": \"string\",\n    \"fileID\": \"string\",\n    \"fileMetadata\": {\n      \"info\": \"string\",\n      \"isMediaFile\": true,\n      \"md5\": \"string\",\n      \"sha1\": \"string\",\n      \"sha256\": \"string\",\n      \"sha512\": \"string\",\n      \"size\": 4353,\n      \"ssdeep\": \"string\",\n      \"type\": \"string\"\n    },\n    \"format\": \"string\",\n    \"hasRole\": true,\n    \"history\": [\n      {\n        \"contentDate\": \"1958-10-28T21:05:48.503Z\",\n        \"contents\": \"string\",\n        \"contentsFormat\": \"string\",\n        \"user\": \"string\"\n      },\n      {\n        \"contentDate\": \"1964-07-23T22:58:14.740Z\",\n        \"contents\": \"string\",\n        \"contentsFormat\": \"string\",\n        \"user\": \"string\"\n      }\n    ],\n    \"humanCron\": {\n      \"atTimeHour\": \"string\",\n      \"atTimeMinute\": \"string\",\n      \"days\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hoursPeriod\": \"string\",\n      \"schedulingType\": \"string\",\n      \"timePeriod\": 6302,\n      \"timePeriodType\": \"string\"\n    },\n    \"id\": \"string\",\n    \"instance\": \"string\",\n    \"investigationId\": \"string\",\n    \"modified\": \"2013-07-03T21:28:13.365Z\",\n    \"note\": false,\n    \"parentContent\": {},\n    \"parentEntryTruncated\": true,\n    \"parentId\": \"string\",\n    \"pinned\": false,\n    \"playbookId\": \"string\",\n    \"previousRoles\": [\n      \"string\",\n      \"string\"\n    ],\n    \"readOnly\": true,\n    \"recurrent\": true,\n    \"reputationSize\": 6354,\n    \"reputations\": [\n      {\n        \"highlights\": {\n          \"key_0\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"reputationsData\": [\n          {\n            \"rawTerm\": \"string\",\n            \"reputation\": 3762,\n            \"reputationId\": \"string\",\n            \"term\": \"string\"\n          },\n          {\n            \"rawTerm\": \"string\",\n            \"reputation\": 5173,\n            \"reputationId\": \"string\",\n            \"term\": \"string\"\n          }\n        ]\n      },\n      {\n        \"highlights\": {\n          \"key_0\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"reputationsData\": [\n          {\n            \"rawTerm\": \"string\",\n            \"reputation\": 6473,\n            \"reputationId\": \"string\",\n            \"term\": \"string\"\n          },\n          {\n            \"rawTerm\": \"string\",\n            \"reputation\": 19,\n            \"reputationId\": \"string\",\n            \"term\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"roles\": [\n      \"string\",\n      \"string\"\n    ],\n    \"scheduled\": false,\n    \"sortValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"startDate\": \"1963-02-14T02:41:00.370Z\",\n    \"system\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"tagsRaw\": [\n      \"string\",\n      \"string\"\n    ],\n    \"taskId\": \"string\",\n    \"times\": 7740,\n    \"timezoneOffset\": 7681,\n    \"type\": 7243.077459299888,\n    \"user\": \"string\",\n    \"version\": 1182\n  },\n  {\n    \"ShardID\": 8367,\n    \"brand\": \"string\",\n    \"category\": \"string\",\n    \"contents\": {},\n    \"contentsSize\": 2031,\n    \"created\": \"1967-10-30T10:33:00.745Z\",\n    \"cron\": \"string\",\n    \"cronView\": true,\n    \"deleted\": false,\n    \"endingDate\": \"2003-04-06T16:23:28.930Z\",\n    \"endingType\": \"string\",\n    \"entryTask\": {\n      \"playbookName\": \"string\",\n      \"taskId\": \"string\",\n      \"taskName\": \"string\",\n      \"taskStatus\": \"string\"\n    },\n    \"errorSource\": \"string\",\n    \"file\": \"string\",\n    \"fileID\": \"string\",\n    \"fileMetadata\": {\n      \"info\": \"string\",\n      \"isMediaFile\": false,\n      \"md5\": \"string\",\n      \"sha1\": \"string\",\n      \"sha256\": \"string\",\n      \"sha512\": \"string\",\n      \"size\": 9573,\n      \"ssdeep\": \"string\",\n      \"type\": \"string\"\n    },\n    \"format\": \"string\",\n    \"hasRole\": true,\n    \"history\": [\n      {\n        \"contentDate\": \"1971-07-23T23:46:07.438Z\",\n        \"contents\": \"string\",\n        \"contentsFormat\": \"string\",\n        \"user\": \"string\"\n      },\n      {\n        \"contentDate\": \"1977-05-07T06:38:47.040Z\",\n        \"contents\": \"string\",\n        \"contentsFormat\": \"string\",\n        \"user\": \"string\"\n      }\n    ],\n    \"humanCron\": {\n      \"atTimeHour\": \"string\",\n      \"atTimeMinute\": \"string\",\n      \"days\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hoursPeriod\": \"string\",\n      \"schedulingType\": \"string\",\n      \"timePeriod\": 3786,\n      \"timePeriodType\": \"string\"\n    },\n    \"id\": \"string\",\n    \"instance\": \"string\",\n    \"investigationId\": \"string\",\n    \"modified\": \"1991-08-11T22:40:19.852Z\",\n    \"note\": true,\n    \"parentContent\": {},\n    \"parentEntryTruncated\": false,\n    \"parentId\": \"string\",\n    \"pinned\": false,\n    \"playbookId\": \"string\",\n    \"previousRoles\": [\n      \"string\",\n      \"string\"\n    ],\n    \"readOnly\": false,\n    \"recurrent\": false,\n    \"reputationSize\": 5,\n    \"reputations\": [\n      {\n        \"highlights\": {\n          \"key_0\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"reputationsData\": [\n          {\n            \"rawTerm\": \"string\",\n            \"reputation\": 636,\n            \"reputationId\": \"string\",\n            \"term\": \"string\"\n          },\n          {\n            \"rawTerm\": \"string\",\n            \"reputation\": 2850,\n            \"reputationId\": \"string\",\n            \"term\": \"string\"\n          }\n        ]\n      },\n      {\n        \"highlights\": {\n          \"key_0\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"reputationsData\": [\n          {\n            \"rawTerm\": \"string\",\n            \"reputation\": 1586,\n            \"reputationId\": \"string\",\n            \"term\": \"string\"\n          },\n          {\n            \"rawTerm\": \"string\",\n            \"reputation\": 966,\n            \"reputationId\": \"string\",\n            \"term\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"roles\": [\n      \"string\",\n      \"string\"\n    ],\n    \"scheduled\": true,\n    \"sortValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"startDate\": \"2000-06-18T02:47:31.110Z\",\n    \"system\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"tagsRaw\": [\n      \"string\",\n      \"string\"\n    ],\n    \"taskId\": \"string\",\n    \"times\": 1870,\n    \"timezoneOffset\": 9151,\n    \"type\": 9430.778652326791,\n    \"user\": \"string\",\n    \"version\": 1556\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "528604f8-04e5-4c82-bf5a-06433642441e",
+              "name": "In case of closed investigation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entry",
+                    "execute",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "880b5e66-f6e8-4041-ac44-b5ffd8c2fca4",
+          "name": "Export Artifact",
+          "request": {
+            "name": "Export Artifact",
+            "description": {
+              "content": "Export an entry artifact",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entry",
+                "exportArtifact"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"investigationId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3f2f99ee-be78-4c01-a456-40ddc35dd043",
+              "name": "created file name",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entry",
+                    "exportArtifact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"investigationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c50a3bd-09c8-4971-9d13-40fc1dddc2a9",
+          "name": "Create new formatted entry in existing investigation",
+          "request": {
+            "name": "Create new formatted entry in existing investigation",
+            "description": {
+              "content": "API to create a formatted entry (table/json/text/markdown/html) in existing investigation\nBody example: {\"investigationId\":\"1234\",\"format\":\"table/json/text/markdown/html\",\"contents\":\"entry content…\"}",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entry",
+                "formatted"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contents\": \"<string>\",\n  \"format\": \"<string>\",\n  \"investigationId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "40546e5a-0243-4103-a314-ad12085a041a",
+              "name": "Entry",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entry",
+                    "formatted"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contents\": \"<string>\",\n  \"format\": \"<string>\",\n  \"investigationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ShardID\": 58,\n  \"brand\": \"string\",\n  \"category\": \"string\",\n  \"contents\": {},\n  \"contentsSize\": 3292,\n  \"created\": \"1973-06-08T13:16:20.115Z\",\n  \"cron\": \"string\",\n  \"cronView\": false,\n  \"deleted\": true,\n  \"endingDate\": \"1948-10-11T16:27:36.097Z\",\n  \"endingType\": \"string\",\n  \"entryTask\": {\n    \"playbookName\": \"string\",\n    \"taskId\": \"string\",\n    \"taskName\": \"string\",\n    \"taskStatus\": \"string\"\n  },\n  \"errorSource\": \"string\",\n  \"file\": \"string\",\n  \"fileID\": \"string\",\n  \"fileMetadata\": {\n    \"info\": \"string\",\n    \"isMediaFile\": true,\n    \"md5\": \"string\",\n    \"sha1\": \"string\",\n    \"sha256\": \"string\",\n    \"sha512\": \"string\",\n    \"size\": 2374,\n    \"ssdeep\": \"string\",\n    \"type\": \"string\"\n  },\n  \"format\": \"string\",\n  \"hasRole\": true,\n  \"history\": [\n    {\n      \"contentDate\": \"1972-07-22T11:29:59.753Z\",\n      \"contents\": \"string\",\n      \"contentsFormat\": \"string\",\n      \"user\": \"string\"\n    },\n    {\n      \"contentDate\": \"1986-05-10T03:56:01.833Z\",\n      \"contents\": \"string\",\n      \"contentsFormat\": \"string\",\n      \"user\": \"string\"\n    }\n  ],\n  \"humanCron\": {\n    \"atTimeHour\": \"string\",\n    \"atTimeMinute\": \"string\",\n    \"days\": [\n      \"string\",\n      \"string\"\n    ],\n    \"hoursPeriod\": \"string\",\n    \"schedulingType\": \"string\",\n    \"timePeriod\": 422,\n    \"timePeriodType\": \"string\"\n  },\n  \"id\": \"string\",\n  \"instance\": \"string\",\n  \"investigationId\": \"string\",\n  \"modified\": \"1983-01-30T18:58:49.922Z\",\n  \"note\": false,\n  \"parentContent\": {},\n  \"parentEntryTruncated\": true,\n  \"parentId\": \"string\",\n  \"pinned\": false,\n  \"playbookId\": \"string\",\n  \"previousRoles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"readOnly\": true,\n  \"recurrent\": true,\n  \"reputationSize\": 3714,\n  \"reputations\": [\n    {\n      \"highlights\": {\n        \"key_0\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"reputationsData\": [\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 8468,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        },\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 940,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        }\n      ]\n    },\n    {\n      \"highlights\": {\n        \"key_0\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"key_1\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_2\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_3\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"key_2\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"reputationsData\": [\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 4982,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        },\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 36,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"roles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"scheduled\": false,\n  \"sortValues\": [\n    \"string\",\n    \"string\"\n  ],\n  \"startDate\": \"2001-08-11T06:53:25.082Z\",\n  \"system\": \"string\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tagsRaw\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskId\": \"string\",\n  \"times\": 8727,\n  \"timezoneOffset\": 4716,\n  \"type\": 5692.592191446327,\n  \"user\": \"string\",\n  \"version\": 3815\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5426fd01-19fe-43b9-affc-205cf6962463",
+          "name": "Mark entry as note",
+          "request": {
+            "name": "Mark entry as note",
+            "description": {
+              "content": "API to mark entry as note, can be used also to remove the note\nBody example: {\"id\":1\\@1234\",\"version\":\"-1\",\"investigationId\":\"1234\",\"data\":\"true/false\"}",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entry",
+                "note"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"args\": {\n    \"key_0\": {\n      \"complex\": {\n        \"accessor\": \"<string>\",\n        \"filters\": [\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        ],\n        \"root\": \"<string>\",\n        \"transformers\": [\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"simple\": \"<string>\"\n    },\n    \"key_1\": {\n      \"complex\": {\n        \"accessor\": \"<string>\",\n        \"filters\": [\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        ],\n        \"root\": \"<string>\",\n        \"transformers\": [\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"args\": {},\n            \"operator\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"simple\": \"<string>\"\n    }\n  },\n  \"data\": \"<string>\",\n  \"id\": \"<string>\",\n  \"investigationId\": \"<string>\",\n  \"markdown\": \"<boolean>\",\n  \"version\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "29900068-203a-48d1-9418-db87b6d377a9",
+              "name": "Entry",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entry",
+                    "note"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ShardID\": 58,\n  \"brand\": \"string\",\n  \"category\": \"string\",\n  \"contents\": {},\n  \"contentsSize\": 3292,\n  \"created\": \"1973-06-08T13:16:20.115Z\",\n  \"cron\": \"string\",\n  \"cronView\": false,\n  \"deleted\": true,\n  \"endingDate\": \"1948-10-11T16:27:36.097Z\",\n  \"endingType\": \"string\",\n  \"entryTask\": {\n    \"playbookName\": \"string\",\n    \"taskId\": \"string\",\n    \"taskName\": \"string\",\n    \"taskStatus\": \"string\"\n  },\n  \"errorSource\": \"string\",\n  \"file\": \"string\",\n  \"fileID\": \"string\",\n  \"fileMetadata\": {\n    \"info\": \"string\",\n    \"isMediaFile\": true,\n    \"md5\": \"string\",\n    \"sha1\": \"string\",\n    \"sha256\": \"string\",\n    \"sha512\": \"string\",\n    \"size\": 2374,\n    \"ssdeep\": \"string\",\n    \"type\": \"string\"\n  },\n  \"format\": \"string\",\n  \"hasRole\": true,\n  \"history\": [\n    {\n      \"contentDate\": \"1972-07-22T11:29:59.753Z\",\n      \"contents\": \"string\",\n      \"contentsFormat\": \"string\",\n      \"user\": \"string\"\n    },\n    {\n      \"contentDate\": \"1986-05-10T03:56:01.833Z\",\n      \"contents\": \"string\",\n      \"contentsFormat\": \"string\",\n      \"user\": \"string\"\n    }\n  ],\n  \"humanCron\": {\n    \"atTimeHour\": \"string\",\n    \"atTimeMinute\": \"string\",\n    \"days\": [\n      \"string\",\n      \"string\"\n    ],\n    \"hoursPeriod\": \"string\",\n    \"schedulingType\": \"string\",\n    \"timePeriod\": 422,\n    \"timePeriodType\": \"string\"\n  },\n  \"id\": \"string\",\n  \"instance\": \"string\",\n  \"investigationId\": \"string\",\n  \"modified\": \"1983-01-30T18:58:49.922Z\",\n  \"note\": false,\n  \"parentContent\": {},\n  \"parentEntryTruncated\": true,\n  \"parentId\": \"string\",\n  \"pinned\": false,\n  \"playbookId\": \"string\",\n  \"previousRoles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"readOnly\": true,\n  \"recurrent\": true,\n  \"reputationSize\": 3714,\n  \"reputations\": [\n    {\n      \"highlights\": {\n        \"key_0\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"reputationsData\": [\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 8468,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        },\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 940,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        }\n      ]\n    },\n    {\n      \"highlights\": {\n        \"key_0\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"key_1\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_2\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_3\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"key_2\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"reputationsData\": [\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 4982,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        },\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 36,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"roles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"scheduled\": false,\n  \"sortValues\": [\n    \"string\",\n    \"string\"\n  ],\n  \"startDate\": \"2001-08-11T06:53:25.082Z\",\n  \"system\": \"string\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tagsRaw\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskId\": \"string\",\n  \"times\": 8727,\n  \"timezoneOffset\": 4716,\n  \"type\": 5692.592191446327,\n  \"user\": \"string\",\n  \"version\": 3815\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3662de6-9704-4631-a581-1eeaef547e1a",
+          "name": "Set entry tags",
+          "request": {
+            "name": "Set entry tags",
+            "description": {
+              "content": "API to set entry tags\nBody example: {\"id\":\"1\\@1234\",\"version\":\"-1\",\"investigationId\":\"1234\",\"tags\":[\"tag1\",\"tag2\"]\"}",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entry",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"investigationId\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"version\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c662626-5b8d-4450-8090-c2fc03c9f84a",
+              "name": "Entry",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entry",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"investigationId\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"version\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ShardID\": 58,\n  \"brand\": \"string\",\n  \"category\": \"string\",\n  \"contents\": {},\n  \"contentsSize\": 3292,\n  \"created\": \"1973-06-08T13:16:20.115Z\",\n  \"cron\": \"string\",\n  \"cronView\": false,\n  \"deleted\": true,\n  \"endingDate\": \"1948-10-11T16:27:36.097Z\",\n  \"endingType\": \"string\",\n  \"entryTask\": {\n    \"playbookName\": \"string\",\n    \"taskId\": \"string\",\n    \"taskName\": \"string\",\n    \"taskStatus\": \"string\"\n  },\n  \"errorSource\": \"string\",\n  \"file\": \"string\",\n  \"fileID\": \"string\",\n  \"fileMetadata\": {\n    \"info\": \"string\",\n    \"isMediaFile\": true,\n    \"md5\": \"string\",\n    \"sha1\": \"string\",\n    \"sha256\": \"string\",\n    \"sha512\": \"string\",\n    \"size\": 2374,\n    \"ssdeep\": \"string\",\n    \"type\": \"string\"\n  },\n  \"format\": \"string\",\n  \"hasRole\": true,\n  \"history\": [\n    {\n      \"contentDate\": \"1972-07-22T11:29:59.753Z\",\n      \"contents\": \"string\",\n      \"contentsFormat\": \"string\",\n      \"user\": \"string\"\n    },\n    {\n      \"contentDate\": \"1986-05-10T03:56:01.833Z\",\n      \"contents\": \"string\",\n      \"contentsFormat\": \"string\",\n      \"user\": \"string\"\n    }\n  ],\n  \"humanCron\": {\n    \"atTimeHour\": \"string\",\n    \"atTimeMinute\": \"string\",\n    \"days\": [\n      \"string\",\n      \"string\"\n    ],\n    \"hoursPeriod\": \"string\",\n    \"schedulingType\": \"string\",\n    \"timePeriod\": 422,\n    \"timePeriodType\": \"string\"\n  },\n  \"id\": \"string\",\n  \"instance\": \"string\",\n  \"investigationId\": \"string\",\n  \"modified\": \"1983-01-30T18:58:49.922Z\",\n  \"note\": false,\n  \"parentContent\": {},\n  \"parentEntryTruncated\": true,\n  \"parentId\": \"string\",\n  \"pinned\": false,\n  \"playbookId\": \"string\",\n  \"previousRoles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"readOnly\": true,\n  \"recurrent\": true,\n  \"reputationSize\": 3714,\n  \"reputations\": [\n    {\n      \"highlights\": {\n        \"key_0\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"reputationsData\": [\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 8468,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        },\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 940,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        }\n      ]\n    },\n    {\n      \"highlights\": {\n        \"key_0\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"key_1\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_1\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_2\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"key_3\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"key_2\": {\n          \"key_0\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"reputationsData\": [\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 4982,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        },\n        {\n          \"rawTerm\": \"string\",\n          \"reputation\": 36,\n          \"reputationId\": \"string\",\n          \"term\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"roles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"scheduled\": false,\n  \"sortValues\": [\n    \"string\",\n    \"string\"\n  ],\n  \"startDate\": \"2001-08-11T06:53:25.082Z\",\n  \"system\": \"string\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tagsRaw\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskId\": \"string\",\n  \"times\": 8727,\n  \"timezoneOffset\": 4716,\n  \"type\": 5692.592191446327,\n  \"user\": \"string\",\n  \"version\": 3815\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hostname:443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ad967475-545e-4479-9c0c-8d1b05422b3c",
+    "name": "Demisto Apikeys Entry API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the public REST API to integrate with the demisto server.\nHTTP request can be sent using any HTTP-client.\n\nFor an example dedicated client take a look at: https://github.com/demisto/demisto-py.\n\nRequests must include API-key that can be generated in the Demisto web client under 'Settings' -> 'Integrations' -> 'API keys'\n\n\nOptimistic Locking and Versioning\\:\n\nWhen using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).\nIn addition, you can pass 'version\\: -1' to force data override (make sure that other users data might be lost).\n\nAssume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?\nTo solve this, each data item in Demisto has a numeric incremental version.\nIf Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.\nBob will need to get the latest item and work on it so Alice work will not get lost.\n\nExample request using 'curl'\\:\n\n```\ncurl 'https://hostname:443/incidents/search' -H 'content-type: application/json' -H 'accept: application/json' -H 'Authorization: <API Key goes here>' --data-binary '{\"filter\":{\"query\":\"-status:closed -category:job\",\"period\":{\"by\":\"day\",\"fromValue\":7}}}' --compressed\n```",
+      "type": "text/plain"
+    }
+  }
+}

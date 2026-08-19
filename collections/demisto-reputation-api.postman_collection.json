@@ -1,0 +1,156 @@
+{
+  "item": [
+    {
+      "id": "246941f7-b7a2-4187-bddb-dc76e6e15e0c",
+      "name": "Reputation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0fa472b6-b9de-4a24-adaf-4552e86e5314",
+          "name": "Import a reputation type",
+          "request": {
+            "name": "Import a reputation type",
+            "description": {
+              "content": "Import a reputation type to XSOAR",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reputation",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) file"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c7deac50-be9a-4c9a-b98b-8908ce72baec",
+              "name": "The saved reputation type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reputation",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) file",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"reputations\": [\n    {\n      \"cacheVersn\": 8352,\n      \"commitMessage\": \"string\",\n      \"contextPath\": \"string\",\n      \"contextValue\": \"string\",\n      \"defaultMapping\": {\n        \"key_0\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        }\n      },\n      \"definitionId\": \"string\",\n      \"details\": \"string\",\n      \"disabled\": false,\n      \"enhancementScriptNames\": [\n        \"string\",\n        \"string\"\n      ],\n      \"excludedBrands\": [\n        \"string\",\n        \"string\"\n      ],\n      \"expiration\": 6294,\n      \"file\": true,\n      \"fileHashesPriority\": [\n        \"string\",\n        \"string\"\n      ],\n      \"formatScript\": \"string\",\n      \"fromServerVersion\": {\n        \"Digits\": [\n          7661,\n          2613\n        ],\n        \"Label\": \"string\"\n      },\n      \"highlight\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"id\": \"string\",\n      \"itemVersion\": {\n        \"Digits\": [\n          9847,\n          8081\n        ],\n        \"Label\": \"string\"\n      },\n      \"layout\": \"string\",\n      \"legacyNames\": [\n        \"string\",\n        \"string\"\n      ],\n      \"locked\": true,\n      \"manualMapping\": {\n        \"key_0\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        },\n        \"key_1\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        }\n      },\n      \"mergeContext\": true,\n      \"modified\": \"2020-06-15T22:58:23.218Z\",\n      \"numericId\": 8047,\n      \"packID\": \"string\",\n      \"packName\": \"string\",\n      \"packPropagationLabels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prevDetails\": \"string\",\n      \"primaryTerm\": 9396,\n      \"propagationLabels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"regex\": \"string\",\n      \"remote\": false,\n      \"reputationCommand\": \"string\",\n      \"reputationScriptName\": \"string\",\n      \"sequenceNumber\": 5693,\n      \"shouldCommit\": true,\n      \"shouldShareComments\": false,\n      \"sortValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"syncHash\": \"string\",\n      \"system\": true,\n      \"toServerVersion\": {\n        \"Digits\": [\n          4900,\n          5294\n        ],\n        \"Label\": \"string\"\n      },\n      \"updateAfter\": 8684,\n      \"vcShouldIgnore\": true,\n      \"vcShouldKeepItemLegacyProdMachine\": true,\n      \"version\": 741\n    },\n    {\n      \"cacheVersn\": 2952,\n      \"commitMessage\": \"string\",\n      \"contextPath\": \"string\",\n      \"contextValue\": \"string\",\n      \"defaultMapping\": {\n        \"key_0\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        }\n      },\n      \"definitionId\": \"string\",\n      \"details\": \"string\",\n      \"disabled\": true,\n      \"enhancementScriptNames\": [\n        \"string\",\n        \"string\"\n      ],\n      \"excludedBrands\": [\n        \"string\",\n        \"string\"\n      ],\n      \"expiration\": 5489,\n      \"file\": true,\n      \"fileHashesPriority\": [\n        \"string\",\n        \"string\"\n      ],\n      \"formatScript\": \"string\",\n      \"fromServerVersion\": {\n        \"Digits\": [\n          3389,\n          4764\n        ],\n        \"Label\": \"string\"\n      },\n      \"highlight\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_1\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"id\": \"string\",\n      \"itemVersion\": {\n        \"Digits\": [\n          2940,\n          7674\n        ],\n        \"Label\": \"string\"\n      },\n      \"layout\": \"string\",\n      \"legacyNames\": [\n        \"string\",\n        \"string\"\n      ],\n      \"locked\": true,\n      \"manualMapping\": {\n        \"key_0\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        },\n        \"key_1\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        },\n        \"key_2\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        }\n      },\n      \"mergeContext\": false,\n      \"modified\": \"1989-08-01T10:39:48.210Z\",\n      \"numericId\": 8322,\n      \"packID\": \"string\",\n      \"packName\": \"string\",\n      \"packPropagationLabels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"prevDetails\": \"string\",\n      \"primaryTerm\": 9642,\n      \"propagationLabels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"regex\": \"string\",\n      \"remote\": false,\n      \"reputationCommand\": \"string\",\n      \"reputationScriptName\": \"string\",\n      \"sequenceNumber\": 2901,\n      \"shouldCommit\": true,\n      \"shouldShareComments\": false,\n      \"sortValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"syncHash\": \"string\",\n      \"system\": true,\n      \"toServerVersion\": {\n        \"Digits\": [\n          3826,\n          2349\n        ],\n        \"Label\": \"string\"\n      },\n      \"updateAfter\": 7679,\n      \"vcShouldIgnore\": false,\n      \"vcShouldKeepItemLegacyProdMachine\": true,\n      \"version\": 3822\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hostname:443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d0c7ed6f-4af2-4a34-8a0e-b4e98d665130",
+    "name": "Demisto Apikeys Reputation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the public REST API to integrate with the demisto server.\nHTTP request can be sent using any HTTP-client.\n\nFor an example dedicated client take a look at: https://github.com/demisto/demisto-py.\n\nRequests must include API-key that can be generated in the Demisto web client under 'Settings' -> 'Integrations' -> 'API keys'\n\n\nOptimistic Locking and Versioning\\:\n\nWhen using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).\nIn addition, you can pass 'version\\: -1' to force data override (make sure that other users data might be lost).\n\nAssume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?\nTo solve this, each data item in Demisto has a numeric incremental version.\nIf Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.\nBob will need to get the latest item and work on it so Alice work will not get lost.\n\nExample request using 'curl'\\:\n\n```\ncurl 'https://hostname:443/incidents/search' -H 'content-type: application/json' -H 'accept: application/json' -H 'Authorization: <API Key goes here>' --data-binary '{\"filter\":{\"query\":\"-status:closed -category:job\",\"period\":{\"by\":\"day\",\"fromValue\":7}}}' --compressed\n```",
+      "type": "text/plain"
+    }
+  }
+}

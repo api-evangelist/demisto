@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Widgets API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Widgets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getAllWidgets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/widgets"
+          },
+          "docs": "Get all widgets"
+        },
+        {
+          "info": {
+            "name": "Add or update a widget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/widgets"
+          },
+          "docs": "Add or update a given widget based on Id."
+        },
+        {
+          "info": {
+            "name": "Import a widget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/widgets/import"
+          },
+          "docs": "Import a widget to the system, ignoring ID or version, used to import new widgets."
+        },
+        {
+          "info": {
+            "name": "Get widget by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/widgets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of widget to get."
+              }
+            ]
+          },
+          "docs": "Get a widget object by a given ID."
+        },
+        {
+          "info": {
+            "name": "Remove existing widget",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/widgets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Widget id to remove (returned from widget save or widgets get)"
+              }
+            ]
+          },
+          "docs": "Remove a given widget Id from the system."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

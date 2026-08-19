@@ -1,0 +1,352 @@
+{
+  "item": [
+    {
+      "id": "86aca46d-b899-4f07-880d-a1aa1af5db50",
+      "name": "Indicator",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "98d244b8-6317-4a04-a72a-2d439f0ed0dc",
+          "name": "Create Indicator",
+          "request": {
+            "name": "Create Indicator",
+            "description": {
+              "content": "Create an indicator entity\nTo update indicator custom fields you should lowercase them and remove all spaces. For example: Scan IP -> scanip",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicator",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entryId\": \"<string>\",\n  \"indicator\": {\n    \"CustomFields\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    },\n    \"account\": \"<string>\",\n    \"calculatedTime\": \"<dateTime>\",\n    \"comment\": \"<string>\",\n    \"firstSeen\": \"<dateTime>\",\n    \"firstSeenEntryID\": \"<string>\",\n    \"id\": \"<string>\",\n    \"indicator_type\": \"<string>\",\n    \"insightCache\": {\n      \"id\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"scores\": {\n        \"key_0\": {\n          \"content\": \"<string>\",\n          \"contentFormat\": \"<string>\",\n          \"context\": {\n            \"key_0\": \"<object>\",\n            \"key_1\": \"<object>\",\n            \"key_2\": \"<object>\",\n            \"key_3\": \"<object>\"\n          },\n          \"isTypedIndicator\": \"<boolean>\",\n          \"score\": \"<long>\",\n          \"scoreChangeTimestamp\": \"<dateTime>\",\n          \"timestamp\": \"<dateTime>\",\n          \"type\": \"<string>\"\n        },\n        \"key_1\": {\n          \"content\": \"<string>\",\n          \"contentFormat\": \"<string>\",\n          \"context\": {\n            \"key_0\": \"<object>\"\n          },\n          \"isTypedIndicator\": \"<boolean>\",\n          \"score\": \"<long>\",\n          \"scoreChangeTimestamp\": \"<dateTime>\",\n          \"timestamp\": \"<dateTime>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"sequenceNumber\": \"<long>\",\n      \"sortValues\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"version\": \"<long>\"\n    },\n    \"investigationIDs\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"lastReputationRun\": \"<dateTime>\",\n    \"lastSeen\": \"<dateTime>\",\n    \"lastSeenEntryID\": \"<string>\",\n    \"manualScore\": \"<boolean>\",\n    \"manualSetTime\": \"<dateTime>\",\n    \"manuallyEditedFields\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"modified\": \"<dateTime>\",\n    \"score\": \"<long>\",\n    \"setBy\": \"<string>\",\n    \"sortValues\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"source\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"value\": \"<string>\",\n    \"version\": \"<long>\"\n  },\n  \"investigationId\": \"<string>\",\n  \"seenNow\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b871de41-1354-4bf7-898f-ab11c23497f1",
+              "name": "IocObject",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entryId\": \"<string>\",\n  \"indicator\": {\n    \"CustomFields\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\",\n      \"key_2\": \"<object>\"\n    },\n    \"account\": \"<string>\",\n    \"calculatedTime\": \"<dateTime>\",\n    \"comment\": \"<string>\",\n    \"firstSeen\": \"<dateTime>\",\n    \"firstSeenEntryID\": \"<string>\",\n    \"id\": \"<string>\",\n    \"indicator_type\": \"<string>\",\n    \"insightCache\": {\n      \"id\": \"<string>\",\n      \"modified\": \"<dateTime>\",\n      \"scores\": {\n        \"key_0\": {\n          \"content\": \"<string>\",\n          \"contentFormat\": \"<string>\",\n          \"context\": {\n            \"key_0\": \"<object>\"\n          },\n          \"isTypedIndicator\": \"<boolean>\",\n          \"score\": \"<long>\",\n          \"scoreChangeTimestamp\": \"<dateTime>\",\n          \"timestamp\": \"<dateTime>\",\n          \"type\": \"<string>\"\n        },\n        \"key_1\": {\n          \"content\": \"<string>\",\n          \"contentFormat\": \"<string>\",\n          \"context\": {\n            \"key_0\": \"<object>\"\n          },\n          \"isTypedIndicator\": \"<boolean>\",\n          \"score\": \"<long>\",\n          \"scoreChangeTimestamp\": \"<dateTime>\",\n          \"timestamp\": \"<dateTime>\",\n          \"type\": \"<string>\"\n        },\n        \"key_2\": {\n          \"content\": \"<string>\",\n          \"contentFormat\": \"<string>\",\n          \"context\": {\n            \"key_0\": \"<object>\",\n            \"key_1\": \"<object>\"\n          },\n          \"isTypedIndicator\": \"<boolean>\",\n          \"score\": \"<long>\",\n          \"scoreChangeTimestamp\": \"<dateTime>\",\n          \"timestamp\": \"<dateTime>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"sequenceNumber\": \"<long>\",\n      \"sortValues\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"version\": \"<long>\"\n    },\n    \"investigationIDs\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"lastReputationRun\": \"<dateTime>\",\n    \"lastSeen\": \"<dateTime>\",\n    \"lastSeenEntryID\": \"<string>\",\n    \"manualScore\": \"<boolean>\",\n    \"manualSetTime\": \"<dateTime>\",\n    \"manuallyEditedFields\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"modified\": \"<dateTime>\",\n    \"score\": \"<long>\",\n    \"setBy\": \"<string>\",\n    \"sortValues\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"source\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"value\": \"<string>\",\n    \"version\": \"<long>\"\n  },\n  \"investigationId\": \"<string>\",\n  \"seenNow\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"CustomFields\": {\n    \"key_0\": \"<object>\"\n  },\n  \"account\": \"<string>\",\n  \"calculatedTime\": \"<dateTime>\",\n  \"comment\": \"<string>\",\n  \"firstSeen\": \"<dateTime>\",\n  \"firstSeenEntryID\": \"<string>\",\n  \"id\": \"<string>\",\n  \"indicator_type\": \"<string>\",\n  \"insightCache\": {\n    \"id\": \"<string>\",\n    \"modified\": \"<dateTime>\",\n    \"scores\": {\n      \"key_0\": {\n        \"content\": \"<string>\",\n        \"contentFormat\": \"<string>\",\n        \"context\": {\n          \"key_0\": \"<object>\"\n        },\n        \"isTypedIndicator\": \"<boolean>\",\n        \"score\": \"<long>\",\n        \"scoreChangeTimestamp\": \"<dateTime>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      },\n      \"key_1\": {\n        \"content\": \"<string>\",\n        \"contentFormat\": \"<string>\",\n        \"context\": {\n          \"key_0\": \"<object>\"\n        },\n        \"isTypedIndicator\": \"<boolean>\",\n        \"score\": \"<long>\",\n        \"scoreChangeTimestamp\": \"<dateTime>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      },\n      \"key_2\": {\n        \"content\": \"<string>\",\n        \"contentFormat\": \"<string>\",\n        \"context\": {\n          \"key_0\": \"<object>\"\n        },\n        \"isTypedIndicator\": \"<boolean>\",\n        \"score\": \"<long>\",\n        \"scoreChangeTimestamp\": \"<dateTime>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      }\n    },\n    \"sequenceNumber\": \"<long>\",\n    \"sortValues\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"version\": \"<long>\"\n  },\n  \"investigationIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"lastReputationRun\": \"<dateTime>\",\n  \"lastSeen\": \"<dateTime>\",\n  \"lastSeenEntryID\": \"<string>\",\n  \"manualScore\": \"<boolean>\",\n  \"manualSetTime\": \"<dateTime>\",\n  \"manuallyEditedFields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"modified\": \"<dateTime>\",\n  \"score\": \"<long>\",\n  \"setBy\": \"<string>\",\n  \"sortValues\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"source\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"value\": \"<string>\",\n  \"version\": \"<long>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54624813-19df-4bbc-9794-77c370df08d9",
+          "name": "Edit Indicator",
+          "request": {
+            "name": "Edit Indicator",
+            "description": {
+              "content": "Edit an indicator entity\nTo update indicator custom fields you should lowercase them and remove all spaces. For example: Scan IP -> scanip",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicator",
+                "edit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"CustomFields\": {\n    \"key_0\": \"<object>\"\n  },\n  \"account\": \"<string>\",\n  \"calculatedTime\": \"<dateTime>\",\n  \"comment\": \"<string>\",\n  \"firstSeen\": \"<dateTime>\",\n  \"firstSeenEntryID\": \"<string>\",\n  \"id\": \"<string>\",\n  \"indicator_type\": \"<string>\",\n  \"insightCache\": {\n    \"id\": \"<string>\",\n    \"modified\": \"<dateTime>\",\n    \"scores\": {\n      \"key_0\": {\n        \"content\": \"<string>\",\n        \"contentFormat\": \"<string>\",\n        \"context\": {\n          \"key_0\": \"<object>\",\n          \"key_1\": \"<object>\",\n          \"key_2\": \"<object>\",\n          \"key_3\": \"<object>\"\n        },\n        \"isTypedIndicator\": \"<boolean>\",\n        \"score\": \"<long>\",\n        \"scoreChangeTimestamp\": \"<dateTime>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      },\n      \"key_1\": {\n        \"content\": \"<string>\",\n        \"contentFormat\": \"<string>\",\n        \"context\": {\n          \"key_0\": \"<object>\",\n          \"key_1\": \"<object>\",\n          \"key_2\": \"<object>\"\n        },\n        \"isTypedIndicator\": \"<boolean>\",\n        \"score\": \"<long>\",\n        \"scoreChangeTimestamp\": \"<dateTime>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      },\n      \"key_2\": {\n        \"content\": \"<string>\",\n        \"contentFormat\": \"<string>\",\n        \"context\": {\n          \"key_0\": \"<object>\",\n          \"key_1\": \"<object>\"\n        },\n        \"isTypedIndicator\": \"<boolean>\",\n        \"score\": \"<long>\",\n        \"scoreChangeTimestamp\": \"<dateTime>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      }\n    },\n    \"sequenceNumber\": \"<long>\",\n    \"sortValues\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"version\": \"<long>\"\n  },\n  \"investigationIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"lastReputationRun\": \"<dateTime>\",\n  \"lastSeen\": \"<dateTime>\",\n  \"lastSeenEntryID\": \"<string>\",\n  \"manualScore\": \"<boolean>\",\n  \"manualSetTime\": \"<dateTime>\",\n  \"manuallyEditedFields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"modified\": \"<dateTime>\",\n  \"score\": \"<long>\",\n  \"setBy\": \"<string>\",\n  \"sortValues\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"source\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"value\": \"<string>\",\n  \"version\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e785274c-51f8-4d77-9b68-1061affd7902",
+              "name": "IocObject",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "edit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"CustomFields\": {\n    \"key_0\": \"<object>\"\n  },\n  \"account\": \"<string>\",\n  \"calculatedTime\": \"<dateTime>\",\n  \"comment\": \"<string>\",\n  \"firstSeen\": \"<dateTime>\",\n  \"firstSeenEntryID\": \"<string>\",\n  \"id\": \"<string>\",\n  \"indicator_type\": \"<string>\",\n  \"insightCache\": {\n    \"id\": \"<string>\",\n    \"modified\": \"<dateTime>\",\n    \"scores\": {\n      \"key_0\": {\n        \"content\": \"<string>\",\n        \"contentFormat\": \"<string>\",\n        \"context\": {\n          \"key_0\": \"<object>\"\n        },\n        \"isTypedIndicator\": \"<boolean>\",\n        \"score\": \"<long>\",\n        \"scoreChangeTimestamp\": \"<dateTime>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      },\n      \"key_1\": {\n        \"content\": \"<string>\",\n        \"contentFormat\": \"<string>\",\n        \"context\": {\n          \"key_0\": \"<object>\"\n        },\n        \"isTypedIndicator\": \"<boolean>\",\n        \"score\": \"<long>\",\n        \"scoreChangeTimestamp\": \"<dateTime>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      },\n      \"key_2\": {\n        \"content\": \"<string>\",\n        \"contentFormat\": \"<string>\",\n        \"context\": {\n          \"key_0\": \"<object>\"\n        },\n        \"isTypedIndicator\": \"<boolean>\",\n        \"score\": \"<long>\",\n        \"scoreChangeTimestamp\": \"<dateTime>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      }\n    },\n    \"sequenceNumber\": \"<long>\",\n    \"sortValues\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"version\": \"<long>\"\n  },\n  \"investigationIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"lastReputationRun\": \"<dateTime>\",\n  \"lastSeen\": \"<dateTime>\",\n  \"lastSeenEntryID\": \"<string>\",\n  \"manualScore\": \"<boolean>\",\n  \"manualSetTime\": \"<dateTime>\",\n  \"manuallyEditedFields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"modified\": \"<dateTime>\",\n  \"score\": \"<long>\",\n  \"setBy\": \"<string>\",\n  \"sortValues\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"source\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"value\": \"<string>\",\n  \"version\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"CustomFields\": {\n    \"key_0\": \"<object>\"\n  },\n  \"account\": \"<string>\",\n  \"calculatedTime\": \"<dateTime>\",\n  \"comment\": \"<string>\",\n  \"firstSeen\": \"<dateTime>\",\n  \"firstSeenEntryID\": \"<string>\",\n  \"id\": \"<string>\",\n  \"indicator_type\": \"<string>\",\n  \"insightCache\": {\n    \"id\": \"<string>\",\n    \"modified\": \"<dateTime>\",\n    \"scores\": {\n      \"key_0\": {\n        \"content\": \"<string>\",\n        \"contentFormat\": \"<string>\",\n        \"context\": {\n          \"key_0\": \"<object>\"\n        },\n        \"isTypedIndicator\": \"<boolean>\",\n        \"score\": \"<long>\",\n        \"scoreChangeTimestamp\": \"<dateTime>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      },\n      \"key_1\": {\n        \"content\": \"<string>\",\n        \"contentFormat\": \"<string>\",\n        \"context\": {\n          \"key_0\": \"<object>\"\n        },\n        \"isTypedIndicator\": \"<boolean>\",\n        \"score\": \"<long>\",\n        \"scoreChangeTimestamp\": \"<dateTime>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      },\n      \"key_2\": {\n        \"content\": \"<string>\",\n        \"contentFormat\": \"<string>\",\n        \"context\": {\n          \"key_0\": \"<object>\"\n        },\n        \"isTypedIndicator\": \"<boolean>\",\n        \"score\": \"<long>\",\n        \"scoreChangeTimestamp\": \"<dateTime>\",\n        \"timestamp\": \"<dateTime>\",\n        \"type\": \"<string>\"\n      }\n    },\n    \"sequenceNumber\": \"<long>\",\n    \"sortValues\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"version\": \"<long>\"\n  },\n  \"investigationIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"lastReputationRun\": \"<dateTime>\",\n  \"lastSeen\": \"<dateTime>\",\n  \"lastSeenEntryID\": \"<string>\",\n  \"manualScore\": \"<boolean>\",\n  \"manualSetTime\": \"<dateTime>\",\n  \"manuallyEditedFields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"modified\": \"<dateTime>\",\n  \"score\": \"<long>\",\n  \"setBy\": \"<string>\",\n  \"sortValues\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"source\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"value\": \"<string>\",\n  \"version\": \"<long>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0b1bc14-c215-478a-bfee-38898d075710",
+          "name": "Whitelists or deletes Indicator",
+          "request": {
+            "name": "Whitelists or deletes Indicator",
+            "description": {
+              "content": "Whitelists or deletes an indicator entity\nIn order to delete an indicator and not whitelist, set doNotWhitelist boolean field to true",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicator",
+                "whitelist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"InvestigationId\": \"<string>\",\n  \"doNotWhitelist\": \"<boolean>\",\n  \"entryId\": \"<string>\",\n  \"manualScore\": \"<boolean>\",\n  \"reason\": \"<string>\",\n  \"reputation\": \"<long>\",\n  \"reputations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"value\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bf2aeb98-bd1e-4e76-858e-f5585fc52c42",
+              "name": "UpdateResponse",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    "whitelist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"InvestigationId\": \"<string>\",\n  \"doNotWhitelist\": \"<boolean>\",\n  \"entryId\": \"<string>\",\n  \"manualScore\": \"<boolean>\",\n  \"reason\": \"<string>\",\n  \"reputation\": \"<long>\",\n  \"reputations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"notUpdated\": 248,\n  \"updatedIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hostname:443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2b2a4e93-4402-4c51-8eb9-932d2db898f6",
+    "name": "Demisto Apikeys Indicator API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the public REST API to integrate with the demisto server.\nHTTP request can be sent using any HTTP-client.\n\nFor an example dedicated client take a look at: https://github.com/demisto/demisto-py.\n\nRequests must include API-key that can be generated in the Demisto web client under 'Settings' -> 'Integrations' -> 'API keys'\n\n\nOptimistic Locking and Versioning\\:\n\nWhen using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).\nIn addition, you can pass 'version\\: -1' to force data override (make sure that other users data might be lost).\n\nAssume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?\nTo solve this, each data item in Demisto has a numeric incremental version.\nIf Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.\nBob will need to get the latest item and work on it so Alice work will not get lost.\n\nExample request using 'curl'\\:\n\n```\ncurl 'https://hostname:443/incidents/search' -H 'content-type: application/json' -H 'accept: application/json' -H 'Authorization: <API Key goes here>' --data-binary '{\"filter\":{\"query\":\"-status:closed -category:job\",\"period\":{\"by\":\"day\",\"fromValue\":7}}}' --compressed\n```",
+      "type": "text/plain"
+    }
+  }
+}

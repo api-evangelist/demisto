@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Layouts API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Layouts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import a layout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/layouts/import"
+          },
+          "docs": "Import a layout to Cortex XSOAR"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,428 @@
+{
+  "item": [
+    {
+      "id": "6f3291dd-6d9e-42f7-8d64-bde393467316",
+      "name": "Reports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4c0141c0-6df4-4504-9e22-39d59ccf571c",
+          "name": "Get all reports",
+          "request": {
+            "name": "Get all reports",
+            "description": {
+              "content": "Get all of the reports",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "38a83fff-cd04-4448-8382-f9abf2f25062",
+              "name": "Return array of reports",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"commitMessage\": \"string\",\n    \"createdBy\": \"string\",\n    \"cron\": \"string\",\n    \"cronView\": true,\n    \"dashboard\": {\n      \"commitMessage\": \"string\",\n      \"fromDate\": \"2005-10-30T17:59:57.637Z\",\n      \"fromDateLicense\": \"1994-04-26T23:36:46.994Z\",\n      \"id\": \"string\",\n      \"isCommon\": true,\n      \"layout\": [\n        {\n          \"forceRange\": false,\n          \"h\": 5244,\n          \"i\": \"string\",\n          \"id\": \"string\",\n          \"w\": 3499,\n          \"widget\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"x\": 9205,\n          \"y\": 3754\n        },\n        {\n          \"forceRange\": false,\n          \"h\": 1225,\n          \"i\": \"string\",\n          \"id\": \"string\",\n          \"w\": 2729,\n          \"widget\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"x\": 1116,\n          \"y\": 861\n        }\n      ],\n      \"modified\": \"1979-10-14T12:33:43.740Z\",\n      \"name\": \"string\",\n      \"owner\": \"string\",\n      \"period\": {\n        \"by\": \"string\",\n        \"byFrom\": \"string\",\n        \"byTo\": \"string\",\n        \"field\": \"string\",\n        \"fromValue\": \"string\",\n        \"toValue\": \"string\"\n      },\n      \"prevName\": \"string\",\n      \"shared\": true,\n      \"shouldCommit\": false,\n      \"sortValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"system\": true,\n      \"toDate\": \"2021-12-04T04:55:32.535Z\",\n      \"vcShouldIgnore\": false,\n      \"version\": 565\n    },\n    \"decoder\": {\n      \"key_0\": {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      \"key_1\": {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      \"key_2\": {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    },\n    \"description\": \"string\",\n    \"disableHeader\": true,\n    \"endingDate\": \"1969-03-02T23:45:54.381Z\",\n    \"endingType\": \"string\",\n    \"humanCron\": {\n      \"atTimeHour\": \"string\",\n      \"atTimeMinute\": \"string\",\n      \"days\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hoursPeriod\": \"string\",\n      \"schedulingType\": \"string\",\n      \"timePeriod\": 6947,\n      \"timePeriodType\": \"string\"\n    },\n    \"id\": \"string\",\n    \"latestReportName\": \"string\",\n    \"latestReportTime\": \"1986-03-16T11:25:28.727Z\",\n    \"latestReportUsername\": \"string\",\n    \"latestScheduledReportTime\": \"1992-04-19T23:26:16.038Z\",\n    \"locked\": false,\n    \"modified\": \"1991-03-07T03:04:59.354Z\",\n    \"name\": \"string\",\n    \"nextScheduledTime\": \"2018-08-20T16:57:48.367Z\",\n    \"orientation\": \"string\",\n    \"paperSize\": \"string\",\n    \"prevName\": \"string\",\n    \"prevType\": \"string\",\n    \"recipients\": [\n      \"string\",\n      \"string\"\n    ],\n    \"recurrent\": true,\n    \"reportType\": \"string\",\n    \"runOnce\": false,\n    \"runningUser\": \"string\",\n    \"scheduled\": false,\n    \"sections\": [\n      {\n        \"automation\": {\n          \"args\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"noEvent\": false\n        },\n        \"data\": {},\n        \"description\": \"string\",\n        \"displayType\": \"string\",\n        \"emptyNotification\": \"string\",\n        \"fromDate\": \"string\",\n        \"layout\": {},\n        \"query\": {\n          \"filter\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"groupBy\": [\n            \"string\",\n            \"string\"\n          ],\n          \"keys\": [\n            \"string\",\n            \"string\"\n          ],\n          \"type\": \"string\"\n        },\n        \"title\": \"string\",\n        \"titleStyle\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"toDate\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"automation\": {\n          \"args\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"noEvent\": true\n        },\n        \"data\": {},\n        \"description\": \"string\",\n        \"displayType\": \"string\",\n        \"emptyNotification\": \"string\",\n        \"fromDate\": \"string\",\n        \"layout\": {},\n        \"query\": {\n          \"filter\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"groupBy\": [\n            \"string\",\n            \"string\"\n          ],\n          \"keys\": [\n            \"string\",\n            \"string\"\n          ],\n          \"type\": \"string\"\n        },\n        \"title\": \"string\",\n        \"titleStyle\": {\n          \"key_0\": {}\n        },\n        \"toDate\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"sensitive\": false,\n    \"shouldCommit\": true,\n    \"sortValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"startDate\": \"1956-02-14T22:01:27.837Z\",\n    \"system\": true,\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"times\": 2361,\n    \"timezoneOffset\": 8978,\n    \"type\": \"string\",\n    \"userAPIKey\": \"string\",\n    \"userAPIKeyID\": \"string\",\n    \"vcShouldIgnore\": true,\n    \"version\": 5114\n  },\n  {\n    \"commitMessage\": \"string\",\n    \"createdBy\": \"string\",\n    \"cron\": \"string\",\n    \"cronView\": false,\n    \"dashboard\": {\n      \"commitMessage\": \"string\",\n      \"fromDate\": \"2009-03-17T19:21:38.749Z\",\n      \"fromDateLicense\": \"2003-01-29T22:13:59.482Z\",\n      \"id\": \"string\",\n      \"isCommon\": true,\n      \"layout\": [\n        {\n          \"forceRange\": true,\n          \"h\": 8198,\n          \"i\": \"string\",\n          \"id\": \"string\",\n          \"w\": 5681,\n          \"widget\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"x\": 4217,\n          \"y\": 2843\n        },\n        {\n          \"forceRange\": true,\n          \"h\": 1187,\n          \"i\": \"string\",\n          \"id\": \"string\",\n          \"w\": 7581,\n          \"widget\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"x\": 8560,\n          \"y\": 2768\n        }\n      ],\n      \"modified\": \"1963-12-25T21:41:10.524Z\",\n      \"name\": \"string\",\n      \"owner\": \"string\",\n      \"period\": {\n        \"by\": \"string\",\n        \"byFrom\": \"string\",\n        \"byTo\": \"string\",\n        \"field\": \"string\",\n        \"fromValue\": \"string\",\n        \"toValue\": \"string\"\n      },\n      \"prevName\": \"string\",\n      \"shared\": false,\n      \"shouldCommit\": true,\n      \"sortValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"system\": false,\n      \"toDate\": \"1969-05-06T23:54:03.919Z\",\n      \"vcShouldIgnore\": false,\n      \"version\": 1300\n    },\n    \"decoder\": {\n      \"key_0\": {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    },\n    \"description\": \"string\",\n    \"disableHeader\": true,\n    \"endingDate\": \"2017-01-24T12:53:55.338Z\",\n    \"endingType\": \"string\",\n    \"humanCron\": {\n      \"atTimeHour\": \"string\",\n      \"atTimeMinute\": \"string\",\n      \"days\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hoursPeriod\": \"string\",\n      \"schedulingType\": \"string\",\n      \"timePeriod\": 591,\n      \"timePeriodType\": \"string\"\n    },\n    \"id\": \"string\",\n    \"latestReportName\": \"string\",\n    \"latestReportTime\": \"2015-09-30T23:05:09.256Z\",\n    \"latestReportUsername\": \"string\",\n    \"latestScheduledReportTime\": \"1949-01-13T14:07:40.393Z\",\n    \"locked\": false,\n    \"modified\": \"2025-01-10T21:41:09.794Z\",\n    \"name\": \"string\",\n    \"nextScheduledTime\": \"1978-12-14T07:37:15.452Z\",\n    \"orientation\": \"string\",\n    \"paperSize\": \"string\",\n    \"prevName\": \"string\",\n    \"prevType\": \"string\",\n    \"recipients\": [\n      \"string\",\n      \"string\"\n    ],\n    \"recurrent\": false,\n    \"reportType\": \"string\",\n    \"runOnce\": false,\n    \"runningUser\": \"string\",\n    \"scheduled\": true,\n    \"sections\": [\n      {\n        \"automation\": {\n          \"args\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"noEvent\": false\n        },\n        \"data\": {},\n        \"description\": \"string\",\n        \"displayType\": \"string\",\n        \"emptyNotification\": \"string\",\n        \"fromDate\": \"string\",\n        \"layout\": {},\n        \"query\": {\n          \"filter\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"groupBy\": [\n            \"string\",\n            \"string\"\n          ],\n          \"keys\": [\n            \"string\",\n            \"string\"\n          ],\n          \"type\": \"string\"\n        },\n        \"title\": \"string\",\n        \"titleStyle\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"toDate\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"automation\": {\n          \"args\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"noEvent\": true\n        },\n        \"data\": {},\n        \"description\": \"string\",\n        \"displayType\": \"string\",\n        \"emptyNotification\": \"string\",\n        \"fromDate\": \"string\",\n        \"layout\": {},\n        \"query\": {\n          \"filter\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"groupBy\": [\n            \"string\",\n            \"string\"\n          ],\n          \"keys\": [\n            \"string\",\n            \"string\"\n          ],\n          \"type\": \"string\"\n        },\n        \"title\": \"string\",\n        \"titleStyle\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"toDate\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"sensitive\": true,\n    \"shouldCommit\": true,\n    \"sortValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"startDate\": \"1971-05-03T15:57:18.520Z\",\n    \"system\": true,\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"times\": 2175,\n    \"timezoneOffset\": 2002,\n    \"type\": \"string\",\n    \"userAPIKey\": \"string\",\n    \"userAPIKeyID\": \"string\",\n    \"vcShouldIgnore\": false,\n    \"version\": 9306\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "501b424b-4630-4133-985b-f436a9923b83",
+          "name": "Get report by ID",
+          "request": {
+            "name": "Get report by ID",
+            "description": {
+              "content": "Get a report by its ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) the ID of the report to get"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8660b8b6-5ced-44e2-961b-5016ebe81ef6",
+              "name": "Return a report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) the ID of the report to get"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"commitMessage\": \"string\",\n  \"createdBy\": \"string\",\n  \"cron\": \"string\",\n  \"cronView\": false,\n  \"dashboard\": {\n    \"commitMessage\": \"string\",\n    \"fromDate\": \"2009-09-29T02:29:27.465Z\",\n    \"fromDateLicense\": \"2002-03-16T18:15:54.880Z\",\n    \"id\": \"string\",\n    \"isCommon\": false,\n    \"layout\": [\n      {\n        \"forceRange\": true,\n        \"h\": 4753,\n        \"i\": \"string\",\n        \"id\": \"string\",\n        \"w\": 1417,\n        \"widget\": {\n          \"name\": \"string\",\n          \"widgetType\": \"string\",\n          \"category\": \"string\",\n          \"commitMessage\": \"string\",\n          \"dataType\": \"string\",\n          \"dateRange\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": \"string\",\n          \"id\": \"string\",\n          \"isPredefined\": true,\n          \"locked\": true,\n          \"modified\": \"2024-10-17T08:49:22.772Z\",\n          \"params\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"prevName\": \"string\",\n          \"query\": \"string\",\n          \"shouldCommit\": true,\n          \"size\": 7087,\n          \"sort\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"sortValues\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"vcShouldIgnore\": true,\n          \"version\": 2059\n        },\n        \"x\": 4630,\n        \"y\": 6363\n      },\n      {\n        \"forceRange\": false,\n        \"h\": 3600,\n        \"i\": \"string\",\n        \"id\": \"string\",\n        \"w\": 318,\n        \"widget\": {\n          \"name\": \"string\",\n          \"widgetType\": \"string\",\n          \"category\": \"string\",\n          \"commitMessage\": \"string\",\n          \"dataType\": \"string\",\n          \"dateRange\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": \"string\",\n          \"id\": \"string\",\n          \"isPredefined\": false,\n          \"locked\": true,\n          \"modified\": \"2004-12-24T09:32:06.009Z\",\n          \"params\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"prevName\": \"string\",\n          \"query\": \"string\",\n          \"shouldCommit\": false,\n          \"size\": 8638,\n          \"sort\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"sortValues\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"vcShouldIgnore\": false,\n          \"version\": 1746\n        },\n        \"x\": 6329,\n        \"y\": 277\n      }\n    ],\n    \"modified\": \"1956-12-08T22:06:45.110Z\",\n    \"name\": \"string\",\n    \"owner\": \"string\",\n    \"period\": {\n      \"by\": \"string\",\n      \"byFrom\": \"string\",\n      \"byTo\": \"string\",\n      \"field\": \"string\",\n      \"fromValue\": \"string\",\n      \"toValue\": \"string\"\n    },\n    \"prevName\": \"string\",\n    \"shared\": true,\n    \"shouldCommit\": true,\n    \"sortValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"system\": true,\n    \"toDate\": \"1963-08-21T03:25:20.548Z\",\n    \"vcShouldIgnore\": true,\n    \"version\": 176\n  },\n  \"decoder\": {\n    \"key_0\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"key_1\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"key_2\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    }\n  },\n  \"description\": \"string\",\n  \"disableHeader\": false,\n  \"endingDate\": \"2008-06-09T07:13:59.518Z\",\n  \"endingType\": \"string\",\n  \"humanCron\": {\n    \"atTimeHour\": \"string\",\n    \"atTimeMinute\": \"string\",\n    \"days\": [\n      \"string\",\n      \"string\"\n    ],\n    \"hoursPeriod\": \"string\",\n    \"schedulingType\": \"string\",\n    \"timePeriod\": 2942,\n    \"timePeriodType\": \"string\"\n  },\n  \"id\": \"string\",\n  \"latestReportName\": \"string\",\n  \"latestReportTime\": \"2000-03-21T15:06:48.981Z\",\n  \"latestReportUsername\": \"string\",\n  \"latestScheduledReportTime\": \"2014-10-05T17:15:36.162Z\",\n  \"locked\": false,\n  \"modified\": \"1960-09-09T05:33:30.212Z\",\n  \"name\": \"string\",\n  \"nextScheduledTime\": \"2021-03-31T16:52:01.037Z\",\n  \"orientation\": \"string\",\n  \"paperSize\": \"string\",\n  \"prevName\": \"string\",\n  \"prevType\": \"string\",\n  \"recipients\": [\n    \"string\",\n    \"string\"\n  ],\n  \"recurrent\": false,\n  \"reportType\": \"string\",\n  \"runOnce\": false,\n  \"runningUser\": \"string\",\n  \"scheduled\": false,\n  \"sections\": [\n    {\n      \"automation\": {\n        \"args\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"noEvent\": false\n      },\n      \"data\": {},\n      \"description\": \"string\",\n      \"displayType\": \"string\",\n      \"emptyNotification\": \"string\",\n      \"fromDate\": \"string\",\n      \"layout\": {},\n      \"query\": {\n        \"filter\": [\n          8562,\n          8670\n        ],\n        \"groupBy\": [\n          \"string\",\n          \"string\"\n        ],\n        \"keys\": [\n          \"string\",\n          \"string\"\n        ],\n        \"type\": \"string\"\n      },\n      \"title\": \"string\",\n      \"titleStyle\": {\n        \"key_0\": {}\n      },\n      \"toDate\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"automation\": {\n        \"args\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"noEvent\": true\n      },\n      \"data\": {},\n      \"description\": \"string\",\n      \"displayType\": \"string\",\n      \"emptyNotification\": \"string\",\n      \"fromDate\": \"string\",\n      \"layout\": {},\n      \"query\": {\n        \"filter\": [\n          883,\n          3230\n        ],\n        \"groupBy\": [\n          \"string\",\n          \"string\"\n        ],\n        \"keys\": [\n          \"string\",\n          \"string\"\n        ],\n        \"type\": \"string\"\n      },\n      \"title\": \"string\",\n      \"titleStyle\": {\n        \"key_0\": {}\n      },\n      \"toDate\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"sensitive\": false,\n  \"shouldCommit\": false,\n  \"sortValues\": [\n    \"string\",\n    \"string\"\n  ],\n  \"startDate\": \"1997-04-22T01:54:14.954Z\",\n  \"system\": true,\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"times\": 2458,\n  \"timezoneOffset\": 1700,\n  \"type\": \"string\",\n  \"userAPIKey\": \"string\",\n  \"userAPIKeyID\": \"string\",\n  \"vcShouldIgnore\": true,\n  \"version\": 2295\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63fa9b19-63c0-4b04-9521-13483a45a157",
+          "name": "Get latest report by ID",
+          "request": {
+            "name": "Get latest report by ID",
+            "description": {
+              "content": "Get the latest report by its ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                ":id",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) the ID of the report to get"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dfeaaa3a-d5e2-42ba-9d08-098a5d989683",
+              "name": "Return a report file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":id",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) the ID of the report to get"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5469b1d-de3b-4d42-b0f5-f709d206839e",
+          "name": "Upload report file to Demisto",
+          "request": {
+            "name": "Upload report file to Demisto",
+            "description": {
+              "content": "Upload report file to Demisto",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) file"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a7982341-7df8-4453-b2ff-6dceda217af1",
+              "name": "A list of all the reports in the instance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) file",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"commitMessage\": \"string\",\n    \"createdBy\": \"string\",\n    \"cron\": \"string\",\n    \"cronView\": true,\n    \"dashboard\": {\n      \"commitMessage\": \"string\",\n      \"fromDate\": \"1958-06-13T02:08:37.924Z\",\n      \"fromDateLicense\": \"1952-03-17T06:06:44.922Z\",\n      \"id\": \"string\",\n      \"isCommon\": true,\n      \"layout\": [\n        {\n          \"forceRange\": true,\n          \"h\": 2235,\n          \"i\": \"string\",\n          \"id\": \"string\",\n          \"w\": 7416,\n          \"widget\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"x\": 4738,\n          \"y\": 3554\n        },\n        {\n          \"forceRange\": false,\n          \"h\": 2797,\n          \"i\": \"string\",\n          \"id\": \"string\",\n          \"w\": 5062,\n          \"widget\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"x\": 316,\n          \"y\": 805\n        }\n      ],\n      \"modified\": \"1981-12-12T17:29:15.624Z\",\n      \"name\": \"string\",\n      \"owner\": \"string\",\n      \"period\": {\n        \"by\": \"string\",\n        \"byFrom\": \"string\",\n        \"byTo\": \"string\",\n        \"field\": \"string\",\n        \"fromValue\": \"string\",\n        \"toValue\": \"string\"\n      },\n      \"prevName\": \"string\",\n      \"shared\": true,\n      \"shouldCommit\": false,\n      \"sortValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"system\": false,\n      \"toDate\": \"2015-05-28T13:57:53.805Z\",\n      \"vcShouldIgnore\": true,\n      \"version\": 2333\n    },\n    \"decoder\": {\n      \"key_0\": {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    },\n    \"description\": \"string\",\n    \"disableHeader\": false,\n    \"endingDate\": \"1992-05-17T03:16:05.695Z\",\n    \"endingType\": \"string\",\n    \"humanCron\": {\n      \"atTimeHour\": \"string\",\n      \"atTimeMinute\": \"string\",\n      \"days\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hoursPeriod\": \"string\",\n      \"schedulingType\": \"string\",\n      \"timePeriod\": 3226,\n      \"timePeriodType\": \"string\"\n    },\n    \"id\": \"string\",\n    \"latestReportName\": \"string\",\n    \"latestReportTime\": \"1974-01-01T15:22:32.386Z\",\n    \"latestReportUsername\": \"string\",\n    \"latestScheduledReportTime\": \"1997-10-19T15:53:08.537Z\",\n    \"locked\": false,\n    \"modified\": \"1959-05-01T22:54:19.072Z\",\n    \"name\": \"string\",\n    \"nextScheduledTime\": \"2024-12-06T15:49:07.559Z\",\n    \"orientation\": \"string\",\n    \"paperSize\": \"string\",\n    \"prevName\": \"string\",\n    \"prevType\": \"string\",\n    \"recipients\": [\n      \"string\",\n      \"string\"\n    ],\n    \"recurrent\": true,\n    \"reportType\": \"string\",\n    \"runOnce\": true,\n    \"runningUser\": \"string\",\n    \"scheduled\": false,\n    \"sections\": [\n      {\n        \"automation\": {\n          \"args\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"noEvent\": true\n        },\n        \"data\": {},\n        \"description\": \"string\",\n        \"displayType\": \"string\",\n        \"emptyNotification\": \"string\",\n        \"fromDate\": \"string\",\n        \"layout\": {},\n        \"query\": {\n          \"filter\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"groupBy\": [\n            \"string\",\n            \"string\"\n          ],\n          \"keys\": [\n            \"string\",\n            \"string\"\n          ],\n          \"type\": \"string\"\n        },\n        \"title\": \"string\",\n        \"titleStyle\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"toDate\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"automation\": {\n          \"args\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_3\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"noEvent\": true\n        },\n        \"data\": {},\n        \"description\": \"string\",\n        \"displayType\": \"string\",\n        \"emptyNotification\": \"string\",\n        \"fromDate\": \"string\",\n        \"layout\": {},\n        \"query\": {\n          \"filter\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"groupBy\": [\n            \"string\",\n            \"string\"\n          ],\n          \"keys\": [\n            \"string\",\n            \"string\"\n          ],\n          \"type\": \"string\"\n        },\n        \"title\": \"string\",\n        \"titleStyle\": {\n          \"key_0\": {}\n        },\n        \"toDate\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"sensitive\": false,\n    \"shouldCommit\": false,\n    \"sortValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"startDate\": \"1956-03-03T09:12:17.861Z\",\n    \"system\": true,\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"times\": 1729,\n    \"timezoneOffset\": 5723,\n    \"type\": \"string\",\n    \"userAPIKey\": \"string\",\n    \"userAPIKeyID\": \"string\",\n    \"vcShouldIgnore\": false,\n    \"version\": 736\n  },\n  {\n    \"commitMessage\": \"string\",\n    \"createdBy\": \"string\",\n    \"cron\": \"string\",\n    \"cronView\": true,\n    \"dashboard\": {\n      \"commitMessage\": \"string\",\n      \"fromDate\": \"1950-09-23T10:28:01.772Z\",\n      \"fromDateLicense\": \"1977-01-16T16:19:33.839Z\",\n      \"id\": \"string\",\n      \"isCommon\": true,\n      \"layout\": [\n        {\n          \"forceRange\": true,\n          \"h\": 1976,\n          \"i\": \"string\",\n          \"id\": \"string\",\n          \"w\": 1584,\n          \"widget\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"x\": 7620,\n          \"y\": 8494\n        },\n        {\n          \"forceRange\": false,\n          \"h\": 6524,\n          \"i\": \"string\",\n          \"id\": \"string\",\n          \"w\": 6515,\n          \"widget\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"x\": 7626,\n          \"y\": 2547\n        }\n      ],\n      \"modified\": \"1949-07-25T13:04:48.073Z\",\n      \"name\": \"string\",\n      \"owner\": \"string\",\n      \"period\": {\n        \"by\": \"string\",\n        \"byFrom\": \"string\",\n        \"byTo\": \"string\",\n        \"field\": \"string\",\n        \"fromValue\": \"string\",\n        \"toValue\": \"string\"\n      },\n      \"prevName\": \"string\",\n      \"shared\": true,\n      \"shouldCommit\": true,\n      \"sortValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"system\": false,\n      \"toDate\": \"1967-07-17T02:37:06.299Z\",\n      \"vcShouldIgnore\": true,\n      \"version\": 7285\n    },\n    \"decoder\": {\n      \"key_0\": {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      }\n    },\n    \"description\": \"string\",\n    \"disableHeader\": false,\n    \"endingDate\": \"2005-01-14T08:05:36.638Z\",\n    \"endingType\": \"string\",\n    \"humanCron\": {\n      \"atTimeHour\": \"string\",\n      \"atTimeMinute\": \"string\",\n      \"days\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hoursPeriod\": \"string\",\n      \"schedulingType\": \"string\",\n      \"timePeriod\": 162,\n      \"timePeriodType\": \"string\"\n    },\n    \"id\": \"string\",\n    \"latestReportName\": \"string\",\n    \"latestReportTime\": \"2012-12-19T16:38:43.874Z\",\n    \"latestReportUsername\": \"string\",\n    \"latestScheduledReportTime\": \"1973-10-10T23:34:13.500Z\",\n    \"locked\": true,\n    \"modified\": \"1989-08-06T18:29:36.282Z\",\n    \"name\": \"string\",\n    \"nextScheduledTime\": \"2011-12-29T22:08:24.757Z\",\n    \"orientation\": \"string\",\n    \"paperSize\": \"string\",\n    \"prevName\": \"string\",\n    \"prevType\": \"string\",\n    \"recipients\": [\n      \"string\",\n      \"string\"\n    ],\n    \"recurrent\": true,\n    \"reportType\": \"string\",\n    \"runOnce\": true,\n    \"runningUser\": \"string\",\n    \"scheduled\": true,\n    \"sections\": [\n      {\n        \"automation\": {\n          \"args\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"noEvent\": true\n        },\n        \"data\": {},\n        \"description\": \"string\",\n        \"displayType\": \"string\",\n        \"emptyNotification\": \"string\",\n        \"fromDate\": \"string\",\n        \"layout\": {},\n        \"query\": {\n          \"filter\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"groupBy\": [\n            \"string\",\n            \"string\"\n          ],\n          \"keys\": [\n            \"string\",\n            \"string\"\n          ],\n          \"type\": \"string\"\n        },\n        \"title\": \"string\",\n        \"titleStyle\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"toDate\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"automation\": {\n          \"args\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"noEvent\": false\n        },\n        \"data\": {},\n        \"description\": \"string\",\n        \"displayType\": \"string\",\n        \"emptyNotification\": \"string\",\n        \"fromDate\": \"string\",\n        \"layout\": {},\n        \"query\": {\n          \"filter\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"groupBy\": [\n            \"string\",\n            \"string\"\n          ],\n          \"keys\": [\n            \"string\",\n            \"string\"\n          ],\n          \"type\": \"string\"\n        },\n        \"title\": \"string\",\n        \"titleStyle\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"toDate\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"sensitive\": true,\n    \"shouldCommit\": true,\n    \"sortValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"startDate\": \"2022-12-02T00:16:46.764Z\",\n    \"system\": false,\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"times\": 9142,\n    \"timezoneOffset\": 2155,\n    \"type\": \"string\",\n    \"userAPIKey\": \"string\",\n    \"userAPIKeyID\": \"string\",\n    \"vcShouldIgnore\": false,\n    \"version\": 5052\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hostname:443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ef1a7b84-ddce-48f0-89bc-e819d09c59d6",
+    "name": "Demisto Apikeys Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the public REST API to integrate with the demisto server.\nHTTP request can be sent using any HTTP-client.\n\nFor an example dedicated client take a look at: https://github.com/demisto/demisto-py.\n\nRequests must include API-key that can be generated in the Demisto web client under 'Settings' -> 'Integrations' -> 'API keys'\n\n\nOptimistic Locking and Versioning\\:\n\nWhen using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).\nIn addition, you can pass 'version\\: -1' to force data override (make sure that other users data might be lost).\n\nAssume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?\nTo solve this, each data item in Demisto has a numeric incremental version.\nIf Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.\nBob will need to get the latest item and work on it so Alice work will not get lost.\n\nExample request using 'curl'\\:\n\n```\ncurl 'https://hostname:443/incidents/search' -H 'content-type: application/json' -H 'accept: application/json' -H 'Authorization: <API Key goes here>' --data-binary '{\"filter\":{\"query\":\"-status:closed -category:job\",\"period\":{\"by\":\"day\",\"fromValue\":7}}}' --compressed\n```",
+      "type": "text/plain"
+    }
+  }
+}

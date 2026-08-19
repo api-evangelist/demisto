@@ -1,0 +1,440 @@
+{
+  "item": [
+    {
+      "id": "bd7afb15-bfde-4ad3-8c27-cafbdbfc902e",
+      "name": "Settings",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "60a50a5e-2265-4c06-80a5-f6f10e599957",
+          "name": "Get Audits",
+          "request": {
+            "name": "Get Audits",
+            "description": {
+              "content": "Get audits by filter",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "settings",
+                "audits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Cache\": {\n    \"key_0\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_1\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"fromDate\": \"<dateTime>\",\n  \"fromDateLicense\": \"<dateTime>\",\n  \"page\": \"<long>\",\n  \"period\": {\n    \"by\": \"<string>\",\n    \"byFrom\": \"<string>\",\n    \"byTo\": \"<string>\",\n    \"field\": \"<string>\",\n    \"fromValue\": \"<duration>\",\n    \"toValue\": \"<duration>\"\n  },\n  \"query\": \"<string>\",\n  \"searchAfter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"searchBefore\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"size\": \"<long>\",\n  \"sort\": [\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    },\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    }\n  ],\n  \"timeFrame\": \"<long>\",\n  \"toDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d2ac82b9-b733-402d-a996-86731e7d4b09",
+              "name": "auditResult",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "settings",
+                    "audits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Cache\": {\n    \"key_0\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_1\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_2\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_3\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"fromDate\": \"<dateTime>\",\n  \"fromDateLicense\": \"<dateTime>\",\n  \"page\": \"<long>\",\n  \"period\": {\n    \"by\": \"<string>\",\n    \"byFrom\": \"<string>\",\n    \"byTo\": \"<string>\",\n    \"field\": \"<string>\",\n    \"fromValue\": \"<duration>\",\n    \"toValue\": \"<duration>\"\n  },\n  \"query\": \"<string>\",\n  \"searchAfter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"searchBefore\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"size\": \"<long>\",\n  \"sort\": [\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    },\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    }\n  ],\n  \"timeFrame\": \"<long>\",\n  \"toDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"audits\": [\n    {\n      \"action\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      },\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"modified\": \"1994-12-03T15:49:31.824Z\",\n      \"object\": \"string\",\n      \"sortValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"type\": \"string\",\n      \"user\": \"string\",\n      \"version\": 3968\n    },\n    {\n      \"action\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"modified\": \"2002-07-03T15:33:01.114Z\",\n      \"object\": \"string\",\n      \"sortValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"type\": \"string\",\n      \"user\": \"string\",\n      \"version\": 9043\n    }\n  ],\n  \"total\": 1206\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2fa71a8-b3e0-4c72-b0c8-cf09f7427c59",
+          "name": "Get Docker Images",
+          "request": {
+            "name": "Get Docker Images",
+            "description": {
+              "content": "Get list of all available docker image names",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "settings",
+                "docker-images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ea0963a-1c48-4415-a4b2-9ff93ceac9a4",
+              "name": "dockerImagesResult",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "settings",
+                    "docker-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"images\": [\n    {\n      \"createdAt\": \"string\",\n      \"createdSince\": \"string\",\n      \"id\": \"string\",\n      \"repository\": \"string\",\n      \"size\": \"string\",\n      \"tag\": \"string\"\n    },\n    {\n      \"createdAt\": \"string\",\n      \"createdSince\": \"string\",\n      \"id\": \"string\",\n      \"repository\": \"string\",\n      \"size\": \"string\",\n      \"tag\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d3d765c-928f-4c54-b0ed-6aab64f1878e",
+          "name": "Create Image",
+          "request": {
+            "name": "Create Image",
+            "description": {
+              "content": "Create an image with a given list of dependencies",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "settings",
+                "docker-images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"base\": \"<string>\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"packages\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c0ef9615-d27f-48a1-8905-c3db7c2cb06b",
+              "name": "newDockerImageResult",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "settings",
+                    "docker-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"base\": \"<string>\",\n  \"dependencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"packages\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"output\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab439e56-84fe-4e28-8cfd-bb036e54bbfe",
+          "name": "Upload an integration",
+          "request": {
+            "name": "Upload an integration",
+            "description": {
+              "content": "Upload an integration to Demisto",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "settings",
+                "integration-conf",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) file"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "77564fdf-2520-48e5-8a69-5615e29d54bb",
+              "name": "The saved configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "settings",
+                    "integration-conf",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) file",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"beta\": true,\n  \"brand\": \"string\",\n  \"canGetSamples\": true,\n  \"category\": \"string\",\n  \"cmdline\": \"string\",\n  \"commitMessage\": \"string\",\n  \"configuration\": [\n    {\n      \"defaultValue\": \"string\",\n      \"display\": \"string\",\n      \"hidden\": true,\n      \"info\": \"string\",\n      \"name\": \"string\",\n      \"options\": [\n        \"string\",\n        \"string\"\n      ],\n      \"required\": true,\n      \"type\": 8507.060160575813\n    },\n    {\n      \"defaultValue\": \"string\",\n      \"display\": \"string\",\n      \"hidden\": true,\n      \"info\": \"string\",\n      \"name\": \"string\",\n      \"options\": [\n        \"string\",\n        \"string\"\n      ],\n      \"required\": true,\n      \"type\": 8174.7683332527995\n    }\n  ],\n  \"deprecated\": true,\n  \"description\": \"string\",\n  \"detailedDescription\": \"string\",\n  \"display\": \"string\",\n  \"executable\": \"string\",\n  \"hidden\": true,\n  \"hideEngines\": true,\n  \"icon\": \"string\",\n  \"id\": \"string\",\n  \"image\": \"string\",\n  \"integrationScript\": {\n    \"commands\": [\n      {\n        \"arguments\": [\n          {\n            \"auto\": \"string\",\n            \"default\": true,\n            \"defaultValue\": \"string\",\n            \"deprecated\": false,\n            \"description\": \"string\",\n            \"isArray\": false,\n            \"name\": \"string\",\n            \"predefined\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"required\": false,\n            \"secret\": true\n          },\n          {\n            \"auto\": \"string\",\n            \"default\": true,\n            \"defaultValue\": \"string\",\n            \"deprecated\": true,\n            \"description\": \"string\",\n            \"isArray\": true,\n            \"name\": \"string\",\n            \"predefined\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"required\": false,\n            \"secret\": true\n          }\n        ],\n        \"cartesian\": false,\n        \"deprecated\": false,\n        \"description\": \"string\",\n        \"execution\": true,\n        \"hidden\": true,\n        \"important\": [\n          {\n            \"contextPath\": \"string\",\n            \"description\": \"string\",\n            \"related\": \"string\"\n          },\n          {\n            \"contextPath\": \"string\",\n            \"description\": \"string\",\n            \"related\": \"string\"\n          }\n        ],\n        \"name\": \"string\",\n        \"outputs\": [\n          {\n            \"contentPath\": \"string\",\n            \"contextPath\": \"string\",\n            \"description\": {},\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"contentPath\": \"string\",\n            \"contextPath\": \"string\",\n            \"description\": {},\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"permitted\": false,\n        \"sensitive\": false,\n        \"timeout\": 9410\n      },\n      {\n        \"arguments\": [\n          {\n            \"auto\": \"string\",\n            \"default\": true,\n            \"defaultValue\": \"string\",\n            \"deprecated\": true,\n            \"description\": \"string\",\n            \"isArray\": false,\n            \"name\": \"string\",\n            \"predefined\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"required\": false,\n            \"secret\": false\n          },\n          {\n            \"auto\": \"string\",\n            \"default\": false,\n            \"defaultValue\": \"string\",\n            \"deprecated\": true,\n            \"description\": \"string\",\n            \"isArray\": true,\n            \"name\": \"string\",\n            \"predefined\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"required\": false,\n            \"secret\": true\n          }\n        ],\n        \"cartesian\": false,\n        \"deprecated\": false,\n        \"description\": \"string\",\n        \"execution\": false,\n        \"hidden\": true,\n        \"important\": [\n          {\n            \"contextPath\": \"string\",\n            \"description\": \"string\",\n            \"related\": \"string\"\n          },\n          {\n            \"contextPath\": \"string\",\n            \"description\": \"string\",\n            \"related\": \"string\"\n          }\n        ],\n        \"name\": \"string\",\n        \"outputs\": [\n          {\n            \"contentPath\": \"string\",\n            \"contextPath\": \"string\",\n            \"description\": {},\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"contentPath\": \"string\",\n            \"contextPath\": \"string\",\n            \"description\": {},\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"permitted\": true,\n        \"sensitive\": true,\n        \"timeout\": 2148\n      }\n    ],\n    \"dockerImage\": \"string\",\n    \"feed\": true,\n    \"isFetch\": true,\n    \"isFetchCredentials\": false,\n    \"longRunning\": false,\n    \"longRunningPortMapping\": false,\n    \"runOnce\": true,\n    \"script\": \"string\",\n    \"subtype\": \"string\",\n    \"type\": \"string\"\n  },\n  \"isPasswordProtected\": false,\n  \"locked\": true,\n  \"modified\": \"2013-06-07T13:25:47.155Z\",\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"prevName\": \"string\",\n  \"propagationLabels\": [\n    \"string\",\n    \"string\"\n  ],\n  \"readonly\": false,\n  \"scriptNotVisible\": true,\n  \"shouldCommit\": true,\n  \"sortValues\": [\n    \"string\",\n    \"string\"\n  ],\n  \"sourceModuleID\": \"string\",\n  \"system\": false,\n  \"vcShouldIgnore\": true,\n  \"version\": 6037\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hostname:443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "25a42558-a315-4d5f-bf09-d6ef0e0911a5",
+    "name": "Demisto Apikeys Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the public REST API to integrate with the demisto server.\nHTTP request can be sent using any HTTP-client.\n\nFor an example dedicated client take a look at: https://github.com/demisto/demisto-py.\n\nRequests must include API-key that can be generated in the Demisto web client under 'Settings' -> 'Integrations' -> 'API keys'\n\n\nOptimistic Locking and Versioning\\:\n\nWhen using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).\nIn addition, you can pass 'version\\: -1' to force data override (make sure that other users data might be lost).\n\nAssume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?\nTo solve this, each data item in Demisto has a numeric incremental version.\nIf Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.\nBob will need to get the latest item and work on it so Alice work will not get lost.\n\nExample request using 'curl'\\:\n\n```\ncurl 'https://hostname:443/incidents/search' -H 'content-type: application/json' -H 'accept: application/json' -H 'Authorization: <API Key goes here>' --data-binary '{\"filter\":{\"query\":\"-status:closed -category:job\",\"period\":{\"by\":\"day\",\"fromValue\":7}}}' --compressed\n```",
+      "type": "text/plain"
+    }
+  }
+}

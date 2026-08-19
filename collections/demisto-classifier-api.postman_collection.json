@@ -1,0 +1,171 @@
+{
+  "item": [
+    {
+      "id": "84b4612c-40a7-4175-b3d4-2e440e580ea5",
+      "name": "Classifier",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c07301a2-e31f-4a3b-9539-48e944f1d146",
+          "name": "Import a classifier",
+          "request": {
+            "name": "Import a classifier",
+            "description": {
+              "content": "Import a classifier to Cortex XSOAR",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "classifier",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) file"
+                },
+                {
+                  "key": "classifierId",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) associated typeID for the layout"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "39158a56-6d9f-4ab1-886e-48689a75da37",
+              "name": "The saved classifier",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "classifier",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) file",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) associated typeID for the layout",
+                        "type": "text/plain"
+                      },
+                      "key": "classifierId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"brandName\": \"string\",\n  \"commitMessage\": \"string\",\n  \"custom\": true,\n  \"defaultIncidentType\": \"string\",\n  \"feed\": false,\n  \"fromServerVersion\": {\n    \"Digits\": [\n      2272,\n      4335\n    ],\n    \"Label\": \"string\"\n  },\n  \"id\": \"string\",\n  \"incidentSamples\": {},\n  \"indicatorSamples\": [\n    {\n      \"ExpirationSource\": {\n        \"brand\": \"string\",\n        \"expirationInterval\": 5456,\n        \"expirationPolicy\": \"string\",\n        \"instance\": \"string\",\n        \"moduleId\": \"string\",\n        \"setTime\": \"2020-12-11T20:13:57.675Z\",\n        \"source\": \"string\",\n        \"user\": \"string\"\n      },\n      \"bypassExclusionList\": false,\n      \"classifierVersion\": 5733,\n      \"expirationInterval\": 8213,\n      \"expirationPolicy\": \"string\",\n      \"feedConfig\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"fetchTime\": \"1999-04-09T05:07:10.305Z\",\n      \"fields\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      },\n      \"isEnrichment\": true,\n      \"modifiedTime\": \"2014-03-16T06:30:25.772Z\",\n      \"moduleId\": \"string\",\n      \"rawJSON\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      },\n      \"reliability\": \"string\",\n      \"score\": 8374,\n      \"sourceBrand\": \"string\",\n      \"sourceInstance\": \"string\",\n      \"timestamp\": \"2008-02-05T14:50:31.914Z\",\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"ExpirationSource\": {\n        \"brand\": \"string\",\n        \"expirationInterval\": 6728,\n        \"expirationPolicy\": \"string\",\n        \"instance\": \"string\",\n        \"moduleId\": \"string\",\n        \"setTime\": \"2019-10-25T17:37:10.724Z\",\n        \"source\": \"string\",\n        \"user\": \"string\"\n      },\n      \"bypassExclusionList\": true,\n      \"classifierVersion\": 8382,\n      \"expirationInterval\": 1793,\n      \"expirationPolicy\": \"string\",\n      \"feedConfig\": {\n        \"key_0\": {}\n      },\n      \"fetchTime\": \"2005-04-27T09:42:31.083Z\",\n      \"fields\": {\n        \"key_0\": {}\n      },\n      \"isEnrichment\": true,\n      \"modifiedTime\": \"1963-12-25T08:59:54.472Z\",\n      \"moduleId\": \"string\",\n      \"rawJSON\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"reliability\": \"string\",\n      \"score\": 6143,\n      \"sourceBrand\": \"string\",\n      \"sourceInstance\": \"string\",\n      \"timestamp\": \"1986-06-11T21:37:17.164Z\",\n      \"type\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"instanceId\": \"string\",\n  \"instanceName\": \"string\",\n  \"isDefault\": false,\n  \"itemVersion\": {\n    \"Digits\": [\n      4279,\n      4680\n    ],\n    \"Label\": \"string\"\n  },\n  \"keyTypeMap\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"mapping\": {\n    \"key_0\": {\n      \"dontMapEventToLabels\": true,\n      \"internalMapping\": {\n        \"key_0\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        }\n      }\n    },\n    \"key_1\": {\n      \"dontMapEventToLabels\": false,\n      \"internalMapping\": {\n        \"key_0\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        },\n        \"key_1\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        }\n      }\n    },\n    \"key_2\": {\n      \"dontMapEventToLabels\": false,\n      \"internalMapping\": {\n        \"key_0\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        },\n        \"key_1\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        },\n        \"key_2\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        }\n      }\n    },\n    \"key_3\": {\n      \"dontMapEventToLabels\": true,\n      \"internalMapping\": {\n        \"key_0\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        },\n        \"key_1\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        },\n        \"key_2\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        }\n      }\n    }\n  },\n  \"modified\": \"1953-07-26T18:25:05.399Z\",\n  \"packID\": \"string\",\n  \"primaryTerm\": 7860,\n  \"propagationLabels\": [\n    \"string\",\n    \"string\"\n  ],\n  \"sequenceNumber\": 7620,\n  \"shouldCommit\": false,\n  \"sortValues\": [\n    \"string\",\n    \"string\"\n  ],\n  \"version\": 7962\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hostname:443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c54e4927-a01e-4f2d-af69-ea19aa981ae2",
+    "name": "Demisto Apikeys Classifier API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the public REST API to integrate with the demisto server.\nHTTP request can be sent using any HTTP-client.\n\nFor an example dedicated client take a look at: https://github.com/demisto/demisto-py.\n\nRequests must include API-key that can be generated in the Demisto web client under 'Settings' -> 'Integrations' -> 'API keys'\n\n\nOptimistic Locking and Versioning\\:\n\nWhen using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).\nIn addition, you can pass 'version\\: -1' to force data override (make sure that other users data might be lost).\n\nAssume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?\nTo solve this, each data item in Demisto has a numeric incremental version.\nIf Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.\nBob will need to get the latest item and work on it so Alice work will not get lost.\n\nExample request using 'curl'\\:\n\n```\ncurl 'https://hostname:443/incidents/search' -H 'content-type: application/json' -H 'accept: application/json' -H 'Authorization: <API Key goes here>' --data-binary '{\"filter\":{\"query\":\"-status:closed -category:job\",\"period\":{\"by\":\"day\",\"fromValue\":7}}}' --compressed\n```",
+      "type": "text/plain"
+    }
+  }
+}

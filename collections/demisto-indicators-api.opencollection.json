@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Indicators API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Indicators",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Batch export indicators to STIX",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/indicators/batch/export/stix"
+          },
+          "docs": "Exports an indicators batch to STIX file (returns file ID)"
+        },
+        {
+          "info": {
+            "name": "Batch export indicators to csv",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/indicators/batch/exportToCsv"
+          },
+          "docs": "Exports an indicators batch to CSV file (returns file ID)"
+        },
+        {
+          "info": {
+            "name": "Batch whitelist or delete indicators",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/indicators/batchDelete"
+          },
+          "docs": "Batch whitelist or delete indicators entities\nIn order to delete indicators and not whitelist, set doNotWhitelist boolean field to true"
+        },
+        {
+          "info": {
+            "name": "Get indicators as CSV",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/indicators/csv/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "CSV file to fetch (returned from batch export to csv call)"
+              }
+            ]
+          },
+          "docs": "Get an indicators CSV file that was exported, by ID"
+        },
+        {
+          "info": {
+            "name": "Create feed indicators from JSON",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/indicators/feed/json"
+          },
+          "docs": "Create indicators from raw JSON (similar to ingesting from a feed). Builds indicators according to the specified feed classifier,\nor uses the default one if not specified.\nIndicator properties (all optional except for value): **value** (string, required) | **type** (string) | **score** (number, 0-3,\ndefault `0`, where `0` means None, `1` Good, `2` Suspicious, and `3` Bad) | **sourceBrand** (string, default `\"External\"`) | **sourceInstance**\n(string, default `\"External\"`) | **reliability** (strin"
+        },
+        {
+          "info": {
+            "name": "Search indicators",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/indicators/search"
+          },
+          "docs": "Search indicators by filter"
+        },
+        {
+          "info": {
+            "name": "Get indicators as STIX V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/indicators/stix/v2/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "STIX V2 file to fetch (returned from batch export to STIX call)"
+              }
+            ]
+          },
+          "docs": "Get an indicators STIX V2 file that was exported, by ID"
+        },
+        {
+          "info": {
+            "name": "Create indicators",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/indicators/upload"
+          },
+          "docs": "Create indicators from a file"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

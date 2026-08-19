@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Entry API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create new entry in existing investigation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/entry"
+          },
+          "docs": "API to create an entry (markdown format) in existing investigation\nBody example: {\"investigationId\":\"1234\",\"data\":\"entry content…\"}"
+        },
+        {
+          "info": {
+            "name": "Get entry artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/entry/artifact/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "file to fetch (returned from entry export artifact call)"
+              }
+            ]
+          },
+          "docs": "Get the entry artifact file"
+        },
+        {
+          "info": {
+            "name": "Download file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/entry/download/:entryid",
+            "params": [
+              {
+                "name": "entryid",
+                "value": "",
+                "type": "path",
+                "description": "Entry ID"
+              }
+            ]
+          },
+          "docs": "Download file from Demisto by entry ID"
+        },
+        {
+          "info": {
+            "name": "Create new entry in existing investigation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/entry/execute/sync"
+          },
+          "docs": "API to create an entry (markdown format) in existing investigation\nBody example: {\"investigationId\":\"1234\",\"data\":\"entry content…\"}"
+        },
+        {
+          "info": {
+            "name": "Export Artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/entry/exportArtifact"
+          },
+          "docs": "Export an entry artifact"
+        },
+        {
+          "info": {
+            "name": "Create new formatted entry in existing investigation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/entry/formatted"
+          },
+          "docs": "API to create a formatted entry (table/json/text/markdown/html) in existing investigation\nBody example: {\"investigationId\":\"1234\",\"format\":\"table/json/text/markdown/html\",\"contents\":\"entry content…\"}"
+        },
+        {
+          "info": {
+            "name": "Mark entry as note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/entry/note"
+          },
+          "docs": "API to mark entry as note, can be used also to remove the note\nBody example: {\"id\":1\\@1234\",\"version\":\"-1\",\"investigationId\":\"1234\",\"data\":\"true/false\"}"
+        },
+        {
+          "info": {
+            "name": "Set entry tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/entry/tags"
+          },
+          "docs": "API to set entry tags\nBody example: {\"id\":\"1\\@1234\",\"version\":\"-1\",\"investigationId\":\"1234\",\"tags\":[\"tag1\",\"tag2\"]\"}"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

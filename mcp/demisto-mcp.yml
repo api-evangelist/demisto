@@ -233,3 +233,9 @@ tools:
 - name: deleteWidget
   description: Remove existing widget
   source_operation: openapi/demisto-openapi-original.json#deleteWidget
+deployment:
+  mode: none
+  verified: derived
+  tools: 75
+  checked: '2026-08-12'
+  source: catalog MCP census

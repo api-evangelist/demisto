@@ -1,0 +1,156 @@
+{
+  "item": [
+    {
+      "id": "b59299c2-354f-4d97-87a5-8a12a0bb3ddf",
+      "name": "Dashboards",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "056a6d64-1cc5-43b2-a53f-3dded193c9df",
+          "name": "Import a dashboard",
+          "request": {
+            "name": "Import a dashboard",
+            "description": {
+              "content": "Import a dashboard to Cortex XSOAR",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dashboards",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) file"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "40a1db1b-9247-4ff0-ac0d-68aece0075c1",
+              "name": "The saved dashboard",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboards",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) file",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"commitMessage\": \"string\",\n  \"fromDate\": \"2005-01-26T15:21:59.381Z\",\n  \"fromDateLicense\": \"1952-09-09T01:04:28.123Z\",\n  \"id\": \"string\",\n  \"isCommon\": true,\n  \"layout\": [\n    {\n      \"forceRange\": false,\n      \"h\": 9220,\n      \"i\": \"string\",\n      \"id\": \"string\",\n      \"w\": 1931,\n      \"widget\": {\n        \"name\": \"string\",\n        \"widgetType\": \"string\",\n        \"category\": \"string\",\n        \"commitMessage\": \"string\",\n        \"dataType\": \"string\",\n        \"dateRange\": {\n          \"fromDate\": \"1982-08-01T17:54:05.281Z\",\n          \"fromDateLicense\": \"1953-06-14T00:23:46.167Z\",\n          \"period\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"toDate\": \"1993-01-25T19:15:06.272Z\"\n        },\n        \"description\": \"string\",\n        \"id\": \"string\",\n        \"isPredefined\": false,\n        \"locked\": true,\n        \"modified\": \"1960-05-19T01:34:22.097Z\",\n        \"params\": {\n          \"key_0\": {}\n        },\n        \"prevName\": \"string\",\n        \"query\": \"string\",\n        \"shouldCommit\": false,\n        \"size\": 5418,\n        \"sort\": [\n          {\n            \"asc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fieldType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"asc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fieldType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"sortValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"vcShouldIgnore\": true,\n        \"version\": 3163\n      },\n      \"x\": 6149,\n      \"y\": 3995\n    },\n    {\n      \"forceRange\": false,\n      \"h\": 7771,\n      \"i\": \"string\",\n      \"id\": \"string\",\n      \"w\": 9404,\n      \"widget\": {\n        \"name\": \"string\",\n        \"widgetType\": \"string\",\n        \"category\": \"string\",\n        \"commitMessage\": \"string\",\n        \"dataType\": \"string\",\n        \"dateRange\": {\n          \"fromDate\": \"1978-07-29T16:13:41.506Z\",\n          \"fromDateLicense\": \"2019-06-22T17:20:53.119Z\",\n          \"period\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"toDate\": \"1971-02-03T11:37:19.931Z\"\n        },\n        \"description\": \"string\",\n        \"id\": \"string\",\n        \"isPredefined\": false,\n        \"locked\": false,\n        \"modified\": \"2019-11-11T00:24:23.276Z\",\n        \"params\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"prevName\": \"string\",\n        \"query\": \"string\",\n        \"shouldCommit\": false,\n        \"size\": 2384,\n        \"sort\": [\n          {\n            \"asc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fieldType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"asc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fieldType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"sortValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"vcShouldIgnore\": true,\n        \"version\": 8369\n      },\n      \"x\": 786,\n      \"y\": 9262\n    }\n  ],\n  \"modified\": \"1967-01-11T06:36:10.006Z\",\n  \"name\": \"string\",\n  \"owner\": \"string\",\n  \"period\": {\n    \"by\": \"string\",\n    \"byFrom\": \"string\",\n    \"byTo\": \"string\",\n    \"field\": \"string\",\n    \"fromValue\": \"string\",\n    \"toValue\": \"string\"\n  },\n  \"prevName\": \"string\",\n  \"shared\": false,\n  \"shouldCommit\": true,\n  \"sortValues\": [\n    \"string\",\n    \"string\"\n  ],\n  \"system\": false,\n  \"toDate\": \"2010-05-11T03:01:50.485Z\",\n  \"vcShouldIgnore\": false,\n  \"version\": 1030\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hostname:443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8c12f911-7489-4d65-ab8a-b4a081eb0579",
+    "name": "Demisto Apikeys Dashboards API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the public REST API to integrate with the demisto server.\nHTTP request can be sent using any HTTP-client.\n\nFor an example dedicated client take a look at: https://github.com/demisto/demisto-py.\n\nRequests must include API-key that can be generated in the Demisto web client under 'Settings' -> 'Integrations' -> 'API keys'\n\n\nOptimistic Locking and Versioning\\:\n\nWhen using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).\nIn addition, you can pass 'version\\: -1' to force data override (make sure that other users data might be lost).\n\nAssume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?\nTo solve this, each data item in Demisto has a numeric incremental version.\nIf Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.\nBob will need to get the latest item and work on it so Alice work will not get lost.\n\nExample request using 'curl'\\:\n\n```\ncurl 'https://hostname:443/incidents/search' -H 'content-type: application/json' -H 'accept: application/json' -H 'Authorization: <API Key goes here>' --data-binary '{\"filter\":{\"query\":\"-status:closed -category:job\",\"period\":{\"by\":\"day\",\"fromValue\":7}}}' --compressed\n```",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Inv Playbook API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inv Playbook",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add ad-hoc task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inv-playbook/task/add/:investigationId",
+            "params": [
+              {
+                "name": "investigationId",
+                "value": "",
+                "type": "path",
+                "description": "investigation ID"
+              }
+            ]
+          },
+          "docs": "Add an ad-hoc task to a running playbook"
+        },
+        {
+          "info": {
+            "name": "Assign task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inv-playbook/task/assign"
+          },
+          "docs": "Assign a task to an owner"
+        },
+        {
+          "info": {
+            "name": "[Deprecated] Complete a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inv-playbook/task/complete"
+          },
+          "docs": "Complete a task with a file attachment\nDeprecated - use \"/v2/inv-playbook/task/complete\""
+        },
+        {
+          "info": {
+            "name": "Complete task simple (no file)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inv-playbook/task/complete/simple"
+          },
+          "docs": "Complete a task without a file attachment"
+        },
+        {
+          "info": {
+            "name": "Delete ad-hoc task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inv-playbook/task/delete/:investigationId/:invPBTaskId",
+            "params": [
+              {
+                "name": "investigationId",
+                "value": "",
+                "type": "path",
+                "description": "investigation ID"
+              },
+              {
+                "name": "invPBTaskId",
+                "value": "",
+                "type": "path",
+                "description": "ad-hoc task ID"
+              }
+            ]
+          },
+          "docs": "Delete an ad-hoc task from a running playbook"
+        },
+        {
+          "info": {
+            "name": "Set task due date",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inv-playbook/task/due"
+          },
+          "docs": "Set the task due date"
+        },
+        {
+          "info": {
+            "name": "Edit ad-hoc task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inv-playbook/task/edit/:investigationId",
+            "params": [
+              {
+                "name": "investigationId",
+                "value": "",
+                "type": "path",
+                "description": "investigation ID"
+              }
+            ]
+          },
+          "docs": "Edit an ad-hoc task in a running playbook"
+        },
+        {
+          "info": {
+            "name": "Task add comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inv-playbook/task/note/add"
+          },
+          "docs": "Add comment to a task"
+        },
+        {
+          "info": {
+            "name": "Un complete a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inv-playbook/task/uncomplete"
+          },
+          "docs": "Reopen a closed task and change the status to uncomplete"
+        },
+        {
+          "info": {
+            "name": "Complete a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/inv-playbook/task/complete"
+          },
+          "docs": "Complete a task with command and multiple file attachments"
+        },
+        {
+          "info": {
+            "name": "Complete a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/inv-playbook/task/form/submit"
+          },
+          "docs": "Submit a data collection task with given answers and multiple file attachments"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

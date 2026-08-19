@@ -1,0 +1,158 @@
+{
+  "item": [
+    {
+      "id": "e31a3228-0259-44e9-94bb-3dbcbf278415",
+      "name": "Playbook",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "92edac85-0edd-48e7-842d-507e01c64ee7",
+          "name": "Import and override playbook",
+          "request": {
+            "name": "Import and override playbook",
+            "description": {
+              "content": "Import and override playbook in Cortex XSOAR",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "playbook",
+                "save",
+                "yaml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) file"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5201f512-2fba-4d42-b518-059198aae295",
+              "name": "The saved playbook",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "playbook",
+                    "save",
+                    "yaml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) file",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"brands\": [\n    \"string\",\n    \"string\"\n  ],\n  \"commands\": [\n    \"string\",\n    \"string\"\n  ],\n  \"comment\": \"string\",\n  \"commitMessage\": \"string\",\n  \"dbotCreatedBy\": \"string\",\n  \"detached\": false,\n  \"fromServerVersion\": {\n    \"Digits\": [\n      7320,\n      7952\n    ],\n    \"Label\": \"string\"\n  },\n  \"hasRole\": false,\n  \"hidden\": false,\n  \"id\": \"string\",\n  \"inputs\": [\n    {\n      \"description\": \"string\",\n      \"key\": \"string\",\n      \"required\": false,\n      \"value\": {\n        \"complex\": {\n          \"accessor\": \"string\",\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"root\": \"string\",\n          \"transformers\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"simple\": \"string\"\n      }\n    },\n    {\n      \"description\": \"string\",\n      \"key\": \"string\",\n      \"required\": false,\n      \"value\": {\n        \"complex\": {\n          \"accessor\": \"string\",\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"root\": \"string\",\n          \"transformers\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"simple\": \"string\"\n      }\n    }\n  ],\n  \"itemVersion\": {\n    \"Digits\": [\n      6928,\n      7007\n    ],\n    \"Label\": \"string\"\n  },\n  \"locked\": false,\n  \"missingScriptsIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"modified\": \"1989-11-21T10:27:11.335Z\",\n  \"name\": \"string\",\n  \"nameRaw\": \"string\",\n  \"outputs\": [\n    {\n      \"contextPath\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"contextPath\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"packID\": \"string\",\n  \"prevName\": \"string\",\n  \"previousRoles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"primaryTerm\": 3107,\n  \"private\": false,\n  \"propagationLabels\": [\n    \"string\",\n    \"string\"\n  ],\n  \"quiet\": true,\n  \"roles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"scriptIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"sequenceNumber\": 6143,\n  \"shouldCommit\": false,\n  \"sortValues\": [\n    \"string\",\n    \"string\"\n  ],\n  \"sourcePlaybookID\": \"string\",\n  \"startTaskId\": \"string\",\n  \"system\": false,\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tasks\": {\n    \"key_0\": {\n      \"conditions\": [\n        {\n          \"condition\": [\n            [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          ],\n          \"label\": \"string\"\n        },\n        {\n          \"condition\": [\n            [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          ],\n          \"label\": \"string\"\n        }\n      ],\n      \"continueOnError\": true,\n      \"defaultAssignee\": \"string\",\n      \"defaultAssigneeComplex\": {\n        \"complex\": {\n          \"accessor\": \"string\",\n          \"filters\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"root\": \"string\",\n          \"transformers\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"simple\": \"string\"\n      },\n      \"defaultReminder\": 7969,\n      \"evidenceData\": {\n        \"customFields\": {\n          \"key_0\": {\n            \"complex\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"simple\": \"string\"\n          },\n          \"key_1\": {\n            \"complex\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"simple\": \"string\"\n          }\n        },\n        \"description\": {\n          \"complex\": {\n            \"accessor\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filters\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transformers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"simple\": \"string\"\n        },\n        \"occurred\": {\n          \"complex\": {\n            \"accessor\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filters\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transformers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"simple\": \"string\"\n        },\n        \"tags\": {\n          \"complex\": {\n            \"accessor\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filters\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transformers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"simple\": \"string\"\n        }\n      },\n      \"fieldMapping\": [\n        {\n          \"fieldId\": \"string\",\n          \"output\": {\n            \"complex\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"simple\": \"string\"\n          }\n        },\n        {\n          \"fieldId\": \"string\",\n          \"output\": {\n            \"complex\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"simple\": \"string\"\n          }\n        }\n      ],\n      \"form\": {\n        \"description\": \"string\",\n        \"expired\": false,\n        \"questions\": [\n          {\n            \"columns\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"defaultRows\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"fieldAssociated\": \"string\",\n            \"id\": \"string\",\n            \"label\": \"string\",\n            \"labelArg\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"placeholder\": \"string\",\n            \"required\": false,\n            \"tooltip\": \"string\",\n            \"type\": \"string\"\n          },\n          {\n            \"columns\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"defaultRows\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"fieldAssociated\": \"string\",\n            \"id\": \"string\",\n            \"label\": \"string\",\n            \"labelArg\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"placeholder\": \"string\",\n            \"required\": false,\n            \"tooltip\": \"string\",\n            \"type\": \"string\"\n          }\n        ],\n        \"sender\": \"string\",\n        \"title\": \"string\",\n        \"totalAnswers\": 2690\n      },\n      \"formDisplay\": {\n        \"bodyBackgroundColor\": \"string\",\n        \"bodyFontColor\": \"string\",\n        \"headerBackgroundColor\": \"string\",\n        \"headerFontColor\": \"string\",\n        \"sender\": \"string\",\n        \"submitButtonBackgroundColor\": \"string\",\n        \"submitButtonFontColor\": \"string\",\n        \"submitText\": \"string\"\n      },\n      \"id\": \"string\",\n      \"ignoreWorker\": false,\n      \"loop\": {\n        \"brand\": \"string\",\n        \"builtinCondition\": [\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        ],\n        \"exitCondition\": \"string\",\n        \"forEach\": true,\n        \"isCommand\": false,\n        \"scriptArguments\": {\n          \"key_0\": {\n            \"complex\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"simple\": \"string\"\n          }\n        },\n        \"scriptId\": \"string\",\n        \"wait\": 3169\n      },\n      \"message\": {\n        \"bcc\": {\n          \"complex\": {\n            \"accessor\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filters\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transformers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"simple\": \"string\"\n        },\n        \"body\": {\n          \"complex\": {\n            \"accessor\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filters\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transformers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"simple\": \"string\"\n        },\n        \"cc\": {\n          \"complex\": {\n            \"accessor\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filters\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transformers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"simple\": \"string\"\n        },\n        \"defaultOption\": \"string\",\n        \"format\": \"string\",\n        \"methods\": [\n          \"string\",\n          \"string\"\n        ],\n        \"replyOptions\": [\n          \"string\",\n          \"string\"\n        ],\n        \"subject\": {\n          \"complex\": {\n            \"accessor\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filters\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transformers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"simple\": \"string\"\n        },\n        \"timings\": {\n          \"completeAfterReplies\": 6138,\n          \"retriesCount\": 3879,\n          \"retriesInterval\": 2898\n        },\n        \"to\": {\n          \"complex\": {\n            \"accessor\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"filters\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transformers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"simple\": \"string\"\n        }\n      },\n      \"nextTasks\": {\n        \"key_0\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_1\": [\n          \"string\",\n          \"string\"\n        ],\n        \"key_2\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"note\": false,\n      \"quietMode\": 8615,\n      \"reputationCalc\": 8709.45776154524,\n      \"restrictedCompletion\": true,\n      \"scriptArguments\": {\n        \"key_0\": {\n          \"complex\": {\n            \"accessor\": \"string\",\n            \"filters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"root\": \"string\",\n            \"transformers\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"simple\": \"string\"\n        }\n      },\n      \"separateContext\": false,\n      \"skipUnavailable\": true,\n      \"sla\": {\n        \"days\": 1843,\n        \"hours\": 3904,\n        \"weeks\": 1559\n      },\n      \"slaReminder\": {\n        \"days\": 4925,\n        \"hours\": 3134,\n        \"weeks\": 4155\n      },\n      \"task\": {\n        \"brand\": \"string\",\n        \"clonedFrom\": \"string\",\n        \"comment\": \"string\",\n        \"conditions\": [\n          \"string\",\n          \"string\"\n        ],\n        \"description\": \"string\",\n        \"id\": \"string\",\n        \"isCommand\": false,\n        \"isLocked\": true,\n        \"isSystemTask\": false,\n        \"isTitleTask\": true,\n        \"modified\": \"1987-01-14T13:42:55.265Z\",\n        \"name\": \"string\",\n        \"playbookId\": \"string\",\n        \"scriptId\": \"string\",\n        \"sortValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"type\": \"string\",\n        \"version\": 528\n      },\n      \"taskId\": \"string\",\n      \"timerTriggers\": [\n        {\n          \"action\": \"string\",\n          \"fieldName\": \"string\"\n        },\n        {\n          \"action\": \"string\",\n          \"fieldName\": \"string\"\n        }\n      ],\n      \"type\": \"string\",\n      \"view\": {}\n    }\n  },\n  \"toServerVersion\": {\n    \"Digits\": [\n      7656,\n      5157\n    ],\n    \"Label\": \"string\"\n  },\n  \"vcShouldIgnore\": false,\n  \"version\": 4646,\n  \"view\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hostname:443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0f0bfadd-8231-4797-aa26-640ad5dc8d7a",
+    "name": "Demisto Apikeys Playbook API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the public REST API to integrate with the demisto server.\nHTTP request can be sent using any HTTP-client.\n\nFor an example dedicated client take a look at: https://github.com/demisto/demisto-py.\n\nRequests must include API-key that can be generated in the Demisto web client under 'Settings' -> 'Integrations' -> 'API keys'\n\n\nOptimistic Locking and Versioning\\:\n\nWhen using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).\nIn addition, you can pass 'version\\: -1' to force data override (make sure that other users data might be lost).\n\nAssume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?\nTo solve this, each data item in Demisto has a numeric incremental version.\nIf Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.\nBob will need to get the latest item and work on it so Alice work will not get lost.\n\nExample request using 'curl'\\:\n\n```\ncurl 'https://hostname:443/incidents/search' -H 'content-type: application/json' -H 'accept: application/json' -H 'Authorization: <API Key goes here>' --data-binary '{\"filter\":{\"query\":\"-status:closed -category:job\",\"period\":{\"by\":\"day\",\"fromValue\":7}}}' --compressed\n```",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Report API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/report/:id/:requestId/execute",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "the ID of the report to get"
+              },
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "the ID to register the request under"
+              }
+            ]
+          },
+          "docs": "Execute a new report"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

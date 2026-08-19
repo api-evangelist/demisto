@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Incidenttypes API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Incidenttypes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import an incident type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/incidenttypes/import"
+          },
+          "docs": "Import an incident type to Cortex XSOAR"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

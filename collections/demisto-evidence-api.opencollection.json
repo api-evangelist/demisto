@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Evidence API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Evidence",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Save evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/evidence"
+          },
+          "docs": "Save an evidence entity\nTo update evidence custom fields you should lowercase them and remove all spaces. For example: Scan IP -> scanip"
+        },
+        {
+          "info": {
+            "name": "delete evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/evidence/delete"
+          },
+          "docs": "Delete an evidence entity"
+        },
+        {
+          "info": {
+            "name": "Search evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/evidence/search"
+          },
+          "docs": "Search for an evidence entutiy by filter"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

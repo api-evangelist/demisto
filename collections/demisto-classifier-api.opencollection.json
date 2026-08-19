@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Classifier API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Classifier",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import a classifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/classifier/import"
+          },
+          "docs": "Import a classifier to Cortex XSOAR"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

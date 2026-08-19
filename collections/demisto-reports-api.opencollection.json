@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Reports API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports"
+          },
+          "docs": "Get all of the reports"
+        },
+        {
+          "info": {
+            "name": "Get report by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "the ID of the report to get"
+              }
+            ]
+          },
+          "docs": "Get a report by its ID"
+        },
+        {
+          "info": {
+            "name": "Get latest report by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:id/latest",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "the ID of the report to get"
+              }
+            ]
+          },
+          "docs": "Get the latest report by its ID"
+        },
+        {
+          "info": {
+            "name": "Upload report file to Demisto",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/reports/upload"
+          },
+          "docs": "Upload report file to Demisto"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,150 @@
+{
+  "item": [
+    {
+      "id": "2a2e023f-b0dd-4716-815f-13a660aca829",
+      "name": "Incidents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "477cde74-8209-493f-8d31-9f7f4a5d74b5",
+          "name": "Search incidents by filter",
+          "request": {
+            "name": "Search incidents by filter",
+            "description": {
+              "content": "This will search incidents across all indices\nYou can filter by multiple options",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "incidents",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter\": {\n    \"Cache\": {\n      \"key_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"key_1\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"key_2\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"andOp\": \"<boolean>\",\n    \"category\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"details\": \"<string>\",\n    \"files\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"firstIncidentInPage\": {\n      \"ShardID\": \"<long>\",\n      \"account\": \"<string>\",\n      \"activated\": \"<dateTime>\",\n      \"activatingingUserId\": \"<string>\",\n      \"attachment\": [\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"showMediaFile\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"showMediaFile\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"autime\": \"<long>\",\n      \"canvases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"category\": \"<string>\",\n      \"changeStatus\": \"<string>\",\n      \"closeNotes\": \"<string>\",\n      \"closeReason\": \"<string>\",\n      \"closed\": \"<dateTime>\",\n      \"closingUserId\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"details\": \"<string>\",\n      \"droppedCount\": \"<long>\",\n      \"dueDate\": \"<dateTime>\",\n      \"hasRole\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"insights\": \"<uint64>\",\n      \"investigationId\": \"<string>\",\n      \"isPlayground\": \"<boolean>\",\n      \"labels\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"lastOpen\": \"<dateTime>\",\n      \"linkedCount\": \"<long>\",\n      \"linkedIncidents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modified\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"notifyTime\": \"<dateTime>\",\n      \"occurred\": \"<dateTime>\",\n      \"openDuration\": \"<long>\",\n      \"owner\": \"<string>\",\n      \"parent\": \"<string>\",\n      \"phase\": \"<string>\",\n      \"playbookId\": \"<string>\",\n      \"previousRoles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rawCategory\": \"<string>\",\n      \"rawCloseReason\": \"<string>\",\n      \"rawJSON\": \"<string>\",\n      \"rawName\": \"<string>\",\n      \"rawPhase\": \"<string>\",\n      \"rawType\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"reminder\": \"<dateTime>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"runStatus\": \"<string>\",\n      \"severity\": \"<double>\",\n      \"sla\": \"<double>\",\n      \"sortValues\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sourceBrand\": \"<string>\",\n      \"sourceInstance\": \"<string>\",\n      \"status\": \"<double>\",\n      \"type\": \"<string>\",\n      \"version\": \"<long>\"\n    },\n    \"fromActivatedDate\": \"<dateTime>\",\n    \"fromClosedDate\": \"<dateTime>\",\n    \"fromDate\": \"<dateTime>\",\n    \"fromDateLicense\": \"<dateTime>\",\n    \"fromDueDate\": \"<dateTime>\",\n    \"fromReminder\": \"<dateTime>\",\n    \"id\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"includeTmp\": \"<boolean>\",\n    \"investigation\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"lastIncidentInPage\": {\n      \"ShardID\": \"<long>\",\n      \"account\": \"<string>\",\n      \"activated\": \"<dateTime>\",\n      \"activatingingUserId\": \"<string>\",\n      \"attachment\": [\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"showMediaFile\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"showMediaFile\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"autime\": \"<long>\",\n      \"canvases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"category\": \"<string>\",\n      \"changeStatus\": \"<string>\",\n      \"closeNotes\": \"<string>\",\n      \"closeReason\": \"<string>\",\n      \"closed\": \"<dateTime>\",\n      \"closingUserId\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"details\": \"<string>\",\n      \"droppedCount\": \"<long>\",\n      \"dueDate\": \"<dateTime>\",\n      \"hasRole\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"insights\": \"<uint64>\",\n      \"investigationId\": \"<string>\",\n      \"isPlayground\": \"<boolean>\",\n      \"labels\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"lastOpen\": \"<dateTime>\",\n      \"linkedCount\": \"<long>\",\n      \"linkedIncidents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modified\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"notifyTime\": \"<dateTime>\",\n      \"occurred\": \"<dateTime>\",\n      \"openDuration\": \"<long>\",\n      \"owner\": \"<string>\",\n      \"parent\": \"<string>\",\n      \"phase\": \"<string>\",\n      \"playbookId\": \"<string>\",\n      \"previousRoles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rawCategory\": \"<string>\",\n      \"rawCloseReason\": \"<string>\",\n      \"rawJSON\": \"<string>\",\n      \"rawName\": \"<string>\",\n      \"rawPhase\": \"<string>\",\n      \"rawType\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"reminder\": \"<dateTime>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"runStatus\": \"<string>\",\n      \"severity\": \"<double>\",\n      \"sla\": \"<double>\",\n      \"sortValues\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sourceBrand\": \"<string>\",\n      \"sourceInstance\": \"<string>\",\n      \"status\": \"<double>\",\n      \"type\": \"<string>\",\n      \"version\": \"<long>\"\n    },\n    \"level\": [\n      \"<double>\",\n      \"<double>\"\n    ],\n    \"name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"nextPage\": \"<boolean>\",\n    \"notCategory\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"notInvestigation\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"notStatus\": [\n      \"<double>\",\n      \"<double>\"\n    ],\n    \"page\": \"<long>\",\n    \"parent\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"period\": {\n      \"by\": \"<string>\",\n      \"byFrom\": \"<string>\",\n      \"byTo\": \"<string>\",\n      \"field\": \"<string>\",\n      \"fromValue\": \"<duration>\",\n      \"toValue\": \"<duration>\"\n    },\n    \"query\": \"<string>\",\n    \"reason\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"searchAfter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"searchBefore\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sequentialPagesSearch\": \"<boolean>\",\n    \"size\": \"<long>\",\n    \"sort\": [\n      {\n        \"asc\": \"<boolean>\",\n        \"field\": \"<string>\",\n        \"fieldType\": \"<string>\"\n      },\n      {\n        \"asc\": \"<boolean>\",\n        \"field\": \"<string>\",\n        \"fieldType\": \"<string>\"\n      }\n    ],\n    \"status\": [\n      \"<double>\",\n      \"<double>\"\n    ],\n    \"systems\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"timeFrame\": \"<long>\",\n    \"toActivatedDate\": \"<dateTime>\",\n    \"toClosedDate\": \"<dateTime>\",\n    \"toDate\": \"<dateTime>\",\n    \"toDueDate\": \"<dateTime>\",\n    \"toReminder\": \"<dateTime>\",\n    \"totalOnly\": \"<boolean>\",\n    \"type\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"urls\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"userFilter\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "728f85c8-e72e-4f70-b54a-f12c65c833ba",
+              "name": "incidentSearchResponse",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidents",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"Cache\": {\n      \"key_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"key_1\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"andOp\": \"<boolean>\",\n    \"category\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"details\": \"<string>\",\n    \"files\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"firstIncidentInPage\": {\n      \"ShardID\": \"<long>\",\n      \"account\": \"<string>\",\n      \"activated\": \"<dateTime>\",\n      \"activatingingUserId\": \"<string>\",\n      \"attachment\": [\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"showMediaFile\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"showMediaFile\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"autime\": \"<long>\",\n      \"canvases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"category\": \"<string>\",\n      \"changeStatus\": \"<string>\",\n      \"closeNotes\": \"<string>\",\n      \"closeReason\": \"<string>\",\n      \"closed\": \"<dateTime>\",\n      \"closingUserId\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"details\": \"<string>\",\n      \"droppedCount\": \"<long>\",\n      \"dueDate\": \"<dateTime>\",\n      \"hasRole\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"insights\": \"<uint64>\",\n      \"investigationId\": \"<string>\",\n      \"isPlayground\": \"<boolean>\",\n      \"labels\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"lastOpen\": \"<dateTime>\",\n      \"linkedCount\": \"<long>\",\n      \"linkedIncidents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modified\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"notifyTime\": \"<dateTime>\",\n      \"occurred\": \"<dateTime>\",\n      \"openDuration\": \"<long>\",\n      \"owner\": \"<string>\",\n      \"parent\": \"<string>\",\n      \"phase\": \"<string>\",\n      \"playbookId\": \"<string>\",\n      \"previousRoles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rawCategory\": \"<string>\",\n      \"rawCloseReason\": \"<string>\",\n      \"rawJSON\": \"<string>\",\n      \"rawName\": \"<string>\",\n      \"rawPhase\": \"<string>\",\n      \"rawType\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"reminder\": \"<dateTime>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"runStatus\": \"<string>\",\n      \"severity\": \"<double>\",\n      \"sla\": \"<double>\",\n      \"sortValues\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sourceBrand\": \"<string>\",\n      \"sourceInstance\": \"<string>\",\n      \"status\": \"<double>\",\n      \"type\": \"<string>\",\n      \"version\": \"<long>\"\n    },\n    \"fromActivatedDate\": \"<dateTime>\",\n    \"fromClosedDate\": \"<dateTime>\",\n    \"fromDate\": \"<dateTime>\",\n    \"fromDateLicense\": \"<dateTime>\",\n    \"fromDueDate\": \"<dateTime>\",\n    \"fromReminder\": \"<dateTime>\",\n    \"id\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"includeTmp\": \"<boolean>\",\n    \"investigation\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"lastIncidentInPage\": {\n      \"ShardID\": \"<long>\",\n      \"account\": \"<string>\",\n      \"activated\": \"<dateTime>\",\n      \"activatingingUserId\": \"<string>\",\n      \"attachment\": [\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"showMediaFile\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"showMediaFile\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"autime\": \"<long>\",\n      \"canvases\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"category\": \"<string>\",\n      \"changeStatus\": \"<string>\",\n      \"closeNotes\": \"<string>\",\n      \"closeReason\": \"<string>\",\n      \"closed\": \"<dateTime>\",\n      \"closingUserId\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"details\": \"<string>\",\n      \"droppedCount\": \"<long>\",\n      \"dueDate\": \"<dateTime>\",\n      \"hasRole\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"insights\": \"<uint64>\",\n      \"investigationId\": \"<string>\",\n      \"isPlayground\": \"<boolean>\",\n      \"labels\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"lastOpen\": \"<dateTime>\",\n      \"linkedCount\": \"<long>\",\n      \"linkedIncidents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"modified\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"notifyTime\": \"<dateTime>\",\n      \"occurred\": \"<dateTime>\",\n      \"openDuration\": \"<long>\",\n      \"owner\": \"<string>\",\n      \"parent\": \"<string>\",\n      \"phase\": \"<string>\",\n      \"playbookId\": \"<string>\",\n      \"previousRoles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rawCategory\": \"<string>\",\n      \"rawCloseReason\": \"<string>\",\n      \"rawJSON\": \"<string>\",\n      \"rawName\": \"<string>\",\n      \"rawPhase\": \"<string>\",\n      \"rawType\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"reminder\": \"<dateTime>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"runStatus\": \"<string>\",\n      \"severity\": \"<double>\",\n      \"sla\": \"<double>\",\n      \"sortValues\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sourceBrand\": \"<string>\",\n      \"sourceInstance\": \"<string>\",\n      \"status\": \"<double>\",\n      \"type\": \"<string>\",\n      \"version\": \"<long>\"\n    },\n    \"level\": [\n      \"<double>\",\n      \"<double>\"\n    ],\n    \"name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"nextPage\": \"<boolean>\",\n    \"notCategory\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"notInvestigation\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"notStatus\": [\n      \"<double>\",\n      \"<double>\"\n    ],\n    \"page\": \"<long>\",\n    \"parent\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"period\": {\n      \"by\": \"<string>\",\n      \"byFrom\": \"<string>\",\n      \"byTo\": \"<string>\",\n      \"field\": \"<string>\",\n      \"fromValue\": \"<duration>\",\n      \"toValue\": \"<duration>\"\n    },\n    \"query\": \"<string>\",\n    \"reason\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"searchAfter\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"searchBefore\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sequentialPagesSearch\": \"<boolean>\",\n    \"size\": \"<long>\",\n    \"sort\": [\n      {\n        \"asc\": \"<boolean>\",\n        \"field\": \"<string>\",\n        \"fieldType\": \"<string>\"\n      },\n      {\n        \"asc\": \"<boolean>\",\n        \"field\": \"<string>\",\n        \"fieldType\": \"<string>\"\n      }\n    ],\n    \"status\": [\n      \"<double>\",\n      \"<double>\"\n    ],\n    \"systems\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"timeFrame\": \"<long>\",\n    \"toActivatedDate\": \"<dateTime>\",\n    \"toClosedDate\": \"<dateTime>\",\n    \"toDate\": \"<dateTime>\",\n    \"toDueDate\": \"<dateTime>\",\n    \"toReminder\": \"<dateTime>\",\n    \"totalOnly\": \"<boolean>\",\n    \"type\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"urls\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"userFilter\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"ShardID\": 361,\n      \"account\": \"string\",\n      \"activated\": \"1961-09-21T17:45:06.756Z\",\n      \"activatingingUserId\": \"string\",\n      \"attachment\": [\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"showMediaFile\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"showMediaFile\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"autime\": 8736,\n      \"canvases\": [\n        \"string\",\n        \"string\"\n      ],\n      \"category\": \"string\",\n      \"closeNotes\": \"string\",\n      \"closeReason\": \"string\",\n      \"closed\": \"1962-07-15T12:39:57.024Z\",\n      \"closingUserId\": \"string\",\n      \"created\": \"2003-10-26T10:28:12.318Z\",\n      \"details\": \"string\",\n      \"droppedCount\": 4296,\n      \"dueDate\": \"1961-09-05T01:39:25.860Z\",\n      \"hasRole\": false,\n      \"id\": \"string\",\n      \"investigationId\": \"string\",\n      \"isPlayground\": false,\n      \"labels\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"lastOpen\": \"1988-01-31T08:15:12.627Z\",\n      \"linkedCount\": 1971,\n      \"linkedIncidents\": [\n        \"string\",\n        \"string\"\n      ],\n      \"modified\": \"1994-04-14T21:18:09.883Z\",\n      \"name\": \"string\",\n      \"notifyTime\": \"1998-05-16T18:26:58.330Z\",\n      \"occurred\": \"1962-04-03T20:05:34.783Z\",\n      \"openDuration\": 5490,\n      \"owner\": \"string\",\n      \"parent\": \"string\",\n      \"phase\": \"string\",\n      \"playbookId\": \"string\",\n      \"previousRoles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"rawCategory\": \"string\",\n      \"rawCloseReason\": \"string\",\n      \"rawJSON\": \"string\",\n      \"rawName\": \"string\",\n      \"rawPhase\": \"string\",\n      \"rawType\": \"string\",\n      \"reason\": \"string\",\n      \"reminder\": \"1993-03-28T12:24:38.045Z\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"runStatus\": \"<string>\",\n      \"severity\": \"<double>\",\n      \"sla\": \"<double>\",\n      \"sortValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"sourceBrand\": \"string\",\n      \"sourceInstance\": \"string\",\n      \"status\": \"<double>\",\n      \"type\": \"string\",\n      \"version\": 9937,\n      \"CustomFields\": {\n        \"key_0\": {}\n      }\n    },\n    {\n      \"ShardID\": 9593,\n      \"account\": \"string\",\n      \"activated\": \"1977-03-19T20:46:23.696Z\",\n      \"activatingingUserId\": \"string\",\n      \"attachment\": [\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"showMediaFile\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"showMediaFile\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"autime\": 1928,\n      \"canvases\": [\n        \"string\",\n        \"string\"\n      ],\n      \"category\": \"string\",\n      \"closeNotes\": \"string\",\n      \"closeReason\": \"string\",\n      \"closed\": \"2009-09-05T21:55:28.781Z\",\n      \"closingUserId\": \"string\",\n      \"created\": \"2006-04-16T00:24:35.393Z\",\n      \"details\": \"string\",\n      \"droppedCount\": 127,\n      \"dueDate\": \"1982-05-15T08:41:05.487Z\",\n      \"hasRole\": true,\n      \"id\": \"string\",\n      \"investigationId\": \"string\",\n      \"isPlayground\": false,\n      \"labels\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"lastOpen\": \"1992-12-12T18:57:18.585Z\",\n      \"linkedCount\": 6537,\n      \"linkedIncidents\": [\n        \"string\",\n        \"string\"\n      ],\n      \"modified\": \"1983-12-25T19:48:46.671Z\",\n      \"name\": \"string\",\n      \"notifyTime\": \"1978-05-06T00:13:18.092Z\",\n      \"occurred\": \"2016-12-31T22:51:41.138Z\",\n      \"openDuration\": 1158,\n      \"owner\": \"string\",\n      \"parent\": \"string\",\n      \"phase\": \"string\",\n      \"playbookId\": \"string\",\n      \"previousRoles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"rawCategory\": \"string\",\n      \"rawCloseReason\": \"string\",\n      \"rawJSON\": \"string\",\n      \"rawName\": \"string\",\n      \"rawPhase\": \"string\",\n      \"rawType\": \"string\",\n      \"reason\": \"string\",\n      \"reminder\": \"1962-06-29T22:14:30.669Z\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"runStatus\": \"<string>\",\n      \"severity\": \"<double>\",\n      \"sla\": \"<double>\",\n      \"sortValues\": [\n        \"string\",\n        \"string\"\n      ],\n      \"sourceBrand\": \"string\",\n      \"sourceInstance\": \"string\",\n      \"status\": \"<double>\",\n      \"type\": \"string\",\n      \"version\": 9767,\n      \"CustomFields\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    }\n  ],\n  \"total\": 7949\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hostname:443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8fbef1db-878b-4bb3-9c67-51652a52528a",
+    "name": "Demisto Apikeys Incidents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the public REST API to integrate with the demisto server.\nHTTP request can be sent using any HTTP-client.\n\nFor an example dedicated client take a look at: https://github.com/demisto/demisto-py.\n\nRequests must include API-key that can be generated in the Demisto web client under 'Settings' -> 'Integrations' -> 'API keys'\n\n\nOptimistic Locking and Versioning\\:\n\nWhen using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).\nIn addition, you can pass 'version\\: -1' to force data override (make sure that other users data might be lost).\n\nAssume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?\nTo solve this, each data item in Demisto has a numeric incremental version.\nIf Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.\nBob will need to get the latest item and work on it so Alice work will not get lost.\n\nExample request using 'curl'\\:\n\n```\ncurl 'https://hostname:443/incidents/search' -H 'content-type: application/json' -H 'accept: application/json' -H 'Authorization: <API Key goes here>' --data-binary '{\"filter\":{\"query\":\"-status:closed -category:job\",\"period\":{\"by\":\"day\",\"fromValue\":7}}}' --compressed\n```",
+      "type": "text/plain"
+    }
+  }
+}

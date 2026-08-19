@@ -1,0 +1,148 @@
+{
+  "item": [
+    {
+      "id": "9d315c08-d8e7-438c-b01b-aa75460dc714",
+      "name": "Incidenttype",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "67c22060-13bc-4613-8322-adc955929972",
+          "name": "Create new Incident Type",
+          "request": {
+            "name": "Create new Incident Type",
+            "description": {
+              "content": "API to create new Incident Type",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "incidenttype"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"autorun\": \"<boolean>\",\n  \"closureScript\": \"<string>\",\n  \"color\": \"<string>\",\n  \"commitMessage\": \"<string>\",\n  \"days\": \"<long>\",\n  \"daysR\": \"<long>\",\n  \"default\": \"<boolean>\",\n  \"disabled\": \"<boolean>\",\n  \"hours\": \"<long>\",\n  \"hoursR\": \"<long>\",\n  \"id\": \"<string>\",\n  \"locked\": \"<boolean>\",\n  \"modified\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"playbookId\": \"<string>\",\n  \"preProcessingScript\": \"<string>\",\n  \"prevName\": \"<string>\",\n  \"readonly\": \"<boolean>\",\n  \"reputationCalc\": \"<double>\",\n  \"shouldCommit\": \"<boolean>\",\n  \"sla\": \"<long>\",\n  \"slaReminder\": \"<long>\",\n  \"sortValues\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"system\": \"<boolean>\",\n  \"vcShouldIgnore\": \"<boolean>\",\n  \"version\": \"<long>\",\n  \"weeks\": \"<long>\",\n  \"weeksR\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "28cf5dca-15ee-403a-87bd-4d5bc4b55307",
+              "name": "IncidentType",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidenttype"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"autorun\": \"<boolean>\",\n  \"closureScript\": \"<string>\",\n  \"color\": \"<string>\",\n  \"commitMessage\": \"<string>\",\n  \"days\": \"<long>\",\n  \"daysR\": \"<long>\",\n  \"default\": \"<boolean>\",\n  \"disabled\": \"<boolean>\",\n  \"hours\": \"<long>\",\n  \"hoursR\": \"<long>\",\n  \"id\": \"<string>\",\n  \"locked\": \"<boolean>\",\n  \"modified\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"playbookId\": \"<string>\",\n  \"preProcessingScript\": \"<string>\",\n  \"prevName\": \"<string>\",\n  \"readonly\": \"<boolean>\",\n  \"reputationCalc\": \"<double>\",\n  \"shouldCommit\": \"<boolean>\",\n  \"sla\": \"<long>\",\n  \"slaReminder\": \"<long>\",\n  \"sortValues\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"system\": \"<boolean>\",\n  \"vcShouldIgnore\": \"<boolean>\",\n  \"version\": \"<long>\",\n  \"weeks\": \"<long>\",\n  \"weeksR\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"autorun\": \"<boolean>\",\n  \"closureScript\": \"<string>\",\n  \"color\": \"<string>\",\n  \"commitMessage\": \"<string>\",\n  \"days\": \"<long>\",\n  \"daysR\": \"<long>\",\n  \"default\": \"<boolean>\",\n  \"disabled\": \"<boolean>\",\n  \"hours\": \"<long>\",\n  \"hoursR\": \"<long>\",\n  \"id\": \"<string>\",\n  \"locked\": \"<boolean>\",\n  \"modified\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"playbookId\": \"<string>\",\n  \"preProcessingScript\": \"<string>\",\n  \"prevName\": \"<string>\",\n  \"readonly\": \"<boolean>\",\n  \"reputationCalc\": \"<double>\",\n  \"shouldCommit\": \"<boolean>\",\n  \"sla\": \"<long>\",\n  \"slaReminder\": \"<long>\",\n  \"sortValues\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"system\": \"<boolean>\",\n  \"vcShouldIgnore\": \"<boolean>\",\n  \"version\": \"<long>\",\n  \"weeks\": \"<long>\",\n  \"weeksR\": \"<long>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hostname:443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a371fef0-3582-4fb4-84d8-46ec29eed351",
+    "name": "Demisto Apikeys Incidenttype API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the public REST API to integrate with the demisto server.\nHTTP request can be sent using any HTTP-client.\n\nFor an example dedicated client take a look at: https://github.com/demisto/demisto-py.\n\nRequests must include API-key that can be generated in the Demisto web client under 'Settings' -> 'Integrations' -> 'API keys'\n\n\nOptimistic Locking and Versioning\\:\n\nWhen using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).\nIn addition, you can pass 'version\\: -1' to force data override (make sure that other users data might be lost).\n\nAssume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?\nTo solve this, each data item in Demisto has a numeric incremental version.\nIf Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.\nBob will need to get the latest item and work on it so Alice work will not get lost.\n\nExample request using 'curl'\\:\n\n```\ncurl 'https://hostname:443/incidents/search' -H 'content-type: application/json' -H 'accept: application/json' -H 'Authorization: <API Key goes here>' --data-binary '{\"filter\":{\"query\":\"-status:closed -category:job\",\"period\":{\"by\":\"day\",\"fromValue\":7}}}' --compressed\n```",
+      "type": "text/plain"
+    }
+  }
+}

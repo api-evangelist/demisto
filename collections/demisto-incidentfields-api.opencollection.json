@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Incidentfields API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Incidentfields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all incident fields associated with incident type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/incidentfields/associatedTypes/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "the name (case sensitive) of the incident type"
+              }
+            ]
+          },
+          "docs": "Get all incident fields associated with incident type"
+        },
+        {
+          "info": {
+            "name": "Import an incidents field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/incidentfields/import"
+          },
+          "docs": "Import an incidents field to Cortex XSOAR"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

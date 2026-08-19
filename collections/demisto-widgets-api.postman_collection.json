@@ -1,0 +1,515 @@
+{
+  "item": [
+    {
+      "id": "6f34854e-b004-4fe7-a44f-dcd58433257b",
+      "name": "Widgets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "10f70f4b-e813-4f11-9cfc-66f0b200e521",
+          "name": "get All Widgets",
+          "request": {
+            "name": "get All Widgets",
+            "description": {
+              "content": "Get all widgets",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "widgets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9c3dbb3-c5eb-45d4-b83d-6d9497dfb5b2",
+              "name": "Return all the widgets in the system.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "widgets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"widgetType\": \"string\",\n    \"category\": \"string\",\n    \"commitMessage\": \"string\",\n    \"dataType\": \"string\",\n    \"dateRange\": {\n      \"fromDate\": \"2005-08-24T06:07:32.954Z\",\n      \"fromDateLicense\": \"2003-01-12T20:48:47.077Z\",\n      \"period\": {\n        \"by\": \"string\",\n        \"byFrom\": \"string\",\n        \"byTo\": \"string\",\n        \"field\": \"string\",\n        \"fromValue\": \"string\",\n        \"toValue\": \"string\"\n      },\n      \"toDate\": \"1952-04-11T15:40:17.845Z\"\n    },\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"isPredefined\": false,\n    \"locked\": false,\n    \"modified\": \"2018-12-15T20:25:48.637Z\",\n    \"params\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"prevName\": \"string\",\n    \"query\": \"string\",\n    \"shouldCommit\": false,\n    \"size\": 4462,\n    \"sort\": [\n      {\n        \"asc\": false,\n        \"field\": \"string\",\n        \"fieldType\": \"string\"\n      },\n      {\n        \"asc\": false,\n        \"field\": \"string\",\n        \"fieldType\": \"string\"\n      }\n    ],\n    \"sortValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"vcShouldIgnore\": true,\n    \"version\": 5083\n  },\n  {\n    \"name\": \"string\",\n    \"widgetType\": \"string\",\n    \"category\": \"string\",\n    \"commitMessage\": \"string\",\n    \"dataType\": \"string\",\n    \"dateRange\": {\n      \"fromDate\": \"1995-06-26T06:13:06.179Z\",\n      \"fromDateLicense\": \"1998-07-29T21:06:33.760Z\",\n      \"period\": {\n        \"by\": \"string\",\n        \"byFrom\": \"string\",\n        \"byTo\": \"string\",\n        \"field\": \"string\",\n        \"fromValue\": \"string\",\n        \"toValue\": \"string\"\n      },\n      \"toDate\": \"1963-11-10T10:18:33.396Z\"\n    },\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"isPredefined\": false,\n    \"locked\": true,\n    \"modified\": \"1952-12-01T14:47:46.592Z\",\n    \"params\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    },\n    \"prevName\": \"string\",\n    \"query\": \"string\",\n    \"shouldCommit\": false,\n    \"size\": 1736,\n    \"sort\": [\n      {\n        \"asc\": false,\n        \"field\": \"string\",\n        \"fieldType\": \"string\"\n      },\n      {\n        \"asc\": true,\n        \"field\": \"string\",\n        \"fieldType\": \"string\"\n      }\n    ],\n    \"sortValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"vcShouldIgnore\": false,\n    \"version\": 2980\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4cd96b64-8bd1-4e91-9340-9e03f92c7fd9",
+          "name": "Add or update a widget",
+          "request": {
+            "name": "Add or update a widget",
+            "description": {
+              "content": "Add or update a given widget based on Id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "widgets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"widgetType\": \"<string>\",\n  \"category\": \"<string>\",\n  \"commitMessage\": \"<string>\",\n  \"dataType\": \"<string>\",\n  \"dateRange\": {\n    \"fromDate\": \"<dateTime>\",\n    \"fromDateLicense\": \"<dateTime>\",\n    \"period\": {\n      \"by\": \"<string>\",\n      \"byFrom\": \"<string>\",\n      \"byTo\": \"<string>\",\n      \"field\": \"<string>\",\n      \"fromValue\": \"<duration>\",\n      \"toValue\": \"<duration>\"\n    },\n    \"toDate\": \"<dateTime>\"\n  },\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"isPredefined\": \"<boolean>\",\n  \"locked\": \"<boolean>\",\n  \"modified\": \"<dateTime>\",\n  \"params\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\"\n  },\n  \"prevName\": \"<string>\",\n  \"query\": \"<string>\",\n  \"shouldCommit\": \"<boolean>\",\n  \"size\": \"<long>\",\n  \"sort\": [\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    },\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    }\n  ],\n  \"sortValues\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vcShouldIgnore\": \"<boolean>\",\n  \"version\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4ea5a793-40d2-4acd-b9cd-cf1be80b2dea",
+              "name": "The saved widget newest version.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "widgets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"widgetType\": \"<string>\",\n  \"category\": \"<string>\",\n  \"commitMessage\": \"<string>\",\n  \"dataType\": \"<string>\",\n  \"dateRange\": {\n    \"fromDate\": \"<dateTime>\",\n    \"fromDateLicense\": \"<dateTime>\",\n    \"period\": {\n      \"by\": \"<string>\",\n      \"byFrom\": \"<string>\",\n      \"byTo\": \"<string>\",\n      \"field\": \"<string>\",\n      \"fromValue\": \"<duration>\",\n      \"toValue\": \"<duration>\"\n    },\n    \"toDate\": \"<dateTime>\"\n  },\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"isPredefined\": \"<boolean>\",\n  \"locked\": \"<boolean>\",\n  \"modified\": \"<dateTime>\",\n  \"params\": {\n    \"key_0\": \"<object>\"\n  },\n  \"prevName\": \"<string>\",\n  \"query\": \"<string>\",\n  \"shouldCommit\": \"<boolean>\",\n  \"size\": \"<long>\",\n  \"sort\": [\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    },\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    }\n  ],\n  \"sortValues\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vcShouldIgnore\": \"<boolean>\",\n  \"version\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"widgetType\": \"<string>\",\n  \"category\": \"<string>\",\n  \"commitMessage\": \"<string>\",\n  \"dataType\": \"<string>\",\n  \"dateRange\": {\n    \"fromDate\": \"<dateTime>\",\n    \"fromDateLicense\": \"<dateTime>\",\n    \"period\": {\n      \"by\": \"<string>\",\n      \"byFrom\": \"<string>\",\n      \"byTo\": \"<string>\",\n      \"field\": \"<string>\",\n      \"fromValue\": \"<duration>\",\n      \"toValue\": \"<duration>\"\n    },\n    \"toDate\": \"<dateTime>\"\n  },\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"isPredefined\": \"<boolean>\",\n  \"locked\": \"<boolean>\",\n  \"modified\": \"<dateTime>\",\n  \"params\": {\n    \"key_0\": \"<object>\"\n  },\n  \"prevName\": \"<string>\",\n  \"query\": \"<string>\",\n  \"shouldCommit\": \"<boolean>\",\n  \"size\": \"<long>\",\n  \"sort\": [\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    },\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    }\n  ],\n  \"sortValues\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vcShouldIgnore\": \"<boolean>\",\n  \"version\": \"<long>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f150ccc-835e-4b71-a5de-2ffab2de76e4",
+          "name": "Import a widget",
+          "request": {
+            "name": "Import a widget",
+            "description": {
+              "content": "Import a widget to the system, ignoring ID or version, used to import new widgets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "widgets",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) file"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5e007b9d-3822-4c06-8ef5-dad388f8de23",
+              "name": "The saved widget",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "widgets",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) file",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"widgetType\": \"<string>\",\n  \"category\": \"<string>\",\n  \"commitMessage\": \"<string>\",\n  \"dataType\": \"<string>\",\n  \"dateRange\": {\n    \"fromDate\": \"<dateTime>\",\n    \"fromDateLicense\": \"<dateTime>\",\n    \"period\": {\n      \"by\": \"<string>\",\n      \"byFrom\": \"<string>\",\n      \"byTo\": \"<string>\",\n      \"field\": \"<string>\",\n      \"fromValue\": \"<duration>\",\n      \"toValue\": \"<duration>\"\n    },\n    \"toDate\": \"<dateTime>\"\n  },\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"isPredefined\": \"<boolean>\",\n  \"locked\": \"<boolean>\",\n  \"modified\": \"<dateTime>\",\n  \"params\": {\n    \"key_0\": \"<object>\"\n  },\n  \"prevName\": \"<string>\",\n  \"query\": \"<string>\",\n  \"shouldCommit\": \"<boolean>\",\n  \"size\": \"<long>\",\n  \"sort\": [\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    },\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    }\n  ],\n  \"sortValues\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vcShouldIgnore\": \"<boolean>\",\n  \"version\": \"<long>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "800d08d3-08c8-4a7c-9a28-bb4116a04388",
+          "name": "Get widget by ID",
+          "request": {
+            "name": "Get widget by ID",
+            "description": {
+              "content": "Get a widget object by a given ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "widgets",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of widget to get."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ceb7716-a123-4e8d-a989-15c46bd61e44",
+              "name": "Return the widget if found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "widgets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of widget to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"widgetType\": \"<string>\",\n  \"category\": \"<string>\",\n  \"commitMessage\": \"<string>\",\n  \"dataType\": \"<string>\",\n  \"dateRange\": {\n    \"fromDate\": \"<dateTime>\",\n    \"fromDateLicense\": \"<dateTime>\",\n    \"period\": {\n      \"by\": \"<string>\",\n      \"byFrom\": \"<string>\",\n      \"byTo\": \"<string>\",\n      \"field\": \"<string>\",\n      \"fromValue\": \"<duration>\",\n      \"toValue\": \"<duration>\"\n    },\n    \"toDate\": \"<dateTime>\"\n  },\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"isPredefined\": \"<boolean>\",\n  \"locked\": \"<boolean>\",\n  \"modified\": \"<dateTime>\",\n  \"params\": {\n    \"key_0\": \"<object>\"\n  },\n  \"prevName\": \"<string>\",\n  \"query\": \"<string>\",\n  \"shouldCommit\": \"<boolean>\",\n  \"size\": \"<long>\",\n  \"sort\": [\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    },\n    {\n      \"asc\": \"<boolean>\",\n      \"field\": \"<string>\",\n      \"fieldType\": \"<string>\"\n    }\n  ],\n  \"sortValues\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"vcShouldIgnore\": \"<boolean>\",\n  \"version\": \"<long>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "686fb43d-c436-4785-8221-6d9eca146fee",
+          "name": "Remove existing widget",
+          "request": {
+            "name": "Remove existing widget",
+            "description": {
+              "content": "Remove a given widget Id from the system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "widgets",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Widget id to remove (returned from widget save or widgets get)"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ac5fbce-c3ec-44ee-b50b-8a11e1dd848c",
+              "name": "widget deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "widgets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Widget id to remove (returned from widget save or widgets get)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://hostname:443",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "18fa75d2-8e0a-4798-90a7-1d1dd8082f67",
+    "name": "Demisto Apikeys Widgets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the public REST API to integrate with the demisto server.\nHTTP request can be sent using any HTTP-client.\n\nFor an example dedicated client take a look at: https://github.com/demisto/demisto-py.\n\nRequests must include API-key that can be generated in the Demisto web client under 'Settings' -> 'Integrations' -> 'API keys'\n\n\nOptimistic Locking and Versioning\\:\n\nWhen using Demisto REST API, you will need to make sure to work on the latest version of the item (incident, entry, etc.), otherwise, you will get a DB version error (which not allow you to override a newer item).\nIn addition, you can pass 'version\\: -1' to force data override (make sure that other users data might be lost).\n\nAssume that Alice and Bob both read the same data from Demisto server, then they both changed the data, and then both tried to write the new versions back to the server. Whose changes should be saved? Alice’s? Bob’s?\nTo solve this, each data item in Demisto has a numeric incremental version.\nIf Alice saved an item with version 4 and Bob trying to save the same item with version 3, Demisto will rollback Bob request and returns a DB version conflict error.\nBob will need to get the latest item and work on it so Alice work will not get lost.\n\nExample request using 'curl'\\:\n\n```\ncurl 'https://hostname:443/incidents/search' -H 'content-type: application/json' -H 'accept: application/json' -H 'Authorization: <API Key goes here>' --data-binary '{\"filter\":{\"query\":\"-status:closed -category:job\",\"period\":{\"by\":\"day\",\"fromValue\":7}}}' --compressed\n```",
+      "type": "text/plain"
+    }
+  }
+}

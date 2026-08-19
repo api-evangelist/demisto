@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Demisto Apikeys Incident API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Incident",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create single incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/incident"
+          },
+          "docs": "Create or update incident according to JSON structure.\nTo update incident custom fields you should lowercase them and remove all spaces. For example: Scan IP -> scanip\nTo get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update\n\nUse the 'createInvestigation\\: True' to start the investigation process automatically. (by running a playbook based on incident type.)"
+        },
+        {
+          "info": {
+            "name": "Batch create incidents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/incident/batch"
+          },
+          "docs": "Create or update an incidents batch\nTo update incident custom fields you should lowercase them and remove all spaces. For example: Scan IP -> scanip\nTo get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update"
+        },
+        {
+          "info": {
+            "name": "Batch export incidents to csv",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/incident/batch/exportToCsv"
+          },
+          "docs": "Exports an incidents batch to CSV file (returns file ID)"
+        },
+        {
+          "info": {
+            "name": "Batch close incidents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/incident/batchClose"
+          },
+          "docs": "Closes an incidents batch\nTo update incident custom fields you should lowercase them and remove all spaces. For example: Scan IP -> scanip\nTo get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update"
+        },
+        {
+          "info": {
+            "name": "Batch delete incidents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/incident/batchDelete"
+          },
+          "docs": "Deletes an incidents batch"
+        },
+        {
+          "info": {
+            "name": "Get incident as CSV",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/incident/csv/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "CSV file to fetch (returned from batch export to csv call)"
+              }
+            ]
+          },
+          "docs": "Get an incident CSV file that was exported, by ID"
+        },
+        {
+          "info": {
+            "name": "Create incident from JSON",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/incident/json"
+          },
+          "docs": "Create single incident from raw JSON, builds incident according to default mapping"
+        },
+        {
+          "info": {
+            "name": "incidentFileUpload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/incident/upload/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Incident id to update"
+              }
+            ]
+          },
+          "docs": "Add file attachement to an incidents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
