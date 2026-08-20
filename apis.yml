@@ -49,6 +49,8 @@ apis:
   humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
   baseURL: https://xsoar.pan.dev
   tags:
+  - APIKeys
+  tags_raw:
   - Apikeys
   properties:
   - type: OpenAPI
@@ -159,6 +161,8 @@ apis:
   humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
   baseURL: https://xsoar.pan.dev
   tags:
+  - Incident Types
+  tags_raw:
   - Incidenttypes
   properties:
   - type: OpenAPI
