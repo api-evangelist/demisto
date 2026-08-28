@@ -11,6 +11,17 @@ description: >-
   SDK/CLI (demisto-sdk). This API Evangelist profile was enriched from the provider's public developer
   surface (xsoar.pan.dev, docs-cortex.paloaltonetworks.com, and the github.com/demisto organization).
 url: https://raw.githubusercontent.com/api-evangelist/demisto/refs/heads/main/apis.yml
+deliveryModel:
+  model: library
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Library · distributed through package registries, no callable service
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
