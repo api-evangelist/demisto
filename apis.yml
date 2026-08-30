@@ -172,7 +172,7 @@ apis:
   humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
   baseURL: https://xsoar.pan.dev
   tags:
-  - Incident Types
+  - Incidenttypes
   tags_raw:
   - Incidenttypes
   properties:
@@ -304,6 +304,11 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: ParentCompany
+  url: https://apis.io/providers/palo-alto-networks/
+  name: Palo Alto Networks
+  x-relationship: acquired
+  x-evidence: "Founded as an independent security startup backed by Accel and Greylock, Demisto was acquired by Palo Alto Networks in 2019 for roughly $560M and rebranded as Cortex XSOAR; the demisto."
 - type: Overlay
   url: overlays/demisto-openapi-overlay.yaml
 - type: Website
