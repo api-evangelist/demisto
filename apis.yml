@@ -172,7 +172,7 @@ apis:
   humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
   baseURL: https://xsoar.pan.dev
   tags:
-  - Incidenttypes
+  - Incident Types
   tags_raw:
   - Incidenttypes
   properties:
