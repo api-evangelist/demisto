@@ -56,18 +56,6 @@ tags:
 - Threat Intelligence
 - Security Automation
 apis:
-- aid: demisto:demisto-apikeys-api
-  name: Demisto Apikeys API
-  description: The Apikeys API from Demisto — 1 operation(s) for apikeys.
-  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
-  baseURL: https://xsoar.pan.dev
-  tags:
-  - APIKeys
-  tags_raw:
-  - Apikeys
-  properties:
-  - type: OpenAPI
-    url: openapi/demisto-apikeys-api-openapi.yml
 - aid: demisto:demisto-automation-api
   name: Demisto Automation API
   description: The Automation API from Demisto — 5 operation(s) for automation.
@@ -168,18 +156,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/demisto-incidenttype-api-openapi.yml
-- aid: demisto:demisto-incidenttypes-api
-  name: Demisto Incidenttypes API
-  description: The Incidenttypes API from Demisto — 1 operation(s) for incidenttypes.
-  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
-  baseURL: https://xsoar.pan.dev
-  tags:
-  - Incident Types
-  tags_raw:
-  - Incidenttypes
-  properties:
-  - type: OpenAPI
-    url: openapi/demisto-incidenttypes-api-openapi.yml
 - aid: demisto:demisto-indicator-api
   name: Demisto Indicator API
   description: The Indicator API from Demisto — 3 operation(s) for indicator.
@@ -300,6 +276,26 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/demisto-widgets-api-openapi.yml
+- aid: demisto:demisto-api-keys-api
+  name: Demisto API Keys API
+  description: The API Keys API from Demisto — 1 operation(s) for api keys.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - API Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-api-keys-api-openapi.yml
+- aid: demisto:demisto-incident-types-api
+  name: Demisto Incident Types API
+  description: The Incident Types API from Demisto — 1 operation(s) for incident types.
+  humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
+  baseURL: https://xsoar.pan.dev
+  tags:
+  - Incident Types
+  properties:
+  - type: OpenAPI
+    url: openapi/demisto-incident-types-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
