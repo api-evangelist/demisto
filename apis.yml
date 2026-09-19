@@ -212,6 +212,8 @@ apis:
   humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
   baseURL: https://xsoar.pan.dev
   tags:
+  - Playbooks
+  tags_raw:
   - Playbook
   properties:
   - type: OpenAPI
@@ -282,6 +284,8 @@ apis:
   humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
   baseURL: https://xsoar.pan.dev
   tags:
+  - APIKeys
+  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI
