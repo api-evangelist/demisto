@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   description: This is the public REST API to integrate with the demisto server.
-  title: Demisto Report API
+  title: Demisto Apikeys API
   version: 2.0.0
 servers:
 - url: https://hostname:443
@@ -10,31 +10,26 @@ security:
 - csrf_token: []
 - x-xdr-auth-id: []
 tags:
-- name: Report
+- name: API Keys
 paths:
-  /report/{id}/{requestId}/execute:
+  /apikeys/revoke/user/{username}:
     post:
-      description: Execute a new report
-      summary: Execute report
-      operationId: executeReport
+      description: Revoke API Key for user
+      operationId: revokeUserAPIKey
       parameters:
-      - description: the ID of the report to get
-        name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - description: the ID to register the request under
-        name: requestId
+      - description: The username which the API keys assigned to
+        name: username
         in: path
         required: true
         schema:
           type: string
       responses:
         '200':
-          description: Request registered
+          description: 200 for success
       tags:
-      - Report
+      - API Keys
+      summary: Revoke user API key
+      x-summary-source: derived
 components:
   securitySchemes:
     api_key:

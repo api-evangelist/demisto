@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   description: This is the public REST API to integrate with the demisto server.
-  title: Demisto Incidenttype API
+  title: Demisto Incidenttypes API
   version: 2.0.0
 servers:
 - url: https://hostname:443
@@ -10,30 +10,34 @@ security:
 - csrf_token: []
 - x-xdr-auth-id: []
 tags:
-- name: Incidenttype
+- name: Incident Types
 paths:
-  /incidenttype:
+  /incidenttypes/import:
     post:
-      description: API to create new Incident Type
-      summary: Create new Incident Type
-      operationId: createOrUpdateIncidentType
+      description: Import an incident type to Cortex XSOAR
+      summary: Import an incident type
+      operationId: importIncidentTypesHandler
       responses:
         '200':
-          description: IncidentType
+          description: The saved incident type
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/IncidentType'
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
-              $ref: '#/components/schemas/IncidentType'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/IncidentType'
+              type: object
+              properties:
+                file:
+                  type: string
+                  description: file
+                  format: binary
+              required:
+              - file
       tags:
-      - Incidenttype
+      - Incident Types
 components:
   schemas:
     ReputationCalcAlg:
