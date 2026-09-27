@@ -97,70 +97,6 @@ paths:
       - Settings
 components:
   schemas:
-    auditResult:
-      type: object
-      properties:
-        audits:
-          type: array
-          items:
-            $ref: '#/components/schemas/Audit'
-          x-go-name: Audits
-        total:
-          type: integer
-          format: int64
-          x-go-name: Total
-      x-go-package: github.com/demisto/server/web
-    Order:
-      description: Order struct holds a sort field and the direction of sorting
-      type: object
-      properties:
-        asc:
-          type: boolean
-          x-go-name: Asc
-        field:
-          type: string
-          x-go-name: Field
-        fieldType:
-          type: string
-          x-go-name: FieldType
-      x-go-package: github.com/demisto/server/domain
-    Output:
-      description: Output of a module command
-      type: object
-      properties:
-        contentPath:
-          type: string
-          x-go-name: ContentPath
-        contextPath:
-          type: string
-          x-go-name: ContextPath
-        description:
-          description: Description is either a string or a map from string to interface
-          type: object
-          x-go-name: Description
-        type:
-          $ref: '#/components/schemas/OutputType'
-      x-go-package: github.com/demisto/server/domain
-    newDockerImage:
-      type: object
-      properties:
-        base:
-          type: string
-          x-go-name: BaseImage
-        dependencies:
-          type: array
-          items:
-            type: string
-          x-go-name: Dependencies
-        name:
-          type: string
-          x-go-name: Name
-        packages:
-          type: array
-          items:
-            type: string
-          x-go-name: Packages
-      x-go-package: github.com/demisto/server/web
     IntegrationScript:
       type: object
       title: IntegrationScript ...
@@ -199,11 +135,6 @@ components:
         type:
           $ref: '#/components/schemas/ScriptType'
       x-go-package: github.com/demisto/server/domain
-    ConfigDataType:
-      description: ConfigDataType holds the type of a configuration field or command argument
-      type: number
-      format: double
-      x-go-package: github.com/demisto/server/domain
     Argument:
       description: Argument to a module command
       type: object
@@ -240,6 +171,354 @@ components:
         secret:
           type: boolean
           x-go-name: Secret
+      x-go-package: github.com/demisto/server/domain
+    dockerImage:
+      description: dockerImage details
+      type: object
+      properties:
+        createdAt:
+          type: string
+          x-go-name: CreatedAt
+        createdSince:
+          type: string
+          x-go-name: CreatedSince
+        id:
+          type: string
+          x-go-name: ID
+        repository:
+          type: string
+          x-go-name: Repository
+        size:
+          type: string
+          x-go-name: Size
+        tag:
+          type: string
+          x-go-name: Tag
+      x-go-package: github.com/demisto/server/web
+    Duration:
+      description: 'A Duration represents the elapsed time between two instants
+
+        as an int64 nanosecond count. The representation limits the
+
+        largest representable duration to approximately 290 years.'
+      type: integer
+      format: int64
+      x-go-package: time
+    ScriptSubType:
+      description: ScriptSubType holds the script type version
+      type: string
+      x-go-package: github.com/demisto/server/domain
+    Important:
+      description: Important The important outputs of a given command
+      type: object
+      properties:
+        contextPath:
+          type: string
+          x-go-name: ContextPath
+        description:
+          description: Description is either a string or a map from string to interface
+          type: string
+          x-go-name: Description
+        related:
+          description: To what other context path this output is related
+          type: string
+          x-go-name: Related
+      x-go-package: github.com/demisto/server/domain
+    OutputType:
+      type: string
+      title: OutputType ...
+      x-go-package: github.com/demisto/server/domain
+    newDockerImage:
+      type: object
+      properties:
+        base:
+          type: string
+          x-go-name: BaseImage
+        dependencies:
+          type: array
+          items:
+            type: string
+          x-go-name: Dependencies
+        name:
+          type: string
+          x-go-name: Name
+        packages:
+          type: array
+          items:
+            type: string
+          x-go-name: Packages
+      x-go-package: github.com/demisto/server/web
+    dockerImagesResult:
+      type: object
+      properties:
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/dockerImage'
+          x-go-name: Images
+      x-go-package: github.com/demisto/server/web
+    ConfigDataType:
+      description: ConfigDataType holds the type of a configuration field or command argument
+      type: number
+      format: double
+      x-go-package: github.com/demisto/server/domain
+    Period:
+      type: object
+      title: Period holds the 'Period' query, such as last 3 days, last 6 hours, between 6 days from now until 3 days from now.
+      properties:
+        by:
+          description: By is used for legacty, and if exists it will override ByTo and ByFrom
+          type: string
+          x-go-name: By
+        byFrom:
+          type: string
+          x-go-name: ByFrom
+        byTo:
+          type: string
+          x-go-name: ByTo
+        field:
+          type: string
+          x-go-name: Field
+        fromValue:
+          type: string
+          format: duration
+          x-go-name: FromValue
+        toValue:
+          type: string
+          format: duration
+          x-go-name: ToValue
+      x-go-package: github.com/demisto/server/domain
+    Order:
+      description: Order struct holds a sort field and the direction of sorting
+      type: object
+      properties:
+        asc:
+          type: boolean
+          x-go-name: Asc
+        field:
+          type: string
+          x-go-name: Field
+        fieldType:
+          type: string
+          x-go-name: FieldType
+      x-go-package: github.com/demisto/server/domain
+    Command:
+      description: Command supported by a module
+      type: object
+      properties:
+        arguments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Argument'
+          x-go-name: Arguments
+        cartesian:
+          type: boolean
+          x-go-name: Cartesian
+        deprecated:
+          type: boolean
+          x-go-name: Deprecated
+        description:
+          type: string
+          x-go-name: Description
+        execution:
+          type: boolean
+          x-go-name: Execution
+        hidden:
+          type: boolean
+          x-go-name: Hidden
+        important:
+          type: array
+          items:
+            $ref: '#/components/schemas/Important'
+          x-go-name: Important
+        name:
+          type: string
+          x-go-name: Name
+        outputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Output'
+          x-go-name: Outputs
+        permitted:
+          type: boolean
+          x-go-name: Permitted
+        sensitive:
+          type: boolean
+          x-go-name: Sensitive
+        timeout:
+          type: integer
+          format: int64
+          x-go-name: Timeout
+      x-go-package: github.com/demisto/server/domain
+    auditResult:
+      type: object
+      properties:
+        audits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Audit'
+          x-go-name: Audits
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+      x-go-package: github.com/demisto/server/web
+    Audit:
+      description: 'Audit holds the auditing details. This includes all common fields, the action in a string blob and the user who
+
+        performed the action in a user struct.'
+      type: object
+      properties:
+        action:
+          type: object
+          additionalProperties:
+            type: object
+          x-go-name: Action
+        id:
+          type: string
+          x-go-name: ID
+        identifier:
+          type: string
+          x-go-name: Identifier
+        modified:
+          type: string
+          format: date-time
+          x-go-name: Modified
+        object:
+          type: string
+          x-go-name: Object
+        sortValues:
+          type: array
+          items:
+            type: string
+          x-go-name: SortValues
+        type:
+          type: string
+          x-go-name: Type
+        user:
+          type: string
+          x-go-name: User
+        version:
+          type: integer
+          format: int64
+          x-go-name: Versn
+      x-go-package: github.com/demisto/server/domain
+    ScriptType:
+      description: ScriptType holds the type of a script
+      type: string
+      x-go-package: github.com/demisto/server/domain
+    newDockerImageResult:
+      type: object
+      properties:
+        output:
+          type: string
+          x-go-name: Output
+      x-go-package: github.com/demisto/server/web
+    ConfigField:
+      description: ConfigField holds a configuration field
+      type: object
+      properties:
+        defaultValue:
+          type: string
+          x-go-name: DefaultValue
+        display:
+          type: string
+          x-go-name: Display
+        hidden:
+          type: boolean
+          x-go-name: Hidden
+        info:
+          type: string
+          x-go-name: AdditionalInfo
+        name:
+          type: string
+          x-go-name: Name
+        options:
+          type: array
+          items:
+            type: string
+          x-go-name: Options
+        required:
+          type: boolean
+          x-go-name: Required
+        type:
+          $ref: '#/components/schemas/ConfigDataType'
+      x-go-package: github.com/demisto/server/domain
+    GenericStringDateFilter:
+      description: GenericStringDateFilter is a general filter that will fetch entities using the Query value and a date filter
+      type: object
+      properties:
+        Cache:
+          description: Cache of join functions
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        fromDate:
+          type: string
+          format: date-time
+          x-go-name: FromDate
+        fromDateLicense:
+          type: string
+          format: date-time
+          x-go-name: FromDateLicenseVal
+        page:
+          description: 0-based page
+          type: integer
+          format: int64
+          x-go-name: Page
+        period:
+          $ref: '#/components/schemas/Period'
+        query:
+          type: string
+          x-go-name: Query
+        searchAfter:
+          description: Efficient next page, pass max sort value from previous page
+          type: array
+          items:
+            type: string
+          x-go-name: SearchAfter
+        searchBefore:
+          description: Efficient prev page, pass min sort value from next page
+          type: array
+          items:
+            type: string
+          x-go-name: SearchBefore
+        size:
+          description: Size is limited to 1000, if not passed it defaults to 0, and no results will return
+          type: integer
+          format: int64
+          x-go-name: Size
+        sort:
+          description: The sort order
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+          x-go-name: Sort
+        timeFrame:
+          $ref: '#/components/schemas/Duration'
+        toDate:
+          type: string
+          format: date-time
+          x-go-name: ToDate
+      x-go-package: github.com/demisto/server/repo/entities
+    Output:
+      description: Output of a module command
+      type: object
+      properties:
+        contentPath:
+          type: string
+          x-go-name: ContentPath
+        contextPath:
+          type: string
+          x-go-name: ContextPath
+        description:
+          description: Description is either a string or a map from string to interface
+          type: object
+          x-go-name: Description
+        type:
+          $ref: '#/components/schemas/OutputType'
       x-go-package: github.com/demisto/server/domain
     ModuleConfiguration:
       description: ModuleConfiguration is the configuration parameters for a module
@@ -347,285 +626,6 @@ components:
         vcShouldIgnore:
           type: boolean
           x-go-name: VCShouldIgnore
-        version:
-          type: integer
-          format: int64
-          x-go-name: Versn
-      x-go-package: github.com/demisto/server/domain
-    Period:
-      type: object
-      title: Period holds the 'Period' query, such as last 3 days, last 6 hours, between 6 days from now until 3 days from now.
-      properties:
-        by:
-          description: By is used for legacty, and if exists it will override ByTo and ByFrom
-          type: string
-          x-go-name: By
-        byFrom:
-          type: string
-          x-go-name: ByFrom
-        byTo:
-          type: string
-          x-go-name: ByTo
-        field:
-          type: string
-          x-go-name: Field
-        fromValue:
-          type: string
-          format: duration
-          x-go-name: FromValue
-        toValue:
-          type: string
-          format: duration
-          x-go-name: ToValue
-      x-go-package: github.com/demisto/server/domain
-    Command:
-      description: Command supported by a module
-      type: object
-      properties:
-        arguments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Argument'
-          x-go-name: Arguments
-        cartesian:
-          type: boolean
-          x-go-name: Cartesian
-        deprecated:
-          type: boolean
-          x-go-name: Deprecated
-        description:
-          type: string
-          x-go-name: Description
-        execution:
-          type: boolean
-          x-go-name: Execution
-        hidden:
-          type: boolean
-          x-go-name: Hidden
-        important:
-          type: array
-          items:
-            $ref: '#/components/schemas/Important'
-          x-go-name: Important
-        name:
-          type: string
-          x-go-name: Name
-        outputs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Output'
-          x-go-name: Outputs
-        permitted:
-          type: boolean
-          x-go-name: Permitted
-        sensitive:
-          type: boolean
-          x-go-name: Sensitive
-        timeout:
-          type: integer
-          format: int64
-          x-go-name: Timeout
-      x-go-package: github.com/demisto/server/domain
-    newDockerImageResult:
-      type: object
-      properties:
-        output:
-          type: string
-          x-go-name: Output
-      x-go-package: github.com/demisto/server/web
-    ScriptSubType:
-      description: ScriptSubType holds the script type version
-      type: string
-      x-go-package: github.com/demisto/server/domain
-    OutputType:
-      type: string
-      title: OutputType ...
-      x-go-package: github.com/demisto/server/domain
-    ScriptType:
-      description: ScriptType holds the type of a script
-      type: string
-      x-go-package: github.com/demisto/server/domain
-    ConfigField:
-      description: ConfigField holds a configuration field
-      type: object
-      properties:
-        defaultValue:
-          type: string
-          x-go-name: DefaultValue
-        display:
-          type: string
-          x-go-name: Display
-        hidden:
-          type: boolean
-          x-go-name: Hidden
-        info:
-          type: string
-          x-go-name: AdditionalInfo
-        name:
-          type: string
-          x-go-name: Name
-        options:
-          type: array
-          items:
-            type: string
-          x-go-name: Options
-        required:
-          type: boolean
-          x-go-name: Required
-        type:
-          $ref: '#/components/schemas/ConfigDataType'
-      x-go-package: github.com/demisto/server/domain
-    Duration:
-      description: 'A Duration represents the elapsed time between two instants
-
-        as an int64 nanosecond count. The representation limits the
-
-        largest representable duration to approximately 290 years.'
-      type: integer
-      format: int64
-      x-go-package: time
-    dockerImagesResult:
-      type: object
-      properties:
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/dockerImage'
-          x-go-name: Images
-      x-go-package: github.com/demisto/server/web
-    dockerImage:
-      description: dockerImage details
-      type: object
-      properties:
-        createdAt:
-          type: string
-          x-go-name: CreatedAt
-        createdSince:
-          type: string
-          x-go-name: CreatedSince
-        id:
-          type: string
-          x-go-name: ID
-        repository:
-          type: string
-          x-go-name: Repository
-        size:
-          type: string
-          x-go-name: Size
-        tag:
-          type: string
-          x-go-name: Tag
-      x-go-package: github.com/demisto/server/web
-    Important:
-      description: Important The important outputs of a given command
-      type: object
-      properties:
-        contextPath:
-          type: string
-          x-go-name: ContextPath
-        description:
-          description: Description is either a string or a map from string to interface
-          type: string
-          x-go-name: Description
-        related:
-          description: To what other context path this output is related
-          type: string
-          x-go-name: Related
-      x-go-package: github.com/demisto/server/domain
-    GenericStringDateFilter:
-      description: GenericStringDateFilter is a general filter that will fetch entities using the Query value and a date filter
-      type: object
-      properties:
-        Cache:
-          description: Cache of join functions
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        fromDate:
-          type: string
-          format: date-time
-          x-go-name: FromDate
-        fromDateLicense:
-          type: string
-          format: date-time
-          x-go-name: FromDateLicenseVal
-        page:
-          description: 0-based page
-          type: integer
-          format: int64
-          x-go-name: Page
-        period:
-          $ref: '#/components/schemas/Period'
-        query:
-          type: string
-          x-go-name: Query
-        searchAfter:
-          description: Efficient next page, pass max sort value from previous page
-          type: array
-          items:
-            type: string
-          x-go-name: SearchAfter
-        searchBefore:
-          description: Efficient prev page, pass min sort value from next page
-          type: array
-          items:
-            type: string
-          x-go-name: SearchBefore
-        size:
-          description: Size is limited to 1000, if not passed it defaults to 0, and no results will return
-          type: integer
-          format: int64
-          x-go-name: Size
-        sort:
-          description: The sort order
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
-          x-go-name: Sort
-        timeFrame:
-          $ref: '#/components/schemas/Duration'
-        toDate:
-          type: string
-          format: date-time
-          x-go-name: ToDate
-      x-go-package: github.com/demisto/server/repo/entities
-    Audit:
-      description: 'Audit holds the auditing details. This includes all common fields, the action in a string blob and the user who
-
-        performed the action in a user struct.'
-      type: object
-      properties:
-        action:
-          type: object
-          additionalProperties:
-            type: object
-          x-go-name: Action
-        id:
-          type: string
-          x-go-name: ID
-        identifier:
-          type: string
-          x-go-name: Identifier
-        modified:
-          type: string
-          format: date-time
-          x-go-name: Modified
-        object:
-          type: string
-          x-go-name: Object
-        sortValues:
-          type: array
-          items:
-            type: string
-          x-go-name: SortValues
-        type:
-          type: string
-          x-go-name: Type
-        user:
-          type: string
-          x-go-name: User
         version:
           type: integer
           format: int64

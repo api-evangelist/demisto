@@ -44,24 +44,15 @@ paths:
       - Classifier
 components:
   schemas:
-    ExpirationSettingsSource:
-      type: string
-      title: ExpirationSettingsSource ...
-      x-go-package: github.com/demisto/server/domain
-    CustomFields:
-      description: 'The keys should be the field''s display name all lower and without spaces. For example: Scan IP -> scanip
-
-        To get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update'
+    OperatorArgument:
       type: object
-      title: CustomFields ...
-      additionalProperties:
-        type: object
-      x-go-package: github.com/demisto/server/domain
-    ArgFilter:
-      description: ArgFilter - represent a slice of atomic filters with OR condition between them (e.i. - atomic1 OR atomic2 OR ...)
-      type: array
-      items:
-        $ref: '#/components/schemas/ArgAtomicFilter'
+      title: OperatorArgument ...
+      properties:
+        isContext:
+          type: boolean
+          x-go-name: IsContext
+        value:
+          $ref: '#/components/schemas/AdvanceArg'
       x-go-package: github.com/demisto/server/domain
     ArgTransformer:
       type: object
@@ -72,26 +63,52 @@ components:
         operator:
           $ref: '#/components/schemas/TransformerOperatorID'
       x-go-package: github.com/demisto/server/domain
-    ArgAtomicFilter:
-      description: ArgAtomicFilter - operator with two sides that return true/false
+    CustomFields:
+      description: 'The keys should be the field''s display name all lower and without spaces. For example: Scan IP -> scanip
+
+        To get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update'
+      type: object
+      title: CustomFields ...
+      additionalProperties:
+        type: object
+      x-go-package: github.com/demisto/server/domain
+    FeedIndicators:
+      type: array
+      title: FeedIndicators ...
+      items:
+        $ref: '#/components/schemas/FeedIndicator'
+      x-go-package: github.com/demisto/server/domain
+    FilterOperatorID:
+      type: string
+      title: FilterOperatorID ...
+      x-go-package: github.com/demisto/server/domain
+    Incidents:
+      description: Incidents is a list of incident entities
+    Mapper:
+      description: Mapper - mapper for new incidents
       type: object
       properties:
-        ignoreCase:
+        dontMapEventToLabels:
+          description: DontMapEventToLabels by default we will map all the fields of the event to incident labels
           type: boolean
-          x-go-name: IgnoreCase
-        left:
-          $ref: '#/components/schemas/OperatorArgument'
-        operator:
-          $ref: '#/components/schemas/FilterOperatorID'
-        right:
-          $ref: '#/components/schemas/OperatorArgument'
-        type:
-          type: string
-          x-go-name: Type
+          x-go-name: DontMapEventToLabels
+        internalMapping:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AdvanceArg'
+          x-go-name: InternalMapping
       x-go-package: github.com/demisto/server/domain
-    Reliability:
-      type: string
-      title: Reliability ...
+    Version:
+      type: object
+      title: Version represents a version.
+      properties:
+        Digits:
+          type: array
+          items:
+            type: integer
+            format: int64
+        Label:
+          type: string
       x-go-package: github.com/demisto/server/domain
     ExpirationSource:
       type: object
@@ -122,97 +139,56 @@ components:
           type: string
           x-go-name: User
       x-go-package: github.com/demisto/server/domain
-    FilterOperatorID:
-      type: string
-      title: FilterOperatorID ...
-      x-go-package: github.com/demisto/server/domain
-    FeedIndicator:
-      type: object
-      title: FeedIndicator ...
-      properties:
-        ExpirationSource:
-          $ref: '#/components/schemas/ExpirationSource'
-        bypassExclusionList:
-          type: boolean
-          x-go-name: ShouldBypassExclusionList
-        classifierVersion:
-          type: integer
-          format: int64
-          x-go-name: ClassifierVersion
-        expirationInterval:
-          type: integer
-          format: int64
-          x-go-name: ExpirationInterval
-        expirationPolicy:
-          $ref: '#/components/schemas/ExpirationPolicy'
-        feedConfig:
-          type: object
-          additionalProperties:
-            type: object
-          x-go-name: FeedConfig
-        fetchTime:
-          type: string
-          format: date-time
-          x-go-name: FetchTime
-        fields:
-          $ref: '#/components/schemas/CustomFields'
-        isEnrichment:
-          type: boolean
-          x-go-name: IsEnrichment
-        modifiedTime:
-          type: string
-          format: date-time
-          x-go-name: ModifiedTime
-        moduleId:
-          type: string
-          x-go-name: ModuleID
-        rawJSON:
-          type: object
-          additionalProperties:
-            type: object
-          x-go-name: RawJSON
-        reliability:
-          $ref: '#/components/schemas/Reliability'
-        score:
-          type: integer
-          format: int64
-          x-go-name: Score
-        sourceBrand:
-          type: string
-          x-go-name: Brand
-        sourceInstance:
-          type: string
-          x-go-name: Instance
-        timestamp:
-          type: string
-          format: date-time
-          x-go-name: TimeStamp
-        type:
-          description: indicator fields
-          type: string
-          x-go-name: Type
-        value:
-          type: string
-          x-go-name: Value
-      x-go-package: github.com/demisto/server/domain
-    AdvanceArg:
-      description: 'Simple: plain text such as "hello" (constant) or ${File.ID} (DT expression)
+    ComplexArg:
+      description: 'ComplexArg - all info that is necessary to compute argument value from context
 
-        Complex: struct with all info that is necessary to compute argument value from context (Root, Filters, Accessor & Transformers)'
+        Root - the root slice (or object) from to work against
+
+        Filters - a slice of filters to apply to the root object, one after another (e.i. with AND condition between each one)
+
+        Accessor - the key to access to each result after filter
+
+        Transformers - a slice to transformers to apply on the result of the accessed key from each result
+
+        e.g. if user want to take from context all File.DisplayName where File.Extension is ''EXE'', and the result in uppercase than:
+
+        Root: is "File"
+
+        Filters: will hold the "File.DisplayName where File.Extension is ''EXE''" query
+
+        Accessor: is "DisplayName"
+
+        Transformers: will hold the uppercase transformation'
       type: object
-      title: 'AdvanceArg - advance argument can be one of the following:'
       properties:
-        complex:
-          $ref: '#/components/schemas/ComplexArg'
-        simple:
+        accessor:
           type: string
-          x-go-name: Simple
+          x-go-name: Accessor
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArgFilter'
+          x-go-name: Filters
+        root:
+          type: string
+          x-go-name: Root
+        transformers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArgTransformer'
+          x-go-name: Transformers
       x-go-package: github.com/demisto/server/domain
-    FeedIndicators:
-      type: array
-      title: FeedIndicators ...
-      items:
-        $ref: '#/components/schemas/FeedIndicator'
+    ExpirationPolicy:
+      type: string
+      title: ExpirationPolicy ...
+      x-go-package: github.com/demisto/server/domain
+    Reliability:
+      type: string
+      title: Reliability ...
+      x-go-package: github.com/demisto/server/domain
+    ExpirationSettingsSource:
+      type: string
+      title: ExpirationSettingsSource ...
       x-go-package: github.com/demisto/server/domain
     InstanceClassifier:
       description: InstanceClassifier - classifies an incident from a specific brand
@@ -296,91 +272,115 @@ components:
           format: int64
           x-go-name: Versn
       x-go-package: github.com/demisto/server/domain
-    Version:
+    FeedIndicator:
       type: object
-      title: Version represents a version.
+      title: FeedIndicator ...
       properties:
-        Digits:
-          type: array
-          items:
-            type: integer
-            format: int64
-        Label:
-          type: string
-      x-go-package: github.com/demisto/server/domain
-    OperatorArgument:
-      type: object
-      title: OperatorArgument ...
-      properties:
-        isContext:
+        ExpirationSource:
+          $ref: '#/components/schemas/ExpirationSource'
+        bypassExclusionList:
           type: boolean
-          x-go-name: IsContext
+          x-go-name: ShouldBypassExclusionList
+        classifierVersion:
+          type: integer
+          format: int64
+          x-go-name: ClassifierVersion
+        expirationInterval:
+          type: integer
+          format: int64
+          x-go-name: ExpirationInterval
+        expirationPolicy:
+          $ref: '#/components/schemas/ExpirationPolicy'
+        feedConfig:
+          type: object
+          additionalProperties:
+            type: object
+          x-go-name: FeedConfig
+        fetchTime:
+          type: string
+          format: date-time
+          x-go-name: FetchTime
+        fields:
+          $ref: '#/components/schemas/CustomFields'
+        isEnrichment:
+          type: boolean
+          x-go-name: IsEnrichment
+        modifiedTime:
+          type: string
+          format: date-time
+          x-go-name: ModifiedTime
+        moduleId:
+          type: string
+          x-go-name: ModuleID
+        rawJSON:
+          type: object
+          additionalProperties:
+            type: object
+          x-go-name: RawJSON
+        reliability:
+          $ref: '#/components/schemas/Reliability'
+        score:
+          type: integer
+          format: int64
+          x-go-name: Score
+        sourceBrand:
+          type: string
+          x-go-name: Brand
+        sourceInstance:
+          type: string
+          x-go-name: Instance
+        timestamp:
+          type: string
+          format: date-time
+          x-go-name: TimeStamp
+        type:
+          description: indicator fields
+          type: string
+          x-go-name: Type
         value:
-          $ref: '#/components/schemas/AdvanceArg'
+          type: string
+          x-go-name: Value
+      x-go-package: github.com/demisto/server/domain
+    ArgFilter:
+      description: ArgFilter - represent a slice of atomic filters with OR condition between them (e.i. - atomic1 OR atomic2 OR ...)
+      type: array
+      items:
+        $ref: '#/components/schemas/ArgAtomicFilter'
       x-go-package: github.com/demisto/server/domain
     TransformerOperatorID:
       type: string
       title: TransformerOperatorID ...
       x-go-package: github.com/demisto/server/domain
-    ExpirationPolicy:
-      type: string
-      title: ExpirationPolicy ...
+    AdvanceArg:
+      description: 'Simple: plain text such as "hello" (constant) or ${File.ID} (DT expression)
+
+        Complex: struct with all info that is necessary to compute argument value from context (Root, Filters, Accessor & Transformers)'
+      type: object
+      title: 'AdvanceArg - advance argument can be one of the following:'
+      properties:
+        complex:
+          $ref: '#/components/schemas/ComplexArg'
+        simple:
+          type: string
+          x-go-name: Simple
       x-go-package: github.com/demisto/server/domain
-    Mapper:
-      description: Mapper - mapper for new incidents
+    ArgAtomicFilter:
+      description: ArgAtomicFilter - operator with two sides that return true/false
       type: object
       properties:
-        dontMapEventToLabels:
-          description: DontMapEventToLabels by default we will map all the fields of the event to incident labels
+        ignoreCase:
           type: boolean
-          x-go-name: DontMapEventToLabels
-        internalMapping:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/AdvanceArg'
-          x-go-name: InternalMapping
-      x-go-package: github.com/demisto/server/domain
-    ComplexArg:
-      description: 'ComplexArg - all info that is necessary to compute argument value from context
-
-        Root - the root slice (or object) from to work against
-
-        Filters - a slice of filters to apply to the root object, one after another (e.i. with AND condition between each one)
-
-        Accessor - the key to access to each result after filter
-
-        Transformers - a slice to transformers to apply on the result of the accessed key from each result
-
-        e.g. if user want to take from context all File.DisplayName where File.Extension is ''EXE'', and the result in uppercase than:
-
-        Root: is "File"
-
-        Filters: will hold the "File.DisplayName where File.Extension is ''EXE''" query
-
-        Accessor: is "DisplayName"
-
-        Transformers: will hold the uppercase transformation'
-      type: object
-      properties:
-        accessor:
+          x-go-name: IgnoreCase
+        left:
+          $ref: '#/components/schemas/OperatorArgument'
+        operator:
+          $ref: '#/components/schemas/FilterOperatorID'
+        right:
+          $ref: '#/components/schemas/OperatorArgument'
+        type:
           type: string
-          x-go-name: Accessor
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArgFilter'
-          x-go-name: Filters
-        root:
-          type: string
-          x-go-name: Root
-        transformers:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArgTransformer'
-          x-go-name: Transformers
+          x-go-name: Type
       x-go-package: github.com/demisto/server/domain
-    Incidents:
-      description: Incidents is a list of incident entities
   securitySchemes:
     api_key:
       type: apiKey

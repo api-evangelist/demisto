@@ -48,6 +48,9 @@ x-successor: Cortex XSOAR (Palo Alto Networks)
 specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-18'
+x-docs-platform: docusaurus
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-25
 tags:
 - Company
 - Security
@@ -284,8 +287,6 @@ apis:
   humanURL: https://xsoar.pan.dev/docs/reference/api/demisto-class
   baseURL: https://xsoar.pan.dev
   tags:
-  - APIKeys
-  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI

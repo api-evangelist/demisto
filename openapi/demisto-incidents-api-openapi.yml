@@ -46,25 +46,36 @@ paths:
       - Incidents
 components:
   schemas:
-    SearchIncidentsData:
+    Attachment:
       type: object
-      title: SearchIncidentsData ...
+      title: Attachment ...
       properties:
-        filter:
-          $ref: '#/components/schemas/IncidentFilter'
-        userFilter:
+        description:
+          type: string
+          x-go-name: Description
+        name:
+          type: string
+          x-go-name: Name
+        path:
+          type: string
+          x-go-name: Path
+        showMediaFile:
           type: boolean
-          x-go-name: FilterByUser
-      x-go-package: github.com/demisto/server/web
-    SLAState:
-      description: SLAState is the incident sla at closure time
-      type: number
-      format: double
+          x-go-name: ShowMediaFile
+        type:
+          type: string
+          x-go-name: Type
       x-go-package: github.com/demisto/server/domain
-    Severity:
-      description: Severity is the incident severity
-      type: number
-      format: double
+    Label:
+      type: object
+      title: Label ...
+      properties:
+        type:
+          type: string
+          x-go-name: Type
+        value:
+          type: string
+          x-go-name: Value
       x-go-package: github.com/demisto/server/domain
     Period:
       type: object
@@ -92,26 +103,53 @@ components:
           format: duration
           x-go-name: ToValue
       x-go-package: github.com/demisto/server/domain
-    Label:
+    Order:
+      description: Order struct holds a sort field and the direction of sorting
       type: object
-      title: Label ...
       properties:
-        type:
+        asc:
+          type: boolean
+          x-go-name: Asc
+        field:
           type: string
-          x-go-name: Type
-        value:
+          x-go-name: Field
+        fieldType:
           type: string
-          x-go-name: Value
+          x-go-name: FieldType
       x-go-package: github.com/demisto/server/domain
-    Duration:
-      description: 'A Duration represents the elapsed time between two instants
+    Severity:
+      description: Severity is the incident severity
+      type: number
+      format: double
+      x-go-package: github.com/demisto/server/domain
+    SLAState:
+      description: SLAState is the incident sla at closure time
+      type: number
+      format: double
+      x-go-package: github.com/demisto/server/domain
+    SearchIncidentsData:
+      type: object
+      title: SearchIncidentsData ...
+      properties:
+        filter:
+          $ref: '#/components/schemas/IncidentFilter'
+        userFilter:
+          type: boolean
+          x-go-name: FilterByUser
+      x-go-package: github.com/demisto/server/web
+    CustomFields:
+      description: 'The keys should be the field''s display name all lower and without spaces. For example: Scan IP -> scanip
 
-        as an int64 nanosecond count. The representation limits the
-
-        largest representable duration to approximately 290 years.'
-      type: integer
-      format: int64
-      x-go-package: time
+        To get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update'
+      type: object
+      title: CustomFields ...
+      additionalProperties:
+        type: object
+      x-go-package: github.com/demisto/server/domain
+    RunStatus:
+      description: RunStatus of a job
+      type: string
+      x-go-package: github.com/demisto/server/domain
     Incident:
       description: 'An incident can be manually opened algorithmically or arrive from an external source like SIEM.
 
@@ -348,35 +386,20 @@ components:
       additionalProperties:
         type: object
       x-go-package: github.com/demisto/server/domain
-    CustomFields:
-      description: 'The keys should be the field''s display name all lower and without spaces. For example: Scan IP -> scanip
+    IncidentStatus:
+      description: IncidentStatus is the status of the incident
+      type: number
+      format: double
+      x-go-package: github.com/demisto/server/domain
+    Duration:
+      description: 'A Duration represents the elapsed time between two instants
 
-        To get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update'
-      type: object
-      title: CustomFields ...
-      additionalProperties:
-        type: object
-      x-go-package: github.com/demisto/server/domain
-    Attachment:
-      type: object
-      title: Attachment ...
-      properties:
-        description:
-          type: string
-          x-go-name: Description
-        name:
-          type: string
-          x-go-name: Name
-        path:
-          type: string
-          x-go-name: Path
-        showMediaFile:
-          type: boolean
-          x-go-name: ShowMediaFile
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/demisto/server/domain
+        as an int64 nanosecond count. The representation limits the
+
+        largest representable duration to approximately 290 years.'
+      type: integer
+      format: int64
+      x-go-package: time
     IncidentWrapper:
       description: IncidentWrapper is an extension of the Incident entity, which includes an additional field of changed-status for the web client
       type: object
@@ -804,29 +827,6 @@ components:
             type: string
           x-go-name: Users
       x-go-package: github.com/demisto/server/repo/entities
-    Order:
-      description: Order struct holds a sort field and the direction of sorting
-      type: object
-      properties:
-        asc:
-          type: boolean
-          x-go-name: Asc
-        field:
-          type: string
-          x-go-name: Field
-        fieldType:
-          type: string
-          x-go-name: FieldType
-      x-go-package: github.com/demisto/server/domain
-    RunStatus:
-      description: RunStatus of a job
-      type: string
-      x-go-package: github.com/demisto/server/domain
-    IncidentStatus:
-      description: IncidentStatus is the status of the incident
-      type: number
-      format: double
-      x-go-package: github.com/demisto/server/domain
   securitySchemes:
     api_key:
       type: apiKey

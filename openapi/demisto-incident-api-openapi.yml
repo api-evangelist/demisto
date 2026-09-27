@@ -224,15 +224,83 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SLAState:
-      description: SLAState is the incident sla at closure time
-      type: number
-      format: double
+    Attachment:
+      type: object
+      title: Attachment ...
+      properties:
+        description:
+          type: string
+          x-go-name: Description
+        name:
+          type: string
+          x-go-name: Name
+        path:
+          type: string
+          x-go-name: Path
+        showMediaFile:
+          type: boolean
+          x-go-name: ShowMediaFile
+        type:
+          type: string
+          x-go-name: Type
       x-go-package: github.com/demisto/server/domain
-    Severity:
-      description: Severity is the incident severity
-      type: number
-      format: double
+    UpdateDataBatch:
+      type: object
+      title: UpdateDataBatch ...
+      properties:
+        CustomFields:
+          type: object
+          additionalProperties:
+            type: object
+        all:
+          type: boolean
+          x-go-name: All
+        closeNotes:
+          type: string
+          x-go-name: CloseNotes
+        closeReason:
+          type: string
+          x-go-name: CloseReason
+        columns:
+          type: array
+          items:
+            type: string
+          x-go-name: Columns
+        data:
+          type: object
+          additionalProperties:
+            type: object
+          x-go-name: Data
+        filter:
+          $ref: '#/components/schemas/IncidentFilter'
+        force:
+          type: boolean
+          x-go-name: Force
+        ids:
+          type: array
+          items:
+            type: string
+          x-go-name: IDs
+        line:
+          type: string
+          x-go-name: Line
+        originalIncidentId:
+          type: string
+          x-go-name: OriginalIncidentID
+        overrideInvestigation:
+          type: boolean
+          x-go-name: OverrideInvestigation
+      x-go-package: github.com/demisto/server/web
+    Label:
+      type: object
+      title: Label ...
+      properties:
+        type:
+          type: string
+          x-go-name: Type
+        value:
+          type: string
+          x-go-name: Value
       x-go-package: github.com/demisto/server/domain
     Period:
       type: object
@@ -260,16 +328,38 @@ components:
           format: duration
           x-go-name: ToValue
       x-go-package: github.com/demisto/server/domain
-    Label:
+    Order:
+      description: Order struct holds a sort field and the direction of sorting
       type: object
-      title: Label ...
       properties:
-        type:
+        asc:
+          type: boolean
+          x-go-name: Asc
+        field:
           type: string
-          x-go-name: Type
-        value:
+          x-go-name: Field
+        fieldType:
           type: string
-          x-go-name: Value
+          x-go-name: FieldType
+      x-go-package: github.com/demisto/server/domain
+    Severity:
+      description: Severity is the incident severity
+      type: number
+      format: double
+      x-go-package: github.com/demisto/server/domain
+    SLAState:
+      description: SLAState is the incident sla at closure time
+      type: number
+      format: double
+      x-go-package: github.com/demisto/server/domain
+    CustomFields:
+      description: 'The keys should be the field''s display name all lower and without spaces. For example: Scan IP -> scanip
+
+        To get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update'
+      type: object
+      title: CustomFields ...
+      additionalProperties:
+        type: object
       x-go-package: github.com/demisto/server/domain
     IncidentSearchResponseWrapper:
       description: IncidentSearchResponseWrapper is an extension for the IncidentSearchResponse type, which holds list of IncidentWrapper(s)
@@ -290,6 +380,241 @@ components:
           format: int64
           x-go-name: Total
       x-go-package: github.com/demisto/server/domain
+    CreateIncidentRequest:
+      description: CreateIncidentRequest is an extension for Incident entity, with additional field of changed-status for the web client
+      type: object
+      properties:
+        ShardID:
+          type: integer
+          format: int64
+        account:
+          description: Account holds the tenant name so that slicing and dicing on the master can leverage bleve
+          type: string
+          x-go-name: Account
+        activated:
+          description: When was this activated
+          type: string
+          format: date-time
+          x-go-name: Activated
+        activatingingUserId:
+          description: The user that activated this investigation
+          type: string
+          x-go-name: ActivatingUserID
+        autime:
+          description: AlmostUniqueTime is an attempt to have a unique sortable ID for an incident
+          type: integer
+          format: int64
+          x-go-name: AlmostUniqueTime
+        canvases:
+          description: Canvases of the incident
+          type: array
+          items:
+            type: string
+          x-go-name: Canvases
+        category:
+          description: Category
+          type: string
+          x-go-name: Category
+        closeNotes:
+          description: Notes for closing the incident
+          type: string
+          x-go-name: CloseNotes
+        closeReason:
+          description: The reason for closing the incident (select from existing predefined values)
+          type: string
+          x-go-name: ArchiveReason
+        closed:
+          description: When was this closed
+          type: string
+          format: date-time
+          x-go-name: Closed
+        closingUserId:
+          description: The user ID that closed this investigation
+          type: string
+          x-go-name: ClosingUserID
+        createInvestigation:
+          type: boolean
+          x-go-name: CreateInvestigation
+        created:
+          description: When was this created
+          type: string
+          format: date-time
+          x-go-name: Created
+        details:
+          description: The details of the incident - reason, etc.
+          type: string
+          x-go-name: Details
+        droppedCount:
+          description: DroppedCount ...
+          type: integer
+          format: int64
+          x-go-name: DroppedCount
+        dueDate:
+          description: SLA
+          type: string
+          format: date-time
+          x-go-name: DueDate
+        hasRole:
+          description: Internal field to make queries on role faster
+          type: boolean
+          x-go-name: HasRole
+        id:
+          type: string
+          x-go-name: ID
+        investigationId:
+          description: Investigation that was opened as a result of the incoming event
+          type: string
+          x-go-name: Investigation
+        isPlayground:
+          description: IsPlayGround
+          type: boolean
+          x-go-name: IsPlayGround
+        labels:
+          description: Labels related to incident - each label is composed of a type and value
+          type: array
+          items:
+            $ref: '#/components/schemas/Label'
+          x-go-name: Labels
+        lastOpen:
+          type: string
+          format: date-time
+          x-go-name: LastOpen
+        linkedCount:
+          description: LinkedCount ...
+          type: integer
+          format: int64
+          x-go-name: LinkedCount
+        linkedIncidents:
+          description: LinkedIncidents incidents that were marked as linked by user
+          type: array
+          items:
+            type: string
+          x-go-name: LinkedIncidents
+        modified:
+          type: string
+          format: date-time
+          x-go-name: Modified
+        name:
+          description: Incident Name - given by user
+          type: string
+          x-go-name: Name
+        notifyTime:
+          description: Incdicates when last this field was changed with a value that supposed to send a notification
+          type: string
+          format: date-time
+          x-go-name: NotifyTime
+        occurred:
+          description: When this incident has really occurred
+          type: string
+          format: date-time
+          x-go-name: Occurred
+        openDuration:
+          description: Duration incident was open
+          type: integer
+          format: int64
+          x-go-name: OpenDuration
+        owner:
+          description: The user who owns this incident
+          type: string
+          x-go-name: OwnerID
+        parent:
+          description: Parent
+          type: string
+          x-go-name: Parent
+        phase:
+          description: Phase
+          type: string
+          x-go-name: Phase
+        playbookId:
+          description: The associated playbook for this incident
+          type: string
+          x-go-name: PlaybookID
+        previousRoles:
+          description: PreviousRoleName - do not change this field manually
+          type: array
+          items:
+            type: string
+          x-go-name: PreviousRoleName
+        rawCategory:
+          type: string
+          x-go-name: RawCategory
+        rawCloseReason:
+          description: The reason for closing the incident (select from existing predefined values)
+          type: string
+          x-go-name: RawArchiveReason
+        rawJSON:
+          type: string
+          x-go-name: RawJSONData
+        rawName:
+          description: Incident RawName
+          type: string
+          x-go-name: RawName
+        rawPhase:
+          description: RawPhase
+          type: string
+          x-go-name: RawPhase
+        rawType:
+          description: Incident raw type
+          type: string
+          x-go-name: RawType
+        reason:
+          description: The reason for the resolve
+          type: string
+          x-go-name: Reason
+        reminder:
+          description: When if at all to send a reminder
+          type: string
+          format: date-time
+          x-go-name: Reminder
+        roles:
+          description: The role assigned to this investigation
+          type: array
+          items:
+            type: string
+          x-go-name: RoleName
+        runStatus:
+          $ref: '#/components/schemas/RunStatus'
+        severity:
+          $ref: '#/components/schemas/Severity'
+        sla:
+          $ref: '#/components/schemas/SLAState'
+        sortValues:
+          type: array
+          items:
+            type: string
+          x-go-name: SortValues
+        sourceBrand:
+          description: SourceBrand ...
+          type: string
+          x-go-name: SourceBrand
+        sourceInstance:
+          description: SourceInstance ...
+          type: string
+          x-go-name: SourceInstance
+        status:
+          $ref: '#/components/schemas/IncidentStatus'
+        type:
+          description: Incident type
+          type: string
+          x-go-name: Type
+        version:
+          type: integer
+          format: int64
+          x-go-name: Versn
+        CustomFields:
+          $ref: '#/components/schemas/CustomFields'
+      additionalProperties:
+        type: object
+      x-go-package: github.com/demisto/server/domain
+    RunStatus:
+      description: RunStatus of a job
+      type: string
+      x-go-package: github.com/demisto/server/domain
+    IncidentStatus:
+      description: IncidentStatus is the status of the incident
+      type: number
+      format: double
+      x-go-package: github.com/demisto/server/domain
     Duration:
       description: 'A Duration represents the elapsed time between two instants
 
@@ -299,35 +624,6 @@ components:
       type: integer
       format: int64
       x-go-package: time
-    CustomFields:
-      description: 'The keys should be the field''s display name all lower and without spaces. For example: Scan IP -> scanip
-
-        To get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update'
-      type: object
-      title: CustomFields ...
-      additionalProperties:
-        type: object
-      x-go-package: github.com/demisto/server/domain
-    Attachment:
-      type: object
-      title: Attachment ...
-      properties:
-        description:
-          type: string
-          x-go-name: Description
-        name:
-          type: string
-          x-go-name: Name
-        path:
-          type: string
-          x-go-name: Path
-        showMediaFile:
-          type: boolean
-          x-go-name: ShowMediaFile
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/demisto/server/domain
     IncidentWrapper:
       description: IncidentWrapper is an extension of the Incident entity, which includes an additional field of changed-status for the web client
       type: object
@@ -562,232 +858,6 @@ components:
       additionalProperties:
         type: object
       x-go-package: github.com/demisto/server/domain
-    CreateIncidentRequest:
-      description: CreateIncidentRequest is an extension for Incident entity, with additional field of changed-status for the web client
-      type: object
-      properties:
-        ShardID:
-          type: integer
-          format: int64
-        account:
-          description: Account holds the tenant name so that slicing and dicing on the master can leverage bleve
-          type: string
-          x-go-name: Account
-        activated:
-          description: When was this activated
-          type: string
-          format: date-time
-          x-go-name: Activated
-        activatingingUserId:
-          description: The user that activated this investigation
-          type: string
-          x-go-name: ActivatingUserID
-        autime:
-          description: AlmostUniqueTime is an attempt to have a unique sortable ID for an incident
-          type: integer
-          format: int64
-          x-go-name: AlmostUniqueTime
-        canvases:
-          description: Canvases of the incident
-          type: array
-          items:
-            type: string
-          x-go-name: Canvases
-        category:
-          description: Category
-          type: string
-          x-go-name: Category
-        closeNotes:
-          description: Notes for closing the incident
-          type: string
-          x-go-name: CloseNotes
-        closeReason:
-          description: The reason for closing the incident (select from existing predefined values)
-          type: string
-          x-go-name: ArchiveReason
-        closed:
-          description: When was this closed
-          type: string
-          format: date-time
-          x-go-name: Closed
-        closingUserId:
-          description: The user ID that closed this investigation
-          type: string
-          x-go-name: ClosingUserID
-        createInvestigation:
-          type: boolean
-          x-go-name: CreateInvestigation
-        created:
-          description: When was this created
-          type: string
-          format: date-time
-          x-go-name: Created
-        details:
-          description: The details of the incident - reason, etc.
-          type: string
-          x-go-name: Details
-        droppedCount:
-          description: DroppedCount ...
-          type: integer
-          format: int64
-          x-go-name: DroppedCount
-        dueDate:
-          description: SLA
-          type: string
-          format: date-time
-          x-go-name: DueDate
-        hasRole:
-          description: Internal field to make queries on role faster
-          type: boolean
-          x-go-name: HasRole
-        id:
-          type: string
-          x-go-name: ID
-        investigationId:
-          description: Investigation that was opened as a result of the incoming event
-          type: string
-          x-go-name: Investigation
-        isPlayground:
-          description: IsPlayGround
-          type: boolean
-          x-go-name: IsPlayGround
-        labels:
-          description: Labels related to incident - each label is composed of a type and value
-          type: array
-          items:
-            $ref: '#/components/schemas/Label'
-          x-go-name: Labels
-        lastOpen:
-          type: string
-          format: date-time
-          x-go-name: LastOpen
-        linkedCount:
-          description: LinkedCount ...
-          type: integer
-          format: int64
-          x-go-name: LinkedCount
-        linkedIncidents:
-          description: LinkedIncidents incidents that were marked as linked by user
-          type: array
-          items:
-            type: string
-          x-go-name: LinkedIncidents
-        modified:
-          type: string
-          format: date-time
-          x-go-name: Modified
-        name:
-          description: Incident Name - given by user
-          type: string
-          x-go-name: Name
-        notifyTime:
-          description: Incdicates when last this field was changed with a value that supposed to send a notification
-          type: string
-          format: date-time
-          x-go-name: NotifyTime
-        occurred:
-          description: When this incident has really occurred
-          type: string
-          format: date-time
-          x-go-name: Occurred
-        openDuration:
-          description: Duration incident was open
-          type: integer
-          format: int64
-          x-go-name: OpenDuration
-        owner:
-          description: The user who owns this incident
-          type: string
-          x-go-name: OwnerID
-        parent:
-          description: Parent
-          type: string
-          x-go-name: Parent
-        phase:
-          description: Phase
-          type: string
-          x-go-name: Phase
-        playbookId:
-          description: The associated playbook for this incident
-          type: string
-          x-go-name: PlaybookID
-        previousRoles:
-          description: PreviousRoleName - do not change this field manually
-          type: array
-          items:
-            type: string
-          x-go-name: PreviousRoleName
-        rawCategory:
-          type: string
-          x-go-name: RawCategory
-        rawCloseReason:
-          description: The reason for closing the incident (select from existing predefined values)
-          type: string
-          x-go-name: RawArchiveReason
-        rawJSON:
-          type: string
-          x-go-name: RawJSONData
-        rawName:
-          description: Incident RawName
-          type: string
-          x-go-name: RawName
-        rawPhase:
-          description: RawPhase
-          type: string
-          x-go-name: RawPhase
-        rawType:
-          description: Incident raw type
-          type: string
-          x-go-name: RawType
-        reason:
-          description: The reason for the resolve
-          type: string
-          x-go-name: Reason
-        reminder:
-          description: When if at all to send a reminder
-          type: string
-          format: date-time
-          x-go-name: Reminder
-        roles:
-          description: The role assigned to this investigation
-          type: array
-          items:
-            type: string
-          x-go-name: RoleName
-        runStatus:
-          $ref: '#/components/schemas/RunStatus'
-        severity:
-          $ref: '#/components/schemas/Severity'
-        sla:
-          $ref: '#/components/schemas/SLAState'
-        sortValues:
-          type: array
-          items:
-            type: string
-          x-go-name: SortValues
-        sourceBrand:
-          description: SourceBrand ...
-          type: string
-          x-go-name: SourceBrand
-        sourceInstance:
-          description: SourceInstance ...
-          type: string
-          x-go-name: SourceInstance
-        status:
-          $ref: '#/components/schemas/IncidentStatus'
-        type:
-          description: Incident type
-          type: string
-          x-go-name: Type
-        version:
-          type: integer
-          format: int64
-          x-go-name: Versn
-        CustomFields:
-          $ref: '#/components/schemas/CustomFields'
-      additionalProperties:
-        type: object
-      x-go-package: github.com/demisto/server/domain
     IncidentFilter:
       type: object
       title: IncidentFilter allows for very simple filtering.
@@ -981,76 +1051,6 @@ components:
             type: string
           x-go-name: Users
       x-go-package: github.com/demisto/server/repo/entities
-    Order:
-      description: Order struct holds a sort field and the direction of sorting
-      type: object
-      properties:
-        asc:
-          type: boolean
-          x-go-name: Asc
-        field:
-          type: string
-          x-go-name: Field
-        fieldType:
-          type: string
-          x-go-name: FieldType
-      x-go-package: github.com/demisto/server/domain
-    RunStatus:
-      description: RunStatus of a job
-      type: string
-      x-go-package: github.com/demisto/server/domain
-    IncidentStatus:
-      description: IncidentStatus is the status of the incident
-      type: number
-      format: double
-      x-go-package: github.com/demisto/server/domain
-    UpdateDataBatch:
-      type: object
-      title: UpdateDataBatch ...
-      properties:
-        CustomFields:
-          type: object
-          additionalProperties:
-            type: object
-        all:
-          type: boolean
-          x-go-name: All
-        closeNotes:
-          type: string
-          x-go-name: CloseNotes
-        closeReason:
-          type: string
-          x-go-name: CloseReason
-        columns:
-          type: array
-          items:
-            type: string
-          x-go-name: Columns
-        data:
-          type: object
-          additionalProperties:
-            type: object
-          x-go-name: Data
-        filter:
-          $ref: '#/components/schemas/IncidentFilter'
-        force:
-          type: boolean
-          x-go-name: Force
-        ids:
-          type: array
-          items:
-            type: string
-          x-go-name: IDs
-        line:
-          type: string
-          x-go-name: Line
-        originalIncidentId:
-          type: string
-          x-go-name: OriginalIncidentID
-        overrideInvestigation:
-          type: boolean
-          x-go-name: OverrideInvestigation
-      x-go-package: github.com/demisto/server/web
   securitySchemes:
     api_key:
       type: apiKey

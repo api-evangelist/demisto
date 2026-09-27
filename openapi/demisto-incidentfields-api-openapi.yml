@@ -208,11 +208,6 @@ components:
           format: int64
           x-go-name: Versn
       x-go-package: github.com/demisto/server/domain
-    FieldGroup:
-      description: FieldGroup is the field group
-      type: number
-      format: double
-      x-go-package: github.com/demisto/server/domain
     GridColumn:
       type: object
       title: GridColumn ...
@@ -250,6 +245,11 @@ components:
           type: integer
           format: int64
           x-go-name: Width
+      x-go-package: github.com/demisto/server/domain
+    FieldGroup:
+      description: FieldGroup is the field group
+      type: number
+      format: double
       x-go-package: github.com/demisto/server/domain
   securitySchemes:
     api_key:

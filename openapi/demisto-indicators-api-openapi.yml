@@ -213,6 +213,191 @@ paths:
       - Indicators
 components:
   schemas:
+    genericIndicatorUpdateBatch:
+      type: object
+      properties:
+        all:
+          type: boolean
+          x-go-name: All
+        columns:
+          type: array
+          items:
+            type: string
+          x-go-name: Columns
+        doNotWhitelist:
+          type: boolean
+          x-go-name: DoNotWhitelist
+        filter:
+          $ref: '#/components/schemas/IndicatorFilter'
+        ids:
+          type: array
+          items:
+            type: string
+          x-go-name: IDs
+        reason:
+          type: string
+          x-go-name: Reason
+        reputations:
+          type: array
+          items:
+            type: string
+          x-go-name: Reputations
+      x-go-package: github.com/demisto/server/web
+    Period:
+      type: object
+      title: Period holds the 'Period' query, such as last 3 days, last 6 hours, between 6 days from now until 3 days from now.
+      properties:
+        by:
+          description: By is used for legacty, and if exists it will override ByTo and ByFrom
+          type: string
+          x-go-name: By
+        byFrom:
+          type: string
+          x-go-name: ByFrom
+        byTo:
+          type: string
+          x-go-name: ByTo
+        field:
+          type: string
+          x-go-name: Field
+        fromValue:
+          type: string
+          format: duration
+          x-go-name: FromValue
+        toValue:
+          type: string
+          format: duration
+          x-go-name: ToValue
+      x-go-package: github.com/demisto/server/domain
+    Order:
+      description: Order struct holds a sort field and the direction of sorting
+      type: object
+      properties:
+        asc:
+          type: boolean
+          x-go-name: Asc
+        field:
+          type: string
+          x-go-name: Field
+        fieldType:
+          type: string
+          x-go-name: FieldType
+      x-go-package: github.com/demisto/server/domain
+    UpdateResponse:
+      type: object
+      title: UpdateResponse ...
+      properties:
+        notUpdated:
+          type: integer
+          format: int64
+          x-go-name: NotUpdated
+        updatedIds:
+          type: array
+          items:
+            type: string
+          x-go-name: UpdatedIds
+      x-go-package: github.com/demisto/server/repo/entities
+    DBotScore:
+      description: DBotScore - Contain the score of a specific brand for a specific insight
+      type: object
+      properties:
+        content:
+          type: string
+          x-go-name: Content
+        contentFormat:
+          type: string
+          x-go-name: ContentFormat
+        context:
+          type: object
+          additionalProperties:
+            type: object
+          x-go-name: Context
+        isTypedIndicator:
+          type: boolean
+          x-go-name: IsTypedIndicator
+        score:
+          type: integer
+          format: int64
+          x-go-name: Score
+        scoreChangeTimestamp:
+          description: We need to track when the score changes to know if we need to re-calculate the overall score
+          type: string
+          format: date-time
+          x-go-name: ScoreChangeTimeStamp
+        timestamp:
+          type: string
+          format: date-time
+          x-go-name: TimeStamp
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/demisto/server/domain
+    FeedIndicatorsRequest:
+      description: FeedIndicatorsRequest is the input for JSON feed indicator ingestion
+      type: object
+      properties:
+        bypassExclusionList:
+          type: boolean
+          x-go-name: ShouldBypassExclusionList
+        classifierId:
+          type: string
+          x-go-name: ClassifierID
+        indicators:
+          type: array
+          items:
+            $ref: '#/components/schemas/RawFeedIndicator'
+          x-go-name: Indicators
+        mapperId:
+          type: string
+          x-go-name: MapperID
+      x-go-package: github.com/demisto/server/web
+    RawFeedIndicator:
+      description: RawFeedIndicator is an unparsed feed indicator from JSON ingestion
+      type: object
+      additionalProperties:
+        type: object
+      x-go-package: github.com/demisto/server/web
+    DateRangeFilter:
+      description: DateRangeFilter provides common fields for date filtering
+      type: object
+      properties:
+        fromDate:
+          type: string
+          format: date-time
+          x-go-name: FromDate
+        fromDateLicense:
+          type: string
+          format: date-time
+          x-go-name: FromDateLicenseVal
+        period:
+          $ref: '#/components/schemas/Period'
+        timeFrame:
+          $ref: '#/components/schemas/Duration'
+        toDate:
+          type: string
+          format: date-time
+          x-go-name: ToDate
+      x-go-package: github.com/demisto/server/repo/entities
+    IndicatorResult:
+      type: object
+      title: IndicatorResult ...
+      properties:
+        iocObjects:
+          $ref: '#/components/schemas/IocObjects'
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+      x-go-package: github.com/demisto/server/web
+    CustomFields:
+      description: 'The keys should be the field''s display name all lower and without spaces. For example: Scan IP -> scanip
+
+        To get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update'
+      type: object
+      title: CustomFields ...
+      additionalProperties:
+        type: object
+      x-go-package: github.com/demisto/server/domain
     IndicatorFilter:
       description: IndicatorFilter is a general filter that fetches entities using a query string query using the Query value
       type: object
@@ -288,53 +473,21 @@ components:
           format: date-time
           x-go-name: ToDate
       x-go-package: github.com/demisto/server/repo/entities
-    Period:
-      type: object
-      title: Period holds the 'Period' query, such as last 3 days, last 6 hours, between 6 days from now until 3 days from now.
-      properties:
-        by:
-          description: By is used for legacty, and if exists it will override ByTo and ByFrom
-          type: string
-          x-go-name: By
-        byFrom:
-          type: string
-          x-go-name: ByFrom
-        byTo:
-          type: string
-          x-go-name: ByTo
-        field:
-          type: string
-          x-go-name: Field
-        fromValue:
-          type: string
-          format: duration
-          x-go-name: FromValue
-        toValue:
-          type: string
-          format: duration
-          x-go-name: ToValue
+    IocObjects:
+      type: array
+      title: IocObjects ...
+      items:
+        $ref: '#/components/schemas/IocObject'
       x-go-package: github.com/demisto/server/domain
-    DateRangeFilter:
-      description: DateRangeFilter provides common fields for date filtering
-      type: object
-      properties:
-        fromDate:
-          type: string
-          format: date-time
-          x-go-name: FromDate
-        fromDateLicense:
-          type: string
-          format: date-time
-          x-go-name: FromDateLicenseVal
-        period:
-          $ref: '#/components/schemas/Period'
-        timeFrame:
-          $ref: '#/components/schemas/Duration'
-        toDate:
-          type: string
-          format: date-time
-          x-go-name: ToDate
-      x-go-package: github.com/demisto/server/repo/entities
+    Duration:
+      description: 'A Duration represents the elapsed time between two instants
+
+        as an int64 nanosecond count. The representation limits the
+
+        largest representable duration to approximately 290 years.'
+      type: integer
+      format: int64
+      x-go-package: time
     InsightCache:
       description: InsightCache - map insight name to all its metadata, name will be case insensitive
       type: object
@@ -365,124 +518,6 @@ components:
           format: int64
           x-go-name: Versn
       x-go-package: github.com/demisto/server/domain
-    Duration:
-      description: 'A Duration represents the elapsed time between two instants
-
-        as an int64 nanosecond count. The representation limits the
-
-        largest representable duration to approximately 290 years.'
-      type: integer
-      format: int64
-      x-go-package: time
-    IndicatorResult:
-      type: object
-      title: IndicatorResult ...
-      properties:
-        iocObjects:
-          $ref: '#/components/schemas/IocObjects'
-        total:
-          type: integer
-          format: int64
-          x-go-name: Total
-      x-go-package: github.com/demisto/server/web
-    CustomFields:
-      description: 'The keys should be the field''s display name all lower and without spaces. For example: Scan IP -> scanip
-
-        To get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update'
-      type: object
-      title: CustomFields ...
-      additionalProperties:
-        type: object
-      x-go-package: github.com/demisto/server/domain
-    RawFeedIndicator:
-      description: RawFeedIndicator is an unparsed feed indicator from JSON ingestion
-      type: object
-      additionalProperties:
-        type: object
-      x-go-package: github.com/demisto/server/web
-    IocObjects:
-      type: array
-      title: IocObjects ...
-      items:
-        $ref: '#/components/schemas/IocObject'
-      x-go-package: github.com/demisto/server/domain
-    Order:
-      description: Order struct holds a sort field and the direction of sorting
-      type: object
-      properties:
-        asc:
-          type: boolean
-          x-go-name: Asc
-        field:
-          type: string
-          x-go-name: Field
-        fieldType:
-          type: string
-          x-go-name: FieldType
-      x-go-package: github.com/demisto/server/domain
-    genericIndicatorUpdateBatch:
-      type: object
-      properties:
-        all:
-          type: boolean
-          x-go-name: All
-        columns:
-          type: array
-          items:
-            type: string
-          x-go-name: Columns
-        doNotWhitelist:
-          type: boolean
-          x-go-name: DoNotWhitelist
-        filter:
-          $ref: '#/components/schemas/IndicatorFilter'
-        ids:
-          type: array
-          items:
-            type: string
-          x-go-name: IDs
-        reason:
-          type: string
-          x-go-name: Reason
-        reputations:
-          type: array
-          items:
-            type: string
-          x-go-name: Reputations
-      x-go-package: github.com/demisto/server/web
-    FeedIndicatorsRequest:
-      description: FeedIndicatorsRequest is the input for JSON feed indicator ingestion
-      type: object
-      properties:
-        bypassExclusionList:
-          type: boolean
-          x-go-name: ShouldBypassExclusionList
-        classifierId:
-          type: string
-          x-go-name: ClassifierID
-        indicators:
-          type: array
-          items:
-            $ref: '#/components/schemas/RawFeedIndicator'
-          x-go-name: Indicators
-        mapperId:
-          type: string
-          x-go-name: MapperID
-      x-go-package: github.com/demisto/server/web
-    UpdateResponse:
-      type: object
-      title: UpdateResponse ...
-      properties:
-        notUpdated:
-          type: integer
-          format: int64
-          x-go-name: NotUpdated
-        updatedIds:
-          type: array
-          items:
-            type: string
-          x-go-name: UpdatedIds
-      x-go-package: github.com/demisto/server/repo/entities
     IocObject:
       description: IocObject - represents an Ioc (or simply an indicator) object
       type: object
@@ -573,41 +608,6 @@ components:
           type: integer
           format: int64
           x-go-name: Versn
-      x-go-package: github.com/demisto/server/domain
-    DBotScore:
-      description: DBotScore - Contain the score of a specific brand for a specific insight
-      type: object
-      properties:
-        content:
-          type: string
-          x-go-name: Content
-        contentFormat:
-          type: string
-          x-go-name: ContentFormat
-        context:
-          type: object
-          additionalProperties:
-            type: object
-          x-go-name: Context
-        isTypedIndicator:
-          type: boolean
-          x-go-name: IsTypedIndicator
-        score:
-          type: integer
-          format: int64
-          x-go-name: Score
-        scoreChangeTimestamp:
-          description: We need to track when the score changes to know if we need to re-calculate the overall score
-          type: string
-          format: date-time
-          x-go-name: ScoreChangeTimeStamp
-        timestamp:
-          type: string
-          format: date-time
-          x-go-name: TimeStamp
-        type:
-          type: string
-          x-go-name: Type
       x-go-package: github.com/demisto/server/domain
   securitySchemes:
     api_key:

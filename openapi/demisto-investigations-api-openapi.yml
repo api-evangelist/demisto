@@ -38,6 +38,26 @@ paths:
       - Investigations
 components:
   schemas:
+    InvestigationStatus:
+      description: InvestigationStatus is the status type
+      type: number
+      format: double
+      x-go-package: github.com/demisto/server/domain
+    InvestigationSearchResponse:
+      description: InvestigationSearchResponse returns the response from the investigation search
+      type: object
+      properties:
+        data:
+          description: 'in: body'
+          type: array
+          items:
+            $ref: '#/components/schemas/Investigation'
+          x-go-name: Data
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+      x-go-package: github.com/demisto/server/repo/entities
     Period:
       type: object
       title: Period holds the 'Period' query, such as last 3 days, last 6 hours, between 6 days from now until 3 days from now.
@@ -64,77 +84,6 @@ components:
           format: duration
           x-go-name: ToValue
       x-go-package: github.com/demisto/server/domain
-    Duration:
-      description: 'A Duration represents the elapsed time between two instants
-
-        as an int64 nanosecond count. The representation limits the
-
-        largest representable duration to approximately 290 years.'
-      type: integer
-      format: int64
-      x-go-package: time
-    System:
-      description: System - URL stands for ip or hostname
-      type: object
-      properties:
-        agent:
-          $ref: '#/components/schemas/SystemAgent'
-        arch:
-          type: string
-          x-go-name: Arch
-        ciphers:
-          type: array
-          items:
-            type: string
-          x-go-name: Ciphers
-        credentials:
-          type: string
-          x-go-name: CredentialsName
-        engineId:
-          type: string
-          x-go-name: EngineID
-        host:
-          type: string
-          x-go-name: Host
-        integrationinstanceid:
-          type: string
-          x-go-name: IntegrationInstanceID
-        issharedagent:
-          type: boolean
-          x-go-name: IsSharedAgent
-        name:
-          type: string
-          x-go-name: Name
-        os:
-          type: string
-          x-go-name: OS
-        password:
-          type: string
-          x-go-name: Password
-        smb:
-          type: integer
-          format: int64
-          x-go-name: SMBv
-        smbport:
-          type: integer
-          format: uint16
-          x-go-name: SMBPort
-        sshkey:
-          type: string
-          x-go-name: SSHKey
-        sshport:
-          type: integer
-          format: uint16
-          x-go-name: SSHPort
-        terminalOptions:
-          $ref: '#/components/schemas/TerminalOptions'
-        user:
-          type: string
-          x-go-name: User
-        workgroup:
-          type: string
-          x-go-name: Workgroup
-      x-go-package: github.com/demisto/server/domain
     Order:
       description: Order struct holds a sort field and the direction of sorting
       type: object
@@ -149,11 +98,124 @@ components:
           type: string
           x-go-name: FieldType
       x-go-package: github.com/demisto/server/domain
-    InvestigationType:
-      type: number
-      format: double
-      title: InvestigationType ...
-      x-go-package: github.com/demisto/server/domain
+    InvestigationFilter:
+      type: object
+      title: InvestigationFilter allows for very simple filtering.
+      properties:
+        Cache:
+          description: Cache of join functions
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        andOp:
+          type: boolean
+          x-go-name: AndOp
+        category:
+          type: array
+          items:
+            type: string
+          x-go-name: Category
+        fromCloseDate:
+          type: string
+          format: date-time
+          x-go-name: FromCloseDate
+        fromDate:
+          type: string
+          format: date-time
+          x-go-name: FromDate
+        fromDateLicense:
+          type: string
+          format: date-time
+          x-go-name: FromDateLicenseVal
+        id:
+          type: array
+          items:
+            type: string
+          x-go-name: ID
+        idsOnly:
+          type: boolean
+          x-go-name: IdsOnly
+        includeChildInv:
+          type: boolean
+          x-go-name: IncludeChildInv
+        name:
+          type: array
+          items:
+            type: string
+          x-go-name: Name
+        notCategory:
+          type: array
+          items:
+            type: string
+          x-go-name: NotCategory
+        notIDs:
+          type: array
+          items:
+            type: string
+          x-go-name: NotIDs
+        page:
+          description: 0-based page
+          type: integer
+          format: int64
+          x-go-name: Page
+        period:
+          $ref: '#/components/schemas/Period'
+        reason:
+          type: array
+          items:
+            type: string
+          x-go-name: Reason
+        searchAfter:
+          description: Efficient next page, pass max sort value from previous page
+          type: array
+          items:
+            type: string
+          x-go-name: SearchAfter
+        searchBefore:
+          description: Efficient prev page, pass min sort value from next page
+          type: array
+          items:
+            type: string
+          x-go-name: SearchBefore
+        size:
+          description: Size is limited to 1000, if not passed it defaults to 0, and no results will return
+          type: integer
+          format: int64
+          x-go-name: Size
+        sort:
+          description: The sort order
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+          x-go-name: Sort
+        status:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvestigationStatus'
+          x-go-name: Status
+        timeFrame:
+          $ref: '#/components/schemas/Duration'
+        toCloseDate:
+          type: string
+          format: date-time
+          x-go-name: ToCloseDate
+        toDate:
+          type: string
+          format: date-time
+          x-go-name: ToDate
+        type:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvestigationType'
+          x-go-name: Type
+        user:
+          type: array
+          items:
+            type: string
+          x-go-name: User
+      x-go-package: github.com/demisto/server/repo/entities
     Investigation:
       description: A special investigation called playground is created for each user-project combination and is a private space for the researcher to play in.
       type: object
@@ -327,150 +389,6 @@ components:
           format: int64
           x-go-name: Versn
       x-go-package: github.com/demisto/server/domain
-    InvestigationFilter:
-      type: object
-      title: InvestigationFilter allows for very simple filtering.
-      properties:
-        Cache:
-          description: Cache of join functions
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        andOp:
-          type: boolean
-          x-go-name: AndOp
-        category:
-          type: array
-          items:
-            type: string
-          x-go-name: Category
-        fromCloseDate:
-          type: string
-          format: date-time
-          x-go-name: FromCloseDate
-        fromDate:
-          type: string
-          format: date-time
-          x-go-name: FromDate
-        fromDateLicense:
-          type: string
-          format: date-time
-          x-go-name: FromDateLicenseVal
-        id:
-          type: array
-          items:
-            type: string
-          x-go-name: ID
-        idsOnly:
-          type: boolean
-          x-go-name: IdsOnly
-        includeChildInv:
-          type: boolean
-          x-go-name: IncludeChildInv
-        name:
-          type: array
-          items:
-            type: string
-          x-go-name: Name
-        notCategory:
-          type: array
-          items:
-            type: string
-          x-go-name: NotCategory
-        notIDs:
-          type: array
-          items:
-            type: string
-          x-go-name: NotIDs
-        page:
-          description: 0-based page
-          type: integer
-          format: int64
-          x-go-name: Page
-        period:
-          $ref: '#/components/schemas/Period'
-        reason:
-          type: array
-          items:
-            type: string
-          x-go-name: Reason
-        searchAfter:
-          description: Efficient next page, pass max sort value from previous page
-          type: array
-          items:
-            type: string
-          x-go-name: SearchAfter
-        searchBefore:
-          description: Efficient prev page, pass min sort value from next page
-          type: array
-          items:
-            type: string
-          x-go-name: SearchBefore
-        size:
-          description: Size is limited to 1000, if not passed it defaults to 0, and no results will return
-          type: integer
-          format: int64
-          x-go-name: Size
-        sort:
-          description: The sort order
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
-          x-go-name: Sort
-        status:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvestigationStatus'
-          x-go-name: Status
-        timeFrame:
-          $ref: '#/components/schemas/Duration'
-        toCloseDate:
-          type: string
-          format: date-time
-          x-go-name: ToCloseDate
-        toDate:
-          type: string
-          format: date-time
-          x-go-name: ToDate
-        type:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvestigationType'
-          x-go-name: Type
-        user:
-          type: array
-          items:
-            type: string
-          x-go-name: User
-      x-go-package: github.com/demisto/server/repo/entities
-    InvestigationSearchResponse:
-      description: InvestigationSearchResponse returns the response from the investigation search
-      type: object
-      properties:
-        data:
-          description: 'in: body'
-          type: array
-          items:
-            $ref: '#/components/schemas/Investigation'
-          x-go-name: Data
-        total:
-          type: integer
-          format: int64
-          x-go-name: Total
-      x-go-package: github.com/demisto/server/repo/entities
-    SystemAgent:
-      description: SystemAgent - represents agent status and holds server context
-      type: object
-      properties:
-        servercontext:
-          type: array
-          items:
-            type: integer
-            format: uint8
-          x-go-name: ServerContext
-      x-go-package: github.com/demisto/server/domain
     TerminalOptions:
       description: TerminalOptions - terminal options to use in case of using pty
       type: object
@@ -495,14 +413,96 @@ components:
           type: integer
           format: uint32
       x-go-package: github.com/demisto/server/domain
+    SystemAgent:
+      description: SystemAgent - represents agent status and holds server context
+      type: object
+      properties:
+        servercontext:
+          type: array
+          items:
+            type: integer
+            format: uint8
+          x-go-name: ServerContext
+      x-go-package: github.com/demisto/server/domain
+    InvestigationType:
+      type: number
+      format: double
+      title: InvestigationType ...
+      x-go-package: github.com/demisto/server/domain
     RunStatus:
       description: RunStatus of a job
       type: string
       x-go-package: github.com/demisto/server/domain
-    InvestigationStatus:
-      description: InvestigationStatus is the status type
-      type: number
-      format: double
+    Duration:
+      description: 'A Duration represents the elapsed time between two instants
+
+        as an int64 nanosecond count. The representation limits the
+
+        largest representable duration to approximately 290 years.'
+      type: integer
+      format: int64
+      x-go-package: time
+    System:
+      description: System - URL stands for ip or hostname
+      type: object
+      properties:
+        agent:
+          $ref: '#/components/schemas/SystemAgent'
+        arch:
+          type: string
+          x-go-name: Arch
+        ciphers:
+          type: array
+          items:
+            type: string
+          x-go-name: Ciphers
+        credentials:
+          type: string
+          x-go-name: CredentialsName
+        engineId:
+          type: string
+          x-go-name: EngineID
+        host:
+          type: string
+          x-go-name: Host
+        integrationinstanceid:
+          type: string
+          x-go-name: IntegrationInstanceID
+        issharedagent:
+          type: boolean
+          x-go-name: IsSharedAgent
+        name:
+          type: string
+          x-go-name: Name
+        os:
+          type: string
+          x-go-name: OS
+        password:
+          type: string
+          x-go-name: Password
+        smb:
+          type: integer
+          format: int64
+          x-go-name: SMBv
+        smbport:
+          type: integer
+          format: uint16
+          x-go-name: SMBPort
+        sshkey:
+          type: string
+          x-go-name: SSHKey
+        sshport:
+          type: integer
+          format: uint16
+          x-go-name: SSHPort
+        terminalOptions:
+          $ref: '#/components/schemas/TerminalOptions'
+        user:
+          type: string
+          x-go-name: User
+        workgroup:
+          type: string
+          x-go-name: Workgroup
       x-go-package: github.com/demisto/server/domain
   securitySchemes:
     api_key:

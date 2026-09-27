@@ -78,6 +78,12 @@ paths:
       - Evidence
 components:
   schemas:
+    Evidences:
+      description: Evidences is a list of evidence entities
+      type: array
+      items:
+        $ref: '#/components/schemas/Evidence'
+      x-go-package: github.com/demisto/server/domain
     Period:
       type: object
       title: Period holds the 'Period' query, such as last 3 days, last 6 hours, between 6 days from now until 3 days from now.
@@ -104,6 +110,29 @@ components:
           format: duration
           x-go-name: ToValue
       x-go-package: github.com/demisto/server/domain
+    Order:
+      description: Order struct holds a sort field and the direction of sorting
+      type: object
+      properties:
+        asc:
+          type: boolean
+          x-go-name: Asc
+        field:
+          type: string
+          x-go-name: Field
+        fieldType:
+          type: string
+          x-go-name: FieldType
+      x-go-package: github.com/demisto/server/domain
+    evidencesFilterWrapper:
+      type: object
+      properties:
+        filter:
+          $ref: '#/components/schemas/GenericStringDateFilter'
+        incidentID:
+          type: string
+          x-go-name: IncidentID
+      x-go-package: github.com/demisto/server/web
     Evidence:
       type: object
       title: Evidence details.
@@ -193,15 +222,6 @@ components:
       additionalProperties:
         type: object
       x-go-package: github.com/demisto/server/domain
-    evidencesFilterWrapper:
-      type: object
-      properties:
-        filter:
-          $ref: '#/components/schemas/GenericStringDateFilter'
-        incidentID:
-          type: string
-          x-go-name: IncidentID
-      x-go-package: github.com/demisto/server/web
     deleteEvidence:
       type: object
       properties:
@@ -209,46 +229,6 @@ components:
           type: string
           x-go-name: EvidenceID
       x-go-package: github.com/demisto/server/web
-    Duration:
-      description: 'A Duration represents the elapsed time between two instants
-
-        as an int64 nanosecond count. The representation limits the
-
-        largest representable duration to approximately 290 years.'
-      type: integer
-      format: int64
-      x-go-package: time
-    Evidences:
-      description: Evidences is a list of evidence entities
-      type: array
-      items:
-        $ref: '#/components/schemas/Evidence'
-      x-go-package: github.com/demisto/server/domain
-    Order:
-      description: Order struct holds a sort field and the direction of sorting
-      type: object
-      properties:
-        asc:
-          type: boolean
-          x-go-name: Asc
-        field:
-          type: string
-          x-go-name: Field
-        fieldType:
-          type: string
-          x-go-name: FieldType
-      x-go-package: github.com/demisto/server/domain
-    EvidencesSearchResponse:
-      description: EvidencesSearchResponse returns the response from the evidences search
-      type: object
-      properties:
-        evidences:
-          $ref: '#/components/schemas/Evidences'
-        total:
-          type: integer
-          format: int64
-          x-go-name: Total
-      x-go-package: github.com/demisto/server/repo/entities
     GenericStringDateFilter:
       description: GenericStringDateFilter is a general filter that will fetch entities using the Query value and a date filter
       type: object
@@ -308,6 +288,26 @@ components:
           format: date-time
           x-go-name: ToDate
       x-go-package: github.com/demisto/server/repo/entities
+    EvidencesSearchResponse:
+      description: EvidencesSearchResponse returns the response from the evidences search
+      type: object
+      properties:
+        evidences:
+          $ref: '#/components/schemas/Evidences'
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+      x-go-package: github.com/demisto/server/repo/entities
+    Duration:
+      description: 'A Duration represents the elapsed time between two instants
+
+        as an int64 nanosecond count. The representation limits the
+
+        largest representable duration to approximately 290 years.'
+      type: integer
+      format: int64
+      x-go-package: time
   securitySchemes:
     api_key:
       type: apiKey

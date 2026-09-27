@@ -63,76 +63,36 @@ components:
           type: string
           x-go-name: TypeID
       x-go-package: github.com/demisto/server/domain
-    Layout:
+    LayoutField:
       type: object
-      title: Layout ...
+      title: LayoutField ...
       properties:
-        commitMessage:
+        fieldId:
           type: string
-          x-go-name: CommitMessage
-        fromServerVersion:
-          $ref: '#/components/schemas/Version'
+          x-go-name: FieldID
         id:
           type: string
           x-go-name: ID
-        itemVersion:
-          $ref: '#/components/schemas/Version'
-        kind:
-          type: string
-          x-go-name: Kind
+        isVisible:
+          type: boolean
+          x-go-name: IsVisible
         modified:
           type: string
           format: date-time
           x-go-name: Modified
-        name:
-          type: string
-          x-go-name: Name
-        packID:
-          type: string
-          x-go-name: PackID
-        prevKind:
-          type: string
-          x-go-name: PrevKind
-        prevTypeId:
-          type: string
-          x-go-name: PrevTypeID
         primaryTerm:
           type: integer
           format: int64
           x-go-name: PrimaryTerm
-        propagationLabels:
-          type: array
-          items:
-            type: string
-          x-go-name: PropagationLabels
-        sections:
-          type: array
-          items:
-            $ref: '#/components/schemas/LayoutSection'
-          x-go-name: Sections
         sequenceNumber:
           type: integer
           format: int64
           x-go-name: SeqNum
-        shouldCommit:
-          type: boolean
-          x-go-name: ShouldCommit
         sortValues:
           type: array
           items:
             type: string
           x-go-name: SortValues
-        system:
-          type: boolean
-          x-go-name: System
-        toServerVersion:
-          $ref: '#/components/schemas/Version'
-        typeId:
-          type: string
-          x-go-name: TypeID
-        vcShouldIgnore:
-          type: boolean
-          x-go-name: VCShouldIgnore
         version:
           type: integer
           format: int64
@@ -205,36 +165,76 @@ components:
           format: int64
           x-go-name: Versn
       x-go-package: github.com/demisto/server/domain
-    LayoutField:
+    Layout:
       type: object
-      title: LayoutField ...
+      title: Layout ...
       properties:
-        fieldId:
+        commitMessage:
           type: string
-          x-go-name: FieldID
+          x-go-name: CommitMessage
+        fromServerVersion:
+          $ref: '#/components/schemas/Version'
         id:
           type: string
           x-go-name: ID
-        isVisible:
-          type: boolean
-          x-go-name: IsVisible
+        itemVersion:
+          $ref: '#/components/schemas/Version'
+        kind:
+          type: string
+          x-go-name: Kind
         modified:
           type: string
           format: date-time
           x-go-name: Modified
+        name:
+          type: string
+          x-go-name: Name
+        packID:
+          type: string
+          x-go-name: PackID
+        prevKind:
+          type: string
+          x-go-name: PrevKind
+        prevTypeId:
+          type: string
+          x-go-name: PrevTypeID
         primaryTerm:
           type: integer
           format: int64
           x-go-name: PrimaryTerm
+        propagationLabels:
+          type: array
+          items:
+            type: string
+          x-go-name: PropagationLabels
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/LayoutSection'
+          x-go-name: Sections
         sequenceNumber:
           type: integer
           format: int64
           x-go-name: SeqNum
+        shouldCommit:
+          type: boolean
+          x-go-name: ShouldCommit
         sortValues:
           type: array
           items:
             type: string
           x-go-name: SortValues
+        system:
+          type: boolean
+          x-go-name: System
+        toServerVersion:
+          $ref: '#/components/schemas/Version'
+        typeId:
+          type: string
+          x-go-name: TypeID
+        vcShouldIgnore:
+          type: boolean
+          x-go-name: VCShouldIgnore
         version:
           type: integer
           format: int64
