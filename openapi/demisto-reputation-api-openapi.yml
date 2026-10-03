@@ -40,6 +40,66 @@ paths:
       - Reputation
 components:
   schemas:
+    ArgFilter:
+      description: ArgFilter - represent a slice of atomic filters with OR condition between them (e.i. - atomic1 OR atomic2 OR ...)
+      type: array
+      items:
+        $ref: '#/components/schemas/ArgAtomicFilter'
+      x-go-package: github.com/demisto/server/domain
+    ArgAtomicFilter:
+      description: ArgAtomicFilter - operator with two sides that return true/false
+      type: object
+      properties:
+        ignoreCase:
+          type: boolean
+          x-go-name: IgnoreCase
+        left:
+          $ref: '#/components/schemas/OperatorArgument'
+        operator:
+          $ref: '#/components/schemas/FilterOperatorID'
+        right:
+          $ref: '#/components/schemas/OperatorArgument'
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/demisto/server/domain
+    Version:
+      type: object
+      title: Version represents a version.
+      properties:
+        Digits:
+          type: array
+          items:
+            type: integer
+            format: int64
+        Label:
+          type: string
+      x-go-package: github.com/demisto/server/domain
+    reputationsWithErrors:
+      type: object
+      properties:
+        error:
+          type: string
+          x-go-name: Error
+        reputations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reputation'
+          x-go-name: Reputations
+      x-go-package: github.com/demisto/server/web
+    FilterOperatorID:
+      type: string
+      title: FilterOperatorID ...
+      x-go-package: github.com/demisto/server/domain
+    ArgTransformer:
+      type: object
+      title: ArgTransformer ...
+      properties:
+        args:
+          x-go-name: Args
+        operator:
+          $ref: '#/components/schemas/TransformerOperatorID'
+      x-go-package: github.com/demisto/server/domain
     OperatorArgument:
       type: object
       title: OperatorArgument ...
@@ -50,11 +110,61 @@ components:
         value:
           $ref: '#/components/schemas/AdvanceArg'
       x-go-package: github.com/demisto/server/domain
-    ArgFilter:
-      description: ArgFilter - represent a slice of atomic filters with OR condition between them (e.i. - atomic1 OR atomic2 OR ...)
-      type: array
-      items:
-        $ref: '#/components/schemas/ArgAtomicFilter'
+    TransformerOperatorID:
+      type: string
+      title: TransformerOperatorID ...
+      x-go-package: github.com/demisto/server/domain
+    AdvanceArg:
+      description: 'Simple: plain text such as "hello" (constant) or ${File.ID} (DT expression)
+
+        Complex: struct with all info that is necessary to compute argument value from context (Root, Filters, Accessor & Transformers)'
+      type: object
+      title: 'AdvanceArg - advance argument can be one of the following:'
+      properties:
+        complex:
+          $ref: '#/components/schemas/ComplexArg'
+        simple:
+          type: string
+          x-go-name: Simple
+      x-go-package: github.com/demisto/server/domain
+    ComplexArg:
+      description: 'ComplexArg - all info that is necessary to compute argument value from context
+
+        Root - the root slice (or object) from to work against
+
+        Filters - a slice of filters to apply to the root object, one after another (e.i. with AND condition between each one)
+
+        Accessor - the key to access to each result after filter
+
+        Transformers - a slice to transformers to apply on the result of the accessed key from each result
+
+        e.g. if user want to take from context all File.DisplayName where File.Extension is ''EXE'', and the result in uppercase than:
+
+        Root: is "File"
+
+        Filters: will hold the "File.DisplayName where File.Extension is ''EXE''" query
+
+        Accessor: is "DisplayName"
+
+        Transformers: will hold the uppercase transformation'
+      type: object
+      properties:
+        accessor:
+          type: string
+          x-go-name: Accessor
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArgFilter'
+          x-go-name: Filters
+        root:
+          type: string
+          x-go-name: Root
+        transformers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArgTransformer'
+          x-go-name: Transformers
       x-go-package: github.com/demisto/server/domain
     Reputation:
       description: This struct is store in the BOLT data store and not indexed into bleve
@@ -226,116 +336,6 @@ components:
           type: integer
           format: int64
           x-go-name: Versn
-      x-go-package: github.com/demisto/server/domain
-    Version:
-      type: object
-      title: Version represents a version.
-      properties:
-        Digits:
-          type: array
-          items:
-            type: integer
-            format: int64
-        Label:
-          type: string
-      x-go-package: github.com/demisto/server/domain
-    ComplexArg:
-      description: 'ComplexArg - all info that is necessary to compute argument value from context
-
-        Root - the root slice (or object) from to work against
-
-        Filters - a slice of filters to apply to the root object, one after another (e.i. with AND condition between each one)
-
-        Accessor - the key to access to each result after filter
-
-        Transformers - a slice to transformers to apply on the result of the accessed key from each result
-
-        e.g. if user want to take from context all File.DisplayName where File.Extension is ''EXE'', and the result in uppercase than:
-
-        Root: is "File"
-
-        Filters: will hold the "File.DisplayName where File.Extension is ''EXE''" query
-
-        Accessor: is "DisplayName"
-
-        Transformers: will hold the uppercase transformation'
-      type: object
-      properties:
-        accessor:
-          type: string
-          x-go-name: Accessor
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArgFilter'
-          x-go-name: Filters
-        root:
-          type: string
-          x-go-name: Root
-        transformers:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArgTransformer'
-          x-go-name: Transformers
-      x-go-package: github.com/demisto/server/domain
-    ArgTransformer:
-      type: object
-      title: ArgTransformer ...
-      properties:
-        args:
-          x-go-name: Args
-        operator:
-          $ref: '#/components/schemas/TransformerOperatorID'
-      x-go-package: github.com/demisto/server/domain
-    TransformerOperatorID:
-      type: string
-      title: TransformerOperatorID ...
-      x-go-package: github.com/demisto/server/domain
-    reputationsWithErrors:
-      type: object
-      properties:
-        error:
-          type: string
-          x-go-name: Error
-        reputations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Reputation'
-          x-go-name: Reputations
-      x-go-package: github.com/demisto/server/web
-    FilterOperatorID:
-      type: string
-      title: FilterOperatorID ...
-      x-go-package: github.com/demisto/server/domain
-    AdvanceArg:
-      description: 'Simple: plain text such as "hello" (constant) or ${File.ID} (DT expression)
-
-        Complex: struct with all info that is necessary to compute argument value from context (Root, Filters, Accessor & Transformers)'
-      type: object
-      title: 'AdvanceArg - advance argument can be one of the following:'
-      properties:
-        complex:
-          $ref: '#/components/schemas/ComplexArg'
-        simple:
-          type: string
-          x-go-name: Simple
-      x-go-package: github.com/demisto/server/domain
-    ArgAtomicFilter:
-      description: ArgAtomicFilter - operator with two sides that return true/false
-      type: object
-      properties:
-        ignoreCase:
-          type: boolean
-          x-go-name: IgnoreCase
-        left:
-          $ref: '#/components/schemas/OperatorArgument'
-        operator:
-          $ref: '#/components/schemas/FilterOperatorID'
-        right:
-          $ref: '#/components/schemas/OperatorArgument'
-        type:
-          type: string
-          x-go-name: Type
       x-go-package: github.com/demisto/server/domain
   securitySchemes:
     api_key:

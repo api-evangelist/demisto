@@ -40,6 +40,12 @@ paths:
       - Dashboards
 components:
   schemas:
+    WidgetCells:
+      type: array
+      title: WidgetCells ...
+      items:
+        $ref: '#/components/schemas/WidgetCell'
+      x-go-package: github.com/demisto/server/domain
     WidgetCell:
       type: object
       title: WidgetCell ...
@@ -97,39 +103,6 @@ components:
           type: string
           format: duration
           x-go-name: ToValue
-      x-go-package: github.com/demisto/server/domain
-    Order:
-      description: Order struct holds a sort field and the direction of sorting
-      type: object
-      properties:
-        asc:
-          type: boolean
-          x-go-name: Asc
-        field:
-          type: string
-          x-go-name: Field
-        fieldType:
-          type: string
-          x-go-name: FieldType
-      x-go-package: github.com/demisto/server/domain
-    DateRange:
-      description: DateRange provides common fields for date filtering
-      type: object
-      properties:
-        fromDate:
-          type: string
-          format: date-time
-          x-go-name: FromDate
-        fromDateLicense:
-          type: string
-          format: date-time
-          x-go-name: FromDateLicenseVal
-        period:
-          $ref: '#/components/schemas/Period'
-        toDate:
-          type: string
-          format: date-time
-          x-go-name: ToDate
       x-go-package: github.com/demisto/server/domain
     Widget:
       description: 'Widget describe a widget component used to get statistics requests, based on parameters such as
@@ -221,6 +194,39 @@ components:
           type: string
           x-go-name: WidgetType
       x-go-package: github.com/demisto/server/domain
+    DateRange:
+      description: DateRange provides common fields for date filtering
+      type: object
+      properties:
+        fromDate:
+          type: string
+          format: date-time
+          x-go-name: FromDate
+        fromDateLicense:
+          type: string
+          format: date-time
+          x-go-name: FromDateLicenseVal
+        period:
+          $ref: '#/components/schemas/Period'
+        toDate:
+          type: string
+          format: date-time
+          x-go-name: ToDate
+      x-go-package: github.com/demisto/server/domain
+    Order:
+      description: Order struct holds a sort field and the direction of sorting
+      type: object
+      properties:
+        asc:
+          type: boolean
+          x-go-name: Asc
+        field:
+          type: string
+          x-go-name: Field
+        fieldType:
+          type: string
+          x-go-name: FieldType
+      x-go-package: github.com/demisto/server/domain
     Dashboard:
       type: object
       title: Dashboard ...
@@ -284,12 +290,6 @@ components:
           type: integer
           format: int64
           x-go-name: Versn
-      x-go-package: github.com/demisto/server/domain
-    WidgetCells:
-      type: array
-      title: WidgetCells ...
-      items:
-        $ref: '#/components/schemas/WidgetCell'
       x-go-package: github.com/demisto/server/domain
   securitySchemes:
     api_key:

@@ -114,6 +114,65 @@ paths:
       - Widgets
 components:
   schemas:
+    DateRange:
+      description: DateRange provides common fields for date filtering
+      type: object
+      properties:
+        fromDate:
+          type: string
+          format: date-time
+          x-go-name: FromDate
+        fromDateLicense:
+          type: string
+          format: date-time
+          x-go-name: FromDateLicenseVal
+        period:
+          $ref: '#/components/schemas/Period'
+        toDate:
+          type: string
+          format: date-time
+          x-go-name: ToDate
+      x-go-package: github.com/demisto/server/domain
+    Period:
+      type: object
+      title: Period holds the 'Period' query, such as last 3 days, last 6 hours, between 6 days from now until 3 days from now.
+      properties:
+        by:
+          description: By is used for legacty, and if exists it will override ByTo and ByFrom
+          type: string
+          x-go-name: By
+        byFrom:
+          type: string
+          x-go-name: ByFrom
+        byTo:
+          type: string
+          x-go-name: ByTo
+        field:
+          type: string
+          x-go-name: Field
+        fromValue:
+          type: string
+          format: duration
+          x-go-name: FromValue
+        toValue:
+          type: string
+          format: duration
+          x-go-name: ToValue
+      x-go-package: github.com/demisto/server/domain
+    Order:
+      description: Order struct holds a sort field and the direction of sorting
+      type: object
+      properties:
+        asc:
+          type: boolean
+          x-go-name: Asc
+        field:
+          type: string
+          x-go-name: Field
+        fieldType:
+          type: string
+          x-go-name: FieldType
+      x-go-package: github.com/demisto/server/domain
     Widget:
       description: 'Widget describe a widget component used to get statistics requests, based on parameters such as
 
@@ -203,65 +262,6 @@ components:
           description: 'Widget type describes how does the widget should recieve the data, and display it. Supporting types: "bar", "column", "pie", "list", "number", "trend", "text", "duration", "image", "line", and "table".'
           type: string
           x-go-name: WidgetType
-      x-go-package: github.com/demisto/server/domain
-    Period:
-      type: object
-      title: Period holds the 'Period' query, such as last 3 days, last 6 hours, between 6 days from now until 3 days from now.
-      properties:
-        by:
-          description: By is used for legacty, and if exists it will override ByTo and ByFrom
-          type: string
-          x-go-name: By
-        byFrom:
-          type: string
-          x-go-name: ByFrom
-        byTo:
-          type: string
-          x-go-name: ByTo
-        field:
-          type: string
-          x-go-name: Field
-        fromValue:
-          type: string
-          format: duration
-          x-go-name: FromValue
-        toValue:
-          type: string
-          format: duration
-          x-go-name: ToValue
-      x-go-package: github.com/demisto/server/domain
-    Order:
-      description: Order struct holds a sort field and the direction of sorting
-      type: object
-      properties:
-        asc:
-          type: boolean
-          x-go-name: Asc
-        field:
-          type: string
-          x-go-name: Field
-        fieldType:
-          type: string
-          x-go-name: FieldType
-      x-go-package: github.com/demisto/server/domain
-    DateRange:
-      description: DateRange provides common fields for date filtering
-      type: object
-      properties:
-        fromDate:
-          type: string
-          format: date-time
-          x-go-name: FromDate
-        fromDateLicense:
-          type: string
-          format: date-time
-          x-go-name: FromDateLicenseVal
-        period:
-          $ref: '#/components/schemas/Period'
-        toDate:
-          type: string
-          format: date-time
-          x-go-name: ToDate
       x-go-package: github.com/demisto/server/domain
   securitySchemes:
     api_key:

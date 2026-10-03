@@ -206,117 +206,22 @@ paths:
       - Entry
 components:
   schemas:
-    OperatorArgument:
+    ArgAtomicFilter:
+      description: ArgAtomicFilter - operator with two sides that return true/false
       type: object
-      title: OperatorArgument ...
       properties:
-        isContext:
+        ignoreCase:
           type: boolean
-          x-go-name: IsContext
-        value:
-          $ref: '#/components/schemas/AdvanceArg'
-      x-go-package: github.com/demisto/server/domain
-    HumanCron:
-      type: object
-      title: HumanCron ...
-      properties:
-        atTimeHour:
-          type: string
-          x-go-name: AtTimeHour
-        atTimeMinute:
-          type: string
-          x-go-name: AtTimeMinute
-        days:
-          type: array
-          items:
-            type: string
-          x-go-name: Days
-        hoursPeriod:
-          type: string
-          x-go-name: HoursPeriod
-        schedulingType:
-          description: the following fields are deprecated. do not use them.
-          type: string
-          x-go-name: SchedulingType
-        timePeriod:
-          type: integer
-          format: int64
-          x-go-name: TimePeriod
-        timePeriodType:
-          type: string
-          x-go-name: TimePeriodType
-      x-go-package: github.com/demisto/server/domain
-    DownloadEntry:
-      type: object
-      title: DownloadEntry ...
-      properties:
-        id:
-          type: string
-          x-go-name: ID
-        investigationId:
-          type: string
-          x-go-name: InvestigationID
-      x-go-package: github.com/demisto/server/web
-    TermLocationMap:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/Locations'
-      x-go-package: github.com/demisto/server/vendor/github.com/blevesearch/bleve/search
-    ArgTransformer:
-      type: object
-      title: ArgTransformer ...
-      properties:
-        args:
-          x-go-name: Args
+          x-go-name: IgnoreCase
+        left:
+          $ref: '#/components/schemas/OperatorArgument'
         operator:
-          $ref: '#/components/schemas/TransformerOperatorID'
-      x-go-package: github.com/demisto/server/domain
-    uploadedEntry:
-      type: object
-      properties:
-        contents:
+          $ref: '#/components/schemas/FilterOperatorID'
+        right:
+          $ref: '#/components/schemas/OperatorArgument'
+        type:
           type: string
-          x-go-name: Contents
-        format:
-          type: string
-          x-go-name: ContentsFormat
-        investigationId:
-          type: string
-          x-go-name: InvestigationID
-      x-go-package: github.com/demisto/server/web
-    EntryReputation:
-      description: EntryReputation holds the entry reputations and the highlights
-      type: object
-      properties:
-        highlights:
-          $ref: '#/components/schemas/FieldTermLocationMap'
-        reputationsData:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReputationData'
-          x-go-name: ReputationsData
-      x-go-package: github.com/demisto/server/domain
-    FilterOperatorID:
-      type: string
-      title: FilterOperatorID ...
-      x-go-package: github.com/demisto/server/domain
-    EntryHistory:
-      type: object
-      title: EntryHistory ...
-      properties:
-        contentDate:
-          type: string
-          format: date-time
-          x-go-name: ContentDate
-        contents:
-          type: string
-          x-go-name: Contents
-        contentsFormat:
-          type: string
-          x-go-name: ContentsFormat
-        user:
-          type: string
-          x-go-name: User
+          x-go-name: Type
       x-go-package: github.com/demisto/server/domain
     Entry:
       description: Entry holds a single entry in an investigation. Entries entered within a short amount of time by the same user are combined
@@ -511,6 +416,150 @@ components:
           format: int64
           x-go-name: Versn
       x-go-package: github.com/demisto/server/domain
+    FilterOperatorID:
+      type: string
+      title: FilterOperatorID ...
+      x-go-package: github.com/demisto/server/domain
+    Locations:
+      type: array
+      items:
+        $ref: '#/components/schemas/Location'
+      x-go-package: github.com/demisto/server/vendor/github.com/blevesearch/bleve/search
+    OperatorArgument:
+      type: object
+      title: OperatorArgument ...
+      properties:
+        isContext:
+          type: boolean
+          x-go-name: IsContext
+        value:
+          $ref: '#/components/schemas/AdvanceArg'
+      x-go-package: github.com/demisto/server/domain
+    EndingType:
+      description: EndingType holds the type of schedule Ending
+      type: string
+      x-go-package: github.com/demisto/server/domain
+    FieldTermLocationMap:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/TermLocationMap'
+      x-go-package: github.com/demisto/server/vendor/github.com/blevesearch/bleve/search
+    EntryReputation:
+      description: EntryReputation holds the entry reputations and the highlights
+      type: object
+      properties:
+        highlights:
+          $ref: '#/components/schemas/FieldTermLocationMap'
+        reputationsData:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReputationData'
+          x-go-name: ReputationsData
+      x-go-package: github.com/demisto/server/domain
+    EntryHistory:
+      type: object
+      title: EntryHistory ...
+      properties:
+        contentDate:
+          type: string
+          format: date-time
+          x-go-name: ContentDate
+        contents:
+          type: string
+          x-go-name: Contents
+        contentsFormat:
+          type: string
+          x-go-name: ContentsFormat
+        user:
+          type: string
+          x-go-name: User
+      x-go-package: github.com/demisto/server/domain
+    updateEntry:
+      type: object
+      properties:
+        args:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AdvanceArg'
+          x-go-name: Args
+        data:
+          type: string
+          x-go-name: Data
+        id:
+          type: string
+          x-go-name: ID
+        investigationId:
+          type: string
+          x-go-name: InvestigationID
+        markdown:
+          type: boolean
+          x-go-name: Markdown
+        version:
+          type: integer
+          format: int64
+          x-go-name: Version
+      x-go-package: github.com/demisto/server/web
+    ReputationData:
+      description: ReputationData holds the reputation data (reputation, regex, highlights result)
+      type: object
+      properties:
+        rawTerm:
+          type: string
+          x-go-name: RawTerm
+        reputation:
+          type: integer
+          format: int64
+          x-go-name: Reputation
+        reputationId:
+          type: string
+          x-go-name: ReputationID
+        term:
+          type: string
+          x-go-name: Term
+      x-go-package: github.com/demisto/server/domain
+    DownloadEntry:
+      type: object
+      title: DownloadEntry ...
+      properties:
+        id:
+          type: string
+          x-go-name: ID
+        investigationId:
+          type: string
+          x-go-name: InvestigationID
+      x-go-package: github.com/demisto/server/web
+    updateEntryTags:
+      type: object
+      properties:
+        id:
+          type: string
+          x-go-name: ID
+        investigationId:
+          type: string
+          x-go-name: InvestigationID
+        tags:
+          type: array
+          items:
+            type: string
+          x-go-name: Tags
+        version:
+          type: integer
+          format: int64
+          x-go-name: Version
+      x-go-package: github.com/demisto/server/web
+    AdvanceArg:
+      description: 'Simple: plain text such as "hello" (constant) or ${File.ID} (DT expression)
+
+        Complex: struct with all info that is necessary to compute argument value from context (Root, Filters, Accessor & Transformers)'
+      type: object
+      title: 'AdvanceArg - advance argument can be one of the following:'
+      properties:
+        complex:
+          $ref: '#/components/schemas/ComplexArg'
+        simple:
+          type: string
+          x-go-name: Simple
+      x-go-package: github.com/demisto/server/domain
     Location:
       type: object
       properties:
@@ -531,6 +580,56 @@ components:
           format: uint64
           x-go-name: Start
       x-go-package: github.com/demisto/server/vendor/github.com/blevesearch/bleve/search
+    EntryType:
+      description: EntryType specifies the type of the entry
+      type: number
+      format: double
+      x-go-package: github.com/demisto/server/domain
+    ArgFilter:
+      description: ArgFilter - represent a slice of atomic filters with OR condition between them (e.i. - atomic1 OR atomic2 OR ...)
+      type: array
+      items:
+        $ref: '#/components/schemas/ArgAtomicFilter'
+      x-go-package: github.com/demisto/server/domain
+    ArrayPositions:
+      type: array
+      items:
+        type: integer
+        format: uint64
+      x-go-package: github.com/demisto/server/vendor/github.com/blevesearch/bleve/search
+    FileMetadata:
+      type: object
+      title: FileMetadata ...
+      properties:
+        info:
+          type: string
+          x-go-name: Info
+        isMediaFile:
+          type: boolean
+          x-go-name: IsMediaFile
+        md5:
+          type: string
+          x-go-name: MD5
+        sha1:
+          type: string
+          x-go-name: SHA1
+        sha256:
+          type: string
+          x-go-name: SHA256
+        sha512:
+          type: string
+          x-go-name: SHA512
+        size:
+          type: integer
+          format: int64
+          x-go-name: Size
+        ssdeep:
+          type: string
+          x-go-name: SSDeep
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/demisto/server/domain
     EntryTask:
       description: EntryTask holds information regarding the related task
       type: object
@@ -548,34 +647,57 @@ components:
           type: string
           x-go-name: TaskStatus
       x-go-package: github.com/demisto/server/domain
-    updateEntryTags:
+    TransformerOperatorID:
+      type: string
+      title: TransformerOperatorID ...
+      x-go-package: github.com/demisto/server/domain
+    TermLocationMap:
       type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Locations'
+      x-go-package: github.com/demisto/server/vendor/github.com/blevesearch/bleve/search
+    EntryCategory:
+      type: string
+      title: EntryCategory ...
+      x-go-package: github.com/demisto/server/domain
+    ArgTransformer:
+      type: object
+      title: ArgTransformer ...
       properties:
-        id:
+        args:
+          x-go-name: Args
+        operator:
+          $ref: '#/components/schemas/TransformerOperatorID'
+      x-go-package: github.com/demisto/server/domain
+    HumanCron:
+      type: object
+      title: HumanCron ...
+      properties:
+        atTimeHour:
           type: string
-          x-go-name: ID
-        investigationId:
+          x-go-name: AtTimeHour
+        atTimeMinute:
           type: string
-          x-go-name: InvestigationID
-        tags:
+          x-go-name: AtTimeMinute
+        days:
           type: array
           items:
             type: string
-          x-go-name: Tags
-        version:
+          x-go-name: Days
+        hoursPeriod:
+          type: string
+          x-go-name: HoursPeriod
+        schedulingType:
+          description: the following fields are deprecated. do not use them.
+          type: string
+          x-go-name: SchedulingType
+        timePeriod:
           type: integer
           format: int64
-          x-go-name: Version
-      x-go-package: github.com/demisto/server/web
-    Locations:
-      type: array
-      items:
-        $ref: '#/components/schemas/Location'
-      x-go-package: github.com/demisto/server/vendor/github.com/blevesearch/bleve/search
-    EntryType:
-      description: EntryType specifies the type of the entry
-      type: number
-      format: double
+          x-go-name: TimePeriod
+        timePeriodType:
+          type: string
+          x-go-name: TimePeriodType
       x-go-package: github.com/demisto/server/domain
     ComplexArg:
       description: 'ComplexArg - all info that is necessary to compute argument value from context
@@ -616,141 +738,19 @@ components:
             $ref: '#/components/schemas/ArgTransformer'
           x-go-name: Transformers
       x-go-package: github.com/demisto/server/domain
-    FileMetadata:
-      type: object
-      title: FileMetadata ...
-      properties:
-        info:
-          type: string
-          x-go-name: Info
-        isMediaFile:
-          type: boolean
-          x-go-name: IsMediaFile
-        md5:
-          type: string
-          x-go-name: MD5
-        sha1:
-          type: string
-          x-go-name: SHA1
-        sha256:
-          type: string
-          x-go-name: SHA256
-        sha512:
-          type: string
-          x-go-name: SHA512
-        size:
-          type: integer
-          format: int64
-          x-go-name: Size
-        ssdeep:
-          type: string
-          x-go-name: SSDeep
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/demisto/server/domain
-    EntryCategory:
-      type: string
-      title: EntryCategory ...
-      x-go-package: github.com/demisto/server/domain
-    EndingType:
-      description: EndingType holds the type of schedule Ending
-      type: string
-      x-go-package: github.com/demisto/server/domain
-    FieldTermLocationMap:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/TermLocationMap'
-      x-go-package: github.com/demisto/server/vendor/github.com/blevesearch/bleve/search
-    ReputationData:
-      description: ReputationData holds the reputation data (reputation, regex, highlights result)
+    uploadedEntry:
       type: object
       properties:
-        rawTerm:
+        contents:
           type: string
-          x-go-name: RawTerm
-        reputation:
-          type: integer
-          format: int64
-          x-go-name: Reputation
-        reputationId:
+          x-go-name: Contents
+        format:
           type: string
-          x-go-name: ReputationID
-        term:
-          type: string
-          x-go-name: Term
-      x-go-package: github.com/demisto/server/domain
-    ArgFilter:
-      description: ArgFilter - represent a slice of atomic filters with OR condition between them (e.i. - atomic1 OR atomic2 OR ...)
-      type: array
-      items:
-        $ref: '#/components/schemas/ArgAtomicFilter'
-      x-go-package: github.com/demisto/server/domain
-    ArrayPositions:
-      type: array
-      items:
-        type: integer
-        format: uint64
-      x-go-package: github.com/demisto/server/vendor/github.com/blevesearch/bleve/search
-    updateEntry:
-      type: object
-      properties:
-        args:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/AdvanceArg'
-          x-go-name: Args
-        data:
-          type: string
-          x-go-name: Data
-        id:
-          type: string
-          x-go-name: ID
+          x-go-name: ContentsFormat
         investigationId:
           type: string
           x-go-name: InvestigationID
-        markdown:
-          type: boolean
-          x-go-name: Markdown
-        version:
-          type: integer
-          format: int64
-          x-go-name: Version
       x-go-package: github.com/demisto/server/web
-    TransformerOperatorID:
-      type: string
-      title: TransformerOperatorID ...
-      x-go-package: github.com/demisto/server/domain
-    AdvanceArg:
-      description: 'Simple: plain text such as "hello" (constant) or ${File.ID} (DT expression)
-
-        Complex: struct with all info that is necessary to compute argument value from context (Root, Filters, Accessor & Transformers)'
-      type: object
-      title: 'AdvanceArg - advance argument can be one of the following:'
-      properties:
-        complex:
-          $ref: '#/components/schemas/ComplexArg'
-        simple:
-          type: string
-          x-go-name: Simple
-      x-go-package: github.com/demisto/server/domain
-    ArgAtomicFilter:
-      description: ArgAtomicFilter - operator with two sides that return true/false
-      type: object
-      properties:
-        ignoreCase:
-          type: boolean
-          x-go-name: IgnoreCase
-        left:
-          $ref: '#/components/schemas/OperatorArgument'
-        operator:
-          $ref: '#/components/schemas/FilterOperatorID'
-        right:
-          $ref: '#/components/schemas/OperatorArgument'
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/demisto/server/domain
   securitySchemes:
     api_key:
       type: apiKey
