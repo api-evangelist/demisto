@@ -67,6 +67,44 @@ components:
       type: number
       format: double
       x-go-package: github.com/demisto/server/domain
+    GridColumn:
+      type: object
+      title: GridColumn ...
+      properties:
+        displayName:
+          type: string
+          x-go-name: DisplayName
+        fieldCalcScript:
+          type: string
+          x-go-name: FieldCalcScript
+        isDefault:
+          type: boolean
+          x-go-name: IsDefault
+        isReadOnly:
+          type: boolean
+          x-go-name: IsReadOnly
+        key:
+          type: string
+          x-go-name: Key
+        required:
+          type: boolean
+          x-go-name: Required
+        script:
+          type: string
+          x-go-name: Script
+        selectValues:
+          type: array
+          items:
+            type: string
+          x-go-name: SelectValues
+        type:
+          type: string
+          x-go-name: Type
+        width:
+          type: integer
+          format: int64
+          x-go-name: Width
+      x-go-package: github.com/demisto/server/domain
     IncidentField:
       type: object
       title: IncidentField ...
@@ -212,44 +250,6 @@ components:
           type: integer
           format: int64
           x-go-name: Versn
-      x-go-package: github.com/demisto/server/domain
-    GridColumn:
-      type: object
-      title: GridColumn ...
-      properties:
-        displayName:
-          type: string
-          x-go-name: DisplayName
-        fieldCalcScript:
-          type: string
-          x-go-name: FieldCalcScript
-        isDefault:
-          type: boolean
-          x-go-name: IsDefault
-        isReadOnly:
-          type: boolean
-          x-go-name: IsReadOnly
-        key:
-          type: string
-          x-go-name: Key
-        required:
-          type: boolean
-          x-go-name: Required
-        script:
-          type: string
-          x-go-name: Script
-        selectValues:
-          type: array
-          items:
-            type: string
-          x-go-name: SelectValues
-        type:
-          type: string
-          x-go-name: Type
-        width:
-          type: integer
-          format: int64
-          x-go-name: Width
       x-go-package: github.com/demisto/server/domain
   securitySchemes:
     api_key:

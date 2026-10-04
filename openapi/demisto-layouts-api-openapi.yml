@@ -48,18 +48,6 @@ paths:
       - Layouts
 components:
   schemas:
-    Version:
-      type: object
-      title: Version represents a version.
-      properties:
-        Digits:
-          type: array
-          items:
-            type: integer
-            format: int64
-        Label:
-          type: string
-      x-go-package: github.com/demisto/server/domain
     LayoutSection:
       type: object
       title: LayoutSection ...
@@ -110,41 +98,6 @@ components:
         type:
           type: string
           x-go-name: Type
-        version:
-          type: integer
-          format: int64
-          x-go-name: Versn
-      x-go-package: github.com/demisto/server/domain
-    LayoutField:
-      type: object
-      title: LayoutField ...
-      properties:
-        fieldId:
-          type: string
-          x-go-name: FieldID
-        id:
-          type: string
-          x-go-name: ID
-        isVisible:
-          type: boolean
-          x-go-name: IsVisible
-        modified:
-          type: string
-          format: date-time
-          x-go-name: Modified
-        primaryTerm:
-          type: integer
-          format: int64
-          x-go-name: PrimaryTerm
-        sequenceNumber:
-          type: integer
-          format: int64
-          x-go-name: SeqNum
-        sortValues:
-          type: array
-          items:
-            type: string
-          x-go-name: SortValues
         version:
           type: integer
           format: int64
@@ -239,6 +192,53 @@ components:
         typeId:
           type: string
           x-go-name: TypeID
+      x-go-package: github.com/demisto/server/domain
+    Version:
+      type: object
+      title: Version represents a version.
+      properties:
+        Digits:
+          type: array
+          items:
+            type: integer
+            format: int64
+        Label:
+          type: string
+      x-go-package: github.com/demisto/server/domain
+    LayoutField:
+      type: object
+      title: LayoutField ...
+      properties:
+        fieldId:
+          type: string
+          x-go-name: FieldID
+        id:
+          type: string
+          x-go-name: ID
+        isVisible:
+          type: boolean
+          x-go-name: IsVisible
+        modified:
+          type: string
+          format: date-time
+          x-go-name: Modified
+        primaryTerm:
+          type: integer
+          format: int64
+          x-go-name: PrimaryTerm
+        sequenceNumber:
+          type: integer
+          format: int64
+          x-go-name: SeqNum
+        sortValues:
+          type: array
+          items:
+            type: string
+          x-go-name: SortValues
+        version:
+          type: integer
+          format: int64
+          x-go-name: Versn
       x-go-package: github.com/demisto/server/domain
   securitySchemes:
     api_key:

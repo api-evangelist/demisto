@@ -124,6 +124,20 @@ paths:
       - Automation
 components:
   schemas:
+    Order:
+      description: Order struct holds a sort field and the direction of sorting
+      type: object
+      properties:
+        asc:
+          type: boolean
+          x-go-name: Asc
+        field:
+          type: string
+          x-go-name: Field
+        fieldType:
+          type: string
+          x-go-name: FieldType
+      x-go-package: github.com/demisto/server/domain
     AutomationScript:
       description: AutomationScript represents a script that will run on  the system
       type: object
@@ -267,19 +281,30 @@ components:
           type: string
           x-go-name: VisualScript
       x-go-package: github.com/demisto/server/domain
-    Duration:
-      description: 'A Duration represents the elapsed time between two instants
-
-        as an int64 nanosecond count. The representation limits the
-
-        largest representable duration to approximately 290 years.'
-      type: integer
-      format: int64
-      x-go-package: time
+    Important:
+      description: Important The important outputs of a given command
+      type: object
+      properties:
+        contextPath:
+          type: string
+          x-go-name: ContextPath
+        description:
+          description: Description is either a string or a map from string to interface
+          type: string
+          x-go-name: Description
+        related:
+          description: To what other context path this output is related
+          type: string
+          x-go-name: Related
+      x-go-package: github.com/demisto/server/domain
     ScriptTarget:
       description: ScriptTarget represents the module where this script should run
       type: integer
       format: int64
+      x-go-package: github.com/demisto/server/domain
+    ScriptType:
+      description: ScriptType holds the type of a script
+      type: string
       x-go-package: github.com/demisto/server/domain
     GenericStringFilter:
       description: GenericStringFilter is a general filter that will fetch entities using the Query value
@@ -324,6 +349,104 @@ components:
             $ref: '#/components/schemas/Order'
           x-go-name: Sort
       x-go-package: github.com/demisto/server/repo/entities
+    automationScriptResult:
+      type: object
+      title: automationScriptResult ...
+      properties:
+        pythonEnabled:
+          type: boolean
+          x-go-name: PythonEnabled
+        scripts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AutomationScriptAPI'
+          x-go-name: Scripts
+        selectedScript:
+          type: object
+          additionalProperties:
+            type: object
+          x-go-name: SelectedScript
+        suggestions:
+          type: array
+          items:
+            type: string
+          x-go-name: Tags
+      x-go-package: github.com/demisto/server/web
+    OutputType:
+      type: string
+      title: OutputType ...
+      x-go-package: github.com/demisto/server/domain
+    automationScriptFilterWrapper:
+      type: object
+      title: automationScriptFilterWrapper ...
+      properties:
+        filter:
+          $ref: '#/components/schemas/GenericStringFilter'
+        savePassword:
+          type: boolean
+          x-go-name: StorePassword
+        script:
+          $ref: '#/components/schemas/AutomationScript'
+      x-go-package: github.com/demisto/server/web
+    ScriptSubType:
+      description: ScriptSubType holds the script type version
+      type: string
+      x-go-package: github.com/demisto/server/domain
+    automationScriptFilter:
+      description: automationScriptFilter is a general filter that fetches entities using a query string query using the Query value
+      type: object
+      properties:
+        Cache:
+          description: Cache of join functions
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        page:
+          description: 0-based page
+          type: integer
+          format: int64
+          x-go-name: Page
+        query:
+          type: string
+          x-go-name: Query
+        searchAfter:
+          description: Efficient next page, pass max sort value from previous page
+          type: array
+          items:
+            type: string
+          x-go-name: SearchAfter
+        searchBefore:
+          description: Efficient prev page, pass min sort value from next page
+          type: array
+          items:
+            type: string
+          x-go-name: SearchBefore
+        size:
+          description: Size is limited to 1000, if not passed it defaults to 0, and no results will return
+          type: integer
+          format: int64
+          x-go-name: Size
+        sort:
+          description: The sort order
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+          x-go-name: Sort
+        stripContext:
+          type: boolean
+          x-go-name: StripContext
+      x-go-package: github.com/demisto/server/web
+    Duration:
+      description: 'A Duration represents the elapsed time between two instants
+
+        as an int64 nanosecond count. The representation limits the
+
+        largest representable duration to approximately 290 years.'
+      type: integer
+      format: int64
+      x-go-package: time
     AutomationScriptAPI:
       type: object
       title: AutomationScriptAPI ...
@@ -409,73 +532,6 @@ components:
           format: int64
           x-go-name: Version
       x-go-package: github.com/demisto/server/services
-    ScriptSubType:
-      description: ScriptSubType holds the script type version
-      type: string
-      x-go-package: github.com/demisto/server/domain
-    Important:
-      description: Important The important outputs of a given command
-      type: object
-      properties:
-        contextPath:
-          type: string
-          x-go-name: ContextPath
-        description:
-          description: Description is either a string or a map from string to interface
-          type: string
-          x-go-name: Description
-        related:
-          description: To what other context path this output is related
-          type: string
-          x-go-name: Related
-      x-go-package: github.com/demisto/server/domain
-    Order:
-      description: Order struct holds a sort field and the direction of sorting
-      type: object
-      properties:
-        asc:
-          type: boolean
-          x-go-name: Asc
-        field:
-          type: string
-          x-go-name: Field
-        fieldType:
-          type: string
-          x-go-name: FieldType
-      x-go-package: github.com/demisto/server/domain
-    OutputType:
-      type: string
-      title: OutputType ...
-      x-go-package: github.com/demisto/server/domain
-    automationScriptFilterWrapper:
-      type: object
-      title: automationScriptFilterWrapper ...
-      properties:
-        filter:
-          $ref: '#/components/schemas/GenericStringFilter'
-        savePassword:
-          type: boolean
-          x-go-name: StorePassword
-        script:
-          $ref: '#/components/schemas/AutomationScript'
-      x-go-package: github.com/demisto/server/web
-    Output:
-      description: Output of a module command
-      type: object
-      properties:
-        contentPath:
-          type: string
-          x-go-name: ContentPath
-        contextPath:
-          type: string
-          x-go-name: ContextPath
-        description:
-          description: Description is either a string or a map from string to interface
-          type: object
-          x-go-name: Description
-        type:
-          $ref: '#/components/schemas/OutputType'
-      x-go-package: github.com/demisto/server/domain
     Argument:
       description: Argument to a module command
       type: object
@@ -513,78 +569,22 @@ components:
           type: boolean
           x-go-name: Secret
       x-go-package: github.com/demisto/server/domain
-    automationScriptFilter:
-      description: automationScriptFilter is a general filter that fetches entities using a query string query using the Query value
+    Output:
+      description: Output of a module command
       type: object
       properties:
-        Cache:
-          description: Cache of join functions
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        page:
-          description: 0-based page
-          type: integer
-          format: int64
-          x-go-name: Page
-        query:
+        contentPath:
           type: string
-          x-go-name: Query
-        searchAfter:
-          description: Efficient next page, pass max sort value from previous page
-          type: array
-          items:
-            type: string
-          x-go-name: SearchAfter
-        searchBefore:
-          description: Efficient prev page, pass min sort value from next page
-          type: array
-          items:
-            type: string
-          x-go-name: SearchBefore
-        size:
-          description: Size is limited to 1000, if not passed it defaults to 0, and no results will return
-          type: integer
-          format: int64
-          x-go-name: Size
-        sort:
-          description: The sort order
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
-          x-go-name: Sort
-        stripContext:
-          type: boolean
-          x-go-name: StripContext
-      x-go-package: github.com/demisto/server/web
-    automationScriptResult:
-      type: object
-      title: automationScriptResult ...
-      properties:
-        pythonEnabled:
-          type: boolean
-          x-go-name: PythonEnabled
-        scripts:
-          type: array
-          items:
-            $ref: '#/components/schemas/AutomationScriptAPI'
-          x-go-name: Scripts
-        selectedScript:
+          x-go-name: ContentPath
+        contextPath:
+          type: string
+          x-go-name: ContextPath
+        description:
+          description: Description is either a string or a map from string to interface
           type: object
-          additionalProperties:
-            type: object
-          x-go-name: SelectedScript
-        suggestions:
-          type: array
-          items:
-            type: string
-          x-go-name: Tags
-      x-go-package: github.com/demisto/server/web
-    ScriptType:
-      description: ScriptType holds the type of a script
-      type: string
+          x-go-name: Description
+        type:
+          $ref: '#/components/schemas/OutputType'
       x-go-package: github.com/demisto/server/domain
   securitySchemes:
     api_key:

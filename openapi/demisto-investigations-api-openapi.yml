@@ -38,6 +38,20 @@ paths:
       - Investigations
 components:
   schemas:
+    Order:
+      description: Order struct holds a sort field and the direction of sorting
+      type: object
+      properties:
+        asc:
+          type: boolean
+          x-go-name: Asc
+        field:
+          type: string
+          x-go-name: Field
+        fieldType:
+          type: string
+          x-go-name: FieldType
+      x-go-package: github.com/demisto/server/domain
     Investigation:
       description: A special investigation called playground is created for each user-project combination and is a private space for the researcher to play in.
       type: object
@@ -211,15 +225,11 @@ components:
           format: int64
           x-go-name: Versn
       x-go-package: github.com/demisto/server/domain
-    Duration:
-      description: 'A Duration represents the elapsed time between two instants
-
-        as an int64 nanosecond count. The representation limits the
-
-        largest representable duration to approximately 290 years.'
-      type: integer
-      format: int64
-      x-go-package: time
+    InvestigationType:
+      type: number
+      format: double
+      title: InvestigationType ...
+      x-go-package: github.com/demisto/server/domain
     TerminalOptions:
       description: TerminalOptions - terminal options to use in case of using pty
       type: object
@@ -243,32 +253,6 @@ components:
         TyOSpeed:
           type: integer
           format: uint32
-      x-go-package: github.com/demisto/server/domain
-    Period:
-      type: object
-      title: Period holds the 'Period' query, such as last 3 days, last 6 hours, between 6 days from now until 3 days from now.
-      properties:
-        by:
-          description: By is used for legacty, and if exists it will override ByTo and ByFrom
-          type: string
-          x-go-name: By
-        byFrom:
-          type: string
-          x-go-name: ByFrom
-        byTo:
-          type: string
-          x-go-name: ByTo
-        field:
-          type: string
-          x-go-name: Field
-        fromValue:
-          type: string
-          format: duration
-          x-go-name: FromValue
-        toValue:
-          type: string
-          format: duration
-          x-go-name: ToValue
       x-go-package: github.com/demisto/server/domain
     InvestigationFilter:
       type: object
@@ -388,6 +372,15 @@ components:
             type: string
           x-go-name: User
       x-go-package: github.com/demisto/server/repo/entities
+    RunStatus:
+      description: RunStatus of a job
+      type: string
+      x-go-package: github.com/demisto/server/domain
+    InvestigationStatus:
+      description: InvestigationStatus is the status type
+      type: number
+      format: double
+      x-go-package: github.com/demisto/server/domain
     SystemAgent:
       description: SystemAgent - represents agent status and holds server context
       type: object
@@ -399,35 +392,32 @@ components:
             format: uint8
           x-go-name: ServerContext
       x-go-package: github.com/demisto/server/domain
-    Order:
-      description: Order struct holds a sort field and the direction of sorting
+    Period:
       type: object
+      title: Period holds the 'Period' query, such as last 3 days, last 6 hours, between 6 days from now until 3 days from now.
       properties:
-        asc:
-          type: boolean
-          x-go-name: Asc
+        by:
+          description: By is used for legacty, and if exists it will override ByTo and ByFrom
+          type: string
+          x-go-name: By
+        byFrom:
+          type: string
+          x-go-name: ByFrom
+        byTo:
+          type: string
+          x-go-name: ByTo
         field:
           type: string
           x-go-name: Field
-        fieldType:
+        fromValue:
           type: string
-          x-go-name: FieldType
+          format: duration
+          x-go-name: FromValue
+        toValue:
+          type: string
+          format: duration
+          x-go-name: ToValue
       x-go-package: github.com/demisto/server/domain
-    InvestigationSearchResponse:
-      description: InvestigationSearchResponse returns the response from the investigation search
-      type: object
-      properties:
-        data:
-          description: 'in: body'
-          type: array
-          items:
-            $ref: '#/components/schemas/Investigation'
-          x-go-name: Data
-        total:
-          type: integer
-          format: int64
-          x-go-name: Total
-      x-go-package: github.com/demisto/server/repo/entities
     System:
       description: System - URL stands for ip or hostname
       type: object
@@ -490,20 +480,30 @@ components:
           type: string
           x-go-name: Workgroup
       x-go-package: github.com/demisto/server/domain
-    RunStatus:
-      description: RunStatus of a job
-      type: string
-      x-go-package: github.com/demisto/server/domain
-    InvestigationType:
-      type: number
-      format: double
-      title: InvestigationType ...
-      x-go-package: github.com/demisto/server/domain
-    InvestigationStatus:
-      description: InvestigationStatus is the status type
-      type: number
-      format: double
-      x-go-package: github.com/demisto/server/domain
+    InvestigationSearchResponse:
+      description: InvestigationSearchResponse returns the response from the investigation search
+      type: object
+      properties:
+        data:
+          description: 'in: body'
+          type: array
+          items:
+            $ref: '#/components/schemas/Investigation'
+          x-go-name: Data
+        total:
+          type: integer
+          format: int64
+          x-go-name: Total
+      x-go-package: github.com/demisto/server/repo/entities
+    Duration:
+      description: 'A Duration represents the elapsed time between two instants
+
+        as an int64 nanosecond count. The representation limits the
+
+        largest representable duration to approximately 290 years.'
+      type: integer
+      format: int64
+      x-go-package: time
   securitySchemes:
     api_key:
       type: apiKey

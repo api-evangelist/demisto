@@ -36,11 +36,6 @@ paths:
       - Incidenttype
 components:
   schemas:
-    ReputationCalcAlg:
-      type: number
-      format: double
-      title: ReputationCalcAlg ...
-      x-go-package: github.com/demisto/server/domain
     IncidentType:
       type: object
       title: IncidentType ...
@@ -140,6 +135,11 @@ components:
           type: integer
           format: int64
           x-go-name: WeeksReminder
+      x-go-package: github.com/demisto/server/domain
+    ReputationCalcAlg:
+      type: number
+      format: double
+      title: ReputationCalcAlg ...
       x-go-package: github.com/demisto/server/domain
   securitySchemes:
     api_key:

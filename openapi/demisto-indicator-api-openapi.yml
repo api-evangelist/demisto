@@ -86,140 +86,6 @@ paths:
       - Indicator
 components:
   schemas:
-    InsightCache:
-      description: InsightCache - map insight name to all its metadata, name will be case insensitive
-      type: object
-      properties:
-        id:
-          type: string
-          x-go-name: ID
-        modified:
-          type: string
-          format: date-time
-          x-go-name: Modified
-        scores:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/DBotScore'
-          x-go-name: Scores
-        sequenceNumber:
-          type: integer
-          format: int64
-          x-go-name: SeqNum
-        sortValues:
-          type: array
-          items:
-            type: string
-          x-go-name: SortValues
-        version:
-          type: integer
-          format: int64
-          x-go-name: Versn
-      x-go-package: github.com/demisto/server/domain
-    updateIndicatorReputationData:
-      type: object
-      properties:
-        InvestigationId:
-          type: string
-          x-go-name: InvID
-        doNotWhitelist:
-          type: boolean
-          x-go-name: DoNotWhitelist
-        entryId:
-          type: string
-          x-go-name: EntryID
-        manualScore:
-          type: boolean
-          x-go-name: ManualScore
-        reason:
-          type: string
-          x-go-name: Reason
-        reputation:
-          type: integer
-          format: int64
-          x-go-name: Reputation
-        reputations:
-          type: array
-          items:
-            type: string
-          x-go-name: Reputations
-        value:
-          type: string
-          x-go-name: Value
-      x-go-package: github.com/demisto/server/web
-    indicatorContext:
-      type: object
-      properties:
-        entryId:
-          type: string
-          x-go-name: EntryID
-        indicator:
-          $ref: '#/components/schemas/IocObject'
-        investigationId:
-          type: string
-          x-go-name: InvestigationID
-        seenNow:
-          type: boolean
-          x-go-name: SeenNow
-      x-go-package: github.com/demisto/server/web
-    DBotScore:
-      description: DBotScore - Contain the score of a specific brand for a specific insight
-      type: object
-      properties:
-        content:
-          type: string
-          x-go-name: Content
-        contentFormat:
-          type: string
-          x-go-name: ContentFormat
-        context:
-          type: object
-          additionalProperties:
-            type: object
-          x-go-name: Context
-        isTypedIndicator:
-          type: boolean
-          x-go-name: IsTypedIndicator
-        score:
-          type: integer
-          format: int64
-          x-go-name: Score
-        scoreChangeTimestamp:
-          description: We need to track when the score changes to know if we need to re-calculate the overall score
-          type: string
-          format: date-time
-          x-go-name: ScoreChangeTimeStamp
-        timestamp:
-          type: string
-          format: date-time
-          x-go-name: TimeStamp
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/demisto/server/domain
-    UpdateResponse:
-      type: object
-      title: UpdateResponse ...
-      properties:
-        notUpdated:
-          type: integer
-          format: int64
-          x-go-name: NotUpdated
-        updatedIds:
-          type: array
-          items:
-            type: string
-          x-go-name: UpdatedIds
-      x-go-package: github.com/demisto/server/repo/entities
-    CustomFields:
-      description: 'The keys should be the field''s display name all lower and without spaces. For example: Scan IP -> scanip
-
-        To get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update'
-      type: object
-      title: CustomFields ...
-      additionalProperties:
-        type: object
-      x-go-package: github.com/demisto/server/domain
     IocObject:
       description: IocObject - represents an Ioc (or simply an indicator) object
       type: object
@@ -306,6 +172,140 @@ components:
         value:
           type: string
           x-go-name: Value
+        version:
+          type: integer
+          format: int64
+          x-go-name: Versn
+      x-go-package: github.com/demisto/server/domain
+    UpdateResponse:
+      type: object
+      title: UpdateResponse ...
+      properties:
+        notUpdated:
+          type: integer
+          format: int64
+          x-go-name: NotUpdated
+        updatedIds:
+          type: array
+          items:
+            type: string
+          x-go-name: UpdatedIds
+      x-go-package: github.com/demisto/server/repo/entities
+    indicatorContext:
+      type: object
+      properties:
+        entryId:
+          type: string
+          x-go-name: EntryID
+        indicator:
+          $ref: '#/components/schemas/IocObject'
+        investigationId:
+          type: string
+          x-go-name: InvestigationID
+        seenNow:
+          type: boolean
+          x-go-name: SeenNow
+      x-go-package: github.com/demisto/server/web
+    CustomFields:
+      description: 'The keys should be the field''s display name all lower and without spaces. For example: Scan IP -> scanip
+
+        To get the actual key name you can also go to Demisto CLI and run /incident_add and look for the key that you would like to update'
+      type: object
+      title: CustomFields ...
+      additionalProperties:
+        type: object
+      x-go-package: github.com/demisto/server/domain
+    updateIndicatorReputationData:
+      type: object
+      properties:
+        InvestigationId:
+          type: string
+          x-go-name: InvID
+        doNotWhitelist:
+          type: boolean
+          x-go-name: DoNotWhitelist
+        entryId:
+          type: string
+          x-go-name: EntryID
+        manualScore:
+          type: boolean
+          x-go-name: ManualScore
+        reason:
+          type: string
+          x-go-name: Reason
+        reputation:
+          type: integer
+          format: int64
+          x-go-name: Reputation
+        reputations:
+          type: array
+          items:
+            type: string
+          x-go-name: Reputations
+        value:
+          type: string
+          x-go-name: Value
+      x-go-package: github.com/demisto/server/web
+    DBotScore:
+      description: DBotScore - Contain the score of a specific brand for a specific insight
+      type: object
+      properties:
+        content:
+          type: string
+          x-go-name: Content
+        contentFormat:
+          type: string
+          x-go-name: ContentFormat
+        context:
+          type: object
+          additionalProperties:
+            type: object
+          x-go-name: Context
+        isTypedIndicator:
+          type: boolean
+          x-go-name: IsTypedIndicator
+        score:
+          type: integer
+          format: int64
+          x-go-name: Score
+        scoreChangeTimestamp:
+          description: We need to track when the score changes to know if we need to re-calculate the overall score
+          type: string
+          format: date-time
+          x-go-name: ScoreChangeTimeStamp
+        timestamp:
+          type: string
+          format: date-time
+          x-go-name: TimeStamp
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/demisto/server/domain
+    InsightCache:
+      description: InsightCache - map insight name to all its metadata, name will be case insensitive
+      type: object
+      properties:
+        id:
+          type: string
+          x-go-name: ID
+        modified:
+          type: string
+          format: date-time
+          x-go-name: Modified
+        scores:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/DBotScore'
+          x-go-name: Scores
+        sequenceNumber:
+          type: integer
+          format: int64
+          x-go-name: SeqNum
+        sortValues:
+          type: array
+          items:
+            type: string
+          x-go-name: SortValues
         version:
           type: integer
           format: int64

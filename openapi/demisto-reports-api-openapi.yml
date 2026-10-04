@@ -100,85 +100,19 @@ paths:
       - Reports
 components:
   schemas:
-    WidgetCells:
-      type: array
-      title: WidgetCells ...
-      items:
-        $ref: '#/components/schemas/WidgetCell'
-      x-go-package: github.com/demisto/server/domain
-    WidgetCell:
+    Order:
+      description: Order struct holds a sort field and the direction of sorting
       type: object
-      title: WidgetCell ...
       properties:
-        forceRange:
+        asc:
           type: boolean
-          x-go-name: ForceRange
-        h:
-          type: integer
-          format: int64
-          x-go-name: Height
-        i:
-          type: string
-          x-go-name: Key
-        id:
-          type: string
-          x-go-name: ID
-        w:
-          type: integer
-          format: int64
-          x-go-name: Width
-        widget:
-          $ref: '#/components/schemas/Widget'
-        x:
-          type: integer
-          format: int64
-          x-go-name: Xs
-        y:
-          type: integer
-          format: int64
-          x-go-name: Ys
-      x-go-package: github.com/demisto/server/domain
-    ReportAutomation:
-      type: object
-      title: ReportAutomation ...
-      properties:
-        args:
-          $ref: '#/components/schemas/ModuleArgs'
-        id:
-          type: string
-          x-go-name: ID
-        name:
-          type: string
-          x-go-name: Name
-        noEvent:
-          type: boolean
-          x-go-name: NoEvent
-      x-go-package: github.com/demisto/server/domain
-    Period:
-      type: object
-      title: Period holds the 'Period' query, such as last 3 days, last 6 hours, between 6 days from now until 3 days from now.
-      properties:
-        by:
-          description: By is used for legacty, and if exists it will override ByTo and ByFrom
-          type: string
-          x-go-name: By
-        byFrom:
-          type: string
-          x-go-name: ByFrom
-        byTo:
-          type: string
-          x-go-name: ByTo
+          x-go-name: Asc
         field:
           type: string
           x-go-name: Field
-        fromValue:
+        fieldType:
           type: string
-          format: duration
-          x-go-name: FromValue
-        toValue:
-          type: string
-          format: duration
-          x-go-name: ToValue
+          x-go-name: FieldType
       x-go-package: github.com/demisto/server/domain
     Widget:
       description: 'Widget describe a widget component used to get statistics requests, based on parameters such as
@@ -270,100 +204,6 @@ components:
           type: string
           x-go-name: WidgetType
       x-go-package: github.com/demisto/server/domain
-    DateRange:
-      description: DateRange provides common fields for date filtering
-      type: object
-      properties:
-        fromDate:
-          type: string
-          format: date-time
-          x-go-name: FromDate
-        fromDateLicense:
-          type: string
-          format: date-time
-          x-go-name: FromDateLicenseVal
-        period:
-          $ref: '#/components/schemas/Period'
-        toDate:
-          type: string
-          format: date-time
-          x-go-name: ToDate
-      x-go-package: github.com/demisto/server/domain
-    ModuleArgs:
-      description: ModuleArgs represents module args
-      type: object
-      additionalProperties:
-        type: object
-      x-go-package: github.com/demisto/server/domain
-    EndingType:
-      description: EndingType holds the type of schedule Ending
-      type: string
-      x-go-package: github.com/demisto/server/domain
-    Order:
-      description: Order struct holds a sort field and the direction of sorting
-      type: object
-      properties:
-        asc:
-          type: boolean
-          x-go-name: Asc
-        field:
-          type: string
-          x-go-name: Field
-        fieldType:
-          type: string
-          x-go-name: FieldType
-      x-go-package: github.com/demisto/server/domain
-    ReportFieldsDecoder:
-      type: object
-      title: ReportFieldsDecoder ...
-      properties:
-        type:
-          type: string
-          x-go-name: Type
-        value:
-          type: string
-          x-go-name: Value
-      x-go-package: github.com/demisto/server/domain
-    HumanCron:
-      type: object
-      title: HumanCron ...
-      properties:
-        atTimeHour:
-          type: string
-          x-go-name: AtTimeHour
-        atTimeMinute:
-          type: string
-          x-go-name: AtTimeMinute
-        days:
-          type: array
-          items:
-            type: string
-          x-go-name: Days
-        hoursPeriod:
-          type: string
-          x-go-name: HoursPeriod
-        schedulingType:
-          description: the following fields are deprecated. do not use them.
-          type: string
-          x-go-name: SchedulingType
-        timePeriod:
-          type: integer
-          format: int64
-          x-go-name: TimePeriod
-        timePeriodType:
-          type: string
-          x-go-name: TimePeriodType
-      x-go-package: github.com/demisto/server/domain
-    RawMessage:
-      description: 'It implements Marshaler and Unmarshaler and can
-
-        be used to delay JSON decoding or precompute a JSON encoding.'
-      type: array
-      title: RawMessage is a raw encoded JSON value.
-      items:
-        type: integer
-        format: uint8
-      x-go-package: encoding/json
     Section:
       type: object
       title: Section ...
@@ -405,6 +245,27 @@ components:
           type: string
           x-go-name: Type
       x-go-package: github.com/demisto/server/domain
+    EndingType:
+      description: EndingType holds the type of schedule Ending
+      type: string
+      x-go-package: github.com/demisto/server/domain
+    ReportFieldsDecoder:
+      type: object
+      title: ReportFieldsDecoder ...
+      properties:
+        type:
+          type: string
+          x-go-name: Type
+        value:
+          type: string
+          x-go-name: Value
+      x-go-package: github.com/demisto/server/domain
+    ModuleArgs:
+      description: ModuleArgs represents module args
+      type: object
+      additionalProperties:
+        type: object
+      x-go-package: github.com/demisto/server/domain
     ReportQuery:
       type: object
       title: ReportQuery ...
@@ -424,6 +285,96 @@ components:
         type:
           type: string
           x-go-name: Type
+      x-go-package: github.com/demisto/server/domain
+    WidgetCell:
+      type: object
+      title: WidgetCell ...
+      properties:
+        forceRange:
+          type: boolean
+          x-go-name: ForceRange
+        h:
+          type: integer
+          format: int64
+          x-go-name: Height
+        i:
+          type: string
+          x-go-name: Key
+        id:
+          type: string
+          x-go-name: ID
+        w:
+          type: integer
+          format: int64
+          x-go-name: Width
+        widget:
+          $ref: '#/components/schemas/Widget'
+        x:
+          type: integer
+          format: int64
+          x-go-name: Xs
+        y:
+          type: integer
+          format: int64
+          x-go-name: Ys
+      x-go-package: github.com/demisto/server/domain
+    RawMessage:
+      description: 'It implements Marshaler and Unmarshaler and can
+
+        be used to delay JSON decoding or precompute a JSON encoding.'
+      type: array
+      title: RawMessage is a raw encoded JSON value.
+      items:
+        type: integer
+        format: uint8
+      x-go-package: encoding/json
+    WidgetCells:
+      type: array
+      title: WidgetCells ...
+      items:
+        $ref: '#/components/schemas/WidgetCell'
+      x-go-package: github.com/demisto/server/domain
+    Period:
+      type: object
+      title: Period holds the 'Period' query, such as last 3 days, last 6 hours, between 6 days from now until 3 days from now.
+      properties:
+        by:
+          description: By is used for legacty, and if exists it will override ByTo and ByFrom
+          type: string
+          x-go-name: By
+        byFrom:
+          type: string
+          x-go-name: ByFrom
+        byTo:
+          type: string
+          x-go-name: ByTo
+        field:
+          type: string
+          x-go-name: Field
+        fromValue:
+          type: string
+          format: duration
+          x-go-name: FromValue
+        toValue:
+          type: string
+          format: duration
+          x-go-name: ToValue
+      x-go-package: github.com/demisto/server/domain
+    ReportAutomation:
+      type: object
+      title: ReportAutomation ...
+      properties:
+        args:
+          $ref: '#/components/schemas/ModuleArgs'
+        id:
+          type: string
+          x-go-name: ID
+        name:
+          type: string
+          x-go-name: Name
+        noEvent:
+          type: boolean
+          x-go-name: NoEvent
       x-go-package: github.com/demisto/server/domain
     Report:
       description: Report - represents report
@@ -578,6 +529,55 @@ components:
           type: integer
           format: int64
           x-go-name: Versn
+      x-go-package: github.com/demisto/server/domain
+    HumanCron:
+      type: object
+      title: HumanCron ...
+      properties:
+        atTimeHour:
+          type: string
+          x-go-name: AtTimeHour
+        atTimeMinute:
+          type: string
+          x-go-name: AtTimeMinute
+        days:
+          type: array
+          items:
+            type: string
+          x-go-name: Days
+        hoursPeriod:
+          type: string
+          x-go-name: HoursPeriod
+        schedulingType:
+          description: the following fields are deprecated. do not use them.
+          type: string
+          x-go-name: SchedulingType
+        timePeriod:
+          type: integer
+          format: int64
+          x-go-name: TimePeriod
+        timePeriodType:
+          type: string
+          x-go-name: TimePeriodType
+      x-go-package: github.com/demisto/server/domain
+    DateRange:
+      description: DateRange provides common fields for date filtering
+      type: object
+      properties:
+        fromDate:
+          type: string
+          format: date-time
+          x-go-name: FromDate
+        fromDateLicense:
+          type: string
+          format: date-time
+          x-go-name: FromDateLicenseVal
+        period:
+          $ref: '#/components/schemas/Period'
+        toDate:
+          type: string
+          format: date-time
+          x-go-name: ToDate
       x-go-package: github.com/demisto/server/domain
     Dashboard:
       type: object

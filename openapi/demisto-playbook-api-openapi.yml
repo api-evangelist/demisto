@@ -40,17 +40,49 @@ paths:
       - Playbook
 components:
   schemas:
-    Version:
+    TaskLoop:
+      description: TaskLoop contains loop details
       type: object
-      title: Version represents a version.
       properties:
-        Digits:
+        brand:
+          type: string
+          x-go-name: Brand
+        builtinCondition:
           type: array
           items:
-            type: integer
-            format: int64
-        Label:
+            $ref: '#/components/schemas/ArgFilter'
+          x-go-name: BuiltInCondition
+        exitCondition:
           type: string
+          x-go-name: ExitCondition
+        forEach:
+          type: boolean
+          x-go-name: ForEach
+        isCommand:
+          type: boolean
+          x-go-name: IsCommand
+        scriptArguments:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AdvanceArg'
+          x-go-name: ScriptArguments
+        scriptId:
+          type: string
+          x-go-name: AutomationScriptID
+        wait:
+          type: integer
+          format: int64
+          x-go-name: WaitBetweenIterations
+      x-go-package: github.com/demisto/server/domain
+    TimerTrigger:
+      type: object
+      title: TimerTrigger ...
+      properties:
+        action:
+          $ref: '#/components/schemas/TimerAction'
+        fieldName:
+          type: string
+          x-go-name: FieldName
       x-go-package: github.com/demisto/server/domain
     ArgAtomicFilter:
       description: ArgAtomicFilter - operator with two sides that return true/false
@@ -69,15 +101,9 @@ components:
           type: string
           x-go-name: Type
       x-go-package: github.com/demisto/server/domain
-    FilterOperatorID:
-      type: string
-      title: FilterOperatorID ...
-      x-go-package: github.com/demisto/server/domain
-    PlaybookInputs:
-      description: PlaybookInputs - array of PlaybookInput
-      type: array
-      items:
-        $ref: '#/components/schemas/PlaybookInput'
+    TaskView:
+      description: TaskView represents the view in client of the tasks graph
+      type: object
       x-go-package: github.com/demisto/server/domain
     TimerAction:
       type: string
@@ -120,127 +146,6 @@ components:
           type: integer
           format: int64
           x-go-name: Width
-      x-go-package: github.com/demisto/server/domain
-    OperatorArgument:
-      type: object
-      title: OperatorArgument ...
-      properties:
-        isContext:
-          type: boolean
-          x-go-name: IsContext
-        value:
-          $ref: '#/components/schemas/AdvanceArg'
-      x-go-package: github.com/demisto/server/domain
-    ReputationCalcAlg:
-      type: number
-      format: double
-      title: ReputationCalcAlg ...
-      x-go-package: github.com/demisto/server/domain
-    EvidenceData:
-      description: EvidenceData - all evidence properties to evaluate in task process
-      type: object
-      properties:
-        customFields:
-          description: This field must have empty json key
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/AdvanceArg'
-          x-go-name: CustomFields
-        description:
-          $ref: '#/components/schemas/AdvanceArg'
-        occurred:
-          $ref: '#/components/schemas/AdvanceArg'
-        tags:
-          $ref: '#/components/schemas/AdvanceArg'
-      x-go-package: github.com/demisto/server/domain
-    PlaybookOutput:
-      description: PlaybookOutput represents the playbook output
-      type: object
-      properties:
-        contextPath:
-          type: string
-          x-go-name: ContextPath
-        description:
-          type: string
-          x-go-name: Description
-        type:
-          $ref: '#/components/schemas/OutputType'
-      x-go-package: github.com/demisto/server/domain
-    SLA:
-      type: object
-      title: SLA ...
-      properties:
-        days:
-          type: integer
-          format: int64
-          x-go-name: Days
-        hours:
-          type: integer
-          format: int64
-          x-go-name: Hours
-        weeks:
-          type: integer
-          format: int64
-          x-go-name: Weeks
-      x-go-package: github.com/demisto/server/domain
-    TaskView:
-      description: TaskView represents the view in client of the tasks graph
-      type: object
-      x-go-package: github.com/demisto/server/domain
-    FormDisplay:
-      type: object
-      title: FormDisplay - display options for communication/ask task (for both email and web forms).
-      properties:
-        bodyBackgroundColor:
-          type: string
-          x-go-name: BodyBackgroundColor
-        bodyFontColor:
-          type: string
-          x-go-name: BodyFontColor
-        headerBackgroundColor:
-          type: string
-          x-go-name: HeaderBackgroundColor
-        headerFontColor:
-          type: string
-          x-go-name: HeaderFontColor
-        sender:
-          type: string
-          x-go-name: Sender
-        submitButtonBackgroundColor:
-          type: string
-          x-go-name: SubmitButtonBackgroundColor
-        submitButtonFontColor:
-          type: string
-          x-go-name: SubmitButtonFontColor
-        submitText:
-          type: string
-          x-go-name: SubmitText
-      x-go-package: github.com/demisto/server/domain
-    DataCollectionForm:
-      type: object
-      title: DataCollectionForm - a data collection form with questions.
-      properties:
-        description:
-          type: string
-          x-go-name: Description
-        expired:
-          type: boolean
-          x-go-name: Expired
-        questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Question'
-          x-go-name: Questions
-        sender:
-          type: string
-          x-go-name: Sender
-        title:
-          type: string
-          x-go-name: Title
-        totalAnswers:
-          type: integer
-          format: uint64
-          x-go-name: TotalAnswers
       x-go-package: github.com/demisto/server/domain
     Playbook:
       description: Playbook is a collection of tasks
@@ -394,178 +299,104 @@ components:
         view:
           $ref: '#/components/schemas/PlaybookView'
       x-go-package: github.com/demisto/server/domain
-    Question:
-      type: object
-      title: Question - question for a form with a given type.
-      properties:
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/GridColumn'
-          x-go-name: GridColumns
-        defaultRows:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: object
-          x-go-name: DefaultRows
-        fieldAssociated:
-          type: string
-          x-go-name: FieldAssociated
-        id:
-          type: string
-          x-go-name: ID
-        label:
-          type: string
-          x-go-name: Label
-        labelArg:
-          $ref: '#/components/schemas/AdvanceArg'
-        options:
-          type: array
-          items:
-            type: string
-          x-go-name: Options
-        placeholder:
-          type: string
-          x-go-name: Placeholder
-        required:
-          type: boolean
-          x-go-name: Required
-        tooltip:
-          type: string
-          x-go-name: Tooltip
-        type:
-          type: string
-          x-go-name: Type
+    OutputType:
+      type: string
+      title: OutputType ...
       x-go-package: github.com/demisto/server/domain
-    QuietMode:
-      description: QuietMode quiet mode for playbook task
-      type: integer
-      format: int64
-      x-go-package: github.com/demisto/server/domain
-    AdvanceArg:
-      description: 'Simple: plain text such as "hello" (constant) or ${File.ID} (DT expression)
+    ComplexArg:
+      description: 'ComplexArg - all info that is necessary to compute argument value from context
 
-        Complex: struct with all info that is necessary to compute argument value from context (Root, Filters, Accessor & Transformers)'
+        Root - the root slice (or object) from to work against
+
+        Filters - a slice of filters to apply to the root object, one after another (e.i. with AND condition between each one)
+
+        Accessor - the key to access to each result after filter
+
+        Transformers - a slice to transformers to apply on the result of the accessed key from each result
+
+        e.g. if user want to take from context all File.DisplayName where File.Extension is ''EXE'', and the result in uppercase than:
+
+        Root: is "File"
+
+        Filters: will hold the "File.DisplayName where File.Extension is ''EXE''" query
+
+        Accessor: is "DisplayName"
+
+        Transformers: will hold the uppercase transformation'
       type: object
-      title: 'AdvanceArg - advance argument can be one of the following:'
       properties:
-        complex:
-          $ref: '#/components/schemas/ComplexArg'
-        simple:
+        accessor:
           type: string
-          x-go-name: Simple
-      x-go-package: github.com/demisto/server/domain
-    TaskLoop:
-      description: TaskLoop contains loop details
-      type: object
-      properties:
-        brand:
-          type: string
-          x-go-name: Brand
-        builtinCondition:
+          x-go-name: Accessor
+        filters:
           type: array
           items:
             $ref: '#/components/schemas/ArgFilter'
-          x-go-name: BuiltInCondition
-        exitCondition:
+          x-go-name: Filters
+        root:
           type: string
-          x-go-name: ExitCondition
-        forEach:
-          type: boolean
-          x-go-name: ForEach
-        isCommand:
-          type: boolean
-          x-go-name: IsCommand
-        scriptArguments:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/AdvanceArg'
-          x-go-name: ScriptArguments
-        scriptId:
-          type: string
-          x-go-name: AutomationScriptID
-        wait:
-          type: integer
-          format: int64
-          x-go-name: WaitBetweenIterations
-      x-go-package: github.com/demisto/server/domain
-    Task:
-      description: Task is the basic task in the task repository that can be associated to an incident via playbook
-      type: object
-      properties:
-        brand:
-          type: string
-          x-go-name: Brand
-        clonedFrom:
-          type: string
-          x-go-name: ClonedFrom
-        comment:
-          type: string
-          x-go-name: Comment
-        conditions:
+          x-go-name: Root
+        transformers:
           type: array
           items:
-            type: string
-          x-go-name: ConditionnKeys
-        description:
-          type: string
-          x-go-name: Description
-        id:
-          type: string
-          x-go-name: ID
-        isCommand:
-          type: boolean
-          x-go-name: IsCommand
-        isLocked:
-          type: boolean
-          x-go-name: IsLocked
-        isSystemTask:
-          type: boolean
-          x-go-name: IsSystemTask
-        isTitleTask:
-          type: boolean
-          x-go-name: IsTitleTask
-        modified:
-          type: string
-          format: date-time
-          x-go-name: Modified
-        name:
-          type: string
-          x-go-name: Name
-        playbookId:
-          type: string
-          x-go-name: PlaybookID
-        scriptId:
-          type: string
-          x-go-name: AutomationScriptID
-        sortValues:
-          type: array
-          items:
-            type: string
-          x-go-name: SortValues
-        tags:
-          type: array
-          items:
-            type: string
-          x-go-name: Tags
-        type:
-          $ref: '#/components/schemas/TaskType'
-        version:
-          type: integer
-          format: int64
-          x-go-name: Versn
-      x-go-package: github.com/demisto/server/domain
-    ArgFilter:
-      description: ArgFilter - represent a slice of atomic filters with OR condition between them (e.i. - atomic1 OR atomic2 OR ...)
-      type: array
-      items:
-        $ref: '#/components/schemas/ArgAtomicFilter'
+            $ref: '#/components/schemas/ArgTransformer'
+          x-go-name: Transformers
       x-go-package: github.com/demisto/server/domain
     PlaybookView:
       description: PlaybookView represents the view in client of playbook graph
       type: object
+      x-go-package: github.com/demisto/server/domain
+    PlaybookOutputs:
+      description: PlaybookOutputs - array of PlaybookOutput
+      type: array
+      items:
+        $ref: '#/components/schemas/PlaybookOutput'
+      x-go-package: github.com/demisto/server/domain
+    Version:
+      type: object
+      title: Version represents a version.
+      properties:
+        Digits:
+          type: array
+          items:
+            type: integer
+            format: int64
+        Label:
+          type: string
+      x-go-package: github.com/demisto/server/domain
+    FormDisplay:
+      type: object
+      title: FormDisplay - display options for communication/ask task (for both email and web forms).
+      properties:
+        bodyBackgroundColor:
+          type: string
+          x-go-name: BodyBackgroundColor
+        bodyFontColor:
+          type: string
+          x-go-name: BodyFontColor
+        headerBackgroundColor:
+          type: string
+          x-go-name: HeaderBackgroundColor
+        headerFontColor:
+          type: string
+          x-go-name: HeaderFontColor
+        sender:
+          type: string
+          x-go-name: Sender
+        submitButtonBackgroundColor:
+          type: string
+          x-go-name: SubmitButtonBackgroundColor
+        submitButtonFontColor:
+          type: string
+          x-go-name: SubmitButtonFontColor
+        submitText:
+          type: string
+          x-go-name: SubmitText
+      x-go-package: github.com/demisto/server/domain
+    ReputationCalcAlg:
+      type: number
+      format: double
+      title: ReputationCalcAlg ...
       x-go-package: github.com/demisto/server/domain
     PlaybookTask:
       type: object
@@ -662,15 +493,26 @@ components:
         view:
           $ref: '#/components/schemas/TaskView'
       x-go-package: github.com/demisto/server/domain
-    FieldMapping:
-      description: FieldMapping - Map a task output (complex or simple value) to an incident field
+    EvidenceData:
+      description: EvidenceData - all evidence properties to evaluate in task process
       type: object
       properties:
-        fieldId:
-          type: string
-          x-go-name: IncidentField
-        output:
+        customFields:
+          description: This field must have empty json key
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AdvanceArg'
+          x-go-name: CustomFields
+        description:
           $ref: '#/components/schemas/AdvanceArg'
+        occurred:
+          $ref: '#/components/schemas/AdvanceArg'
+        tags:
+          $ref: '#/components/schemas/AdvanceArg'
+      x-go-package: github.com/demisto/server/domain
+    TransformerOperatorID:
+      type: string
+      title: TransformerOperatorID ...
       x-go-package: github.com/demisto/server/domain
     PlaybookInput:
       description: PlaybookInput represents the playbook input
@@ -688,30 +530,37 @@ components:
         value:
           $ref: '#/components/schemas/AdvanceArg'
       x-go-package: github.com/demisto/server/domain
-    TransformerOperatorID:
-      type: string
-      title: TransformerOperatorID ...
+    ArgFilter:
+      description: ArgFilter - represent a slice of atomic filters with OR condition between them (e.i. - atomic1 OR atomic2 OR ...)
+      type: array
+      items:
+        $ref: '#/components/schemas/ArgAtomicFilter'
       x-go-package: github.com/demisto/server/domain
-    OutputType:
-      type: string
-      title: OutputType ...
-      x-go-package: github.com/demisto/server/domain
-    NotifyTimings:
+    DataCollectionForm:
       type: object
-      title: NotifyTimings - time control on notify items - retries max count and intervals.
+      title: DataCollectionForm - a data collection form with questions.
       properties:
-        completeAfterReplies:
+        description:
+          type: string
+          x-go-name: Description
+        expired:
+          type: boolean
+          x-go-name: Expired
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+          x-go-name: Questions
+        sender:
+          type: string
+          x-go-name: Sender
+        title:
+          type: string
+          x-go-name: Title
+        totalAnswers:
           type: integer
           format: uint64
-          x-go-name: CompleteAfterReplies
-        retriesCount:
-          type: integer
-          format: uint64
-          x-go-name: RetriesCount
-        retriesInterval:
-          type: integer
-          format: uint64
-          x-go-name: RetriesInterval
+          x-go-name: TotalAnswers
       x-go-package: github.com/demisto/server/domain
     TaskCondition:
       description: 'TaskCondition - contains a condition and a corresponding label
@@ -728,18 +577,44 @@ components:
           type: string
           x-go-name: Label
       x-go-package: github.com/demisto/server/domain
+    PlaybookOutput:
+      description: PlaybookOutput represents the playbook output
+      type: object
+      properties:
+        contextPath:
+          type: string
+          x-go-name: ContextPath
+        description:
+          type: string
+          x-go-name: Description
+        type:
+          $ref: '#/components/schemas/OutputType'
+      x-go-package: github.com/demisto/server/domain
     TaskType:
       description: TaskType is the Task in the playbook context as a node
       type: string
       x-go-package: github.com/demisto/server/domain
-    ArgTransformer:
+    SLA:
       type: object
-      title: ArgTransformer ...
+      title: SLA ...
       properties:
-        args:
-          x-go-name: Args
-        operator:
-          $ref: '#/components/schemas/TransformerOperatorID'
+        days:
+          type: integer
+          format: int64
+          x-go-name: Days
+        hours:
+          type: integer
+          format: int64
+          x-go-name: Hours
+        weeks:
+          type: integer
+          format: int64
+          x-go-name: Weeks
+      x-go-package: github.com/demisto/server/domain
+    QuietMode:
+      description: QuietMode quiet mode for playbook task
+      type: integer
+      format: int64
       x-go-package: github.com/demisto/server/domain
     NotifiableItem:
       type: object
@@ -774,60 +649,185 @@ components:
         to:
           $ref: '#/components/schemas/AdvanceArg'
       x-go-package: github.com/demisto/server/domain
-    PlaybookOutputs:
-      description: PlaybookOutputs - array of PlaybookOutput
+    PlaybookInputs:
+      description: PlaybookInputs - array of PlaybookInput
       type: array
       items:
-        $ref: '#/components/schemas/PlaybookOutput'
+        $ref: '#/components/schemas/PlaybookInput'
       x-go-package: github.com/demisto/server/domain
-    TimerTrigger:
+    OperatorArgument:
       type: object
-      title: TimerTrigger ...
+      title: OperatorArgument ...
       properties:
-        action:
-          $ref: '#/components/schemas/TimerAction'
-        fieldName:
-          type: string
-          x-go-name: FieldName
+        isContext:
+          type: boolean
+          x-go-name: IsContext
+        value:
+          $ref: '#/components/schemas/AdvanceArg'
       x-go-package: github.com/demisto/server/domain
-    ComplexArg:
-      description: 'ComplexArg - all info that is necessary to compute argument value from context
-
-        Root - the root slice (or object) from to work against
-
-        Filters - a slice of filters to apply to the root object, one after another (e.i. with AND condition between each one)
-
-        Accessor - the key to access to each result after filter
-
-        Transformers - a slice to transformers to apply on the result of the accessed key from each result
-
-        e.g. if user want to take from context all File.DisplayName where File.Extension is ''EXE'', and the result in uppercase than:
-
-        Root: is "File"
-
-        Filters: will hold the "File.DisplayName where File.Extension is ''EXE''" query
-
-        Accessor: is "DisplayName"
-
-        Transformers: will hold the uppercase transformation'
+    FilterOperatorID:
+      type: string
+      title: FilterOperatorID ...
+      x-go-package: github.com/demisto/server/domain
+    ArgTransformer:
+      type: object
+      title: ArgTransformer ...
+      properties:
+        args:
+          x-go-name: Args
+        operator:
+          $ref: '#/components/schemas/TransformerOperatorID'
+      x-go-package: github.com/demisto/server/domain
+    FieldMapping:
+      description: FieldMapping - Map a task output (complex or simple value) to an incident field
       type: object
       properties:
-        accessor:
+        fieldId:
           type: string
-          x-go-name: Accessor
-        filters:
+          x-go-name: IncidentField
+        output:
+          $ref: '#/components/schemas/AdvanceArg'
+      x-go-package: github.com/demisto/server/domain
+    AdvanceArg:
+      description: 'Simple: plain text such as "hello" (constant) or ${File.ID} (DT expression)
+
+        Complex: struct with all info that is necessary to compute argument value from context (Root, Filters, Accessor & Transformers)'
+      type: object
+      title: 'AdvanceArg - advance argument can be one of the following:'
+      properties:
+        complex:
+          $ref: '#/components/schemas/ComplexArg'
+        simple:
+          type: string
+          x-go-name: Simple
+      x-go-package: github.com/demisto/server/domain
+    Task:
+      description: Task is the basic task in the task repository that can be associated to an incident via playbook
+      type: object
+      properties:
+        brand:
+          type: string
+          x-go-name: Brand
+        clonedFrom:
+          type: string
+          x-go-name: ClonedFrom
+        comment:
+          type: string
+          x-go-name: Comment
+        conditions:
           type: array
           items:
-            $ref: '#/components/schemas/ArgFilter'
-          x-go-name: Filters
-        root:
+            type: string
+          x-go-name: ConditionnKeys
+        description:
           type: string
-          x-go-name: Root
-        transformers:
+          x-go-name: Description
+        id:
+          type: string
+          x-go-name: ID
+        isCommand:
+          type: boolean
+          x-go-name: IsCommand
+        isLocked:
+          type: boolean
+          x-go-name: IsLocked
+        isSystemTask:
+          type: boolean
+          x-go-name: IsSystemTask
+        isTitleTask:
+          type: boolean
+          x-go-name: IsTitleTask
+        modified:
+          type: string
+          format: date-time
+          x-go-name: Modified
+        name:
+          type: string
+          x-go-name: Name
+        playbookId:
+          type: string
+          x-go-name: PlaybookID
+        scriptId:
+          type: string
+          x-go-name: AutomationScriptID
+        sortValues:
           type: array
           items:
-            $ref: '#/components/schemas/ArgTransformer'
-          x-go-name: Transformers
+            type: string
+          x-go-name: SortValues
+        tags:
+          type: array
+          items:
+            type: string
+          x-go-name: Tags
+        type:
+          $ref: '#/components/schemas/TaskType'
+        version:
+          type: integer
+          format: int64
+          x-go-name: Versn
+      x-go-package: github.com/demisto/server/domain
+    NotifyTimings:
+      type: object
+      title: NotifyTimings - time control on notify items - retries max count and intervals.
+      properties:
+        completeAfterReplies:
+          type: integer
+          format: uint64
+          x-go-name: CompleteAfterReplies
+        retriesCount:
+          type: integer
+          format: uint64
+          x-go-name: RetriesCount
+        retriesInterval:
+          type: integer
+          format: uint64
+          x-go-name: RetriesInterval
+      x-go-package: github.com/demisto/server/domain
+    Question:
+      type: object
+      title: Question - question for a form with a given type.
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/GridColumn'
+          x-go-name: GridColumns
+        defaultRows:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+          x-go-name: DefaultRows
+        fieldAssociated:
+          type: string
+          x-go-name: FieldAssociated
+        id:
+          type: string
+          x-go-name: ID
+        label:
+          type: string
+          x-go-name: Label
+        labelArg:
+          $ref: '#/components/schemas/AdvanceArg'
+        options:
+          type: array
+          items:
+            type: string
+          x-go-name: Options
+        placeholder:
+          type: string
+          x-go-name: Placeholder
+        required:
+          type: boolean
+          x-go-name: Required
+        tooltip:
+          type: string
+          x-go-name: Tooltip
+        type:
+          type: string
+          x-go-name: Type
       x-go-package: github.com/demisto/server/domain
   securitySchemes:
     api_key:
