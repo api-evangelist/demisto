@@ -1,0 +1,113 @@
+slug: demisto
+provider: Demisto
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 9
+edges:
+- tag: Incident
+  spec_file: demisto-incident-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.85
+  evidence: POST /incident  createIncident  Create single incident; POST /incident/batchClose  closeIncidentsBatch  Batch
+    close incidents; schemas Severity, SLAState, IncidentStatus
+  reason: Creation, closure and export of security incidents in a SOAR case-management platform. The homograph
+    risk is IT Service Management incidents, but the vendor is explicitly a security incident case management/SOAR
+    product, so security incident response is the right reading.
+- tag: Indicators
+  spec_file: demisto-indicators-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.85
+  evidence: POST /indicators/batch/export/stix  exportIndicatorsToStixBatch  Batch export indicators to
+    STIX; POST /indicators/feed/json  createFeedIndicatorsJson  Create feed indicators from JSON
+  reason: Bulk IOC ingestion, search and STIX export — threat-intelligence feed management supporting
+    SOC detection and response. STIX and IocObject make the security-threat reading unambiguous.
+- tag: Investigations
+  spec_file: demisto-investigations-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.82
+  evidence: POST /investigations/search  searchInvestigations  Search investigations by filter; schemas
+    InvestigationFilter, InvestigationType, InvestigationStatus
+  reason: Investigations are the security incident case objects of this SOAR product; searching/filtering
+    them is part of SOC incident response case management.
+- tag: Evidence
+  spec_file: demisto-evidence-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.8
+  evidence: POST /evidence  saveEvidence  Save evidence; POST /evidence/search  searchEvidence  Search
+    evidence
+  reason: Evidence board management within security investigations on a SOAR platform — collecting and
+    searching evidence during incident response. Maps to threat detection & response (SOC/incident response),
+    not legal or audit evidence, given the vendor is a security orchestration and incident case management
+    product.
+- tag: Incidents
+  spec_file: demisto-incidents-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.8
+  evidence: POST /incidents/search  searchIncidents  Search incidents by filter; schemas IncidentFilter,
+    Severity, SLAState, IncidentStatus
+  reason: Querying the security incident case store of a SOAR platform. Search is a thin verb, but the
+    filtered object is plainly the security incident, placing it in SOC incident response.
+- tag: Indicator
+  spec_file: demisto-indicator-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.8
+  evidence: POST /indicator/create  indicatorsCreate  Create Indicator; POST /indicator/whitelist  indicatorWhitelist  Whitelists
+    or deletes Indicator; schemas DBotScore, IocObject
+  reason: Indicator-of-compromise (IOC) lifecycle with reputation scoring — threat-intelligence management
+    feeding SOC detection and response. IocObject/DBotScore schemas rule out any financial or process-indicator
+    reading.
+- tag: Inv Playbook
+  spec_file: demisto-inv-playbook-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.78
+  evidence: POST /inv-playbook/task/add/{investigationId}  addAdHocTask  Add ad-hoc task; schemas InvestigationPlaybookTask,
+    EvidenceData, SLA
+  reason: Operations manage tasks inside a security investigation playbook on a SOAR platform — i.e. coordination
+    of security incident response work, matching Threat Detection & Response Management (SOC/incident
+    response). Not generic project task management, as the parent object is an investigation with evidence
+    and reputation calculation.
+- tag: Entry
+  spec_file: demisto-entry-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.75
+  evidence: POST /entry  investigationAddEntryHandler  Create new entry in existing investigation; POST
+    /entry/exportArtifact  entryExportArtifact  Export Artifact
+  reason: Entries are War Room records attached to security investigations, with artifacts, notes and
+    tags (schemas EntryReputation, ReputationData, EntryTask). This is the investigation/response workstream
+    of a SOAR platform, i.e. security incident response, rather than generic ITSM. Sub-capability confident
+    but entry handling is a collaboration substrate, hence 0.75.
+- tag: Automation
+  spec_file: demisto-automation-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.7
+  evidence: '''Create or update automation'', ''Search Automation (aka scripts)''; vendor is a ''Security
+    Orchestration, Automation, and Response (SOAR) platform'''
+  reason: Management of SOAR automation scripts/playbooks underpins security incident detection and response
+    operations; it is tooling-authoring in nature, so moderate rather than high confidence.
