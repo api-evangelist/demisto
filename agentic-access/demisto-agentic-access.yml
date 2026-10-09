@@ -1,18 +1,27 @@
-generated: '2026-07-18'
+generated: '2026-09-23'
 method: generated
-source: openapi/demisto-openapi-original.json
+source: openapi/demisto-api-keys-api-openapi.yml, openapi/demisto-automation-api-openapi.yml,
+  openapi/demisto-classifier-api-openapi.yml, openapi/demisto-contentpacks-api-openapi.yml,
+  openapi/demisto-dashboards-api-openapi.yml, openapi/demisto-entry-api-openapi.yml, openapi/demisto-evidence-api-openapi.yml,
+  openapi/demisto-incident-api-openapi.yml, openapi/demisto-incident-types-api-openapi.yml,
+  openapi/demisto-incidentfields-api-openapi.yml, openapi/demisto-incidents-api-openapi.yml,
+  openapi/demisto-incidenttype-api-openapi.yml, openapi/demisto-indicator-api-openapi.yml, openapi/demisto-indicators-api-openapi.yml,
+  openapi/demisto-inv-playbook-api-openapi.yml, openapi/demisto-investigations-api-openapi.yml,
+  openapi/demisto-layouts-api-openapi.yml, openapi/demisto-playbook-api-openapi.yml, openapi/demisto-report-api-openapi.yml,
+  openapi/demisto-reports-api-openapi.yml, openapi/demisto-reputation-api-openapi.yml, openapi/demisto-settings-api-openapi.yml,
+  openapi/demisto-statistics-api-openapi.yml, openapi/demisto-widgets-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 75
   by_action_class:
-    acting: 63
-    connected: 12
+    acting: 55
+    connected: 20
   by_consequence:
     safety-critical: 2
-    write: 61
-    read: 12
+    write: 53
+    read: 20
   human_in_the_loop_required: 2
 operations:
 - path: /apikeys/revoke/user/{username}
@@ -99,6 +108,16 @@ operations:
   method: post
   operationId: getAutomationScripts
   x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /classifier/import
+  method: post
+  operationId: importClassifier
+  x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
@@ -111,9 +130,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /classifier/import
+- path: /contentpacks/installed/upload
   method: post
-  operationId: importClassifier
+  operationId: uploadContentPacks
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -295,18 +314,12 @@ operations:
   method: post
   operationId: searchEvidence
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /incident
   method: post
   operationId: createIncident
@@ -429,6 +442,22 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /incidenttypes/import
+  method: post
+  operationId: importIncidentTypesHandler
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /incidentfields/associatedTypes/{type}
   method: get
   operationId: getIncidentsFieldsByIncidentType
@@ -459,37 +488,15 @@ operations:
   method: post
   operationId: searchIncidents
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /incidenttype
   method: post
   operationId: createOrUpdateIncidentType
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /incidenttypes/import
-  method: post
-  operationId: importIncidentTypesHandler
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -629,18 +636,12 @@ operations:
   method: post
   operationId: indicatorsSearch
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /indicators/stix/v2/{id}
   method: get
   operationId: getIndicatorsAsSTIX
@@ -811,9 +812,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /investigations/search
+- path: /v2/inv-playbook/task/complete
   method: post
-  operationId: searchInvestigations
+  operationId: completeTaskV2
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -827,6 +828,32 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /v2/inv-playbook/task/form/submit
+  method: post
+  operationId: submitTaskForm
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /investigations/search
+  method: post
+  operationId: searchInvestigations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /v2/layouts/import
   method: post
   operationId: importLayout
@@ -941,18 +968,12 @@ operations:
   method: post
   operationId: getAudits
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /settings/docker-images
   method: get
   operationId: getDockerImages
@@ -995,86 +1016,26 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /contentpacks/installed/upload
-  method: post
-  operationId: uploadContentPacks
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /statistics/dashboards/query
   method: post
   operationId: GetStatsForDashboard
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /statistics/widgets/query
   method: post
   operationId: getStatsForWidget
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/inv-playbook/task/complete
-  method: post
-  operationId: completeTaskV2
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/inv-playbook/task/form/submit
-  method: post
-  operationId: submitTaskForm
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /widgets
   method: get
   operationId: getAllWidgets
