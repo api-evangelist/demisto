@@ -1,0 +1,23 @@
+generated: '2026-10-14'
+method: searched
+checked:
+- https://plugins.jetbrains.com/
+marketplace_apps: []
+edges:
+- partner_name: JetBrains Marketplace
+  partner: jetbrains
+  partner_match: aggregator
+  type: marketplace
+  marketplace: jetbrains
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://plugins.jetbrains.com/vendor/432745cb-467a-4881-bf88-ec2ac54e6701
+  listing_count: 1
+  apps:
+  - Demisto Add-on for PyCharm
+  publisher_name: Demisto
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+source:
+- https://plugins.jetbrains.com/
