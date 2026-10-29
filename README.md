@@ -64,6 +64,159 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Demisto is a company surfaced as a portfolio company of accel, greylock and added to the API Evangelist network as a stub for enrichment. Sector: security. This profile is a lead awaiting the enrichment pipeline.
+Demisto is a Security Orchestration, Automation, and Response (SOAR) platform that unifies incident case management, playbook-driven automation, real-time analyst collaboration (the "War Room"), and threat-intelligence management. Founded as an independent security startup backed by Accel and Greylock, Demisto was acquired by Palo Alto Networks in 2019 for roughly $560M and rebranded as Cortex XSOAR; the demisto.com domain now redirects to the Cortex XSOAR product. The Demisto REST API exposes incidents, war-room entries, evidence, threat indicators, and automation scripts programmatically, with a Swagger 2.0 specification, an official Python client (demisto-py), and a content-development SDK/CLI (demisto-sdk). This API Evangelist profile was enriched from the provider's public developer surface (xsoar.pan.dev, docs-cortex.paloaltonetworks.com, and the github.com/demisto organization).
 
-Backed by: accel, greylock — http://www.demisto.com
+**Areas:** Company · Security · SOAR · Incident Response · Threat Intelligence · Security Automation
+
+## Demisto on APIs.io
+
+Everything profiled for Demisto is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/demisto/](https://apis.io/providers/demisto/)** — or go straight to one of the APIs or properties below.
+
+### APIs (24)
+
+- [Demisto Automation API](https://apis.io/apis/demisto/demisto-automation-api/) — The Automation API from Demisto — 5 operation(s) for automation.
+- [Demisto Classifier API](https://apis.io/apis/demisto/demisto-classifier-api/) — The Classifier API from Demisto — 1 operation(s) for classifier.
+- [Demisto Contentpacks API](https://apis.io/apis/demisto/demisto-contentpacks-api/) — The Contentpacks API from Demisto — 1 operation(s) for contentpacks.
+- [Demisto Dashboards API](https://apis.io/apis/demisto/demisto-dashboards-api/) — The Dashboards API from Demisto — 1 operation(s) for dashboards.
+- [Demisto Entry API](https://apis.io/apis/demisto/demisto-entry-api/) — The Entry API from Demisto — 8 operation(s) for entry.
+- [Demisto Evidence API](https://apis.io/apis/demisto/demisto-evidence-api/) — The Evidence API from Demisto — 3 operation(s) for evidence.
+- [Demisto Incident API](https://apis.io/apis/demisto/demisto-incident-api/) — The Incident API from Demisto — 8 operation(s) for incident.
+- [Demisto Incidentfields API](https://apis.io/apis/demisto/demisto-incidentfields-api/) — The Incidentfields API from Demisto — 2 operation(s) for incidentfields.
+- [Demisto Incidents API](https://apis.io/apis/demisto/demisto-incidents-api/) — The Incidents API from Demisto — 1 operation(s) for incidents.
+- [Demisto Incidenttype API](https://apis.io/apis/demisto/demisto-incidenttype-api/) — The Incidenttype API from Demisto — 1 operation(s) for incidenttype.
+- [Demisto Indicator API](https://apis.io/apis/demisto/demisto-indicator-api/) — The Indicator API from Demisto — 3 operation(s) for indicator.
+- [Demisto Indicators API](https://apis.io/apis/demisto/demisto-indicators-api/) — The Indicators API from Demisto — 8 operation(s) for indicators.
+- [Demisto Inv Playbook API](https://apis.io/apis/demisto/demisto-inv-playbook-api/) — The Inv Playbook API from Demisto — 11 operation(s) for inv playbook.
+- [Demisto Investigations API](https://apis.io/apis/demisto/demisto-investigations-api/) — The Investigations API from Demisto — 1 operation(s) for investigations.
+- [Demisto Layouts API](https://apis.io/apis/demisto/demisto-layouts-api/) — The Layouts API from Demisto — 1 operation(s) for layouts.
+- [Demisto Playbook API](https://apis.io/apis/demisto/demisto-playbook-api/) — The Playbook API from Demisto — 1 operation(s) for playbook.
+- [Demisto Report API](https://apis.io/apis/demisto/demisto-report-api/) — The Report API from Demisto — 1 operation(s) for report.
+- [Demisto Reports API](https://apis.io/apis/demisto/demisto-reports-api/) — The Reports API from Demisto — 4 operation(s) for reports.
+- [Demisto Reputation API](https://apis.io/apis/demisto/demisto-reputation-api/) — The Reputation API from Demisto — 1 operation(s) for reputation.
+- [Demisto Settings API](https://apis.io/apis/demisto/demisto-settings-api/) — The Settings API from Demisto — 3 operation(s) for settings.
+- [Demisto Statistics API](https://apis.io/apis/demisto/demisto-statistics-api/) — The Statistics API from Demisto — 2 operation(s) for statistics.
+- [Demisto Widgets API](https://apis.io/apis/demisto/demisto-widgets-api/) — The Widgets API from Demisto — 3 operation(s) for widgets.
+- [Demisto API Keys API](https://apis.io/apis/demisto/demisto-api-keys-api/) — The API Keys API from Demisto — 1 operation(s) for api keys.
+- [Demisto Incident Types API](https://apis.io/apis/demisto/demisto-incident-types-api/) — The Incident Types API from Demisto — 1 operation(s) for incident types.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [demisto](https://apis.io/servers/demisto/demisto/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Demisto Agentic Access](https://apis.io/agentic-access/demisto/demisto-agentic-access/)
+
+#### Collections (24)
+
+Postman and Open Collection request collections.
+
+- [Demisto Apikeys API](https://apis.io/collections/demisto/open-demisto-apikeys-api/)
+- [Demisto Apikeys Automation API](https://apis.io/collections/demisto/open-demisto-automation-api/)
+- [Demisto Apikeys Classifier API](https://apis.io/collections/demisto/open-demisto-classifier-api/)
+- [Demisto Apikeys Contentpacks API](https://apis.io/collections/demisto/open-demisto-contentpacks-api/)
+- [Demisto Apikeys Dashboards API](https://apis.io/collections/demisto/open-demisto-dashboards-api/)
+- [Demisto Apikeys Entry API](https://apis.io/collections/demisto/open-demisto-entry-api/)
+- [Demisto Apikeys Evidence API](https://apis.io/collections/demisto/open-demisto-evidence-api/)
+- [Demisto Apikeys Incident API](https://apis.io/collections/demisto/open-demisto-incident-api/)
+- [Demisto Apikeys Incidentfields API](https://apis.io/collections/demisto/open-demisto-incidentfields-api/)
+- [Demisto Apikeys Incidents API](https://apis.io/collections/demisto/open-demisto-incidents-api/)
+- [Demisto Apikeys Incidenttype API](https://apis.io/collections/demisto/open-demisto-incidenttype-api/)
+- [Demisto Apikeys Incidenttypes API](https://apis.io/collections/demisto/open-demisto-incidenttypes-api/)
+- [Demisto Apikeys Indicator API](https://apis.io/collections/demisto/open-demisto-indicator-api/)
+- [Demisto Apikeys Indicators API](https://apis.io/collections/demisto/open-demisto-indicators-api/)
+- [Demisto Apikeys Inv Playbook API](https://apis.io/collections/demisto/open-demisto-inv-playbook-api/)
+- [Demisto Apikeys Investigations API](https://apis.io/collections/demisto/open-demisto-investigations-api/)
+- [Demisto Apikeys Layouts API](https://apis.io/collections/demisto/open-demisto-layouts-api/)
+- [Demisto Apikeys Playbook API](https://apis.io/collections/demisto/open-demisto-playbook-api/)
+- [Demisto Apikeys Report API](https://apis.io/collections/demisto/open-demisto-report-api/)
+- [Demisto Apikeys Reports API](https://apis.io/collections/demisto/open-demisto-reports-api/)
+- [Demisto Apikeys Reputation API](https://apis.io/collections/demisto/open-demisto-reputation-api/)
+- [Demisto Apikeys Settings API](https://apis.io/collections/demisto/open-demisto-settings-api/)
+- [Demisto Apikeys Statistics API](https://apis.io/collections/demisto/open-demisto-statistics-api/)
+- [Demisto Apikeys Widgets API](https://apis.io/collections/demisto/open-demisto-widgets-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Demisto Openapi Overlay](https://apis.io/overlays/demisto/demisto-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Demisto Authentication](https://apis.io/security/demisto/demisto-authentication/)
+- [Demisto Domain Security](https://apis.io/security/demisto/demisto-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.demisto.com)
+- [Documentation](https://xsoar.pan.dev/docs/welcome)
+- [Getting started](https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/8/Cortex-XSOAR-Administrator-Guide/Get-Started-with-APIs)
+- [API reference](https://xsoar.pan.dev/docs/reference/api/demisto-class)
+- [GitHub](https://github.com/demisto)
+- [Status](https://status.paloaltonetworks.com/)
+
+## API Evangelist rating
+
+**Kin Score 36.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 41.3 |
+| Contract governance | 4.5 |
+| Operational transparency | 42.1 |
+| Developer ergonomics | 54.2 |
+| Access clarity | 0.0 |
+
+**Agent readiness 18.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/demisto/](https://apis.io/providers/demisto/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Demisto: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/demisto/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
